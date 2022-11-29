@@ -4,12 +4,8 @@
 
     <side-nav></side-nav>
     <workspace></workspace>
-    <board-header></board-header>
-    <!-- todo figure out how to make the board-content routable -->
-    <section class="main-content">
+    <board-container></board-container>
    
-      <router-view></router-view>
-    </section>
   </section>
 
 </template>
@@ -18,8 +14,8 @@
 <script>
 import sideNav from '../cmps/side-nav.vue'
 import workspace from '../cmps/workspace.vue'
-import boardHeader from '../cmps/board-header.vue'
-import mainTable from '../views/main-table.vue'
+import boardContainer from '../cmps/board-container.vue'
+
 
 export default {
   data() {
@@ -30,8 +26,7 @@ export default {
   components: {
     sideNav,
     workspace,
-    boardHeader,
-    mainTable
+    boardContainer
 
   }
 
