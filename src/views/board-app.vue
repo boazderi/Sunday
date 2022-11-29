@@ -26,13 +26,13 @@
 
 <script>
 import {showErrorMsg, showSuccessMsg} from '../services/event-bus.service'
-import {carService} from '../services/car.service.local'
+import {boardService} from '../services/board.service.local'
 import { getActionRemoveCar, getActionUpdateCar, getActionAddCarMsg } from '../store/car.store'
 
 export default {
   data() {
     return {
-      carToAdd: carService.getEmptyCar()
+      carToAdd: boardService.getEmptyCar()
     }
   },
   computed: {
@@ -51,7 +51,7 @@ export default {
       try {
         await this.$store.dispatch({type: 'addCar', car: this.carToAdd})
         showSuccessMsg('Car added')
-        this.carToAdd = carService.getEmptyCar()
+        this.carToAdd = boardService.getEmptyCar()
       } catch(err) {
         console.log(err)
         showErrorMsg('Cannot add car')

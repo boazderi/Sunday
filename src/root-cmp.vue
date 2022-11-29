@@ -3,6 +3,7 @@
     <user-msg/>
     <!-- remove app header -->
     <!-- <app-header /> -->
+    <h1>arnon</h1>
     <!-- home-page component here -->
     <router-view/>
   </section>
