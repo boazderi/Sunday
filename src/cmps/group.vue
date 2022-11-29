@@ -36,7 +36,7 @@ export default {
                 {
                     id: "t101",
                     side: "null",
-                    tasktTitle: "learn CSS",
+                    tasktTitle: "Learn CSS",
                     members: [
                         { name: "tal", color: "red" },
                         { name: "bal", color: "black" },
@@ -49,7 +49,7 @@ export default {
                 {
                     id: "t102",
                     side: "null",
-                    tasktTitle: "learn vue",
+                    tasktTitle: "Learn vue",
                     members: [
                         { name: "tal", color: "red" },
                         { name: "bal", color: "black" },
@@ -62,7 +62,7 @@ export default {
                 {
                     id: "t103",
                     side: "null",
-                    tasktTitle: "learn js",
+                    tasktTitle: "Learn js",
                     members: [
                         { name: "tal", color: "red" },
                         { name: "bal", color: "black" },
