@@ -1,6 +1,6 @@
 <template>
-  <section class="main-table">
-    <h2>main-table</h2>
+  <section class="side-nav">
+    <h2>side-nav</h2>
   </section>
 </template>
 

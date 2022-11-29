@@ -1,9 +1,9 @@
 <template>
   <section>
     <user-msg/>
-    <!-- remove app header -->
+    
+    <!--//todo remove app header -->
     <!-- <app-header /> -->
-    <h1>arnon</h1>
     <!-- home-page component here -->
     <router-view/>
   </section>
