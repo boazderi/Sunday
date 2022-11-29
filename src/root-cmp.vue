@@ -3,7 +3,6 @@
     <user-msg/>
     <!-- remove app header -->
     <!-- <app-header /> -->
-    
     <!-- home-page component here -->
     <router-view/>
   </section>
