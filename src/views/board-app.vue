@@ -7,9 +7,9 @@
     <board-header></board-header>
     <!-- todo figure out how to make the board-content routable -->
     <section class="main-content">
-      <!-- <router-link to="/">fsfd</router-link> -->
+   
+      <router-view></router-view>
     </section>
-    <router-view></router-view>
   </section>
 
 </template>
