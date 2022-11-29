@@ -7,7 +7,7 @@
   
 <script>
 export default {
-    name: "title",
+    name: "task-title",
     props: {
         info: String,
     },
