@@ -1,4 +1,4 @@
-import { carService } from '../services/car.service.local'
+import { boardService } from '../services/board.service.local'
 
 export function getActionRemoveCar(carId) {
     return {
@@ -57,7 +57,7 @@ export const carStore = {
     actions: {
         async addCar(context, { car }) {
             try {
-                car = await carService.save(car)
+                car = await boardService.save(car)
                 context.commit(getActionAddCar(car))
                 return car
             } catch (err) {
@@ -67,7 +67,7 @@ export const carStore = {
         },
         async updateCar(context, { car }) {
             try {
-                car = await carService.save(car)
+                car = await boardService.save(car)
                 context.commit(getActionUpdateCar(car))
                 return car
             } catch (err) {
@@ -77,7 +77,7 @@ export const carStore = {
         },
         async loadCars(context) {
             try {
-                const cars = await carService.query()
+                const cars = await boardService.query()
                 context.commit({ type: 'setCars', cars })
             } catch (err) {
                 console.log('carStore: Error in loadCars', err)
@@ -86,7 +86,7 @@ export const carStore = {
         },
         async removeCar(context, { carId }) {
             try {
-                await carService.remove(carId)
+                await boardService.remove(carId)
                 context.commit(getActionRemoveCar(carId))
             } catch (err) {
                 console.log('carStore: Error in removeCar', err)
@@ -95,7 +95,7 @@ export const carStore = {
         },
         async addCarMsg(context, { carId, txt }) {
             try {
-                const msg = await carService.addCarMsg(carId, txt)
+                const msg = await boardService.addCarMsg(carId, txt)
                 context.commit({type: 'addCarMsg', carId, msg })
             } catch (err) {
                 console.log('carStore: Error in addCarMsg', err)
