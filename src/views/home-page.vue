@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     moveToBoard(){
-      this.$router.push({path:'/board'})
+      this.$router.push({path:'/board/main-table'})
     }
   }
   

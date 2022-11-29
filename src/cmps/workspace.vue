@@ -1,11 +1,13 @@
 <template>
-  <section class="main-table">
-    <h2>main-table</h2>
+  <section class="workspace">
+    <h1>workspace</h1>
+
   </section>
 </template>
 
 <script>
 export default {
+
 
 }
 </script>
