@@ -1,12 +1,35 @@
-
 // main-layout
 .board-app {
+    // LAYOUT
     min-height: 100vh;
     background-color: lightgreen;
-
+    display: grid;
+    grid-template-columns: 50px 50px 1fr;
+    grid-template-rows: 100px 1fr;
+    grid-template-areas:
+        "side-nav workspace board-header"
+        "side-nav workspace board-content"
+    ;
 
     .board-content {
         background-color: lightgoldenrodyellow;
-
     }
+
+    >:nth-child(1) {
+        grid-area: side-nav;
+    }
+
+    >:nth-child(2) {
+        grid-area: workspace;
+    }
+
+    >:nth-child(3) {
+        grid-area: board-header;
+    }
+
+    >:nth-child(4) {
+        grid-area: board-content;
+    }
+
+    
 }
