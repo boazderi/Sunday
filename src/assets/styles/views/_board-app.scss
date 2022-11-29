@@ -4,7 +4,7 @@
     min-height: 100vh;
     background-color: lightgreen;
     display: grid;
-    grid-template-columns: 50px 50px 1fr;
+    grid-template-columns: 50px auto 1fr;
     grid-template-rows: 100px 1fr;
     grid-template-areas:
         "side-nav workspace board-header"
@@ -31,5 +31,5 @@
         grid-area: board-content;
     }
 
-    
+
 }
