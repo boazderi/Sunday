@@ -2,7 +2,7 @@
   <section>
     <user-msg/>
     <!-- remove app header -->
-    <app-header />
+    <!-- <app-header /> -->
     
     <!-- home-page component here -->
     <router-view/>
@@ -16,7 +16,7 @@ import { store } from './store/store'
 import appHeader from './cmps/app-header.vue'
 import userMsg from './cmps/user-msg.vue'
 import { userService } from './services/user.service'
-
+import homePage from './views/home-page.vue'
 
 export default {
 
@@ -26,8 +26,9 @@ export default {
     if (user)  store.commit({type: 'setLoggedinUser', user})
   },
   components: {
-    appHeader,
-    userMsg
+    // appHeader,
+    userMsg,
+    homePage
   },
 }
 </script>

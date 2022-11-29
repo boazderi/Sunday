@@ -1,6 +1,11 @@
 <template>
   <section class="container home text-center">
     <h1>Home Page</h1>
+    <button
+    @click="moveToBoard"
+    >
+      Go to board
+    </button>
     <h5 class="text-center">
       Powered up Frontend 
     </h5>
@@ -22,6 +27,9 @@ export default {
   created() {
   },
   methods: {
+    moveToBoard(){
+      this.$router.push({path:'/board'})
+    }
   }
   
 }

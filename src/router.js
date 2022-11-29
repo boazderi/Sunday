@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import home from './views/home.vue'
+import homePage from './views/home-page.vue'
 import chat from './views/chat.vue'
 import boardApp from './views/board-app.vue'
 import mainTable from './views/main-table.vue'
@@ -12,7 +12,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: home
+    component: homePage
   },
   {
     path: '/board',
