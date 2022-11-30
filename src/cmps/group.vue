@@ -12,7 +12,7 @@
         <!-- render grid cells by cmpOrder array -->
         <section class="group grid grid-child" v-for="task in groupInfo.tasks" :key="task.id">
             <section class="grid-item" v-for="(cmp, idx) in cmpOrder" :key="idx">
-                <component :is="cmp" :info="task[cmp]"></component>
+                <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)"></component>
             </section>
         </section>
         <!-- render progress by progress array -->
@@ -83,6 +83,12 @@ export default {
             labels: ["status", "members", "priority", "date"],
             progress: [null, null, "status", null, "priority", null],
         };
+    },
+    methods: {
+        updateTask({ prop, toUpdate }, taskId) {
+            // console.log(prop, toUpdate, taskId);
+            this.$store.dispatch({ type: 'updateCurrBoard', groupId: this.groupInfo.id, taskId, prop, toUpdate })
+        }
     },
     components: {
         side,

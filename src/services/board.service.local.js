@@ -10,7 +10,8 @@ export const boardService = {
     save,
     remove,
     getEmptyBoard,
-    addBoardMsg
+    addBoardMsg,
+    taskToUpdate
 }
 window.cs = boardService
 
@@ -61,6 +62,15 @@ async function addBoardMsg(boardId, txt) {
     return msg
 }
 
+async function taskToUpdate(boardId, groupId, taskId, prop, toUpdate) {
+    var currBoard = await getById(boardId)
+    const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
+    const taskIdx = currBoard.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+    currBoard.groups[groupIdx].tasks[taskIdx][prop] = toUpdate
+    save(currBoard)
+    return currBoard
+}
+
 // todo update this function later
 function getEmptyBoard() {
     return {
@@ -74,8 +84,8 @@ function getEmptyBoard() {
 // ;
 // (async() => {
 //     await storageService.post(STORAGE_KEY, {
-//         "_id": "b101",
-//         "title": "Sprint4 - Project Mgmt",
+//         "_id": "b102",
+//         "title": "HR SALES",
 //         "description": "This board will be used for collaboration management on the Funday app project",
 //         "createdAt": 1589983468418,
 //         "createdBy": {
@@ -148,7 +158,7 @@ function getEmptyBoard() {
 //                     {
 //                         "id": "t2yvg",
 //                         "taskTitle": "Learn CSS",
-//                         "status": "DONE",
+//                         "status": "STUCK",
 //                         "members": [{
 //                                 "id": "u101",
 //                                 "fullname": "Tal Liber",
