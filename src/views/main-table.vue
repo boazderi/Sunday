@@ -1,5 +1,5 @@
 <template>
-  <div v-if="board" class="app-container">
+  <div v-if="board" class="main-table-container">
     <div class="group-container">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group" />
     </div>
@@ -23,17 +23,3 @@ export default {
   },
 };
 </script>
-
-<style>
-
-.app-container {
-  height: 100%;
-  /* background: red; */
-}
-
-.group-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-</style>
