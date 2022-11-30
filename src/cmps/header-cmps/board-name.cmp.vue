@@ -9,12 +9,9 @@
       <button class="icon outboard-hover" v-icon="'info'"></button>
     </el-tooltip>
     <el-tooltip content="Add to favorites ">
-      <button class="icon outboard-hover"
-      v-icon="'star'"
-      >
-
-      </button>
+      <button class="icon outboard-hover" v-icon="'star'"></button>
     </el-tooltip>
+    <button>moshe</button>
   </section>
 </template>
 
