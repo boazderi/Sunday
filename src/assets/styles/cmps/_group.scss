@@ -21,19 +21,9 @@
     }
 }
 
-
-.progress-grid {
-    width: 100%;
-    background: red;
-    display: grid;
-    grid-template-columns: 10px 200px 200px 200px 200px 200px;
-    justify-content: center;
-}
-
 .group-list {
-    background-color: lightblue;
+    // todo-change the width 
     width: 80%;
-    // width: 700px;
     margin: 10px;
     margin-top: 2em;
     overflow-x: scroll;
@@ -41,6 +31,22 @@
     border: 1px solid #d0d4e4;
     border-radius: 6px;
     font-size: rem(14px);
+}
+
+.add-task{
+    .input-wrapper{
+        border: 1px solid $primary-border-clr;
+        border-inline-end: 0;
+        padding: 6px 10px;
+        input{
+         padding: 0;
+         width: 100%;
+         padding-inline-start: 8px;
+         border: 0;
+        }
+    }
+
+ 
 }
 
 .cell {

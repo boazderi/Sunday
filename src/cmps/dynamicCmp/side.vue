@@ -13,12 +13,3 @@ export default {
 };
 </script>
   
-<style>
-/* .side-indicator {
-    width: 1rem;
-    height: 1rem;
-    transition: 0.2s;
-    transition-delay: 0.1ms;
-    background-color: lightgray;
-} */
-</style>
