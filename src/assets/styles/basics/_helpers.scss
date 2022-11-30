@@ -140,6 +140,17 @@
     list-style-type: none;
 }
 
+
+// hover hekpers
+
+.outboard-hover:hover{
+    background-color: $primary-hover-clr;
+}
+
+.board-hover:hover{
+    background-color: $table-hover-clr;
+}
+
 // Media helpers
 // 
 // .square-ratio {
