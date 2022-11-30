@@ -16,6 +16,9 @@
                 <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)"></component>
             </section>
         </section>
+        <section class="add-task">
+            <input  type="text" >
+        </section>
         <!-- render progress by progress array -->
         <section class="progress-grid">
             <div v-for="(item, idx) in progress" :key="idx">{{ item }}</div>
