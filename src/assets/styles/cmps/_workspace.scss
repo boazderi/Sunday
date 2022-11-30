@@ -1,24 +1,76 @@
-.workspace{
+.workspace {
     background-color: $bg-big-sidebar;
     padding-inline-start: 14px;
     padding-inline-end: 16px;
+    font-weight: 300;
+    color: $primary-txt-clr;
+    font-family: Roboto;
+    padding-top: 12px;
     position: relative;
-    overflow-x: visible;
- 
-    >*:not(.toggle){
-       display: none; 
+
+    // Toggle handling
+    >*:not(.toggleWorkSpace) {
+        width: 224px;
+        display: none;
     }
 
-    &.isOpen{
-        >*{
-            display: block;
+    &.isOpen {
+        >* {
+            display: inherit;
+            visibility: visible;
+        }
+
+        .toggleWorkSpace {
+            top: 40px;
+            right: 254px;
         }
     }
 
-    .toggle{
+    // todo upgrade hover
+    // &:hover {
+    //     position: absolute;
+    //     height: 100%;
+    //     z-index: 100;
+    //     margin-inline-start: 50px;
+    // }
+
+    .dropdown-nav-header {
+        padding-bottom: 5px;
+
+        span {
+            font-size: 14px;
+            color: rgb(103, 104, 121);
+            padding-bottom: 3px;
+        }
+    }
+
+    .action-list {
+        padding-inline-start: 6px;
+        padding-bottom: 16px;
+        border-bottom: 1.3px solid #d7d7d7;
+        margin-bottom: 15px;
+    }
+
+    // todo - some problem with the font-weight--fix
+    .item {
+        font-size: 14px;
+        line-height: 32px;
+        >* {
+            margin-inline-end: 5px;
+        }
+    }
+    
+    .workspace-dropdown-select {
+        margin-bottom: 18px;
+    }
+
+    //todo toggle btn-todo change to icon and position
+    .toggleWorkSpace {
         position: absolute;
-        left: 0px;
+        left: 254px;
         top: 60px;
         background-color: green;
+
     }
+
 }

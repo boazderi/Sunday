@@ -1,12 +1,44 @@
 <template>
   <!-- todo change handle the hovering that will cover and not push -->
-  <section class="workspace" :class="{ isOpen: isOpen }">
-    <button class="toggle" @click="toggleWorkspace">to</button>
+  <section :class="getClass">
 
-    <section v-if="(boards.length)" class="details">
-      <ul class="clean-list">
+    <button class="toggleWorkSpace" @click="toggleWorkspace">to</button>
+
+    <div class="dropdown-nav-header flex space-between align-center">
+      <span>workspace</span>
+      <div v-icon="'moreMed'"></div>
+    </div>
+
+    <!-- todo make a work on the select element -->
+    <div class="workspace-dropdown-select">
+      <input type="text" placeholder="TODO-EDIT">
+    </div>
+
+    <section class="action-list flex column">
+      <div class="flex align-center item">
+        <div class="flex align-center" v-icon="'addMed'"></div>
+        Add
+      </div>
+      <div class="flex align-center item">
+        <div class="flex align-center" v-icon="'filterMed'"></div>
+        Filters
+      </div>
+      <div class="flex align-center item">
+        <div class="flex align-center" v-icon="'searchMed'"></div>
+        Search
+      </div>
+
+    </section>
+
+    <!-- board-list -->
+    <section v-if="(boards.length)" class="">
+
+      <ul class="clean-list board-list">
         <li @click="setBoard(board._id)" v-for="board in boards" :key="board._id">
-          <h2>{{ board.title }}</h2>
+          <div class="item flex align-center">
+            <span class="flex align-center" v-icon="'folderIcon'"></span>
+            <span>{{ board.title }}</span>
+          </div>
         </li>
       </ul>
     </section>
@@ -19,6 +51,7 @@ export default {
   data() {
     return {
       isOpen: true,
+      actionList: ['add', 'filter', 'search']
     }
   },
   created() {
@@ -38,7 +71,11 @@ export default {
   computed: {
     boards() {
       return this.$store.getters.getBoards
+    },
+    getClass() {
+      return ` ${this.isOpen ? 'isOpen' : ''} workspace flex column`
     }
+
   }
 }
 

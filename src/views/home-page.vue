@@ -1,20 +1,17 @@
 <template>
   <section class="container home text-center">
     <h1>A platform built for a
-new way of working
-What would you like to manage with Sunday.com Work OS?
-</h1>
-    <button
-    class="start-btn"
-    @click="moveToBoard"
-    >
+      new way of working
+      What would you like to manage with Sunday.com Work OS?
+    </h1>
+    <button class="start-btn" @click="moveToBoard">
       Get Started
     </button>
     <h5 class="text-center">
-      No credit card needed   ✦   Unlimited time on Free plan
+      No credit card needed ✦ Unlimited time on Free plan
     </h5>
   </section>
-  
+
 </template>
 
 <script>
@@ -25,15 +22,18 @@ export default {
     }
   },
   computed: {
+
   },
   created() {
   },
   methods: {
-    moveToBoard(){
-      // todo- take the boards[0]._id
-      this.$router.push({path:'/board/lOsKy/main-table'})
+    moveToBoard() {
+      const CurrBoard = this.$store.getters.getCurrBoard
+      if (CurrBoard) {
+        this.$router.push({ path: `/board/${CurrBoard._id}/main-table` })
+      }
     }
+
   }
-  
 }
 </script>
