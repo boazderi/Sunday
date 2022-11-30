@@ -6,13 +6,14 @@
       "createdAt": 1589983468418,
       "createdBy": {
         "id": "u101",
-        "fullname": "Abi Abambi",
-        "imgUrl": "http://some-img"
+        "fullname": "Tal Liber",
+        "imgUrl": "",
+        "color": "#8338ec"
       },
       "members": [
         {
           "id": "u101",
-          "fullname": "Tal Amit",
+          "fullname": "Tal Liber",
           "imgUrl": "",
           "color": "#8338ec"
         },
