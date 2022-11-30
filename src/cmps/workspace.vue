@@ -13,7 +13,7 @@
     <div class="workspace-dropdown flex align-center space-between">
       
         <div class="home flex align-center">
-          <span class="logo-text flex center align-center">M</span>
+          <span class=" logo-text flex center align-center">M</span>
           <span class="logo" v-icon="'homeSmall'"></span>
           <span class="text">Main workspace</span>
         </div>
@@ -23,7 +23,7 @@
     </div>
 
     <section class="action-list flex column">
-      <div class="flex align-center item">
+      <div class="flex align-center item ">
         <div class="flex align-center" v-icon="'addMed'"></div>
         Add
       </div>
