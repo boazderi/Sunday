@@ -1,6 +1,5 @@
 <template>
   <section class="flex items-center">
-    <div class="name-container">
       <el-tooltip content="Click to edit">
         <h1 class="board-name-title el-tooltip__trigger" contenteditable>
           Sprint 4
@@ -12,7 +11,6 @@
       <el-tooltip content="Add to favorites ">
         <button class="icon outboard-hover" v-icon="'star'"></button>
       </el-tooltip>
-    </div>
   </section>
 </template>
 
