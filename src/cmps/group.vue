@@ -5,7 +5,7 @@
         <section class="labels-grid group-grid group-grid-child">
             <div class="cell-first cell">
                 <input type="checkbox" />
-                <p>Items</p>
+                <p>Tasks</p>
             </div>
             <div class="cell" v-for="(label, idx) in labels" :key="idx">{{ label }}</div>
         </section>
