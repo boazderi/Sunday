@@ -7,12 +7,30 @@
     font-family: Roboto;
     padding-top: 12px;
     position: relative;
+    border-right: 1.2px solid $primary-border-clr;
 
+    .toggleWorkspace {
+        position: absolute;
+        border-radius: 50%;
+        padding: 0px 2px;
+        border: 1px solid #c3c6d4;
+        transform: translateX(-50%);
+        top: 30px;
+        right: -26px;
+        background-color: white;
+        &:hover{
+            background-color:$primary-hover-clr ;
+        }
+        span{
+            height: 20px;
+        }
+    }
+    
     >*{
         cursor: pointer;
     }
     // Toggle handling
-    >*:not(.toggleWorkSpace) {
+    >*:not(.toggleWorkspace) {
         width: 224px;
         display: none;
     }
@@ -20,12 +38,11 @@
     &.isOpen {
         >* {
             display: inherit;
-            visibility: visible;
         }
 
-        .toggleWorkSpace {
-            top: 40px;
-            right: 254px;
+        .toggleWorkspace {
+            left: 255px;
+            z-index: 100;
         }
     }
 
@@ -89,9 +106,14 @@
     // todo - some problem with the font-weight--fix
     .item {
         font-size: 14px;
+        border-radius: 6px;
         line-height: 32px;
         >* {
             margin-inline-end: 6px;
+        }
+        &:hover{
+            background-color:$primary-hover-clr ;
+           
         }
     }
 
@@ -99,13 +121,6 @@
         margin-bottom: 18px;
     }
 
-    //todo toggle btn-todo change to icon and position
-    .toggleWorkSpace {
-        position: absolute;
-        left: 254px;
-        top: 60px;
-        background-color: green;
 
-    }
 
 }
