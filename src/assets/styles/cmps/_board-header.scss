@@ -9,4 +9,9 @@ border-bottom: 1px solid $primary-border-clr;
 
 .board-name-title{
     width: max-content;
+    font-size: 1.5rem;
+    padding: 4px;
+    &:hover{
+        outline: 1px solid $primary-border-clr;
+    }
 }

@@ -12,7 +12,7 @@
       <button class="icon outboard-hover"
       v-icon="'star'"
       >
-       
+
       </button>
     </el-tooltip>
   </section>
