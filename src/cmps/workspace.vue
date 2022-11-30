@@ -2,18 +2,20 @@
   <!-- todo change handle the hovering that will cover and not push -->
   <section :class="getClass">
 
-    <button class="toggleWorkSpace" @click="toggleWorkspace">to</button>
+    <div class="toggleWorkspace flex center align-center" @click="toggleWorkspace">
+      <span v-if="isOpen" v-icon="'arrowLeft'"></span>
+      <span v-else v-icon="'arrowRight'"></span>
+      </div>
 
     <div class="dropdown-nav-header flex space-between align-center">
       <span>workspace</span>
       <div v-icon="'moreMed'"></div>
     </div>
 
-    <!-- todo make a work on the select element -->
     <div class="workspace-dropdown flex align-center space-between">
       
         <div class="home flex align-center">
-          <span class="logo-text flex center align-center">M</span>
+          <span class=" logo-text flex center align-center">M</span>
           <span class="logo" v-icon="'homeSmall'"></span>
           <span class="text">Main workspace</span>
         </div>
@@ -23,7 +25,7 @@
     </div>
 
     <section class="action-list flex column">
-      <div class="flex align-center item">
+      <div class="flex align-center item ">
         <div class="flex align-center" v-icon="'addMed'"></div>
         Add
       </div>
