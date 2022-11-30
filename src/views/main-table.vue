@@ -4,14 +4,23 @@
       <group></group>
       <group></group>
       <group></group>
+      <pre>{{ boards }}</pre>
     </div>
   </div>
 </template>
 
 <script>
+
 import group from "../cmps/group.vue"
+
 export default {
   name: "App",
+
+  computed: {
+    boards() {
+      return this.$store.getters.getBoards
+    }
+  },
   components: {
     group,
   },
@@ -19,8 +28,6 @@ export default {
 </script>
 
 <style>
-
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
