@@ -2,7 +2,7 @@
   <section
   class="flex">
   <router-link
-  class="flex"
+  class="flex outboard-hover"
   to="/"
   > <span
   v-icon="'mainTable'"
