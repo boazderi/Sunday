@@ -32,7 +32,7 @@ export const boardStore = {
         boards: []
     },
     getters: {
-        boards({ boards }) {
+        getBoards({ boards }) {
             return boards
         },
     },
