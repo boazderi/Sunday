@@ -12,9 +12,3 @@ export default {
     },
 };
 </script>
-  
-<style>
-.priority {
-    background-color: lightskyblue;
-}
-</style>

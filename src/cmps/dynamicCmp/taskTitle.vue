@@ -21,11 +21,3 @@ export default {
     }
 }
 </script>
-  
-<style>
-.title {
-    /* text-align: start; */
-    background-color: lightblue;
-    display: flex;
-}
-</style>
