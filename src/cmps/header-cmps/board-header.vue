@@ -1,7 +1,10 @@
 <template>
   <section class="board-header">
     <div class="board-upper-header flex flex-col">
-      <board-name></board-name>
+      <div class="flex justify-between">
+        <board-name></board-name>
+        <header-top-actions></header-top-actions>
+      </div>
       <board-nav></board-nav>
     </div>
     <div>
@@ -12,13 +15,15 @@
 <script>
 import boardName from "./board-name.cmp.vue";
 import boardNav from "./board-nav.cmp.vue";
-import boardFilter from "./board-filter.cmp.vue"
+import boardFilter from "./board-filter.cmp.vue";
+import headerTopActions from "./header-top-actions.cmp.vue"
 export default {
-    components: {
-        boardName,
-        boardNav,
-        boardFilter,
-    },
+  components: {
+    boardName,
+    boardNav,
+    boardFilter,
+    headerTopActions,
+  },
   data() {
     return {
       currBoardName: "",
