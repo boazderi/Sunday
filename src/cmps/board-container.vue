@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import boardHeader from './board-header.vue'
+import boardHeader from './header-cmps/board-header.vue'
 
 export default {
   components: {

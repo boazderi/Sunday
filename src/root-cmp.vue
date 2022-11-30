@@ -3,7 +3,6 @@
     <user-msg />
 
     <!--//todo remove app header -->
-    <!-- <app-header /> -->
     <!-- home-page component here -->
     <router-view />
   </section>
@@ -13,7 +12,6 @@
 
 
 import { store } from './store/store'
-import appHeader from './cmps/app-header.vue'
 import userMsg from './cmps/user-msg.vue'
 import { userService } from './services/user.service'
 import homePage from './views/home-page.vue'

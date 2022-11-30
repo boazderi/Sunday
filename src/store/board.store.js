@@ -29,16 +29,21 @@ export function getActionAddBoardMsg(boardId) {
 
 export const boardStore = {
     state: {
-        boards: []
+        boards: [],
+        currBoard: null
     },
     getters: {
         getBoards({ boards }) {
             return boards
         },
+        getCurrBoard({currBoard}){
+            return currBoard
+        }
     },
     mutations: {
         setBoards(state, { boards }) {
             state.boards = boards
+            state.currBoard = boards[0]
         },
         addBoard(state, { board }) {
             state.boards.push(board)
@@ -55,6 +60,10 @@ export const boardStore = {
             if (!board.msgs) board.msgs = []
             board.msgs.push(msg)
         },
+        setCurrBoard(state, { boardId }) {
+            const newBoard = state.boards.find(board => board._id === boardId)
+            state.currBoard = newBoard
+        }
     },
     actions: {
         async addBoard(context, { board }) {
@@ -105,5 +114,13 @@ export const boardStore = {
             }
         },
 
-    }
+    },
+    // watch:{
+    //     $route:{
+    //         handler(){
+    //           console.log(this.$route)
+    //         },
+    //         deep:true
+    //     }
+    // }
 }
