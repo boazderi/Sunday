@@ -24,6 +24,18 @@
     }
 }
 
+// .btn{
+//     @include main-btn(#3333)
+// }
+
+// @mixin main-btn($hover:'red') {
+//     //defalt css
+//     &:hover {
+//         background:$hover;
+//     }
+// }
+
+
 /* Media  Mixins */
 @mixin aspect-ratio($width, $height) {
     position: relative;
