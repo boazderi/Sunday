@@ -1,7 +1,7 @@
 <template>
     <div class="title">
         <input type="checkbox" />
-        <p>{{ info }}</p>
+        <div contenteditable @input="onChangeTaskTitle">{{ info }}</div>
     </div>
 </template>
   
@@ -14,7 +14,12 @@ export default {
     data() {
         return {};
     },
-};
+    methods: {
+        onChangeTaskTitle(ev) {
+            this.$emit('update', { prop: 'taskTitle', toUpdate: ev.target.innerText })
+        }
+    }
+}
 </script>
   
 <style>

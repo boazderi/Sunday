@@ -1,7 +1,7 @@
 <template>
-  <div v-if="boards.length" class="app-container">
+  <div v-if="board" class="app-container">
     <div class="group-container">
-      <group v-for="(group, idx) in boards[0].groups" :key="idx" :groupInfo="group" />
+      <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group" />
     </div>
   </div>
 </template>
@@ -14,8 +14,8 @@ export default {
   name: "App",
 
   computed: {
-    boards() {
-      return this.$store.getters.getBoards
+    board() {
+      return this.$store.getters.getCurrBoard
     }
   },
   components: {

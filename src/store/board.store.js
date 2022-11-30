@@ -36,7 +36,7 @@ export const boardStore = {
         getBoards({ boards }) {
             return boards
         },
-        getCurrBoard({currBoard}){
+        getCurrBoard({ currBoard }) {
             return currBoard
         }
     },
@@ -76,16 +76,26 @@ export const boardStore = {
                 throw err
             }
         },
-        async updateBoard(context, { board }) {
+        async updateCurrBoard({ commit, state }, { groupId, taskId, prop, toUpdate }) {
             try {
-                board = await boardService.save(board)
-                context.commit(getActionUpdateBoard(board))
-                return board
+                const updatedBoard = await boardService.taskToUpdate(state.currBoard._id, groupId, taskId, prop, toUpdate)
+                commit({ type: 'updateBoard', board: updatedBoard })
+                return updatedBoard
             } catch (err) {
                 console.log('boardStore: Error in updateBoard', err)
                 throw err
             }
         },
+        // async updateBoard(context, { board }) {
+        //     try {
+        //         board = await boardService.save(board)
+        //         context.commit(getActionUpdateBoard(board))
+        //         return board
+        //     } catch (err) {
+        //         console.log('boardStore: Error in updateBoard', err)
+        //         throw err
+        //     }
+        // },
         async loadBoards(context) {
             try {
                 const boards = await boardService.query()
