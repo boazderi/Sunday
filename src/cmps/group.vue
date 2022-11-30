@@ -1,4 +1,5 @@
 <template>
+    <div>{{ groupInfo.title }}</div>
     <section class="group-list">
         <!-- render group labels by labels array -->
         <section class="labels-grid grid grid-child">
@@ -9,7 +10,7 @@
             <div v-for="(label, idx) in labels" :key="idx">{{ label }}</div>
         </section>
         <!-- render grid cells by cmpOrder array -->
-        <section class="group grid grid-child" v-for="task in tasks" :key="task.id">
+        <section class="group grid grid-child" v-for="task in groupInfo.tasks" :key="task.id">
             <section class="grid-item" v-for="(cmp, idx) in cmpOrder" :key="idx">
                 <component :is="cmp" :info="task[cmp]"></component>
             </section>
@@ -22,65 +23,70 @@
 </template>
   
 <script>
-import tasktTitle from "./dynamicCmp/tasktTitle.vue";
-import side from "./dynamicCmp/side.vue";
-import members from "./dynamicCmp/members.vue";
-import date from "./dynamicCmp/date.vue";
-import status from "./dynamicCmp/status.vue";
-import priority from "./dynamicCmp/priority.vue";
+
+import taskTitle from "./dynamicCmp/taskTitle.vue"
+import side from "./dynamicCmp/side.vue"
+import members from "./dynamicCmp/members.vue"
+import date from "./dynamicCmp/date.vue"
+import status from "./dynamicCmp/status.vue"
+import priority from "./dynamicCmp/priority.vue"
+
 export default {
     name: "group-list",
+    props: {
+        groupInfo: Object
+    },
     data() {
         return {
-            tasks: [
-                {
-                    id: "t101",
-                    side: "null",
-                    tasktTitle: "Learn CSS",
-                    members: [
-                        { name: "tal", color: "red" },
-                        { name: "bal", color: "black" },
-                        { name: "shal", color: "green" },
-                    ],
-                    date: "27-02-2022",
-                    status: "IN WORK",
-                    priority: "LOW",
-                },
-                {
-                    id: "t102",
-                    side: "null",
-                    tasktTitle: "Learn vue",
-                    members: [
-                        { name: "tal", color: "red" },
-                        { name: "bal", color: "black" },
-                        { name: "shal", color: "green" },
-                    ],
-                    date: "27-02-2022",
-                    status: "STUCK",
-                    priority: "HIGH",
-                },
-                {
-                    id: "t103",
-                    side: "null",
-                    tasktTitle: "Learn js",
-                    members: [
-                        { name: "tal", color: "red" },
-                        { name: "bal", color: "black" },
-                        { name: "shal", color: "green" },
-                    ],
-                    date: "27-02-2022",
-                    status: "DONE",
-                    priority: "LOW",
-                },
-            ],
-            cmpOrder: ["tasktTitle", "status", "members", "priority", "date"],
+            // tasks: [
+            //     {
+            //         id: "t101",
+            //         side: "null",
+            //         tasktTitle: "Learn CSS",
+            //         members: [
+            //             { name: "tal", color: "red" },
+            //             { name: "bal", color: "black" },
+            //             { name: "shal", color: "green" },
+            //         ],
+            //         date: "27-02-2022",
+            //         status: "IN WORK",
+            //         priority: "LOW",
+            //     },
+            //     {
+            //         id: "t102",
+            //         side: "null",
+            //         tasktTitle: "Learn vue",
+            //         members: [
+            //             { name: "tal", color: "red" },
+            //             { name: "bal", color: "black" },
+            //             { name: "shal", color: "green" },
+            //         ],
+            //         date: "27-02-2022",
+            //         status: "STUCK",
+            //         priority: "HIGH",
+            //     },
+            //     {
+            //         id: "t103",
+            //         side: "null",
+            //         tasktTitle: "Learn js",
+            //         members: [
+            //             { name: "tal", color: "red" },
+            //             { name: "bal", color: "black" },
+            //             { name: "shal", color: "green" },
+            //         ],
+            //         date: "27-02-2022",
+            //         status: "DONE",
+            //         priority: "LOW",
+            //     },
+            // ],
+            cmpOrder: ["taskTitle", "status", "members", "priority", "date"],
             labels: ["status", "members", "priority", "date"],
             progress: [null, null, "status", null, "priority", null],
         };
     },
     components: {
         side,
-        tasktTitle,
+        taskTitle,
         members,
         date,
         status,

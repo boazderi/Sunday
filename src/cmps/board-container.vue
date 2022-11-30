@@ -2,7 +2,7 @@
   <section class="main-layout">
     <board-header></board-header>
     <section class="board-content">
-   
+
       <router-view></router-view>
     </section>
   </section>
@@ -12,9 +12,9 @@
 import boardHeader from './header-cmps/board-header.vue'
 
 export default {
-components:{
-boardHeader
-}
+  components: {
+    boardHeader
+  }
 }
 </script>
 
