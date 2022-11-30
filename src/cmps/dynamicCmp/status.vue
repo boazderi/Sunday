@@ -10,10 +10,3 @@ export default {
     },
 };
 </script>
-  
-<style>
-.status {
-    background-color: lightpink;
-    height: 100%;
-}
-</style>

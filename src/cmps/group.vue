@@ -2,16 +2,16 @@
     <div>{{ groupInfo.title }}</div>
     <section class="group-list">
         <!-- render group labels by labels array -->
-        <section class="labels-grid grid grid-child">
-            <div class="col">
+        <section class="labels-grid group-grid group-grid-child">
+            <div class="cell-first cell">
                 <input type="checkbox" />
                 <p>Items</p>
             </div>
-            <div v-for="(label, idx) in labels" :key="idx">{{ label }}</div>
+            <div class="cell" v-for="(label, idx) in labels" :key="idx">{{ label }}</div>
         </section>
         <!-- render grid cells by cmpOrder array -->
-        <section class="group grid grid-child" v-for="task in groupInfo.tasks" :key="task.id">
-            <section class="grid-item" v-for="(cmp, idx) in cmpOrder" :key="idx">
+        <section class="group group-grid group-grid-child" v-for="task in groupInfo.tasks" :key="task.id">
+            <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
                 <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)"></component>
             </section>
         </section>
@@ -44,9 +44,9 @@ export default {
             //         side: "null",
             //         tasktTitle: "Learn CSS",
             //         members: [
-            //             { name: "tal", color: "red" },
-            //             { name: "bal", color: "black" },
-            //             { name: "shal", color: "green" },
+            //             { name: "tal", cellor: "red" },
+            //             { name: "bal", cellor: "black" },
+            //             { name: "shal", cellor: "green" },
             //         ],
             //         date: "27-02-2022",
             //         status: "IN WORK",
@@ -57,9 +57,9 @@ export default {
             //         side: "null",
             //         tasktTitle: "Learn vue",
             //         members: [
-            //             { name: "tal", color: "red" },
-            //             { name: "bal", color: "black" },
-            //             { name: "shal", color: "green" },
+            //             { name: "tal", cellor: "red" },
+            //             { name: "bal", cellor: "black" },
+            //             { name: "shal", cellor: "green" },
             //         ],
             //         date: "27-02-2022",
             //         status: "STUCK",
@@ -70,16 +70,16 @@ export default {
             //         side: "null",
             //         tasktTitle: "Learn js",
             //         members: [
-            //             { name: "tal", color: "red" },
-            //             { name: "bal", color: "black" },
-            //             { name: "shal", color: "green" },
+            //             { name: "tal", cellor: "red" },
+            //             { name: "bal", cellor: "black" },
+            //             { name: "shal", cellor: "green" },
             //         ],
             //         date: "27-02-2022",
             //         status: "DONE",
             //         priority: "LOW",
             //     },
             // ],
-            cmpOrder: ["taskTitle", "status", "members", "priority", "date"],
+            cmpOrder: ["side", "taskTitle", "status", "members", "priority", "date"],
             labels: ["status", "members", "priority", "date"],
             progress: [null, null, "status", null, "priority", null],
         };
@@ -100,43 +100,3 @@ export default {
     },
 };
 </script>
-  
-<style>
-.grid {
-    display: grid;
-    grid-template-columns: 400px repeat(auto-fill, minmax(200px, 200px));
-    grid-template-rows: 36px;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(200px, 200px);
-}
-
-.grid-child> :first-child {
-    position: sticky;
-    z-index: 10;
-    left: 0;
-    background-color: white;
-}
-
-
-.progress-grid {
-    width: 100%;
-    background: red;
-    display: grid;
-    grid-template-columns: 10px 200px 200px 200px 200px 200px;
-    justify-content: center;
-}
-
-.group-list {
-    margin-top: 2em;
-    width: 800px;
-    overflow-x: scroll;
-    position: relative;
-    border: 1px solid #d0d4e4;
-    border-radius: 6px;
-}
-
-.col {
-    display: flex;
-    align-items: center;
-}
-</style>

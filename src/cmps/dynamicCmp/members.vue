@@ -33,8 +33,4 @@ p {
     display: flex;
     justify-content: center;
 }
-
-.members {
-    background-color: lightseagreen;
-}
 </style>
