@@ -4,7 +4,7 @@
       <group></group>
       <group></group>
       <group></group>
-      <pre>{{ boards }}</pre>
+      <!-- <pre>{{ boards }}</pre> -->
     </div>
   </div>
 </template>
