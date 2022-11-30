@@ -1,23 +1,16 @@
-
 // COLOR PALETTE
-
 // text colors
 $primary-txt-clr: rgb(50 51 56);
-
 // text hover colors
-
 // BACKGROUNDS COLORS
 // side bars
 $bg-big-sidebar: rgb(246 247 251);
 $bg-small-sidebar: rgb(41 47 76);
-
 $bg-big-sidebar-active: rgb(204 229 255);
-
 // status-bgs
 $bg-status-done: rgb(0, 200, 117);
 $bg-status-working: rgb(253, 171, 61);
 $bg-status-stuck: rgb(226, 68, 92);
-
 // groups-clrs
 $group-clr-darkgreen: rgb(3, 127, 76);
 $group-clr-green: rgb(0, 200, 117);
@@ -27,7 +20,7 @@ $group-clr-yellow: rgb(255, 203, 0);
 $group-clr-darkpurple: rgb(120, 75, 209);
 $group-clr-purple: rgb(162, 93, 220);
 $group-clr-darkblue: rgb(0, 134, 192);
-$group-clr-blue: rgb(87, 155, 252);
+$group-clr-blue: #579bfc;
 $group-clr-lightblue: rgb(102, 204, 255);
 $group-clr-darkred: rgb(187, 51, 84);
 $group-clr-red: rgb(226, 68, 92);
@@ -38,23 +31,15 @@ $group-clr-orange: rgb(253, 171, 61);
 $group-clr-brown: rgb(127, 83, 71);
 $group-clr-lightgray: rgb(196, 196, 196);
 $group-clr-darkorange: rgb(128, 128, 128);
-
 // backgrounds hover colors
-
 $primary-hover-clr: #dddfec;
 $table-hover-clr: #f6f6f8;
-
 // border colors
-
 $primary-border-clr: rgb(208 212 230);
-
 // Breakpoints
 $mobile-breakpoint: 460px;
 $narrow-breakpoint: 720px;
 $normal-breakpoint: 960px;
-
-
-
 // Colors-yaron old 
 $clr1: #ce2e6c;
 $clr2: #4f3a65;
@@ -62,3 +47,7 @@ $clr3: #574f7d;
 $clr4: #95adbe;
 $clr5: #dff0ea;
 $clr6: #fff;
+
+// usefull clrs
+
+$primary-clr: #0073ea;
