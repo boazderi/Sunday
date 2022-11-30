@@ -50,6 +50,7 @@
     "groups": [{
             "id": "gy5LnM",
             "title": "Frontend",
+            "color": "#579bfc",
             "tasks": [{
                     "id": "t2yn4E",
                     "taskTitle": "Complete UI for demo1",
