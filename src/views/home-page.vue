@@ -30,7 +30,8 @@ export default {
   },
   methods: {
     moveToBoard(){
-      this.$router.push({path:'/board/main-table'})
+      // todo- take the boards[0]._id
+      this.$router.push({path:'/board/lOsKy/main-table'})
     }
   }
   
