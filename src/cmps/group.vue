@@ -2,7 +2,7 @@
     <div>{{ groupInfo.title }}</div>
     <section class="group-list">
         <!-- render group labels by labels array -->
-        <section class="labels-grid group-grid group-grid-child">
+        <section class="labels-grid group-grid ">
             <div class="cell-first cell">
                 <input type="checkbox" />
                 <!-- <p>Items</p> -->
@@ -11,7 +11,7 @@
         </section>
 
         <!-- render grid cells by cmpOrder array -->
-        <section class="group-grid group-grid-child" v-for="task in groupInfo.tasks" :key="task.id">
+        <section class="group-grid " v-for="task in groupInfo.tasks" :key="task.id">
             <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
                 <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)"></component>
             </section>

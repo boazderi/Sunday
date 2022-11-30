@@ -4,14 +4,23 @@
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
+
+    // todo- resolve the end overflow when items up on checkbox
+    >*:nth-child(1){
+        position: sticky;
+        z-index:10 ;
+        left: 0;
+        background-color: white;
+    }
+    >*:nth-child(2){
+        position: sticky;
+        z-index: 10;
+        // left: 100px;
+        left: 25px;
+        background-color: white;
+    }
 }
 
-.group-grid-child> :first-child {
-    position: sticky;
-    z-index: 10;
-    left: 0;
-    background-color: white;
-}
 
 .progress-grid {
     width: 100%;
@@ -23,7 +32,8 @@
 
 .group-list {
     background-color: lightblue;
-    width: 95%;
+    width: 80%;
+    // width: 700px;
     margin: 10px;
     margin-top: 2em;
     overflow-x: scroll;
