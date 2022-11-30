@@ -10,8 +10,16 @@
     </div>
 
     <!-- todo make a work on the select element -->
-    <div class="workspace-dropdown-select">
-      <input type="text" placeholder="TODO-EDIT">
+    <div class="workspace-dropdown flex align-center space-between">
+      
+        <div class="home flex align-center">
+          <span class="logo-text flex center align-center">M</span>
+          <span class="logo" v-icon="'homeSmall'"></span>
+          <span class="text">Main workspace</span>
+        </div>
+
+      <div class="flex align-center" v-icon="'arrowDown'"></div>
+     
     </div>
 
     <section class="action-list flex column">

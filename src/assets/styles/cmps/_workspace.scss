@@ -8,6 +8,9 @@
     padding-top: 12px;
     position: relative;
 
+    >*{
+        cursor: pointer;
+    }
     // Toggle handling
     >*:not(.toggleWorkSpace) {
         width: 224px;
@@ -33,6 +36,35 @@
     //     z-index: 100;
     //     margin-inline-start: 50px;
     // }
+    .workspace-dropdown{
+        margin-bottom: 14px;
+        border: 1px solid #676879;
+        padding: 6px;
+        border-radius: 6px;
+        .home{
+            position: relative;
+            .logo-text{
+                background-color: rgb(242, 121, 242);
+                color: white;
+                font-weight: 600;
+                position: relative;
+                width: 24px;
+                height: 24px;
+                border-radius: 6px;
+                margin-inline-end: 6px;
+
+            }
+            .logo{
+                position: absolute;
+                top: 9px;
+                left: 13px;
+            }
+            .text{
+                font-weight: 700;
+            }
+
+        }
+    }
 
     .dropdown-nav-header {
         padding-bottom: 5px;
@@ -47,8 +79,11 @@
     .action-list {
         padding-inline-start: 2px;
         padding-bottom: 16px;
-        border-bottom: 1.3px solid #d7d7d7;
+        border-bottom: 1.3px solid $primary-border-clr;
         margin-bottom: 15px;
+    }
+    .board-list{
+        padding-inline-start: 4px;
     }
 
     // todo - some problem with the font-weight--fix
@@ -56,7 +91,7 @@
         font-size: 14px;
         line-height: 32px;
         >* {
-            margin-inline-end: 5px;
+            margin-inline-end: 6px;
         }
     }
 
