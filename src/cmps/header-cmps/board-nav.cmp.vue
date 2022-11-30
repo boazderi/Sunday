@@ -2,8 +2,11 @@
   <section
   class="flex">
   <router-link
+  class="flex"
   to="/"
-  >Main table</router-link>
+  > <span
+  v-icon="'mainTable'"
+  ></span> Main table</router-link>
   </section>
 </template>
 

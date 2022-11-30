@@ -141,7 +141,14 @@
 }
 
 
-// hover hekpers
+// icon helpers
+.icon {
+    padding: .2rem;
+    border-radius: 6px;
+}
+
+
+// hover helpers
 
 .outboard-hover:hover{
     background-color: $primary-hover-clr;
