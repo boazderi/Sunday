@@ -73,17 +73,25 @@ function getEmptyBoard() {
 
 // ;
 // (async() => {
-//     await storageService.post(STORAGE_KEY, [{
+//     await storageService.post(STORAGE_KEY, {
 //         "_id": "b101",
-//         "title": "Sprint4 - Project Mgmt",
+//         "title": "Sprint 4",
 //         "description": "This board will be used for collaboration management on the Funday app project",
 //         "createdAt": 1589983468418,
-//         "createdBy": {
+//         "createdBy":   {
 //             "id": "u101",
 //             "fullname": "Tal Liber",
-//             "imgUrl": "http://some-img"
+//             "imgUrl": "",
+//             "color": "#8338ec"
 //         },
-//         "members": [{
+//         "members": [
+//             {
+//                 "id": "u101",
+//                 "fullname": "Tal Liber",
+//                 "imgUrl": "",
+//                 "color": "#8338ec"
+//             },
+//             {
 //                 "id": "u102",
 //                 "fullname": "Arnon Arditi",
 //                 "imgUrl": "",
@@ -840,5 +848,5 @@ function getEmptyBoard() {
 //                 "cmpsOrder": ["status-picker", "member-picker", "date-picker"]
 //             }
 //         ]
-//     }])
+//     })
 // })()

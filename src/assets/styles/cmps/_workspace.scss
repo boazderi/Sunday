@@ -1,3 +1,24 @@
 .workspace{
     background-color: $bg-big-sidebar;
+    padding-inline-start: 14px;
+    padding-inline-end: 16px;
+    position: relative;
+    overflow-x: visible;
+ 
+    >*:not(.toggle){
+       display: none; 
+    }
+
+    &.isOpen{
+        >*{
+            display: block;
+        }
+    }
+
+    .toggle{
+        position: absolute;
+        left: 0px;
+        top: 60px;
+        background-color: green;
+    }
 }

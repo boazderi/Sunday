@@ -11,13 +11,13 @@ const routes = [
     component: homePage
   },
   {
-    path: '/board',
+    path: '/board/:id',
     name: 'board',
     component: boardApp,
     // todo -more gentle routing
     children:[
       {
-        path: '/board/main-table',
+        path: '/board/:id/main-table',
         name: 'main-table',
         component: mainTable,
       }
