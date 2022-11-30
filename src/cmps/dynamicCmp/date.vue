@@ -13,9 +13,3 @@ export default {
     },
 };
 </script>
-  
-<style>
-.date {
-    background-color: lightcoral;
-}
-</style>
