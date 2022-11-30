@@ -1,6 +1,5 @@
 <template>
     <div class="title">
-        <input type="checkbox" />
         <div contenteditable @input="onChangeTaskTitle">{{ info }}</div>
     </div>
 </template>

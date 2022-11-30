@@ -1,8 +1,8 @@
 <template>
   <div v-if="board" class="main-table-container">
-    <div class="group-container">
+    <section class="group-container">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group" />
-    </div>
+    </section>
   </div>
 </template>
 

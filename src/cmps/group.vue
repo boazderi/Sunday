@@ -5,12 +5,13 @@
         <section class="labels-grid group-grid group-grid-child">
             <div class="cell-first cell">
                 <input type="checkbox" />
-                <p>Items</p>
+                <!-- <p>Items</p> -->
             </div>
             <div class="cell" v-for="(label, idx) in labels" :key="idx">{{ label }}</div>
         </section>
+
         <!-- render grid cells by cmpOrder array -->
-        <section class="group group-grid group-grid-child" v-for="task in groupInfo.tasks" :key="task.id">
+        <section class="group-grid group-grid-child" v-for="task in groupInfo.tasks" :key="task.id">
             <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
                 <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)"></component>
             </section>
@@ -19,6 +20,7 @@
         <section class="progress-grid">
             <div v-for="(item, idx) in progress" :key="idx">{{ item }}</div>
         </section>
+
     </section>
 </template>
   
@@ -38,49 +40,8 @@ export default {
     },
     data() {
         return {
-            // tasks: [
-            //     {
-            //         id: "t101",
-            //         side: "null",
-            //         tasktTitle: "Learn CSS",
-            //         members: [
-            //             { name: "tal", cellor: "red" },
-            //             { name: "bal", cellor: "black" },
-            //             { name: "shal", cellor: "green" },
-            //         ],
-            //         date: "27-02-2022",
-            //         status: "IN WORK",
-            //         priority: "LOW",
-            //     },
-            //     {
-            //         id: "t102",
-            //         side: "null",
-            //         tasktTitle: "Learn vue",
-            //         members: [
-            //             { name: "tal", cellor: "red" },
-            //             { name: "bal", cellor: "black" },
-            //             { name: "shal", cellor: "green" },
-            //         ],
-            //         date: "27-02-2022",
-            //         status: "STUCK",
-            //         priority: "HIGH",
-            //     },
-            //     {
-            //         id: "t103",
-            //         side: "null",
-            //         tasktTitle: "Learn js",
-            //         members: [
-            //             { name: "tal", cellor: "red" },
-            //             { name: "bal", cellor: "black" },
-            //             { name: "shal", cellor: "green" },
-            //         ],
-            //         date: "27-02-2022",
-            //         status: "DONE",
-            //         priority: "LOW",
-            //     },
-            // ],
             cmpOrder: ["side", "taskTitle", "status", "members", "priority", "date"],
-            labels: ["status", "members", "priority", "date"],
+            labels: ["items","status", "members", "priority", "date"],
             progress: [null, null, "status", null, "priority", null],
         };
     },
