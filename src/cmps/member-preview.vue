@@ -1,6 +1,6 @@
 <template>
     <div :style="{ background: memberColor }" v-if="member" class="member-priview">
-        {{ member.name.substring(0, 1).toUpperCase() }}
+        {{ member.fullname.substring(0, 1).toUpperCase() }}
     </div>
 </template>
   

@@ -1,10 +1,7 @@
 <template>
-  <div class="app-container">
+  <div v-if="boards.length" class="app-container">
     <div class="group-container">
-      <group></group>
-      <group></group>
-      <group></group>
-      <!-- <pre>{{ boards }}</pre> -->
+      <group v-for="(group, idx) in boards[0].groups" :key="idx" :groupInfo="group" />
     </div>
   </div>
 </template>
