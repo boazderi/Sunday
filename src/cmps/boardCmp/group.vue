@@ -6,6 +6,7 @@
             <!-- render group labels by labels array -->
 
             <section class="labels-grid group-grid ">
+                <div class="empty"></div>
                 <div class="cell-first cell">
                     <input type="checkbox" />
                 </div>
@@ -13,8 +14,11 @@
             </section>
 
             <!-- render grid cells by cmpOrder array -->
-            <section class="group-grid" v-for="task in groupInfo.tasks" :key="task.id">
+            <section class="group-grid task-row" v-for="task in groupInfo.tasks" :key="task.id">
                 <!-- todo-put in each cmp the cell class jsut if necc -->
+                <div class="more">
+                    <span class="svg" v-icon="'more'"></span>
+                </div>
                 <side class="cell" :taskId="task.id"></side>
 
                 <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
@@ -24,11 +28,12 @@
 
             <!-- CRUD-ADD TASK -->
             <section class="add-task group-grid">
+                <div class="empty"></div>
                 <div class="cell">
                     <input type="checkbox" />
                 </div>
                 <div class="input-wrapper flex align-center">
-                    <input ref="addTask" @keypress="onAddTask($event)" @blur="onAddTask($event)"
+                    <input ref="addTask"  @blur="onAddTask"
                         class="flex align-center" type="text" placeholder="+ Add item">
                 </div>
 
@@ -64,21 +69,17 @@ export default {
     },
     data() {
         return {
-
             cmpOrder: ["taskTitle", "status", "members", "priority", "date", "text", "file"],
             labels: ["Items", "Status", "Person", "Priority", "Date", "Text", "File"],
             progress: ["status", "", "priority", "", "", ""],
-
-
         };
     },
     methods: {
         updateTask({ prop, toUpdate }, taskId) {
             this.$store.dispatch({ type: 'updateCurrBoard', groupId: this.groupInfo.id, taskId, prop, toUpdate })
         },
-        // TODO-prevent duplication with the triggers
-        onAddTask(ev) {
-            if (ev.key === 'Enter' || ev.type === 'blur') {
+        // TODO-make it work for enter and blur but not duplicate
+        onAddTask() {
                 this.$store.dispatch({
                     type: 'addNewTask', payload: {
                         taskTitle: this.$refs.addTask.value,
@@ -86,7 +87,7 @@ export default {
                     }
                 })
                 this.$refs.addTask.value = ''
-            }
+            
         },
     },
     components: {

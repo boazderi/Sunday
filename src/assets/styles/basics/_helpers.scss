@@ -141,11 +141,14 @@
 }
 
 
-// icon helpers
-.icon {
-    padding: .2rem;
-    border-radius: 6px;
+// icon helpers-svg
+.icon,.svg {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   height: 100%;
 }
+
 
 
 // hover helpers

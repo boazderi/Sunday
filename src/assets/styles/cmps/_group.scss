@@ -1,9 +1,10 @@
 .board-content {
-    background-color: aqua;
+    // background-color: aqua;
     position: relative;
     width: 100%;
 }
 
+// todo-ask asi about 
 .main-table {
     position: absolute;
     height: 100%;
@@ -14,12 +15,28 @@
 .group-list {
     position: relative;
     width: 100%;
-    padding-inline-start: 50px;
+    padding-inline-start: 20px;
+}
+
+.group-title{
+    padding-inline-start: 3px;
+    >*{
+        cursor: pointer;
+    }
+    .more{
+        margin-inline-end: 5px;
+        opacity: 0.2;
+    }
+    &:hover{
+        .more{
+            opacity: 1;
+        }
+    }
 }
 
 .group-grid {
     display: grid;
-    grid-template-columns: 25px 400px repeat(auto-fill, minmax(140px, 140px));
+    grid-template-columns:25px 25px 400px repeat(auto-fill, minmax(140px, 140px));
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
@@ -36,6 +53,21 @@
         // left: 100px;
         left: 25px;
         background-color: white;
+    }
+}
+
+.task-row{
+    *>{
+        cursor: pointer;
+    }
+    .more{
+        cursor: pointer;
+        opacity: 0.2;
+    }
+    &:hover{
+        .more{
+            opacity: 1;
+        }
     }
 }
 

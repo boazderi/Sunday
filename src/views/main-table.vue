@@ -1,12 +1,12 @@
 <template>
-  <div v-if="board" class="main-table main-layout">
- 
+  <div v-if="board" class="main-table ">
+
     <section class="group-list">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
         @updateSelectedTasks="updateSelectedTasks" />
     </section>
-    <bottom-crud v-if="selectedTasks.length" 
-    @removeTasks="removeTasks"
+    <bottom-crud v-if="selectedTasks.length"
+     @removeTasks="removeTasks" 
      @duplicateTasks="duplicateTasks" />
 
   </div>
@@ -45,6 +45,7 @@ export default {
         payload: { selectedTasks: this.selectedTasks }
       })
       this.selectedTasks = []
+      // TODO- make all inputs checked=false in the side cmps
       eventBus.emit('zeroingSelectedTasks')
     },
     updateSelectedTasks(selectedTasks) {
@@ -52,12 +53,13 @@ export default {
     },
     addTaskIdToCollection(taskId) {
       this.selectedTasks.push(taskId)
+      console.log(this.selectedTasks)
     },
     removeTaskIdFromCollection(taskId) {
       const idx = this.selectedTasks.findIndex(s => s.id === taskId)
       this.selectedTasks.splice(idx, 1)
     },
-    
+
   },
   computed: {
     board() {
@@ -67,7 +69,7 @@ export default {
   watch: {
     selectedTasks: {
       handler() {
-        eventBus.emit('setSelectedTasks', this.selectedTasks)
+        eventBus.emit('selectedTasks', this.selectedTasks)
       },
       deep: true
     }

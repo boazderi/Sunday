@@ -1,5 +1,8 @@
 <template>
-    <div class="group-title">
+    <div class="group-title flex">
+        <div class="more">
+            <span class="svg" v-icon="'more'"></span>
+        </div>
         <div contenteditable @input="onChangeGroupTitle">{{ groupInfo.title }}</div>
     </div>
 </template>

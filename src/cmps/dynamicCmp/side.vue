@@ -11,7 +11,6 @@ export default {
     name: "side-indicator",
     props: {
         taskId: String,
-
     },
     data() {
         return {
