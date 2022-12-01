@@ -25,7 +25,7 @@
     </div>
 
     <section class="action-list flex column">
-      <div v-for="action in actionList" class="flex align-center item ">
+      <div v-for="action in actionList" class="flex align-center item " :key="action">
         <div class="flex align-center" v-icon="`${action}`"></div>
         {{ action }}
       </div>
@@ -66,7 +66,7 @@ export default {
   data() {
     return {
       isOpen: true,
-      actionList: ['Add', 'filter', 'Search']
+      actionList: ['Add', 'Filters', 'Search']
     }
   },
   created() {
