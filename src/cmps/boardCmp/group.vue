@@ -18,16 +18,18 @@
                 </section>
             </section>
 
-            <!-- CRUD-ADD TASK -->
-            <section class="add-task group-grid">
-                <div class="cell">
-                    <input type="checkbox" />
-                </div>
-                <div class="input-wrapper flex align-center">
-                    <input class="flex align-center" type="text" placeholder="+ Add item">
-                </div>
+     
+        <!-- CRUD-ADD TASK -->
+        <section class="add-task group-grid">
+            <div class="cell">
+                <input type="checkbox" />
+            </div>
+            <div class="input-wrapper flex align-center">
+                <input ref="addTask" @keypress="onAddTask($event)" @blur="onAddTask($event)" class="flex align-center"
+                    type="text" placeholder="+ Add item">
+            </div>
 
-            </section>
+        </section>
 
             <!-- render progress by progress array -->
             <section class=" group-grid">
@@ -67,7 +69,20 @@ export default {
         updateTask({ prop, toUpdate }, taskId) {
             // console.log(prop, toUpdate, taskId);
             this.$store.dispatch({ type: 'updateCurrBoard', groupId: this.groupInfo.id, taskId, prop, toUpdate })
+        },
+        onAddTask(ev) {
+            if (ev.key === 'Enter' || ev.type === 'blur') {
+                this.$store.dispatch({
+                    type: 'addNewTask', payload: {
+                        taskTitle: this.$refs.addTask.value,
+                        groupId: this.groupInfo.id
+                    }
+                })
+                this.$refs.addTask.value='' 
+            }
         }
+
+
     },
     components: {
         side,
