@@ -1,6 +1,7 @@
 <template>
-    <div class="group-title">
-        <div contenteditable @input="onChangeGroupTitle">{{ groupInfo.title }}</div>
+    <div class="group-title flex align-center">
+        <div v-icon="'arrowDownBlack'"></div>
+        <div contenteditable @blur="onChangeGroupTitle">{{ groupInfo.title }}</div>
     </div>
 </template>
   

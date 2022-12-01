@@ -82,3 +82,16 @@
         }
     }
 }
+
+.group-container {
+    width: 1280px;
+}
+
+.group-title {
+    width: 510px;
+    height: 40px;
+    position: sticky;
+    left: 0;
+    margin-inline-start: 4px;
+    font-size: rem(18px);
+}

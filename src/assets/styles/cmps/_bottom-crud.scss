@@ -1,0 +1,12 @@
+.bottom-crud{
+    background-color: green;
+    position: absolute;
+    bottom: 50px;
+    border-radius: 6px;
+    left: 50%;
+    width: 400px;
+    transform: translateX(-50%);
+    z-index: 20;
+    padding: 10px;
+
+}
