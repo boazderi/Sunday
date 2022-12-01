@@ -1,6 +1,7 @@
 <template>
   <div v-if="board" class="main-table-container">
-    <section class="group-container">
+    <!-- TODO add main layout to group-list -->
+    <section class="group-list">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group" />
     </section>
   </div>
@@ -8,7 +9,7 @@
 
 <script>
 
-import group from "../cmps/group.vue"
+import group from "../cmps/boardCmp/group.vue"
 
 export default {
   name: "App",

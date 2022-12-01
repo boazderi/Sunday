@@ -11,7 +11,7 @@
 
         <!-- render grid cells by cmpOrder array -->
         <section class="group-grid" v-for="task in groupInfo.tasks" :key="task.id">
-           <!-- todo-put in each cmp the cell class jsut if necc -->
+            <!-- todo-put in each cmp the cell class jsut if necc -->
             <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
                 <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)"></component>
             </section>
@@ -20,12 +20,13 @@
         <!-- CRUD-ADD TASK -->
         <section class="add-task group-grid">
             <div class="cell">
-                <input  type="checkbox"  />
+                <input type="checkbox" />
             </div>
             <div class="input-wrapper flex align-center">
-                <input class="flex align-center"  type="text" placeholder="+ Add item">
+                <input ref="addTask" @keypress="onAddTask($event)" @blur="onAddTask($event)" class="flex align-center"
+                    type="text" placeholder="+ Add item">
             </div>
-            
+
         </section>
 
         <!-- render progress by progress array -->
@@ -56,14 +57,27 @@ export default {
     data() {
         return {
             cmpOrder: ["side", "taskTitle", "status", "members", "priority", "date"],
-            labels: ["Items","Status", "Person", "Priority", "Date"],
-            progress: [ "status","Person", "priority", "date"],
+            labels: ["Items", "Status", "Person", "Priority", "Date"],
+            progress: ["status", "Person", "priority", "date"],
+
         };
     },
     methods: {
         updateTask({ prop, toUpdate }, taskId) {
             this.$store.dispatch({ type: 'updateCurrBoard', groupId: this.groupInfo.id, taskId, prop, toUpdate })
+
+        },
+        onAddTask(ev) {
+            if (ev.key === 'Enter' || ev.type === 'blur') {
+                this.$store.dispatch({
+                    type: 'addNewTask', payload: {
+                        taskTitle: this.$refs.addTask.value,
+                        gr
+                    }
+                })
+            }
         }
+
     },
     components: {
         side,
@@ -73,5 +87,7 @@ export default {
         status,
         priority,
     },
-};
+}
+
+
 </script>
