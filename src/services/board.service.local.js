@@ -12,12 +12,13 @@ export const boardService = {
     getEmptyBoard,
     addBoardMsg,
     updateBoard,
-    addNewTask
+    addNewTask,
+    removeTasks,
+    duplicateTasks
 }
 window.cs = boardService
 
 // todo: this function need to be edit later
-
 async function query(filterBy = { txt: '' }) {
     var boards = await storageService.query(STORAGE_KEY)
     if (filterBy.txt) {
@@ -87,7 +88,33 @@ async function addNewTask({ boardId, groupId, taskTitle }) {
     currBoard.groups[groupIdx].tasks.push(newTask)
     save(currBoard)
     return currBoard
+}
 
+async function removeTasks({ boardId, selectedTasks }) {
+    var currBoard = await getById(boardId)
+    currBoard.groups.forEach(group => {
+        var tasks = group.tasks
+        
+        selectedTasks.forEach(selectedId => {
+            const idx = tasks.findIndex(t => t.id === selectedId)
+            if (idx !== -1) tasks.splice(idx, 1)
+        })
+    })
+    save(currBoard)
+    return currBoard
+}
+async function duplicateTasks({ boardId, selectedTasks }) {
+    var currBoard = await getById(boardId)
+    currBoard.groups.forEach(group => {
+        var tasks = group.tasks
+
+        selectedTasks.forEach(selectedId => {
+            const task = tasks.find(t => t.id === selectedId)
+            if (task)   tasks.push(task)
+        })
+    })
+    save(currBoard)
+    return currBoard
 }
 
 function _getEmptyTask(taskTitle) {
@@ -249,6 +276,6 @@ function getEmptyBoard() {
 //                 }]
 //             }
 //         ]
-// 
+//
 //     })
 // })()

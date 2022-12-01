@@ -81,7 +81,7 @@ export const boardStore = {
             try {
                 const updatedBoard = await boardService.updateBoard(state.currBoard._id, groupId, taskId, prop, toUpdate)
                 commit({ type: 'updateBoard', board: updatedBoard })
-                    // return updatedBoard
+                // return updatedBoard
             } catch (err) {
                 console.log('boardStore: Error in updateBoard', err)
                 throw err
@@ -92,15 +92,37 @@ export const boardStore = {
                 payload.boardId = state.currBoard._id
                 const updatedBoard = await boardService.addNewTask(payload)
                 commit({ type: 'updateBoard', board: updatedBoard })
-                    // return updatedBoard
+                // return updatedBoard
 
             } catch (err) {
                 console.log("boardStore: Error in addNewTask:", err)
                 throw err
             }
         },
-
-
+        async removeTasks({ commit, state }, { payload }) {
+            try {
+                payload.boardId = state.currBoard._id
+                const updatedBoard = await boardService.removeTasks(payload)
+                commit({ type: 'updateBoard', board: updatedBoard })
+             
+            } catch(err) {
+                console.log("boardStore: cannot remove tasks",err)
+                throw err
+            }
+        },
+        async duplicateTasks({ commit, state }, { payload }){
+            
+            try {
+                payload.boardId = state.currBoard._id
+              
+                const updatedBoard = await boardService.duplicateTasks(payload)
+                commit({ type: 'updateBoard', board: updatedBoard })
+             
+            } catch(err) {
+                console.log("boardStore: cannot remove tasks",err)
+                throw err
+            }
+        },
         async loadBoards(context) {
             try {
                 const boards = await boardService.query()
