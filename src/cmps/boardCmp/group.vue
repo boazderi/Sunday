@@ -1,8 +1,10 @@
- <template>
+<template>
     <section class="group-container">
+
         <groupTitle :groupInfo="groupInfo" @update="updateTask" />
         <section class="group-content">
             <!-- render group labels by labels array -->
+
             <section class="labels-grid group-grid ">
                 <div class="cell-first cell">
                     <input type="checkbox" />
@@ -13,8 +15,7 @@
             <!-- render grid cells by cmpOrder array -->
             <section class="group-grid" v-for="task in groupInfo.tasks" :key="task.id">
                 <!-- todo-put in each cmp the cell class jsut if necc -->
-                <side class="cell" :taskId="task.id"
-                   ></side>
+                <side class="cell" :taskId="task.id"></side>
 
                 <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
                     <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)" />
@@ -63,11 +64,11 @@ export default {
     },
     data() {
         return {
-         
+
             cmpOrder: ["taskTitle", "status", "members", "priority", "date", "text", "file"],
             labels: ["Items", "Status", "Person", "Priority", "Date", "Text", "File"],
             progress: ["status", "", "priority", "", "", ""],
-           
+
 
         };
     },
@@ -98,6 +99,6 @@ export default {
         groupTitle,
         bottomCrud
     },
-  
+
 };
 </script>

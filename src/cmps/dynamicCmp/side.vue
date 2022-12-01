@@ -18,8 +18,8 @@ export default {
             selectedTasks: []
         }
     },
-    created(){
-        eventBus.on('selectedTasks',this.setSelectedTasks)
+    created() {
+        eventBus.on('selectedTasks', this.setSelectedTasks)
     },
     methods: {
         toggleSelected(ev) {
@@ -34,8 +34,8 @@ export default {
                 eventBus.emit('removeTaskIdFromCollection', this.taskId)
             }
         },
-        setSelectedTasks(selectedTasks){
-            this.selectedTasks=selectedTasks
+        setSelectedTasks(selectedTasks) {
+            this.selectedTasks = selectedTasks
         }
 
     }
