@@ -81,7 +81,7 @@ export const boardStore = {
             try {
                 const updatedBoard = await boardService.updateBoard(state.currBoard._id, groupId, taskId, prop, toUpdate)
                 commit({ type: 'updateBoard', board: updatedBoard })
-                // return updatedBoard
+                    // return updatedBoard
             } catch (err) {
                 console.log('boardStore: Error in updateBoard', err)
                 throw err
@@ -92,7 +92,7 @@ export const boardStore = {
                 payload.boardId = state.currBoard._id
                 const updatedBoard = await boardService.addNewTask(payload)
                 commit({ type: 'updateBoard', board: updatedBoard })
-                // return updatedBoard
+                    // return updatedBoard
 
             } catch (err) {
                 console.log("boardStore: Error in addNewTask:", err)
@@ -135,13 +135,13 @@ export const boardStore = {
 
 
 
-   // async updateBoard(context, { board }) {
-        //     try {
-        //         board = await boardService.save(board)
-        //         context.commit(getActionUpdateBoard(board))
-        //         return board
-        //     } catch (err) {
-        //         console.log('boardStore: Error in updateBoard', err)
-        //         throw err
-        //     }
-        // },
+// async updateBoard(context, { board }) {
+//     try {
+//         board = await boardService.save(board)
+//         context.commit(getActionUpdateBoard(board))
+//         return board
+//     } catch (err) {
+//         console.log('boardStore: Error in updateBoard', err)
+//         throw err
+//     }
+// },

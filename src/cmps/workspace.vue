@@ -26,25 +26,10 @@
 
     <section class="action-list flex column">
       <div v-for="action in actionList" class="flex align-center item " :key="action">
-        <div class="flex align-center" v-icon="`${action}`"></div>
-        {{ action }}
+        <div class="flex align-center" v-icon="`${action.icon}`"></div>
+        {{ action.title }}
       </div>
     </section>
-    <!-- <section class="action-list flex column">
-      <div class="flex align-center item ">
-        <div class="flex align-center" v-icon="'addMed'"></div>
-        Add
-      </div>
-      <div class="flex align-center item">
-        <div class="flex align-center" v-icon="'filterMed'"></div>
-        Filters
-      </div>
-      <div class="flex align-center item">
-        <div class="flex align-center" v-icon="'searchMed'"></div>
-        Search
-      </div>
-
-    </section> -->
 
     <!-- board-list -->
     <section v-if="(boards.length)" class="">
@@ -66,7 +51,11 @@ export default {
   data() {
     return {
       isOpen: true,
-      actionList: ['Add', 'Filters', 'Search']
+      actionList: [
+        { title: 'Add', icon: 'add' },
+        { title: 'Filter', icon: 'filter' },
+        { title: 'Search', icon: 'search' },
+      ]
     }
   },
   created() {

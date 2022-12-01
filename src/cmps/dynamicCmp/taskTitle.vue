@@ -1,6 +1,6 @@
 <template>
     <div class="title">
-        <div contenteditable @input="onChangeTaskTitle">{{ info }}</div>
+        <div contenteditable @blur="onChangeTaskTitle">{{ info }}</div>
     </div>
 </template>
   

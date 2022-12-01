@@ -13,23 +13,27 @@
             <!-- render grid cells by cmpOrder array -->
             <section class="group-grid" v-for="task in groupInfo.tasks" :key="task.id">
                 <!-- todo-put in each cmp the cell class jsut if necc -->
+                <side class="cell" :taskId="task.id" :selectedTasks="selectedTasks"
+                    @addTaskIdToCollection="addTaskIdToCollection"
+                    @removeTaskIdFromCollection="removeTaskIdFromCollection"></side>
+
                 <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
                     <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)" />
                 </section>
             </section>
 
-     
-        <!-- CRUD-ADD TASK -->
-        <section class="add-task group-grid">
-            <div class="cell">
-                <input type="checkbox" />
-            </div>
-            <div class="input-wrapper flex align-center">
-                <input ref="addTask" @keypress="onAddTask($event)" @blur="onAddTask($event)" class="flex align-center"
-                    type="text" placeholder="+ Add item">
-            </div>
 
-        </section>
+            <!-- CRUD-ADD TASK -->
+            <section class="add-task group-grid">
+                <div class="cell">
+                    <input type="checkbox" />
+                </div>
+                <div class="input-wrapper flex align-center">
+                    <input ref="addTask" @keypress="onAddTask($event)" @blur="onAddTask($event)"
+                        class="flex align-center" type="text" placeholder="+ Add item">
+                </div>
+
+            </section>
 
             <!-- render progress by progress array -->
             <section class=" group-grid">
@@ -37,6 +41,9 @@
                 <div class="empty"></div>
 
                 <div class="cell" v-for="(item, idx) in progress" :key="idx">{{ item }}</div>
+            </section>
+            <section v-if="selectedTasks.length"> 
+            
             </section>
 
         </section>
@@ -60,9 +67,11 @@ export default {
     },
     data() {
         return {
-            cmpOrder: ["side", "taskTitle", "status", "members", "priority", "date"],
+            cmpOrder: ["taskTitle", "status", "members", "priority", "date"],
             labels: ["Items", "Status", "Person", "Priority", "Date"],
             progress: ["status", "Person", "priority", "date"],
+            selectedTasks: [],
+
         };
     },
     methods: {
@@ -78,8 +87,15 @@ export default {
                         groupId: this.groupInfo.id
                     }
                 })
-                this.$refs.addTask.value='' 
+                this.$refs.addTask.value = ''
             }
+        },
+        addTaskIdToCollection(taskId) {
+            this.selectedTasks.push(taskId)
+        },
+        removeTaskIdFromCollection(taskId) {
+            const idx = this.selectedTasks.findIndex(s => s.id === taskId)
+            this.selectedTasks.splice(idx, 1)
         }
 
 
