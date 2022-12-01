@@ -1,5 +1,5 @@
 .board-content {
-    // background-color: aqua;
+    background-color: aqua;
     position: relative;
     width: 100%;
 }
@@ -8,6 +8,7 @@
     position: absolute;
     height: 100%;
     overflow-x: scroll;
+    
 }
 
 .group-list {
@@ -38,17 +39,6 @@
     }
 }
 
-// .group-content {
-//     // todo-change the width 
-//     width: 80%;
-//     margin: 10px;
-//     margin-top: 2em;
-//     overflow-x: scroll;
-//     position: relative;
-//     // border: 1px solid #d0d4e4;
-//     border-radius: 6px;
-//     font-size: rem(14px);
-// }
 .add-task {
     .input-wrapper {
         border: 1px solid $primary-border-clr;
