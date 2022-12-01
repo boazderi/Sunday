@@ -76,7 +76,7 @@ async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
         currBoard[prop] = toUpdate
     }
 
-     save(currBoard)
+    save(currBoard)
     return currBoard
 }
 async function addNewTask({ boardId, groupId, taskTitle }) {
@@ -84,7 +84,7 @@ async function addNewTask({ boardId, groupId, taskTitle }) {
     const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
     const newTask = _getEmptyTask(taskTitle)
     currBoard.groups[groupIdx].tasks.push(newTask)
-     save(currBoard)
+    save(currBoard)
     return currBoard
 
 }
@@ -162,6 +162,7 @@ function getEmptyBoard() {
 //         "groups": [{
 //                 "id": "gy5LnM",
 //                 "title": "Frontend",
+// "color": "#579bfc",
 //                 "tasks": [{
 //                         "id": "t2yn4E",
 //                         "taskTitle": "Complete UI for demo1",
@@ -246,6 +247,6 @@ function getEmptyBoard() {
 //                 }]
 //             }
 //         ]
-//
+// 
 //     })
 // })()
