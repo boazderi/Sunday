@@ -63,7 +63,6 @@ async function addBoardMsg(boardId, txt) {
 }
 
 async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
-    var x
     var currBoard = await getById(boardId)
 
     if (taskId) {
