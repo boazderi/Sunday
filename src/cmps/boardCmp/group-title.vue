@@ -1,9 +1,10 @@
 <template>
-    <div class="group-title flex">
+    <div class="group-title flex align-center">
         <div class="more">
             <span class="svg" v-icon="'more'"></span>
         </div>
-        <div contenteditable @input="onChangeGroupTitle">{{ groupInfo.title }}</div>
+        <div v-icon="'arrowDownBlack'"></div>
+        <div contenteditable @blur="onChangeGroupTitle">{{ groupInfo.title }}</div>
     </div>
 </template>
   

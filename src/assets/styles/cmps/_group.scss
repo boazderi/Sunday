@@ -9,7 +9,7 @@
     position: absolute;
     height: 100%;
     overflow-x: scroll;
-    
+
 }
 
 .group-list {
@@ -18,17 +18,27 @@
     padding-inline-start: 20px;
 }
 
-.group-title{
+.group-title {
+    width: 510px;
+    height: 40px;
+    position: sticky;
+    left: 0;
+    margin-inline-start: 4px;
+    font-size: rem(18px);
+
     padding-inline-start: 3px;
-    >*{
+
+    >* {
         cursor: pointer;
     }
-    .more{
+
+    .more {
         margin-inline-end: 5px;
         opacity: 0.2;
     }
-    &:hover{
-        .more{
+
+    &:hover {
+        .more {
             opacity: 1;
         }
     }
@@ -36,10 +46,11 @@
 
 .group-grid {
     display: grid;
-    grid-template-columns:25px 25px 400px repeat(auto-fill, minmax(140px, 140px));
+    grid-template-columns: 25px 25px 400px repeat(auto-fill, minmax(140px, 140px));
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
+
     // todo- add generic style of sticky class
     >*:nth-child(1) {
         position: sticky;
@@ -47,6 +58,7 @@
         left: 0;
         background-color: white;
     }
+
     >*:nth-child(2) {
         position: sticky;
         z-index: 10;
@@ -56,16 +68,18 @@
     }
 }
 
-.task-row{
-    *>{
+.task-row {
+    *> {
         cursor: pointer;
     }
-    .more{
+
+    .more {
         cursor: pointer;
         opacity: 0.2;
     }
-    &:hover{
-        .more{
+
+    &:hover {
+        .more {
             opacity: 1;
         }
     }
@@ -76,6 +90,7 @@
         border: 1px solid $primary-border-clr;
         border-inline-end: 0;
         padding: 6px 10px;
+
         input {
             padding: 0;
             width: 100%;
@@ -91,6 +106,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid $primary-border-clr;
+
     >* {
         width: 100%;
         display: flex;
@@ -99,6 +115,6 @@
     }
 }
 
-.side-edit {
-    margin-inline-start: -50px;
+.group-container {
+    width: 1280px;
 }
