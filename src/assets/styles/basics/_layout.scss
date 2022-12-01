@@ -1,32 +1,25 @@
-// board-container
-.main-layout{
-    display: grid;
-    grid-template-rows:180px 1fr;
-    margin: 16px 0 0 38px;
-}
-
-// board app layout
 .board-app {
     min-height: 100vh;
     max-width: 100%;
     display: grid;
     grid-template-columns: 67px auto 1fr;
+    grid-template-rows: 180px 1fr;
+    grid-template-areas: "side-nav workspace board-header" "side-nav workspace board-content";
     color: $primary-txt-clr;
     font-family: Roboto;
 }
 
+.main-layout {
+    margin-inline-start: 38px;
+    padding-block-start: 16px;
+}
+
 .board-content {
-    background-color: white;
+    grid-area: board-content;
 }
-
-.main-table-container{
-    width: 800px;
-}
-
 
 // root-cmp
-
-#app{
+#app {
     margin: 0;
     height: 100vh;
     max-width: 100vw;

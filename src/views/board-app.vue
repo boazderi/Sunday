@@ -1,11 +1,12 @@
 <template>
 
   <section class="board-app">
-
-    <side-nav></side-nav>
-    <workspace></workspace>
-    <board-container></board-container>
-   
+    <side-nav />
+    <workspace />
+    <board-header />
+    <section class="board-content">
+      <router-view></router-view>
+    </section>
   </section>
 
 </template>
@@ -14,7 +15,7 @@
 <script >
 import sideNav from '../cmps/side-nav.vue'
 import workspace from '../cmps/workspace.vue'
-import boardContainer from '../cmps/board-container.vue'
+import boardHeader from '../cmps/header-cmps/board-header.vue'
 
 
 export default {
@@ -26,8 +27,7 @@ export default {
   components: {
     sideNav,
     workspace,
-    boardContainer
-
+    boardHeader
   }
 
 }

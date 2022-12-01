@@ -1,5 +1,5 @@
 <template>
-  <div v-if="board" class="main-table-container">
+  <div v-if="board" class="main-table main-layout">
     <!-- TODO add main layout to group-list -->
     <section class="group-list">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group" />
