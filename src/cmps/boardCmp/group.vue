@@ -42,7 +42,9 @@
 
                 <div class="cell" v-for="(item, idx) in progress" :key="idx">{{ item }}</div>
             </section>
-            <section v-if="selectedTasks.length"> baba</section>
+            <section v-if="selectedTasks.length"> 
+            
+            </section>
 
         </section>
     </section>
