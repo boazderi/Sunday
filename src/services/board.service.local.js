@@ -63,7 +63,7 @@ async function addBoardMsg(boardId, txt) {
     return msg
 }
 
-async function taskToUpdate(boardId, groupId, taskId, prop, toUpdate) {
+async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
     var currBoard = await getById(boardId)
     const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
     const taskIdx = currBoard.groups[groupIdx].tasks.findIndex(task => task.id === taskId)

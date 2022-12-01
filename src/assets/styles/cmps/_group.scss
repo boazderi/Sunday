@@ -1,18 +1,17 @@
 .group-grid {
     display: grid;
-    grid-template-columns:25px 400px repeat(auto-fill, minmax(140px, 140px));
+    grid-template-columns: 25px 400px repeat(auto-fill, minmax(140px, 140px));
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
-
     // todo- resolve the end overflow when items up on checkbox
-    >*:nth-child(1){
+    >*:nth-child(1) {
         position: sticky;
-        z-index:10 ;
+        z-index: 10;
         left: 0;
         background-color: white;
     }
-    >*:nth-child(2){
+    >*:nth-child(2) {
         position: sticky;
         z-index: 10;
         // left: 100px;
@@ -21,32 +20,30 @@
     }
 }
 
-.group-list {
+.group-content {
     // todo-change the width 
     width: 80%;
     margin: 10px;
     margin-top: 2em;
     overflow-x: scroll;
     position: relative;
-    border: 1px solid #d0d4e4;
+    // border: 1px solid #d0d4e4;
     border-radius: 6px;
     font-size: rem(14px);
 }
 
-.add-task{
-    .input-wrapper{
+.add-task {
+    .input-wrapper {
         border: 1px solid $primary-border-clr;
         border-inline-end: 0;
         padding: 6px 10px;
-        input{
-         padding: 0;
-         width: 100%;
-         padding-inline-start: 8px;
-         border: 0;
+        input {
+            padding: 0;
+            width: 100%;
+            padding-inline-start: 8px;
+            border: 0;
         }
     }
-
- 
 }
 
 .cell {

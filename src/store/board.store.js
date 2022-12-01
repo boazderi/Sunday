@@ -78,7 +78,7 @@ export const boardStore = {
         },
         async updateCurrBoard({ commit, state }, { groupId, taskId, prop, toUpdate }) {
             try {
-                const updatedBoard = await boardService.taskToUpdate(state.currBoard._id, groupId, taskId, prop, toUpdate)
+                const updatedBoard = await boardService.updateBoard(state.currBoard._id, groupId, taskId, prop, toUpdate)
                 commit({ type: 'updateBoard', board: updatedBoard })
                 return updatedBoard
             } catch (err) {

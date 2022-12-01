@@ -5,7 +5,7 @@
     <div class="toggleWorkspace flex center align-center" @click="toggleWorkspace">
       <span v-if="isOpen" v-icon="'arrowLeft'"></span>
       <span v-else v-icon="'arrowRight'"></span>
-      </div>
+    </div>
 
     <div class="dropdown-nav-header flex space-between align-center">
       <span>workspace</span>
@@ -13,18 +13,24 @@
     </div>
 
     <div class="workspace-dropdown flex align-center space-between">
-      
-        <div class="home flex align-center">
-          <span class=" logo-text flex center align-center">M</span>
-          <span class="logo" v-icon="'homeSmall'"></span>
-          <span class="text">Main workspace</span>
-        </div>
+
+      <div class="home flex align-center">
+        <span class="logo-text flex center align-center">M</span>
+        <span class="logo" v-icon="'homeSmall'"></span>
+        <span class="text">Main workspace</span>
+      </div>
 
       <div class="flex align-center" v-icon="'arrowDown'"></div>
-     
+
     </div>
 
     <section class="action-list flex column">
+      <div v-for="action in actionList" class="flex align-center item ">
+        <div class="flex align-center" v-icon="`${action}`"></div>
+        {{ action }}
+      </div>
+    </section>
+    <!-- <section class="action-list flex column">
       <div class="flex align-center item ">
         <div class="flex align-center" v-icon="'addMed'"></div>
         Add
@@ -38,11 +44,10 @@
         Search
       </div>
 
-    </section>
+    </section> -->
 
     <!-- board-list -->
     <section v-if="(boards.length)" class="">
-
       <ul class="clean-list board-list">
         <li @click="setBoard(board._id)" v-for="board in boards" :key="board._id">
           <div class="item flex align-center">
@@ -61,7 +66,7 @@ export default {
   data() {
     return {
       isOpen: true,
-      actionList: ['add', 'filter', 'search']
+      actionList: ['Add', 'filter', 'Search']
     }
   },
   created() {
@@ -73,7 +78,6 @@ export default {
       this.isOpen = !this.isOpen;
     },
     setBoard(boardId) {
-
       this.$store.commit({ type: 'setCurrBoard', boardId })
       this.$router.push(`/board/${boardId}/main-table`)
     }

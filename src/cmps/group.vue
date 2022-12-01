@@ -72,10 +72,9 @@ export default {
                 this.$store.dispatch({
                     type: 'addNewTask', payload: {
                         taskTitle: this.$refs.addTask.value,
-                        groupId: this.groupInfo.id
+                        gr
                     }
                 })
-                this.$refs.addTask.value='' 
             }
         }
 
