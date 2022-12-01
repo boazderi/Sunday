@@ -10,20 +10,30 @@
         </section>
 
         <!-- render grid cells by cmpOrder array -->
-        <section class="group-grid " v-for="task in groupInfo.tasks" :key="task.id">
+        <section class="group-grid" v-for="task in groupInfo.tasks" :key="task.id">
+            <!-- todo-put in each cmp the cell class jsut if necc -->
             <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
                 <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)"></component>
             </section>
         </section>
 
         <!-- CRUD-ADD TASK -->
-        <section class="add-task">
-            <input type="text">
+        <section class="add-task group-grid">
+            <div class="cell">
+                <input type="checkbox" />
+            </div>
+            <div class="input-wrapper flex align-center">
+                <input class="flex align-center" type="text" placeholder="+ Add item">
+            </div>
+
         </section>
 
         <!-- render progress by progress array -->
-        <section class="progress-grid">
-            <div v-for="(item, idx) in progress" :key="idx">{{ item }}</div>
+        <section class=" group-grid">
+            <div class="empty"></div>
+            <div class="empty"></div>
+
+            <div class="cell" v-for="(item, idx) in progress" :key="idx">{{ item }}</div>
         </section>
 
     </section>
@@ -46,13 +56,12 @@ export default {
     data() {
         return {
             cmpOrder: ["side", "taskTitle", "status", "members", "priority", "date"],
-            labels: ["items", "status", "members", "priority", "date"],
-            progress: [null, null, "status", null, "priority", null],
+            labels: ["Items", "Status", "Person", "Priority", "Date"],
+            progress: ["status", "Person", "priority", "date"],
         };
     },
     methods: {
         updateTask({ prop, toUpdate }, taskId) {
-            // console.log(prop, toUpdate, taskId);
             this.$store.dispatch({ type: 'updateCurrBoard', groupId: this.groupInfo.id, taskId, prop, toUpdate })
         }
     },

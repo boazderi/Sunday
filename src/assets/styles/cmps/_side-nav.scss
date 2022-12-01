@@ -2,3 +2,19 @@
     background-color: $bg-small-sidebar;
     color: white;
 }
+.monday-icon{
+    width: 40px;
+    height: 40px;
+    margin: auto;
+    cursor: pointer;
+    &.active{
+        border-radius: 6px;
+        background-color: #545970;
+    }
+}
+
+.work-management{
+    width: 30px;
+    margin: auto;
+    cursor: pointer;
+}
