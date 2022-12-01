@@ -1,11 +1,13 @@
 <template>
-  <div v-if="board" class="main-table-container">
+  <div v-if="board" class="main-table main-layout">
+ 
     <section class="group-list">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
         @updateSelectedTasks="updateSelectedTasks" />
     </section>
     <bottom-crud v-if="selectedTasks.length" 
-    @removeTasks="removeTasks" @duplicateTasks="duplicateTasks" />
+    @removeTasks="removeTasks"
+     @duplicateTasks="duplicateTasks" />
 
   </div>
 </template>

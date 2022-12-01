@@ -63,7 +63,6 @@ export default {
   },
   methods: {
     toggleWorkspace() {
-      console.log('baba')
       this.isOpen = !this.isOpen;
     },
     setBoard(boardId) {

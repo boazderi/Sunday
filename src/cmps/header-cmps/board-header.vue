@@ -1,5 +1,5 @@
 <template>
-  <section class="board-header">
+  <section class="board-header main-layout">
     <div class="board-upper-header flex flex-col">
       <div class="flex justify-between">
         <board-name></board-name>

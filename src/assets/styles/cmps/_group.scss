@@ -1,3 +1,20 @@
+.board-content {
+    // background-color: aqua;
+    position: relative;
+    width: 100%;
+}
+
+.main-table {
+    position: relative;
+    height: 100%;
+    overflow-x: scroll;
+}
+
+.group-list {
+    position: absolute;
+    width: 100%;
+}
+
 .group-grid {
     display: grid;
     grid-template-columns: 25px 400px repeat(auto-fill, minmax(140px, 140px));
@@ -20,18 +37,17 @@
     }
 }
 
-.group-content {
-    // todo-change the width 
-    width: 80%;
-    margin: 10px;
-    margin-top: 2em;
-    overflow-x: scroll;
-    position: relative;
-    // border: 1px solid #d0d4e4;
-    border-radius: 6px;
-    font-size: rem(14px);
-}
-
+// .group-content {
+//     // todo-change the width 
+//     width: 80%;
+//     margin: 10px;
+//     margin-top: 2em;
+//     overflow-x: scroll;
+//     position: relative;
+//     // border: 1px solid #d0d4e4;
+//     border-radius: 6px;
+//     font-size: rem(14px);
+// }
 .add-task {
     .input-wrapper {
         border: 1px solid $primary-border-clr;
@@ -47,12 +63,13 @@
 }
 
 .cell {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    // padding: ;
     border: 1px solid $primary-border-clr;
     >* {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;

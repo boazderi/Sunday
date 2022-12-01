@@ -1,5 +1,5 @@
 <template>
-    <div class="title">
+    <div class="task-title">
         <div contenteditable @blur="onChangeTaskTitle">{{ info }}</div>
     </div>
 </template>

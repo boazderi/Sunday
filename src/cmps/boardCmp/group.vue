@@ -1,4 +1,4 @@
-<template>
+ <template>
     <section class="group-container">
         <groupTitle :groupInfo="groupInfo" @update="updateTask" />
         <section class="group-content">
@@ -63,10 +63,12 @@ export default {
     },
     data() {
         return {
-            cmpOrder: ["taskTitle", "status", "members", "priority", "date"],
-            labels: ["Items", "Status", "Person", "Priority", "Date"],
-            progress: ["status", "Person", "priority", "date"],
-          
+         
+            cmpOrder: ["taskTitle", "status", "members", "priority", "date", "text", "file"],
+            labels: ["Items", "Status", "Person", "Priority", "Date", "Text", "File"],
+            progress: ["status", "", "priority", "", "", ""],
+           
+
         };
     },
     methods: {
