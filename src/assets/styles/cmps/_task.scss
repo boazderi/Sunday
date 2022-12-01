@@ -10,12 +10,23 @@
     height: 200px;
     z-index: 11;
     background-color: white;
+
 }
+
+// .box-card::before{
+//     content: ' &#9651';
+// }
 
 .status-modal-item {
     text-align: center;
-    padding: 10px;
+    color: white;
+    padding: 6px;
+    border-radius: 2px;
     cursor: pointer;
+    margin-bottom: 10px;
+    &:hover{
+        opacity: 90%;
+    }
 }
 
 .status{
