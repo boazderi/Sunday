@@ -94,7 +94,7 @@ async function removeTasks({ boardId, selectedTasks }) {
     var currBoard = await getById(boardId)
     currBoard.groups.forEach(group => {
         var tasks = group.tasks
-        
+
         selectedTasks.forEach(selectedId => {
             const idx = tasks.findIndex(t => t.id === selectedId)
             if (idx !== -1) tasks.splice(idx, 1)
@@ -133,7 +133,6 @@ function getEmptyBoard() {
         boardName: '',
     }
 }
-
 
 // TEST DATA
 
@@ -276,6 +275,6 @@ function getEmptyBoard() {
 //                 }]
 //             }
 //         ]
-//
+// 
 //     })
 // })()
