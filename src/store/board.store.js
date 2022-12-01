@@ -51,6 +51,7 @@ export const boardStore = {
         updateBoard(state, { board }) {
             const idx = state.boards.findIndex(c => c.id === board._id)
             state.boards.splice(idx, 1, board)
+            state.currBoard = board
         },
         removeBoard(state, { boardId }) {
             state.boards = state.boards.filter(board => board._id !== boardId)
@@ -80,16 +81,23 @@ export const boardStore = {
             try {
                 const updatedBoard = await boardService.updateBoard(state.currBoard._id, groupId, taskId, prop, toUpdate)
                 commit({ type: 'updateBoard', board: updatedBoard })
-                return updatedBoard
+                    // return updatedBoard
             } catch (err) {
                 console.log('boardStore: Error in updateBoard', err)
                 throw err
             }
         },
         async addNewTask({ commit, state }, { payload }) {
-            payload.boardId = state.currBoard._id
-            const updatedBoard = await boardService.addNewTask(payload)
-            console.log(updatedBoard.groups)
+            try {
+                payload.boardId = state.currBoard._id
+                const updatedBoard = await boardService.addNewTask(payload)
+                commit({ type: 'updateBoard', board: updatedBoard })
+                    // return updatedBoard
+
+            } catch (err) {
+                console.log("boardStore: Error in addNewTask:", err)
+                throw err
+            }
         },
 
 
@@ -127,13 +135,13 @@ export const boardStore = {
 
 
 
-   // async updateBoard(context, { board }) {
-        //     try {
-        //         board = await boardService.save(board)
-        //         context.commit(getActionUpdateBoard(board))
-        //         return board
-        //     } catch (err) {
-        //         console.log('boardStore: Error in updateBoard', err)
-        //         throw err
-        //     }
-        // },
+// async updateBoard(context, { board }) {
+//     try {
+//         board = await boardService.save(board)
+//         context.commit(getActionUpdateBoard(board))
+//         return board
+//     } catch (err) {
+//         console.log('boardStore: Error in updateBoard', err)
+//         throw err
+//     }
+// },
