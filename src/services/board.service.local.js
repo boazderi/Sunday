@@ -88,6 +88,7 @@ async function addNewTask({ boardId, groupId, taskTitle }) {
     return currBoard
 
 }
+
 function _getEmptyTask(taskTitle) {
     return {
         id: utilService.makeId(),
