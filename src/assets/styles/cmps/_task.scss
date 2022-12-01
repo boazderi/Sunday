@@ -18,6 +18,11 @@
     cursor: pointer;
 }
 
+.status{
+    width: 100%;
+    text-align: center;
+}
+
 .status-done{
     background-color: $bg-status-done;
 }
@@ -26,4 +31,11 @@
 }
 .status-stuck{
     background-color: $bg-status-stuck;
+}
+.status-empty{
+    background-color: $bg-status-empty;
+}
+
+.aba{
+    background-color: bisque;
 }
