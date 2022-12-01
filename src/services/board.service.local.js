@@ -11,7 +11,8 @@ export const boardService = {
     remove,
     getEmptyBoard,
     addBoardMsg,
-    taskToUpdate
+    taskToUpdate,
+    addNewTask
 }
 window.cs = boardService
 
@@ -68,8 +69,26 @@ async function taskToUpdate(boardId, groupId, taskId, prop, toUpdate) {
     const taskIdx = currBoard.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
     currBoard.groups[groupIdx].tasks[taskIdx][prop] = toUpdate
     save(currBoard)
+    // todo make return on the save func
     return currBoard
 }
+async function addNewTask({ boardId, groupId, taskTitle }) {
+    var currBoard = await getById(boardId)
+    const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
+    const newTask = _getEmptyTask(taskTitle)
+    currBoard.groups[groupIdx].tasks.push(newTask)
+    return  save(currBoard)
+
+}
+function _getEmptyTask(taskTitle){
+    return {
+        id:utilService.makeId(),
+        taskTitle,
+        status:'',
+        members:[],
+    }
+}
+
 
 // todo update this function later
 function getEmptyBoard() {
@@ -219,6 +238,6 @@ function getEmptyBoard() {
 //                 }]
 //             }
 //         ]
-// 
+//
 //     })
 // })()

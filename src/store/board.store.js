@@ -86,16 +86,13 @@ export const boardStore = {
                 throw err
             }
         },
-        // async updateBoard(context, { board }) {
-        //     try {
-        //         board = await boardService.save(board)
-        //         context.commit(getActionUpdateBoard(board))
-        //         return board
-        //     } catch (err) {
-        //         console.log('boardStore: Error in updateBoard', err)
-        //         throw err
-        //     }
-        // },
+        async addNewTask({ commit, state }, { payload }) {
+            payload.boardId = state.currBoard._id
+            const updatedBoard = await boardService.addNewTask(payload)
+            console.log(updatedBoard.groups)
+        },
+
+
         async loadBoards(context) {
             try {
                 const boards = await boardService.query()
@@ -125,12 +122,18 @@ export const boardStore = {
         },
 
     },
-    // watch:{
-    //     $route:{
-    //         handler(){
-    //           console.log(this.$route)
-    //         },
-    //         deep:true
-    //     }
-    // }
+
 }
+
+
+
+   // async updateBoard(context, { board }) {
+        //     try {
+        //         board = await boardService.save(board)
+        //         context.commit(getActionUpdateBoard(board))
+        //         return board
+        //     } catch (err) {
+        //         console.log('boardStore: Error in updateBoard', err)
+        //         throw err
+        //     }
+        // },
