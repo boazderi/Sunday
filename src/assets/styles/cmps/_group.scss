@@ -4,7 +4,7 @@
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
-    // todo- resolve the end overflow when items up on checkbox
+    // todo- add generic style of sticky class
     >*:nth-child(1) {
         position: sticky;
         z-index: 10;

@@ -76,24 +76,24 @@ async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
         currBoard[prop] = toUpdate
     }
 
-    save(currBoard)
+     save(currBoard)
     return currBoard
-
 }
 async function addNewTask({ boardId, groupId, taskTitle }) {
     var currBoard = await getById(boardId)
     const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
     const newTask = _getEmptyTask(taskTitle)
     currBoard.groups[groupIdx].tasks.push(newTask)
-    return  save(currBoard)
+     save(currBoard)
+    return currBoard
 
 }
-function _getEmptyTask(taskTitle){
+function _getEmptyTask(taskTitle) {
     return {
-        id:utilService.makeId(),
+        id: utilService.makeId(),
         taskTitle,
-        status:'',
-        members:[],
+        status: '',
+        members: [],
     }
 }
 
