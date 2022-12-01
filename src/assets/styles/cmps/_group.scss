@@ -47,10 +47,10 @@
 }
 
 .cell {
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    // padding: ;
     border: 1px solid $primary-border-clr;
     >* {
         display: flex;

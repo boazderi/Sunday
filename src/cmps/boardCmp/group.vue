@@ -1,4 +1,4 @@
-<template>
+ <template>
     <section class="group-container">
         <groupTitle :groupInfo="groupInfo" @update="updateTask" />
         <section class="group-content">
