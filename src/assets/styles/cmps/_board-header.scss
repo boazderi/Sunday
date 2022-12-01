@@ -8,6 +8,12 @@
     border-bottom: 1px solid $primary-border-clr;
 }
 
+.views-seprator{
+    height: 1rem;
+    border-right: 1px solid $primary-border-clr;
+    align-self: center;
+}
+
 .board-name-title {
     width: max-content;
     font-size: 1.5rem;
@@ -24,6 +30,8 @@
 
 
 .board-nav-item {
+    padding: 8px;
+    border-radius: 6px 6px 0 0;
 
     &.active {
         border-bottom: 2px solid $primary-clr;
@@ -36,7 +44,8 @@
 
 .board-filter-item{
     border-radius: 6px;
-    margin: 6px;
+    margin-left: 4px;
+    padding: 6px;
 }
 
 .new-task{
