@@ -5,13 +5,13 @@
 }
 
 .main-table {
-    position: relative;
+    position: absolute;
     height: 100%;
     overflow-x: scroll;
 }
 
 .group-list {
-    position: absolute;
+    position: relative;
     width: 100%;
 }
 

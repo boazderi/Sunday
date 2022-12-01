@@ -20,7 +20,8 @@
         <span class="text">Main workspace</span>
       </div>
 
-      <div class="flex align-center" v-icon="'arrowDown'"></div>
+      <!-- todo -need smaller  arrowdown -->
+      <div class="flex align-center" v-icon="'arrowDownBlack'"></div>
 
     </div>
 
