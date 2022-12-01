@@ -1,19 +1,21 @@
-.side-nav{
+.side-nav {
     background-color: $bg-small-sidebar;
     color: white;
+    grid-area: side-nav;
 }
-.monday-icon{
+
+.monday-icon {
     width: 40px;
     height: 40px;
     margin: auto;
     cursor: pointer;
-    &.active{
+    &.active {
         border-radius: 6px;
         background-color: #545970;
     }
 }
 
-.work-management{
+.work-management {
     width: 30px;
     margin: auto;
     cursor: pointer;

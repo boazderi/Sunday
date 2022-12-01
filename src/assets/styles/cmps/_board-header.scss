@@ -1,13 +1,14 @@
 .board-header {
-    background-color: white;
-    height: 180px;
+    background-color: transparent;
+    grid-area: board-header;
+    padding-inline-end: 30px;
 }
 
 .board-upper-header {
     border-bottom: 1px solid $primary-border-clr;
 }
 
-.views-seprator{
+.views-seprator {
     height: 1rem;
     border-right: 1px solid $primary-border-clr;
     align-self: center;
@@ -17,60 +18,57 @@
     width: max-content;
     font-size: 1.5rem;
     padding: 4px;
-
     &:hover {
         outline: 1px solid $primary-border-clr;
     }
 }
 
-.board-nav-container{
+.board-nav-container {
     margin-top: 8px;
 }
-
 
 .board-nav-item {
     padding: 8px;
     border-radius: 6px 6px 0 0;
-
     &.active {
         border-bottom: 2px solid $primary-clr;
     }
 }
 
-.board-filter{
+.board-filter {
     padding: 16px 0;
 }
 
-.board-filter-item{
+.board-filter-item {
     border-radius: 6px;
     margin-left: 4px;
     padding: 6px;
 }
 
-.new-task{
+.new-task {
     border-radius: 6px;
     background-color: $primary-clr;
 }
 
-.new-task-btn{
+.new-task-btn {
     color: white;
     padding: 4px 8px;
     border-right: 1px solid #0360b9;
-    &:hover{
+    &:hover {
         border-radius: 6px 0 0 6px;
-        background-color:#0360b9;
+        background-color: #0360b9;
     }
 }
 
-.new-task-arrow{
+.new-task-arrow {
     color: white;
     margin: 0 4px;
-    &:hover{
+    &:hover {
         border-radius: 0 6px 6px 0;
-        background-color:#0360b9;
+        background-color: #0360b9;
     }
 }
 
-.board-top-actions{
+.board-top-actions {
     gap: 8px;
 }
