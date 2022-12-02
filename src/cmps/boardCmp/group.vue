@@ -4,10 +4,10 @@
         <groupTitle :groupInfo="groupInfo" @update="updateTask" />
         <section class="group-content">
             <!-- render group labels by labels array -->
-            <section class="labels-grid group-grid ">
+            <section class="group-grid labels-grid">
                 <div class="empty"></div>
                 <div class="task-border rad-tl-6" ></div>
-                <div class="cell-first cell">
+                <div class=" cell">
                     <input type="checkbox" class="checkbox" />
                 </div>
                 <div class="cell" v-for="(label, idx) in labels" :key="idx">{{ label }}</div>
@@ -34,22 +34,18 @@
                 <div class="cell">
                     <input type="checkbox" class="checkbox" disabled />
                 </div>
-                <div class="input-wrapper flex align-center">
+                <div class=" input-wrapper flex align-center">
                     <input ref="addTask" @blur="onAddTask" class="flex align-center" type="text"
                         placeholder="+ Add item">
                 </div>
-
             </section>
 
-            <!-- render progress by progress array -->
-            <section class=" group-grid">
-                <div class="empty"></div>
-                <div class="empty"></div>
-                <div class="empty"></div>
-                <div class="empty"></div>
+            <!-- todo change to progress func -->
+            <!--  progress by progress array -->
+            <section class="progress-grid group-grid">
+                <div v-for="n in 4" class="empty" :key="n"></div>
                 <div class="cell" v-for="(item, idx) in progress" :key="idx">{{ item }}</div>
             </section>
-
 
         </section>
 
