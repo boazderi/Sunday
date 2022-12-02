@@ -1,16 +1,17 @@
 <template>
-  <div v-if="board" class="main-table ">
+  <section v-if="board" class="main-table ">
 
     <section class="group-list">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
         @updateSelectedTasks="updateSelectedTasks" />
+        <div class="flex align-center new-group">
+      <button @click="onAddGroup">Add new group</button>
+    </div>
     </section>
     <bottom-crud v-if="selectedTasks.length" @removeTasks="removeTasks" @duplicateTasks="duplicateTasks" />
 
-    <div class="flex align-center new-group">
-      <button @click="onAddGroup">Add new group</button>
-    </div>
-  </div>
+   
+  </section>
 
 
 </template>

@@ -61,3 +61,17 @@
         opacity: 1;
     }
 }
+
+.color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    width: 172px;
+    height: 140px;
+    position: absolute;
+    z-index: 10000;
+    top: 10px;
+    left: 477px;
+    background-color: blue;
+    padding: 5px;
+    border-radius: 4px;
+}

@@ -17,44 +17,36 @@
 
 .group-grid {
     display: grid;
-    grid-template-columns:25px  25px 400px repeat(auto-fill, minmax(140px, 140px));
+    grid-template-columns: 25px 25px 400px repeat(auto-fill, minmax(140px, 140px));
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
     // todo- add generic style of sticky class
     >*:nth-child(1) {
         position: sticky;
-        z-index: 10;
         left: 0;
         background-color: white;
     }
     >*:nth-child(2) {
         position: sticky;
-        z-index: 10;
-        // left: 100px;
         left: 25px;
         background-color: white;
     }
     >*:nth-child(3) {
         position: sticky;
-        z-index: 10;
-        // left: 100px;
         left: 50px;
         background-color: white;
     }
-
 }
 
 .task-row {
     *> {
         cursor: pointer;
     }
-
     .more {
         cursor: pointer;
         opacity: 0.2;
     }
-
     &:hover {
         .more {
             opacity: 1;
@@ -100,5 +92,3 @@
 .group-container {
     width: 1280px;
 }
-
-  

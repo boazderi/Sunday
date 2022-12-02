@@ -1,19 +1,15 @@
 <template>
   <section>
-    <p class="status" @click="toggleStatusOptions"
-            :class="{
-          'status-done': info === 'Done',
-          'status-working': info === 'Working on it',
-          'status-stuck': info === 'Stuck',
-          'status-empty': info === '',
-        }"
-    >{{ info }}</p>
+    <p class="status" @click="toggleStatusOptions" :class="{
+      'status-done': info === 'Done',
+      'status-working': info === 'Working on it',
+      'status-stuck': info === 'Stuck',
+      'status-empty': info === '',
+    }">{{ info }}</p>
     <div class="status-picker-modal" v-if="statusModalOpen">
-        <el-collapse-transition>
-        <status-modal
-        @setStatus="setStatus"
-        ></status-modal>
-        </el-collapse-transition>
+      <el-collapse-transition>
+        <status-modal @setStatus="setStatus"></status-modal>
+      </el-collapse-transition>
     </div>
   </section>
 </template>
@@ -30,20 +26,20 @@ export default {
       statusModalOpen: false,
     };
   },
-  mounted() {},
+  mounted() { },
   methods: {
     toggleStatusOptions() {
       console.log("toggle status options");
       this.statusModalOpen = !this.statusModalOpen;
-      console.log('this.statusModalOpen',this.statusModalOpen);
+      console.log('this.statusModalOpen', this.statusModalOpen);
     },
-    setStatus(statusOpt){
-        this.toggleStatusOptions()
-        this.$emit('update', {prop: 'status', toUpdate: statusOpt })
+    setStatus(statusOpt) {
+      this.toggleStatusOptions()
+      this.$emit('update', { prop: 'status', toUpdate: statusOpt })
     }
   },
-  components:{
-      statusModal
+  components: {
+    statusModal
   }
 };
 </script>
