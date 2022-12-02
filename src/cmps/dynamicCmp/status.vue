@@ -1,16 +1,16 @@
 <template>
   <section>
     <p class="status" @click="toggleStatusOptions" :class="{
-      'status-done': info === 'Done',
-      'status-working': info === 'Working on it',
-      'status-stuck': info === 'Stuck',
-      'status-empty': info === '',
-    }">{{ info }}</p>
-    <div class="status-picker-modal" v-if="statusModalOpen">
-      <el-collapse-transition>
+      'status-done': info.status === 'Done',
+      'status-working': info.status === 'Working on it',
+      'status-stuck': info.status === 'Stuck',
+      'status-empty': info.status === '',
+    }">{{ info.status }}</p>
+    <el-collapse-transition>
+      <div class="status-picker-modal" v-if="statusModalOpen">
         <status-modal @setStatus="setStatus"></status-modal>
-      </el-collapse-transition>
-    </div>
+      </div>
+    </el-collapse-transition>
   </section>
 </template>
   
@@ -19,7 +19,7 @@ import statusModal from "../boardCmp/status-modal.cmp.vue"
 export default {
   name: "status",
   props: {
-    info: String,
+    info: Object,
   },
   data() {
     return {
@@ -43,3 +43,9 @@ export default {
   }
 };
 </script>
+
+<!-- <style>
+.status-picker-modal {
+  --el-transition-duration: 2s;
+}
+</style> -->

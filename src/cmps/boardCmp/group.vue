@@ -6,7 +6,7 @@
             <!-- render group labels by labels array -->
             <section class="group-grid labels-grid">
                 <div class="empty"></div>
-                <div class="task-border rad-tl-6" ></div>
+                <div class="task-border rad-tl-6" :style="{ 'background-color': groupInfo.color }"></div>
                 <div class=" cell">
                     <input type="checkbox" class="checkbox" />
                 </div>
@@ -19,18 +19,18 @@
                 <div class="more">
                     <span class="svg" v-icon="'more'"></span>
                 </div>
-                <div class="task-border"></div>
+                <div class="task-border" :style="{ 'background-color': groupInfo.color }"></div>
                 <side class="cell" :taskId="task.id" :color="groupInfo.color"></side>
 
                 <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
-                    <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)" />
+                    <component :is="cmp" :info="task" @update="updateTask($event, task.id)" />
                 </section>
             </section>
 
             <!-- CRUD-ADD TASK -->
             <section class="add-task group-grid">
                 <div class="empty"></div>
-                <div class="task-border add-task rad-bl-6"></div>
+                <div class="task-border add-task rad-bl-6" :style="{ 'background-color': groupInfo.color }"></div>
                 <div class="cell">
                     <input type="checkbox" class="checkbox" disabled />
                 </div>

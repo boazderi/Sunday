@@ -16,15 +16,6 @@ export default {
             this.$emit('update', { toUpdate: color })
         }
     },
+    emits: ["update"],
 }
 </script>
-<style>
-.color-icon {
-    width: 24px;
-    height: 24px;
-    margin: 4px;
-    /* border: 1px solid transparent; */
-    border-radius: 4px;
-
-}
-</style>

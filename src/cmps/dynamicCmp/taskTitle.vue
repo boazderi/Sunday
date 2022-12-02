@@ -1,9 +1,12 @@
 <template>
     <section class="task-title flex align-center space-between">
         <div class="task-title-sub flex space-between">
-            <div class="flex align-center content-edit radius-4" contenteditable @blur="onChangeTaskTitle">{{ info }}</div>
-           
-            <span class="open-con flex align-center space-between radius-4" :style="{color:`#323338`}" >
+            <div class="flex align-center content-edit radius-4" contenteditable @blur="onChangeTaskTitle">{{
+                    info.taskTitle
+            }}
+            </div>
+
+            <span class="open-con flex align-center space-between radius-4" :style="{ color: `#323338` }">
                 <button class="svg" v-icon="'openArrow'"></button>
                 open</span>
 
@@ -20,7 +23,7 @@
 export default {
     name: "task-title",
     props: {
-        info: String,
+        info: Object,
     },
     data() {
         return {};

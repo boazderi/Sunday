@@ -18,7 +18,6 @@
         </div>
 
         <button @click="(isModalOpen = !isModalOpen)">color</button>
-        <!-- <color-picker @update="onChangeGroupColor($event)" v-show="isModalOpen" /> -->
         <el-collapse-transition>
             <div class="color-picker" v-if="isModalOpen">
                 <color-picker @update="onChangeGroupColor($event)"></color-picker>
@@ -69,6 +68,7 @@ export default {
     components: {
         groupTitleDropdown,
         colorPicker
-    }
+    },
+    emits: ["update"],
 }
 </script>

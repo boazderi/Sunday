@@ -154,6 +154,7 @@ function _getEmptyTask(taskTitle) {
         members: [],
     }
 }
+
 function _getEmptyGroup() {
     // todo-get random color
     return {
@@ -189,25 +190,25 @@ function getEmptyBoard() {
 //         "members": [{
 //                 "id": "u101",
 //                 "fullname": "Tal Liber",
-//                 "imgUrl": "http://some-img",
+//                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
 //                 "color": "#8338ec"
 //             },
 //             {
 //                 "id": "u102",
 //                 "fullname": "Arnon Arditi",
-//                 "imgUrl": "",
+//                 "imgUrl": "https://randomuser.me/api/portraits/men/22.jpg",
 //                 "color": "#8338ec"
 //             },
 //             {
 //                 "id": "u103",
 //                 "fullname": "Boaz Deri",
-//                 "imgUrl": "https://randomuser.me/api/portraits/men/27.jpg",
+//                 "imgUrl": "https://randomuser.me/api/portraits/men/7.jpg",
 //                 "color": "#3a86ff"
 //             },
 //             {
 //                 "id": "u104",
 //                 "fullname": "Tal Amit",
-//                 "imgUrl": "https://randomuser.me/api/portraits/men/27.jpg",
+//                 "imgUrl": "https://randomuser.me/api/portraits/men/30.jpg",
 //                 "color": "#ff006e"
 //             }
 //         ],
@@ -218,7 +219,7 @@ function getEmptyBoard() {
 //             "byMember": {
 //                 "id": "u101",
 //                 "fullname": "Tal Liber",
-//                 "imgUrl": "http://some-img"
+//                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
 //             },
 //             "task": {
 //                 "id": "c101",
@@ -236,17 +237,17 @@ function getEmptyBoard() {
 //                         "members": [{
 //                                 "id": "u101",
 //                                 "fullname": "Tal Liber",
-//                                 "imgUrl": "https://www.google.com",
+//                                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
 //                                 "color": "#8338ec"
 //                             },
 //                             {
 //                                 "id": "u102",
 //                                 "fullname": "Arnon Arditi",
-//                                 "imgUrl": "https://www.google.com",
+//                                 "imgUrl": "https://randomuser.me/api/portraits/men/22.jpg",
 //                                 "color": "#3a86ff"
 //                             }
 //                         ],
-//                         "date": "2022-03-28T21:00:00.000Z",
+//                         "date": "Dec-3",
 //                         "priority": "HIGH",
 //                     },
 //                     {
@@ -256,13 +257,13 @@ function getEmptyBoard() {
 //                         "members": [{
 //                                 "id": "u101",
 //                                 "fullname": "Tal Liber",
-//                                 "imgUrl": "https://www.google.com",
+//                                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
 //                                 "color": "#8338ec"
 //                             },
 //                             {
 //                                 "id": "u102",
 //                                 "fullname": "Arnon Arditi",
-//                                 "imgUrl": "https://www.google.com",
+//                                 "imgUrl": "https://randomuser.me/api/portraits/men/22.jpg",
 //                                 "color": "#3a86ff"
 //                             }
 //                         ],
@@ -299,13 +300,13 @@ function getEmptyBoard() {
 //                     "members": [{
 //                             "id": "u102",
 //                             "fullname": "Arnon Arditi",
-//                             "imgUrl": "https://www.google.com",
+//                             "imgUrl": "https://randomuser.me/api/portraits/men/22.jpg",
 //                             "color": "#8338ec"
 //                         },
 //                         {
 //                             "id": "u101",
 //                             "fullname": "Tal Liber",
-//                             "imgUrl": "https://www.google.com",
+//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
 //                             "color": "#ffbe0b"
 //                         }
 //                     ],
@@ -314,6 +315,5 @@ function getEmptyBoard() {
 //                 }]
 //             }
 //         ]
-// 
 //     })
 // })()

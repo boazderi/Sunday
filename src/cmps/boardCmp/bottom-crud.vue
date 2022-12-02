@@ -26,7 +26,6 @@ export default {
     },
     computed: {
         length() {
-            console.log(this.selectedTasks)
             return this.selectedTasks.length
         }
     },
