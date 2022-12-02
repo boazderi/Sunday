@@ -50,7 +50,7 @@
                 <div class="cell" v-for="(item, idx) in progress" :key="idx">{{ item }}</div>
             </section>
 
-         
+
         </section>
 
     </section>

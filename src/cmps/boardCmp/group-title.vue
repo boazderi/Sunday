@@ -1,7 +1,6 @@
 <template>
     <div class="group-grid group-title flex align-center">
-        <group-title-dropdown :groupId="groupInfo.id" 
-        v-if="isDropOpen" :class="isDrop"/>
+        <group-title-dropdown :groupId="groupInfo.id" v-if="isDropOpen" :class="isDrop" />
 
         <div class="more" @click="toggleDropdown">
             <span class="svg" v-icon="'more'"></span>
@@ -17,7 +16,13 @@
         }}</div>
         <div class="tasks-count">{{ groupInfo.tasks.length }} Tasks</div>
         <button @click="(isModalOpen = !isModalOpen)">color</button>
-        <color-picker v-show="isModalOpen" />
+        <!-- <color-picker @update="onChangeGroupColor($event)" v-show="isModalOpen" /> -->
+        <el-collapse-transition>
+            <div class="color-picker" v-if="isModalOpen">
+                <color-picker @update="onChangeGroupColor($event)"></color-picker>
+            </div>
+        </el-collapse-transition>
+
     </div>
 </template>
   
@@ -48,6 +53,9 @@ export default {
         },
         closeGroupDropdown() {
             this.isDropOpen = false
+        },
+        onChangeGroupColor({ toUpdate }) {
+            this.$emit('update', { prop: 'color', toUpdate })
         }
     },
     computed: {

@@ -1,12 +1,6 @@
 <template>
-    <el-card>
-
-        <section class="color-picker">
-            <div v-for="(color, idx) in colors" @click.prevent="changeColor(color)" :style="{ background: color }"
-                className="color-icon" :key="idx"></div>
-        </section>
-    </el-card>
-
+    <div v-for="(color, idx) in colors" @click.prevent="changeColor(color)" :style="{ background: color }"
+        className="color-icon" :key="idx"></div>
 </template>
   
 <script>
@@ -18,6 +12,9 @@ export default {
         };
     },
     methods: {
+        changeColor(color) {
+            this.$emit('update', { toUpdate: color })
+        }
     },
 }
 </script>
