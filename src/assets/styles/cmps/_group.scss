@@ -74,7 +74,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        >*{
+        >* {
             height: 100%;
             display: flex;
             justify-content: center;
@@ -92,6 +92,29 @@
     height: 40px;
     position: sticky;
     left: 0;
-    margin-inline-start: 4px;
+    padding-inline-start: 4px;
     font-size: rem(18px);
+    gap: 7px
+}
+
+.title-input {
+    cursor: text;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 4px;
+    &:hover {
+        border: 1px solid $secondary-border-clr;
+        border-radius: 4px;
+        transition: border 3s;
+    }
+}
+
+.tasks-count {
+    color: $secondary-txt-clr;
+    font-size: rem(14px);
+    opacity: 0;
+    transition: opacity 0.3s;
+    &:hover {
+        opacity: 1;
+    }
 }

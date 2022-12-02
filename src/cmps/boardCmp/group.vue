@@ -15,7 +15,7 @@
             <!-- render grid cells by cmpOrder array -->
             <section class="group-grid" v-for="task in groupInfo.tasks" :key="task.id">
                 <!-- todo-put in each cmp the cell class jsut if necc -->
-                <side class="cell" :taskId="task.id"></side>
+                <side class="cell" :taskId="task.id" :color="groupInfo.color"></side>
 
                 <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
                     <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)" />
