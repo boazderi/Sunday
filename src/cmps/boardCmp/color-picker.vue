@@ -1,8 +1,11 @@
 <template>
-    <section class="color-picker">
-        <div v-for="(color, idx) in colors" @click.prevent="changeColor(color)" :style="{ background: color }"
-            className="color-icon" :key="idx"></div>
-    </section>
+    <el-card>
+
+        <section class="color-picker">
+            <div v-for="(color, idx) in colors" @click.prevent="changeColor(color)" :style="{ background: color }"
+                className="color-icon" :key="idx"></div>
+        </section>
+    </el-card>
 
 </template>
   

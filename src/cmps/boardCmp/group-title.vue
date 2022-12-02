@@ -15,18 +15,7 @@
         }}</div>
         <div class="tasks-count">{{ groupInfo.tasks.length }} Tasks</div>
         <button @click="(isModalOpen = !isModalOpen)">color</button>
-        <div class="color-picker-modal" v-if="isModalOpen">
-            <!-- <el-collapse-transition>
-                <status-modal />
-            </el-collapse-transition> -->
-            <div style="margin-top: 20px; height: 200px">
-                <!-- <el-collapse-transition> -->
-                <div v-show="isModalOpen">
-                    <color-picker />
-                </div>
-                <!-- </el-collapse-transition> -->
-            </div>
-        </div>
+        <color-picker v-show="isModalOpen" />
     </div>
 </template>
   
@@ -70,34 +59,3 @@ export default {
     }
 }
 </script>
-<style>
-.transition-box {
-    margin-bottom: 10px;
-    width: 200px;
-    height: 100px;
-    border-radius: 4px;
-    background-color: #409eff;
-    text-align: center;
-    color: #fff;
-    padding: 40px 20px;
-    box-sizing: border-box;
-    margin-right: 20px;
-    position: absolute;
-    z-index: 1000;
-    display: block;
-
-    /* background-color: #fff; */
-    /* width: 180px;
-    padding: .5rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: .6rem;
-    border: 1px #c3c6d4 solid;
-    border-radius: 4px;
-    position: absolute; */
-    /* top: 1.95rem;
-    left: -.3rem; */
-    top: 25px;
-    left: 474px;
-}
-</style>
