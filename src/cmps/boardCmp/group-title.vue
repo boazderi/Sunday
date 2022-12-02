@@ -1,11 +1,12 @@
 <template>
-    <div class="group-title flex align-center">
+    <div class="group-grid group-title flex align-center">
         <group-title-dropdown :groupId="groupInfo.id" 
         v-if="isDropOpen" :class="isDrop"/>
 
         <div class="more" @click="toggleDropdown">
             <span class="svg" v-icon="'more'"></span>
         </div>
+        <div class="empty"></div>
 
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" :fill="groupInfo.color">
             <path d="M0 0h24v24H0z" fill="none" />

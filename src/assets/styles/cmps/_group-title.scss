@@ -1,12 +1,13 @@
-// TODO open a seperate cmp scss for title
+
 .group-title {
-    width: 510px;
-    height: 40px;
-    position: sticky;
-    left: 0;
-    padding-inline-start: 4px;
-    font-size: rem(18px);
-    gap: 7px;
+    // width: 510px;
+    // height: 40px;
+    // position: sticky;
+    // left: 0;
+    // padding-inline-start: 4px;
+    // font-size: rem(18px);
+    // gap: 7px;
+    // position:absolute;
 
     >* {
         cursor: pointer;
@@ -29,11 +30,15 @@
         }
        }
     }
-
     .more {
-        position: relative;
-        margin-inline-end: 5px;
+        // position: relative;
+        // margin-inline-end: 5px;
+        position: sticky;
+        z-index: 10;
+        background-color: white;
+        left: 0;
         opacity: 0.2;
+        width: 100%;
     }
 
     &:hover {

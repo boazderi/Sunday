@@ -1,6 +1,7 @@
 <template>
-    <div class="side-indicator" :style="{ 'borderLeft': '6px solid', borderLeftColor: color }">
-        <input type="checkbox" @change="toggleSelected($event)" />
+    <div class="side-indicator" >
+        <!-- :style="{ 'borderLeft': '6px solid', borderLeftColor: color }" -->
+        <input class="checkbox" type="checkbox" @change="toggleSelected($event)" />
     </div>
 </template>
   
@@ -12,7 +13,7 @@ export default {
     props: {
         taskId: String,
         color: String,
-    },
+    }, 
     data() {
         return {
             selectedTasks: []

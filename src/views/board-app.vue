@@ -12,7 +12,7 @@
 </template>
 
 
-<script >
+<script>
 import sideNav from '../cmps/side-nav.vue'
 import workspace from '../cmps/workspace.vue'
 import boardHeader from '../cmps/header-cmps/board-header.vue'

@@ -6,8 +6,9 @@
             <!-- render group labels by labels array -->
             <section class="labels-grid group-grid ">
                 <div class="empty"></div>
+                <div class="task-border"></div>
                 <div class="cell-first cell">
-                    <input type="checkbox" />
+                    <input type="checkbox" class="checkbox" />
                 </div>
                 <div class="cell" v-for="(label, idx) in labels" :key="idx">{{ label }}</div>
             </section>
@@ -18,6 +19,7 @@
                 <div class="more">
                     <span class="svg" v-icon="'more'"></span>
                 </div>
+                <div class="task-border"></div>
                 <side class="cell" :taskId="task.id" :color="groupInfo.color"></side>
 
                 <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
@@ -28,8 +30,9 @@
             <!-- CRUD-ADD TASK -->
             <section class="add-task group-grid">
                 <div class="empty"></div>
+                <div class="task-border"></div>
                 <div class="cell">
-                    <input type="checkbox" />
+                    <input type="checkbox" class="checkbox" disabled />
                 </div>
                 <div class="input-wrapper flex align-center">
                     <input ref="addTask" @blur="onAddTask" class="flex align-center" type="text"
@@ -42,7 +45,8 @@
             <section class=" group-grid">
                 <div class="empty"></div>
                 <div class="empty"></div>
-
+                <div class="empty"></div>
+                <div class="empty"></div>
                 <div class="cell" v-for="(item, idx) in progress" :key="idx">{{ item }}</div>
             </section>
 
