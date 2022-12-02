@@ -4,7 +4,6 @@
         <groupTitle :groupInfo="groupInfo" @update="updateTask" />
         <section class="group-content">
             <!-- render group labels by labels array -->
-
             <section class="labels-grid group-grid ">
                 <div class="empty"></div>
                 <div class="cell-first cell">
