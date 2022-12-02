@@ -15,7 +15,6 @@
 // .box-card::before{
 //     content: ' &#9651';
 // }
-
 .status-modal-item {
     text-align: center;
     color: white;
@@ -23,30 +22,29 @@
     border-radius: 2px;
     cursor: pointer;
     margin-bottom: 10px;
-    &:hover{
+    &:hover {
         opacity: 90%;
     }
 }
 
-.status{
+.status {
     width: 100%;
     color: white;
     text-align: center;
 }
 
-.status-done{
+.status-done {
     background-color: $bg-status-done;
 }
-.status-working{
+
+.status-working {
     background-color: $bg-status-working;
 }
-.status-stuck{
+
+.status-stuck {
     background-color: $bg-status-stuck;
 }
-.status-empty{
-    background-color: $bg-status-empty;
-}
 
-.aba{
-    background-color: bisque;
+.status-empty {
+    background-color: $bg-status-empty;
 }

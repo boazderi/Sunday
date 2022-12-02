@@ -1,7 +1,18 @@
 <template>
-    <div class="task-title">
-        <div contenteditable @blur="onChangeTaskTitle">{{ info }}</div>
-    </div>
+    <section class="task-title flex align-center space-between">
+        <div class="task-title-sub flex space-between">
+            <div class="flex align-center content-edit radius-4" contenteditable @blur="onChangeTaskTitle">{{ info }}</div>
+           
+            <span class="open-con flex align-center space-between radius-4" :style="{color:`#323338`}" >
+                <button class="svg" v-icon="'openArrow'"></button>
+                open</span>
+
+        </div>
+
+        <div class="conversation-wrapper flex align-center">
+            <button class="svg" v-icon="'addConversation'"></button>
+        </div>
+    </section>
 </template>
   
 <script>

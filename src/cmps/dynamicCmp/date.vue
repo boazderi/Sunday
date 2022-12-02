@@ -1,15 +1,26 @@
 <template>
     <section class="date">
-        <p>{{ info }}</p>
+        <el-date-picker v-model="value" type="date" placeholder="Pick a day" format="MMM D" value-format="MMM-D"
+            @blur="onChangeDate" />
     </section>
 </template>
   
 <script>
 export default {
     name: "date",
-    emits: ["update"],
+    // emits: ["update"],
     props: {
-        info: String,
+        groupInfo: Object,
     },
+    data() {
+        return {
+            value: ""
+        };
+    },
+    methods: {
+        onChangeDate(ev) {
+            console.log(ev.target.value);
+        }
+    }
 };
 </script>

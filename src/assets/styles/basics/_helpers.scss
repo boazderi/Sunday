@@ -137,10 +137,27 @@
 }
 
 // icon helpers
-.icon {
-    padding: .2rem;
+.icon,.svg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+// border helpers
+.radius-4{
+    border-radius: 4px;
+}
+.radius-6{
     border-radius: 6px;
 }
+.rad-tl-6{
+border-top-left-radius: 6px;
+}
+.rad-bl-6{
+    border-bottom-left-radius: 6px; 
+}
+
 
 // hover helpers
 .outboard-hover:hover {

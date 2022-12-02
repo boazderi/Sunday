@@ -1,0 +1,96 @@
+.group-title {
+    >* {
+        cursor: pointer;
+    }
+  
+    .more {
+        position: sticky;
+        z-index: 10;
+        background-color: white;
+        left: 0;
+       
+        width: 100%;
+        span{
+            opacity: 0;
+        }
+    }
+    &:hover {
+        .more {
+            span{
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.title-wrapper {
+    .title-input {
+        cursor: text;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 4px;
+        &:hover {
+            border: 1px solid $secondary-border-clr;
+            border-radius: 4px;
+            transition: border 3s;
+        }
+    }
+    .tasks-count {
+        color: $secondary-txt-clr;
+        font-size: rem(14px);
+        margin-inline-start: 3px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        // &:hover {
+        //     opacity: 1;
+        // }
+    }
+    &:hover {
+        .tasks-count {
+            opacity: 1;
+        }
+    }
+}
+
+.color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    width: 172px;
+    height: 140px;
+    position: absolute;
+    z-index: 50;
+    top: 36px;
+    left: 73px;
+    background-color: white;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid $secondary-border-clr;
+    --el-transition-duration: 0.1s;
+}
+
+.color-icon {
+    width: 24px;
+    height: 24px;
+    margin: 4px;
+    /* border: 1px solid transparent; */
+    border-radius: 4px;
+}
+
+// TODO-check why the z-index is down to checkbox
+.group-title-dropdown {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    z-index: 50;
+    &.isDropOpen {
+        display: inherit;
+    }
+    .action {
+        margin-bottom: 6px;
+        &:hover {
+            background-color: #dcdfeb;
+        }
+    }
+}
