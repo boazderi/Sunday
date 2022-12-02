@@ -1,0 +1,120 @@
+.board-content {
+    // background-color: aqua;
+    position: relative;
+    width: 100%;
+}
+
+.main-table {
+    position: relative;
+    height: 100%;
+    overflow-x: scroll;
+}
+
+.group-list {
+    position: absolute;
+    width: 100%;
+}
+
+.group-grid {
+    display: grid;
+    grid-template-columns: 25px 400px repeat(auto-fill, minmax(140px, 140px));
+    grid-template-rows: rem(36px);
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(140px, 140px);
+    // todo- add generic style of sticky class
+    >*:nth-child(1) {
+        position: sticky;
+        z-index: 10;
+        left: 0;
+        background-color: white;
+    }
+    >*:nth-child(2) {
+        position: sticky;
+        z-index: 10;
+        // left: 100px;
+        left: 25px;
+        background-color: white;
+    }
+}
+
+// .group-content {
+//     // todo-change the width 
+//     width: 80%;
+//     margin: 10px;
+//     margin-top: 2em;
+//     overflow-x: scroll;
+//     position: relative;
+//     // border: 1px solid #d0d4e4;
+//     border-radius: 6px;
+//     font-size: rem(14px);
+// }
+.add-task {
+    .input-wrapper {
+        border: 1px solid $primary-border-clr;
+        border-inline-end: 0;
+        padding: 6px 10px;
+        input {
+            padding: 0;
+            width: 100%;
+            padding-inline-start: 8px;
+            border: 0;
+        }
+    }
+}
+
+.cell {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $primary-border-clr;
+    >* {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        >* {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+.group-container {
+    width: 1280px;
+}
+
+.group-title {
+    width: 510px;
+    height: 40px;
+    position: sticky;
+    left: 0;
+    padding-inline-start: 4px;
+    font-size: rem(18px);
+    gap: 7px
+}
+
+.title-input {
+    cursor: text;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 4px;
+    &:hover {
+        border: 1px solid $secondary-border-clr;
+        border-radius: 4px;
+        transition: border 3s;
+    }
+}
+
+.tasks-count {
+    color: $secondary-txt-clr;
+    font-size: rem(14px);
+    opacity: 0;
+    transition: opacity 0.3s;
+    &:hover {
+        opacity: 1;
+    }
+}

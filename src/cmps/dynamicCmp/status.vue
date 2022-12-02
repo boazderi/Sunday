@@ -1,6 +1,13 @@
 <template>
   <section>
-    <p class="status" @click="toggleStatusOptions">{{ info }}</p>
+    <p class="status" @click="toggleStatusOptions"
+            :class="{
+          'status-done': info === 'Done',
+          'status-working': info === 'Working on it',
+          'status-stuck': info === 'Stuck',
+          'status-empty': info === '',
+        }"
+    >{{ info }}</p>
     <div class="status-picker-modal" v-if="statusModalOpen">
         <el-collapse-transition>
         <status-modal

@@ -10,11 +10,11 @@
           'status-done': statusOpt === 'Done',
           'status-working': statusOpt === 'Working on it',
           'status-stuck': statusOpt === 'Stuck',
-          'status-empty': !statusOpt,
+          'status-empty': statusOpt === '',
         }"
         @click="setStatus(statusOpt)"
       >
-        {{ statusOpt }}
+        {{ statusOpt || '&nbsp;' }}
       </div>
     </el-card>
   </section>
