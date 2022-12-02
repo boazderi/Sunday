@@ -1,4 +1,3 @@
-
 .group-title {
     // width: 510px;
     // height: 40px;
@@ -12,23 +11,24 @@
     >* {
         cursor: pointer;
     }
-    // TODO-check why the z-index is down to checkbox
-    .group-title-dropdown {
-        display: none;
-        position: absolute ;
-        left: 50px;
-        top: 50px;
-        z-index: 50;
-        &.isDropOpen {
-            display: inherit;
-        }
-        .action {
-            margin-bottom: 6px;
-            &:hover {
-                background-color: #dcdfeb;
-            }
-        }
-    }
+
+    // // TODO-check why the z-index is down to checkbox
+    // .group-title-dropdown {
+    //     display: none;
+    //     position: absolute ;
+    //     left: 50px;
+    //     top: 50px;
+    //     z-index: 50;
+    //     &.isDropOpen {
+    //         display: inherit;
+    //     }
+    //     .action {
+    //         margin-bottom: 6px;
+    //         &:hover {
+    //             background-color: #dcdfeb;
+    //         }
+    //     }
+    // }
     .more {
         // position: relative;
         // margin-inline-end: 5px;
@@ -39,6 +39,7 @@
         opacity: 0.2;
         width: 100%;
     }
+
     &:hover {
         .more {
             opacity: 1;
@@ -46,26 +47,36 @@
     }
 }
 
-.title-input {
-    cursor: text;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 4px;
-    &:hover {
-        border: 1px solid $secondary-border-clr;
-        border-radius: 4px;
-        transition: border 3s;
-    }
-}
+.title-wrapper {
+    .title-input {
+        cursor: text;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 4px;
 
-.tasks-count {
-    color: $secondary-txt-clr;
-    font-size: rem(14px);
-    opacity: 0;
-    transition: opacity 0.3s;
+        &:hover {
+            border: 1px solid $secondary-border-clr;
+            border-radius: 4px;
+            transition: border 3s;
+        }
+    }
+
+    .tasks-count {
+        color: $secondary-txt-clr;
+        font-size: rem(14px);
+        margin-inline-start: 3px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        // &:hover {
+        //     opacity: 1;
+        // }
+    }
+
     &:hover {
-        opacity: 1;
+        .tasks-count {
+            opacity: 1;
+        }
     }
 }
 
@@ -81,4 +92,25 @@
     background-color: blue;
     padding: 5px;
     border-radius: 4px;
+}
+
+// TODO-check why the z-index is down to checkbox
+.group-title-dropdown {
+    display: none;
+    position: absolute;
+    left: 20px;
+    top: 30px;
+    z-index: 50;
+
+    &.isDropOpen {
+        display: inherit;
+    }
+
+    .action {
+        margin-bottom: 6px;
+
+        &:hover {
+            background-color: #dcdfeb;
+        }
+    }
 }

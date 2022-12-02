@@ -6,7 +6,7 @@
             <!-- render group labels by labels array -->
             <section class="labels-grid group-grid ">
                 <div class="empty"></div>
-                <div class="task-border"></div>
+                <div class="task-border rad-tl-6" ></div>
                 <div class="cell-first cell">
                     <input type="checkbox" class="checkbox" />
                 </div>
@@ -30,7 +30,7 @@
             <!-- CRUD-ADD TASK -->
             <section class="add-task group-grid">
                 <div class="empty"></div>
-                <div class="task-border"></div>
+                <div class="task-border add-task rad-bl-6"></div>
                 <div class="cell">
                     <input type="checkbox" class="checkbox" disabled />
                 </div>
