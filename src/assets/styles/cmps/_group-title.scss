@@ -1,45 +1,24 @@
 .group-title {
-    // width: 510px;
-    // height: 40px;
-    // position: sticky;
-    // left: 0;
-    // padding-inline-start: 4px;
-    // font-size: rem(18px);
-    // gap: 7px;
-    // position:absolute;
     >* {
         cursor: pointer;
     }
-    // // TODO-check why the z-index is down to checkbox
-    // .group-title-dropdown {
-    //     display: none;
-    //     position: absolute ;
-    //     left: 50px;
-    //     top: 50px;
-    //     z-index: 50;
-    //     &.isDropOpen {
-    //         display: inherit;
-    //     }
-    //     .action {
-    //         margin-bottom: 6px;
-    //         &:hover {
-    //             background-color: #dcdfeb;
-    //         }
-    //     }
-    // }
+  
     .more {
-        // position: relative;
-        // margin-inline-end: 5px;
         position: sticky;
         z-index: 10;
         background-color: white;
         left: 0;
-        opacity: 0.2;
+       
         width: 100%;
+        span{
+            opacity: 0;
+        }
     }
     &:hover {
         .more {
-            opacity: 1;
+            span{
+                opacity: 1;
+            }
         }
     }
 }

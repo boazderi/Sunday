@@ -2,12 +2,27 @@
     width: 1280px;
     margin-bottom: 20px;
     .group-content {
-        border-radius: 6px;
+        .labels-grid {
+            >*:not(:first-child) {
+                border-top: 1px solid $primary-border-clr;
+            }
+        }
     }
 }
 
+.progress-grid {
+    >*:not(:first-child, .empty) {
+        border-top: 1px solid $primary-border-clr;
+    }
+    // status cell
+    >*:nth-child(5) {
+        border-left: 1px solid $primary-border-clr;
+        border-bottom-left-radius: 6px;
+    }
+}
+
+// todo?- for what is that class? talking with layout scss?
 .board-content {
-    // background-color: aqua;
     position: relative;
     width: 100%;
 }
@@ -59,7 +74,6 @@
         background-color: $primary-clr;
         &.add-task {
             background: rgb(87, 155, 252);
-            opacity: 0.5;
         }
     }
 }
@@ -70,13 +84,17 @@
         cursor: pointer;
     }
     .more {
-        // margin-inline-start: 10px;
+        background-color: white;
+        span {
+            opacity: 0;
+        }
         cursor: pointer;
-        opacity: 0.2;
     }
     &:hover {
         .more {
-            opacity: 1;
+            span {
+                opacity: 1;
+            }
         }
         .open-con {
             opacity: 1;
@@ -86,7 +104,7 @@
 
 .add-task {
     .input-wrapper {
-        border: 1px solid $primary-border-clr;
+        border-bottom: 1px solid $primary-border-clr;
         border-inline-end: 0;
         padding: 6px 10px;
         input {
@@ -124,12 +142,15 @@
     }
 }
 
+// CELL-SECTION
 .cell {
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid $primary-border-clr;
+    // border: 1px solid $primary-border-clr;
+    border-bottom: 1px solid $primary-border-clr;
+    border-right: 1px solid $primary-border-clr;
     font-size: em(14px);
     >* {
         width: 100%;
