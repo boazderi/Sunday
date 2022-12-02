@@ -1,8 +1,5 @@
-
 // HELPERS
-
 // flex
-
 .flex {
     display: flex;
 }
@@ -14,23 +11,25 @@
 .flex-1 {
     flex: 1;
 }
+
 // Arnon-helpers
-.flex.column{
+.flex.column {
     flex-direction: column;
 }
 
-.grow{
-    flex:1;
+.grow {
+    flex: 1;
 }
 
-.flex.justify-center{
+.flex.justify-center {
     justify-content: center;
 }
 
-.flex.justify-between{
+.flex.justify-between {
     justify-content: space-between;
 }
-.flex.space-between{
+
+.flex.space-between {
     justify-content: space-between;
 }
 
@@ -46,14 +45,13 @@
     justify-content: center;
 }
 
-.flex.align-center{
+.flex.align-center {
     align-items: center;
 }
 
 .flex.wrap {
     flex-wrap: wrap;
 }
-
 
 .flex-center {
     justify-content: center;
@@ -84,13 +82,10 @@
     align-items: flex-end;
 }
 
-
 // grid
-
 .grid {
     display: grid;
 }
-
 
 .gap-1 {
     gap: 0.5rem;
@@ -108,7 +103,6 @@
     gap: 4rem;
 }
 
-
 // layout
 .container {
     max-width: 100%;
@@ -123,9 +117,12 @@
     transform: translate(-50%, -50%);
 }
 
+.sticky {
+    position: sticky;
+    left: 0;
+}
 
 // text helpers
-
 .uppercase {
     text-transform: uppercase;
 }
@@ -135,29 +132,24 @@
 }
 
 //  list helpers
-
 .clean-list {
     list-style-type: none;
 }
 
-
-// icon helpers-svg
+// icon helpers
 .icon,.svg {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
 
-
-
 // hover helpers
-
-.outboard-hover:hover{
+.outboard-hover:hover {
     background-color: $primary-hover-clr;
 }
 
-.board-hover:hover{
+.board-hover:hover {
     background-color: $table-hover-clr;
 }
 
@@ -172,28 +164,3 @@
 // .portrait-ratio {
 //     @include aspect-ratio(9, 16);
 // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

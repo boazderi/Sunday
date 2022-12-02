@@ -33,8 +33,8 @@
                     <input type="checkbox" />
                 </div>
                 <div class="input-wrapper flex align-center">
-                    <input ref="addTask"  @blur="onAddTask"
-                        class="flex align-center" type="text" placeholder="+ Add item">
+                    <input ref="addTask" @blur="onAddTask" class="flex align-center" type="text"
+                        placeholder="+ Add item">
                 </div>
 
             </section>
@@ -48,6 +48,7 @@
             </section>
 
         </section>
+   
     </section>
 </template>
   
@@ -60,6 +61,7 @@ import status from "../dynamicCmp/status.vue"
 import priority from "../dynamicCmp/priority.vue"
 import groupTitle from "./group-title.vue"
 import bottomCrud from './bottom-crud.vue'
+import { eventBus } from "../../services/event-bus.service"
 
 
 export default {
@@ -74,21 +76,33 @@ export default {
             progress: ["status", "", "priority", "", "", ""],
         };
     },
+    created() {
+        eventBus.on('duplicateGroup', this.duplicateGroup)
+        eventBus.on('deleteGroup', this.deleteGroup)
+    },
     methods: {
         updateTask({ prop, toUpdate }, taskId) {
             this.$store.dispatch({ type: 'updateCurrBoard', groupId: this.groupInfo.id, taskId, prop, toUpdate })
         },
-        // TODO-make it work for enter and blur but not duplicate
+        // TODO-make it work for enter and blur but not both-get 
         onAddTask() {
-                this.$store.dispatch({
-                    type: 'addNewTask', payload: {
-                        taskTitle: this.$refs.addTask.value,
-                        groupId: this.groupInfo.id
-                    }
-                })
-                this.$refs.addTask.value = ''
-            
+            this.$store.dispatch({
+                type: 'addNewTask', payload: {
+                    taskTitle: this.$refs.addTask.value,
+                    groupId: this.groupInfo.id
+                }
+            })
+            this.$refs.addTask.value = ''
         },
+        async duplicateGroup(groupId) {
+            await this.$store.dispatch({ type: 'duplicateGroup', payload: { groupId } })
+            eventBus.emit('closeGroupDropdown')
+        },
+        async deleteGroup(groupId) {
+            await this.$store.dispatch({ type: 'deleteGroup', payload: { groupId } })
+            eventBus.emit('closeGroupDropdown')
+        }
+
     },
     components: {
         side,

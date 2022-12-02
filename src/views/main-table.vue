@@ -5,11 +5,14 @@
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
         @updateSelectedTasks="updateSelectedTasks" />
     </section>
-    <bottom-crud v-if="selectedTasks.length"
-     @removeTasks="removeTasks" 
-     @duplicateTasks="duplicateTasks" />
+    <bottom-crud v-if="selectedTasks.length" @removeTasks="removeTasks" @duplicateTasks="duplicateTasks" />
 
+    <div class="flex align-center new-group">
+      <button @click="onAddGroup">Add new group</button>
+    </div>
   </div>
+
+
 </template>
 
 <script>
@@ -53,12 +56,14 @@ export default {
     },
     addTaskIdToCollection(taskId) {
       this.selectedTasks.push(taskId)
-      console.log(this.selectedTasks)
     },
     removeTaskIdFromCollection(taskId) {
       const idx = this.selectedTasks.findIndex(s => s.id === taskId)
       this.selectedTasks.splice(idx, 1)
     },
+    onAddGroup() {
+      this.$store.dispatch({ type: 'addGroup' })
+    }
 
   },
   computed: {

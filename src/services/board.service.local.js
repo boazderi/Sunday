@@ -14,7 +14,10 @@ export const boardService = {
     updateBoard,
     addNewTask,
     removeTasks,
-    duplicateTasks
+    duplicateTasks,
+    duplicateGroup,
+    deleteGroup,
+    addGroup
 }
 window.cs = boardService
 
@@ -110,9 +113,35 @@ async function duplicateTasks({ boardId, selectedTasks }) {
 
         selectedTasks.forEach(selectedId => {
             const task = tasks.find(t => t.id === selectedId)
-            if (task)   tasks.push(task)
+            if (task) tasks.push(task)
         })
     })
+    save(currBoard)
+    return currBoard
+}
+async function duplicateGroup({ boardId, groupId }) {
+    var currBoard = await getById(boardId)
+    const dupGroup = currBoard.groups.find(g => g.id === groupId)
+    dupGroup.id = utilService.makeId()
+    dupGroup.tasks.id = utilService.makeId()
+    currBoard.groups.push(dupGroup)
+    save(currBoard)
+    return currBoard
+
+}
+async function deleteGroup({ boardId, groupId }) {
+    var currBoard = await getById(boardId)
+    const idx = currBoard.groups.findIndex(g => g.id === groupId)
+    currBoard.groups.splice(idx, 1)
+    save(currBoard)
+    return currBoard
+
+}
+async function addGroup(boardId) {
+    var currBoard = await getById(boardId)
+    const newGroup = _getEmptyGroup()
+    currBoard.groups.push(newGroup)
+
     save(currBoard)
     return currBoard
 }
@@ -125,7 +154,16 @@ function _getEmptyTask(taskTitle) {
         members: [],
     }
 }
+function _getEmptyGroup() {
+    // todo-get random color
+    return {
+        id: utilService.makeId(),
+        title: 'New Group',
+        color: 'green',
+        tasks: [],
 
+    }
+}
 
 // todo update this function later
 function getEmptyBoard() {
@@ -275,6 +313,6 @@ function getEmptyBoard() {
 //                 }]
 //             }
 //         ]
-// 
+//
 //     })
 // })()
