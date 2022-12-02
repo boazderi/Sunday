@@ -16,11 +16,14 @@
                 groupInfo.title
         }}</div>
         <div class="tasks-count">{{ groupInfo.tasks.length }} Tasks</div>
+        <button @click="(isModalOpen = !isModalOpen)">color</button>
+        <color-picker v-show="isModalOpen" />
     </div>
 </template>
   
 <script>
 import groupTitleDropdown from './group-title-dropdown.vue'
+import colorPicker from './color-picker.vue'
 import { eventBus } from '../../services/event-bus.service.js'
 export default {
     name: "group-title",
@@ -29,11 +32,12 @@ export default {
     },
     data() {
         return {
-            isDropOpen: false
+            isDropOpen: false,
+            isModalOpen: false
         };
     },
-    created(){
-        eventBus.on('closeGroupDropdown',this.closeGroupDropdown)
+    created() {
+        eventBus.on('closeGroupDropdown', this.closeGroupDropdown)
     },
     methods: {
         onChangeGroupTitle(ev) {
@@ -42,18 +46,18 @@ export default {
         toggleDropdown() {
             this.isDropOpen = !this.isDropOpen
         },
-        closeGroupDropdown(){
-            this.isDropOpen=false
+        closeGroupDropdown() {
+            this.isDropOpen = false
         }
-
     },
-    computed:{
-        isDrop(){
-            return {isDropOpen:this.isDropOpen}
-        } 
+    computed: {
+        isDrop() {
+            return { isDropOpen: this.isDropOpen }
+        }
     },
     components: {
-        groupTitleDropdown
+        groupTitleDropdown,
+        colorPicker
     }
 }
 </script>

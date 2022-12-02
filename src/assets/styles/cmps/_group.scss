@@ -57,7 +57,6 @@
     .task-border {
         background-color: $primary-clr;
     }
-
 }
 
 // TASKS SECTION
@@ -65,13 +64,11 @@
     *> {
         cursor: pointer;
     }
-
     .more {
         // margin-inline-start: 10px;
         cursor: pointer;
         opacity: 0.2;
     }
-
     &:hover {
         .more {
             opacity: 1;

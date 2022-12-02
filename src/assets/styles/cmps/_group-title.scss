@@ -19,16 +19,15 @@
         left: 50px;
         top: 50px;
         z-index: 50;
-
         &.isDropOpen {
             display: inherit;
         }
-       .action{
-        margin-bottom: 6px;
-        &:hover{
-            background-color: #dcdfeb;
+        .action {
+            margin-bottom: 6px;
+            &:hover {
+                background-color: #dcdfeb;
+            }
         }
-       }
     }
     .more {
         // position: relative;
@@ -40,7 +39,6 @@
         opacity: 0.2;
         width: 100%;
     }
-
     &:hover {
         .more {
             opacity: 1;
@@ -52,6 +50,7 @@
     cursor: text;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
     padding: 4px;
     &:hover {
         border: 1px solid $secondary-border-clr;
@@ -68,4 +67,18 @@
     &:hover {
         opacity: 1;
     }
+}
+
+.color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    width: 172px;
+    height: 140px;
+    position: absolute;
+    z-index: 10000;
+    top: 10px;
+    left: 10px;
+    background-color: blue;
+    padding: 5px;
+    border-radius: 4px;
 }
