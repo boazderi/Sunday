@@ -13,6 +13,7 @@
             <button class="svg" v-icon="'addConversation'"></button>
         </div>
     </section>
+    
 </template>
   
 <script>

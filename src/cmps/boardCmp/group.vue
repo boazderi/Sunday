@@ -60,7 +60,6 @@ import date from "../dynamicCmp/date.vue"
 import status from "../dynamicCmp/status.vue"
 import priority from "../dynamicCmp/priority.vue"
 import groupTitle from "./group-title.vue"
-import bottomCrud from './bottom-crud.vue'
 import { eventBus } from "../../services/event-bus.service"
 
 
@@ -112,7 +111,7 @@ export default {
         status,
         priority,
         groupTitle,
-        bottomCrud
+        
     },
 
 };

@@ -34,8 +34,15 @@
         overflow-x: scroll;
 
         .new-group {
-            padding: 6px 10px;
-            background-color: lightblue;
+            position: sticky !important;
+            // margin-inline-start: 40px;
+            left: 40px !important;
+            border: 1px solid $primary-border-clr;
+            border-radius: 5px;
+
+            padding: 4px 10px;
+            padding-inline-start: 3px;
+            margin-bottom: 20px;
             width: fit-content;
         }
     }
@@ -82,6 +89,7 @@
             background-color: $primary-clr;
 
             &.add-task {
+                opacity: 0.5;
                 background: rgb(87, 155, 252);
             }
         }
