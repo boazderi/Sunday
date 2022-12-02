@@ -74,6 +74,7 @@
         background-color: $primary-clr;
         &.add-task {
             background: rgb(87, 155, 252);
+            opacity: 0.5;
         }
     }
 }

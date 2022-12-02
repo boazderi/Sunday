@@ -1,0 +1,20 @@
+.el-icon.el-input__icon {
+    display: none;
+}
+
+.el-input__inner {
+    text-align: center;
+    --el-input-inner-height: 27px;
+    &:hover {
+        color: $link-color;
+    }
+}
+
+.el-input {
+    padding: 5px;
+    --el-input-border-radius: 0%;
+}
+
+.el-input__wrapper {
+    padding: 0;
+}

@@ -1,6 +1,6 @@
 <template>
     <section class="members-list">
-        <member-preview v-for="(member, idx) in info" :key="idx" :member="member" />
+        <member-preview v-for="(member, idx) in info.members" :key="idx" :member="member" />
     </section>
 </template>
   
@@ -10,7 +10,7 @@ export default {
     name: "members",
     emits: ["update"],
     props: {
-        info: Array,
+        info: Object,
     },
 
     components: {
@@ -19,7 +19,7 @@ export default {
 };
 </script>
   
-<style >
+<!-- <style >
 p {
     margin: 0;
 }
@@ -33,4 +33,4 @@ p {
     display: flex;
     justify-content: center;
 }
-</style>
+</style> -->

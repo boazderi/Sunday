@@ -1,6 +1,6 @@
 <template>
     <section class="priority">
-        <p>{{ info }}</p>
+        <p>{{ info.priority }}</p>
     </section>
 </template>
   
@@ -8,7 +8,7 @@
 export default {
     name: "priority",
     props: {
-        info: String,
+        info: Object,
     },
 };
 </script>

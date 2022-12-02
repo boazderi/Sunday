@@ -1,5 +1,6 @@
 <template>
-    <div :style="{ background: memberColor }" v-if="member" class="member-priview">
+    <div :style="{ 'background-image': `url(https://randomuser.me/api/portraits/men/22.jpg)` }" v-if="member"
+        class="member-priview" @click="print">
         {{ member.fullname.substring(0, 1).toUpperCase() }}
     </div>
 </template>
@@ -10,12 +11,16 @@ export default {
     props: {
         member: Object,
     },
-
     computed: {
         memberColor() {
             return this.member.color;
         },
     },
+    methods: {
+        print() {
+            console.log(this.member);
+        }
+    }
 };
 </script>
   
@@ -29,5 +34,7 @@ export default {
     align-items: center;
     justify-content: center;
     margin-inline-start: -10px;
+    background-size: cover;
+    background-position: center;
 }
 </style>

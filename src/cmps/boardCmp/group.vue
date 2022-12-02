@@ -23,7 +23,7 @@
                 <side class="cell" :taskId="task.id" :color="groupInfo.color"></side>
 
                 <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
-                    <component :is="cmp" :info="task[cmp]" @update="updateTask($event, task.id)" />
+                    <component :is="cmp" :info="task" @update="updateTask($event, task.id)" />
                 </section>
             </section>
 
