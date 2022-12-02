@@ -1,3 +1,12 @@
+.group-container {
+    width: 1280px;
+    margin-bottom: 20px;
+
+    .group-content{
+        border-radius: 6px;
+    }
+}
+
 .board-content {
     // background-color: aqua;
     position: relative;
@@ -56,6 +65,8 @@
 
     .task-border {
         background-color: $primary-clr;
+        &.add-task{
+            background: rgb(87, 155, 252);}
     }
 }
 
@@ -121,14 +132,12 @@
             }
         }
     }
-
     .conversation-wrapper {
         width: 65px;
         border-left: 1px solid $primary-border-clr;
     }
 
 }
-
 
 .cell {
     cursor: pointer;
@@ -159,6 +168,3 @@
     height: 16px;
 }
 
-.group-container {
-    width: 1280px;
-}

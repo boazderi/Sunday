@@ -1,6 +1,5 @@
 <template>
     <div class="group-grid group-title flex align-center">
-        <group-title-dropdown :groupId="groupInfo.id" v-if="isDropOpen" :class="isDrop" />
 
         <div class="more" @click="toggleDropdown">
             <span class="svg" v-icon="'more'"></span>
@@ -11,10 +10,13 @@
             <path d="M0 0h24v24H0z" fill="none" />
             <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
         </svg>
-        <div class="title-input" contenteditable @blur="onChangeGroupTitle" :style="{ color: groupInfo.color }">{{
-                groupInfo.title
-        }}</div>
-        <div class="tasks-count">{{ groupInfo.tasks.length }} Tasks</div>
+        <div class="flex align-center title-wrapper">
+            <div class="title-input" contenteditable @blur="onChangeGroupTitle" :style="{ color: groupInfo.color }">{{
+                    groupInfo.title
+            }}</div>
+            <div class="tasks-count">{{ groupInfo.tasks.length }} Tasks</div>
+        </div>
+
         <button @click="(isModalOpen = !isModalOpen)">color</button>
         <!-- <color-picker @update="onChangeGroupColor($event)" v-show="isModalOpen" /> -->
         <el-collapse-transition>
@@ -24,6 +26,7 @@
         </el-collapse-transition>
 
     </div>
+    <group-title-dropdown :groupId="groupInfo.id" v-if="isDropOpen" :class="isDrop" />
 </template>
   
 <script>
