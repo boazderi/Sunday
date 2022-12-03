@@ -108,7 +108,7 @@ export default {
   },
   data() {
     return {
-    groupTasks: this.groupInfo.tasks,
+      groupTasks: this.groupInfo.tasks,
       cmpOrder: [
         "taskTitle",
         "status",
@@ -181,6 +181,15 @@ export default {
         disabled: false,
         ghostClass: "ghost",
       };
+    },
+  },
+  watch: {
+    groupInfo: {
+      handler() {
+          console.log('work');
+          this.groupTasks = this.groupInfo.tasks
+      },
+      deep: true,
     },
   },
   components: {
