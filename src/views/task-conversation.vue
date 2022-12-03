@@ -8,10 +8,8 @@
       </button>
 
       <section class="task-preview flex align-center space-between">
-        <!-- todo render the task title below h2 el -->
-        <h3>New Item</h3>
+        <h3>{{task.taskTitle}}</h3>
 
-        <!-- todo  -->
         <div class="add-member flex align-center">
           <!-- todo render the byMember pic -->
           <div class="member-pic">Mpic</div>
@@ -66,7 +64,7 @@
         </div>
 
         <section class="comment-preview" v-for="comment in task.comments" :key="comment.id">
-          
+          <pre>{{comment}}</pre>
         </section>
       </section>
 
@@ -79,6 +77,7 @@
 
 
 export default {
+
   data() {
     return {
       //TODO?- maybe need to do deep copy
@@ -109,7 +108,10 @@ export default {
         })
       })
     }
-  }
+  },
+//   components:{
+// 
+//   }
 }
 
 </script>
