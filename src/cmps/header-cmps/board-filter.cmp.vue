@@ -1,16 +1,9 @@
 <template>
   <section class="board-filter flex">
     <div class="flex new-task">
-      <button class="new-task-btn">New Task</button>
-      <button
-        class="new-task-arrow"
-        style="
-           {
-            color: white;
-          }
-        "
-        v-icon="'arrowDown'"
-      ></button>
+      <button class="new-task-btn" @click="onAddTask">New Item</button>
+      <button class="new-task-arrow" style="  {  color: white;  }
+        " v-icon="'arrowDown'"></button>
     </div>
     <button class="flex align-center board-filter-item outboard-hover">
       <span v-icon="'search'"></span> Search
@@ -31,17 +24,46 @@
         <span v-icon="'sort'"></span> Sort
       </button>
     </el-tooltip>
-        <el-tooltip content="Hidden columns">
-            <button class="flex align-center board-filter-item outboard-hover">
-              <span v-icon="'hide'"></span> Hide
-            </button>
-        </el-tooltip>
+    <el-tooltip content="Hidden columns">
+      <button class="flex align-center board-filter-item outboard-hover">
+        <span v-icon="'hide'"></span> Hide
+      </button>
+    </el-tooltip>
   </section>
 </template>
 
+
 <script>
-export default {};
+export default {
+  data() {
+    return {
+
+    }
+  },
+  methods: {
+    onAddTask() {
+      const currBoard = this.$store.getters.getCurrBoard
+      const groupId = currBoard.groups[0].id
+      this.$store.dispatch({
+        type: 'addNewTask', payload: {
+          taskTitle: 'New Item',
+          groupId: groupId
+        }
+      })
+    }
+  },
+
+
+}
 </script>
 
-<style>
-</style>
+from group cmp
+     <!-- onAddTask() {
+            this.$store.dispatch({
+                type: 'addNewTask', payload: {
+                    taskTitle: this.$refs.addTask.value,
+                    groupId: this.groupInfo.id
+                }
+            })
+            this.$refs.addTask.value = ''
+        }, -->

@@ -1,7 +1,6 @@
 <template>
-    <div class="side-indicator" >
-        <!-- :style="{ 'borderLeft': '6px solid', borderLeftColor: color }" -->
-        <input class="checkbox" type="checkbox" @change="toggleSelected($event)" />
+    <div class="side-indicator">
+        <input :checked="false" ref="checkbox" class="checkbox" type="checkbox" @change="toggleSelected($event)" />
     </div>
 </template>
   
@@ -13,14 +12,16 @@ export default {
     props: {
         taskId: String,
         color: String,
-    }, 
+        groupId: String
+    },
     data() {
         return {
-            selectedTasks: []
+            selectedTasks: [],
         }
     },
     created() {
         eventBus.on('selectedTasks', this.setSelectedTasks)
+        eventBus.on('toggleAllTasksCheckbox', this.toggleCheckbox)
     },
     methods: {
         toggleSelected(ev) {
@@ -30,13 +31,18 @@ export default {
             if (isSelected && !isTaskInCollection) {
                 eventBus.emit('addTaskIdToCollection', this.taskId)
             }
-            //when omit and in collection
+            //when omit and exist selectedTasks
             if (!isSelected && isTaskInCollection) {
                 eventBus.emit('removeTaskIdFromCollection', this.taskId)
             }
         },
         setSelectedTasks(selectedTasks) {
             this.selectedTasks = selectedTasks
+        },
+        toggleCheckbox(gId) {
+            if (gId === this.groupId && this.$refs.checkbox) {
+                this.$refs.checkbox.checked = !this.$refs.checkbox.checked
+            }
         }
 
     }

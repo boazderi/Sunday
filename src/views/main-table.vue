@@ -13,6 +13,7 @@
       @duplicateTasks="duplicateTasks" />
 
   </section>
+  <!-- taskConversation -->
   <router-view></router-view>
 </template>
 
@@ -32,6 +33,7 @@ export default {
   created() {
     eventBus.on('addTaskIdToCollection', this.addTaskIdToCollection)
     eventBus.on('removeTaskIdFromCollection', this.removeTaskIdFromCollection)
+    eventBus.on('setAllTaskInContext', this.setAllTaskInContext)
   },
   methods: {
     async removeTasks() {
@@ -62,6 +64,10 @@ export default {
     },
     onAddGroup() {
       this.$store.dispatch({ type: 'addGroup' })
+    },
+    setAllTaskInContext({ tasks, isSelected }) {
+      this.selectedTasks = []
+      if (isSelected) tasks.forEach(t => this.selectedTasks.push(t.id))
     }
 
   },
@@ -81,6 +87,7 @@ export default {
   components: {
     group,
     bottomCrud
+
   },
 
 };
