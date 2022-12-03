@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import homePage from './views/home-page.vue'
 import boardApp from './views/board-app.vue'
 import mainTable from './views/main-table.vue'
+import taskConversation from './views/task-conversation.vue'
 
 const routes = [
   {
@@ -15,12 +16,19 @@ const routes = [
     name: 'board',
     component: boardApp,
     // todo -more gentle routing
-    children:[
+    children: [
       {
         path: '/board/:id/main-table',
         name: 'main-table',
         component: mainTable,
-      }
+        children: [
+          {
+            path: '/board/:id/main-table/pulses/:taskId',
+            name: 'task-conversation',
+            component: taskConversation,
+          }
+        ]
+      },
     ]
   },
 

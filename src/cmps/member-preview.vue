@@ -1,5 +1,8 @@
 <template>
-    <div :style="{ background: memberColor }" v-if="member" class="member-priview">
+    <div v-if="member && member.imgUrl" :style="{ 'background-image': 'url(' + member.imgUrl + ')' }"
+        class="member-priview" @click="print">
+    </div>
+    <div v-else :style="{ 'background-color': member.color }" class="member-priview" @click="print">
         {{ member.fullname.substring(0, 1).toUpperCase() }}
     </div>
 </template>
@@ -10,12 +13,16 @@ export default {
     props: {
         member: Object,
     },
-
     computed: {
         memberColor() {
             return this.member.color;
         },
     },
+    methods: {
+        print() {
+            // console.log(this.member);
+        }
+    }
 };
 </script>
   
@@ -29,5 +36,7 @@ export default {
     align-items: center;
     justify-content: center;
     margin-inline-start: -10px;
+    background-size: cover;
+    background-position: center;
 }
 </style>

@@ -35,15 +35,47 @@
     overflow-x: scroll;
 
     .new-group {
-        padding: 6px 10px;
-        background-color: lightblue;
+        position: sticky !important;
+        // margin-inline-start: 40px;
+        left: 40px !important;
+        border: 1px solid $primary-border-clr;
+        border-radius: 5px;
+
+        padding: 4px 10px;
+        padding-inline-start: 3px;
+        margin-bottom: 20px;
         width: fit-content;
     }
+
 }
 
 .group-list {
     position: absolute;
     width: 100%;
+}
+
+// TASKS SECTION
+.task-row {
+    *> {
+        cursor: pointer;
+    }
+    .more{
+        span {
+            opacity: 0;
+        }   
+    }
+
+    &:hover {
+        .more {
+            span {
+                opacity: 1;
+            }
+        }
+
+        .open-con {
+            opacity: 1;
+        }
+    }
 }
 
 .group-grid {
@@ -83,38 +115,12 @@
         background-color: $primary-clr;
 
         &.add-task {
+            opacity: 0.5;
             background: rgb(87, 155, 252);
         }
     }
-}
 
-// TASKS SECTION
-.task-row {
-    *> {
-        cursor: pointer;
-    }
 
-    .more {
-        background-color: white;
-
-        span {
-            opacity: 0;
-        }
-
-        cursor: pointer;
-    }
-
-    &:hover {
-        .more {
-            span {
-                opacity: 1;
-            }
-        }
-
-        .open-con {
-            opacity: 1;
-        }
-    }
 }
 
 .add-task {

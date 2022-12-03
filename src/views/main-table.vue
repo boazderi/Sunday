@@ -3,16 +3,17 @@
     <section class="group-list">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
         @updateSelectedTasks="updateSelectedTasks" />
-        <div class="flex align-center new-group">
-      <button @click="onAddGroup">Add new group</button>
-    </div>
+      <div class="flex align-center space-even new-group">
+        <span class="svg" v-icon="'add'"></span>
+        <button @click="onAddGroup">Add new group</button>
+      </div>
     </section>
-    <bottom-crud v-if="selectedTasks.length" @removeTasks="removeTasks" @duplicateTasks="duplicateTasks" />
+    <bottom-crud v-if="selectedTasks.length" :selectedTasks="selectedTasks" @removeTasks="removeTasks"
+      @duplicateTasks="duplicateTasks" />
 
-   
   </section>
-
-
+  <!-- taskConversation -->
+  <router-view></router-view>
 </template>
 
 <script>
@@ -32,6 +33,7 @@ export default {
   created() {
     eventBus.on('addTaskIdToCollection', this.addTaskIdToCollection)
     eventBus.on('removeTaskIdFromCollection', this.removeTaskIdFromCollection)
+    eventBus.on('setAllTaskInContext', this.setAllTaskInContext)
   },
   methods: {
     async removeTasks() {
@@ -40,7 +42,6 @@ export default {
         payload: { selectedTasks: this.selectedTasks }
       })
       this.selectedTasks = []
-      eventBus.emit('zeroingSelectedTasks')
 
     },
     async duplicateTasks() {
@@ -50,7 +51,6 @@ export default {
       })
       this.selectedTasks = []
       // TODO- make all inputs checked=false in the side cmps
-      eventBus.emit('zeroingSelectedTasks')
     },
     updateSelectedTasks(selectedTasks) {
       this.selectedTasks = selectedTasks
@@ -64,6 +64,10 @@ export default {
     },
     onAddGroup() {
       this.$store.dispatch({ type: 'addGroup' })
+    },
+    setAllTaskInContext({ tasks, isSelected }) {
+      this.selectedTasks = []
+      if (isSelected) tasks.forEach(t => this.selectedTasks.push(t.id))
     }
 
   },

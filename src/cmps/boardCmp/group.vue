@@ -10,7 +10,12 @@
           :style="{ 'background-color': groupInfo.color }"
         ></div>
         <div class="cell">
-          <input type="checkbox" class="checkbox" />
+          <input
+            ref="checkbox"
+            type="checkbox"
+            class="checkbox"
+            @change="setAllTasksInContext"
+          />
         </div>
         <div class="cell" v-for="(label, idx) in labels" :key="idx">
           {{ label }}
@@ -19,15 +24,13 @@
 
       <!-- render grid cells by cmpOrder array -->
       <draggable
-        v-model="dragList"
-        item-key="order"
+        v-model="groupTasks"
         v-bind="dragOptions"
-        @change="log($event, dragList)"
-        @start="drag = true"
-        @end="drag = false"
+        item-key="order"
+        @change="log"
       >
         <template #item="{ element }">
-          <div class="group-grid task-row dragg-grid">
+          <section class="group-grid task-row">
             <!-- todo-put in each cmp the cell class jsut if necc -->
             <div class="more">
               <span class="svg" v-icon="'more'"></span>
@@ -38,6 +41,7 @@
             ></div>
             <side
               class="cell"
+              :groupId="groupId"
               :taskId="element.id"
               :color="groupInfo.color"
             ></side>
@@ -45,13 +49,14 @@
             <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
               <component
                 :is="cmp"
-                :info="element[cmp]"
+                :info="element"
                 @update="updateTask($event, element.id)"
               />
             </section>
-          </div>
+          </section>
         </template>
       </draggable>
+
       <!-- CRUD-ADD TASK -->
       <section class="add-task group-grid">
         <div class="empty"></div>
@@ -93,7 +98,6 @@ import date from "../dynamicCmp/date.vue";
 import status from "../dynamicCmp/status.vue";
 import priority from "../dynamicCmp/priority.vue";
 import groupTitle from "./group-title.vue";
-import bottomCrud from "./bottom-crud.vue";
 import { eventBus } from "../../services/event-bus.service";
 import draggable from "vuedraggable";
 
@@ -104,8 +108,7 @@ export default {
   },
   data() {
     return {
-      dragList: this.groupInfo.tasks,
-      drag: false,
+    groupTasks: this.groupInfo.tasks,
       cmpOrder: [
         "taskTitle",
         "status",
@@ -117,12 +120,13 @@ export default {
       ],
       labels: ["Items", "Status", "Person", "Priority", "Date", "Text", "File"],
       progress: ["status", "", "priority", "", "", ""],
+      groupId: null,
     };
   },
   created() {
     eventBus.on("duplicateGroup", this.duplicateGroup);
     eventBus.on("deleteGroup", this.deleteGroup);
-    // console.log(this.groupInfo);
+    this.groupId = this.groupInfo.id;
   },
   methods: {
     updateTask({ prop, toUpdate }, taskId) {
@@ -156,15 +160,17 @@ export default {
       await this.$store.dispatch({ type: "deleteGroup", payload: { groupId } });
       eventBus.emit("closeGroupDropdown");
     },
-    sort() {
-      this.list = this.list.sort((a, b) => a.order - b.order);
+    setAllTasksInContext() {
+      const payload = {
+        tasks: this.groupInfo.tasks,
+        isSelected: this.$refs.checkbox.checked,
+      };
+      eventBus.emit("setAllTaskInContext", payload);
+
+      eventBus.emit("toggleAllTasksCheckbox", this.groupId);
     },
     log: function (evt, arr) {
       window.console.log(evt);
-      window.console.log(this.dragList);
-    },
-    onDrag: function (ev) {
-      this.drag = true;
     },
   },
   computed: {
@@ -185,9 +191,7 @@ export default {
     status,
     priority,
     groupTitle,
-    bottomCrud,
     draggable,
   },
 };
 </script>
-

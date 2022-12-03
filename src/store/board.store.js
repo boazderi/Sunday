@@ -30,7 +30,8 @@ export function getActionAddBoardMsg(boardId) {
 export const boardStore = {
     state: {
         boards: [],
-        currBoard: null
+        currBoard: null,
+        
     },
     getters: {
         getBoards({ boards }) {
@@ -42,6 +43,7 @@ export const boardStore = {
     },
     mutations: {
         setBoards(state, { boards }) {
+            // todo- set a flexable for all boardById
             state.boards = boards
             state.currBoard = boards[0]
         },
@@ -64,7 +66,8 @@ export const boardStore = {
         setCurrBoard(state, { boardId }) {
             const newBoard = state.boards.find(board => board._id === boardId)
             state.currBoard = newBoard
-        }
+        },
+       
     },
     actions: {
         async addBoard(context, { board }) {

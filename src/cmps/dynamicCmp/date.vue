@@ -1,7 +1,6 @@
 <template>
     <section class="date">
-        <el-date-picker v-model="value" type="date" placeholder="Pick a day" format="MMM D" value-format="MMM-D"
-            @blur="onChangeDate" />
+        <el-date-picker v-model="value" type="date" format="MMM D" value-format="MMM-D" @change="onChangeDate" />
     </section>
 </template>
   
@@ -10,16 +9,16 @@ export default {
     name: "date",
     // emits: ["update"],
     props: {
-        groupInfo: Object,
+        info: Object,
     },
     data() {
         return {
-            value: ""
+            value: this.info.date
         };
     },
     methods: {
-        onChangeDate(ev) {
-            console.log(ev.target.value);
+        onChangeDate() {
+            this.$emit('update', { prop: 'date', toUpdate: this.value })
         }
     }
 };
