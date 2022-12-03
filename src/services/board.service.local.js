@@ -178,14 +178,14 @@ function getEmptyBoard() {
 // ;
 // (async() => {
 //     await storageService.post(STORAGE_KEY, {
-//         "_id": "b102",
-//         "title": "Sprint 4",
+//         "_id": "b101",
+//         "title": "Sprint4 - Project Mgmt",
 //         "description": "This board will be used for collaboration management on the Funday app project",
 //         "createdAt": 1589983468418,
 //         "createdBy": {
 //             "id": "u101",
 //             "fullname": "Tal Liber",
-//             "imgUrl": "http://some-img"
+//             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
 //         },
 //         "members": [{
 //                 "id": "u101",
@@ -196,13 +196,13 @@ function getEmptyBoard() {
 //             {
 //                 "id": "u102",
 //                 "fullname": "Arnon Arditi",
-//                 "imgUrl": "https://randomuser.me/api/portraits/men/22.jpg",
+//                 "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
 //                 "color": "#8338ec"
 //             },
 //             {
 //                 "id": "u103",
 //                 "fullname": "Boaz Deri",
-//                 "imgUrl": "https://randomuser.me/api/portraits/men/7.jpg",
+//                 "imgUrl": "https://randomuser.me/api/portraits/men/4.jpg",
 //                 "color": "#3a86ff"
 //             },
 //             {
@@ -226,98 +226,62 @@ function getEmptyBoard() {
 //             }
 //         }],
 //         "groups": [{
-//                 "id": "gy5LnM",
-//                 "color": "#a25ddc",
-//                 "title": "Frontend",
-//                 "tasks": [{
-//                         "id": "t2yn4E",
-//                         "taskTitle": "Complete UI for demo1",
-//                         "status": "IN WORK",
-//                         "members": [{
-//                                 "id": "u101",
-//                                 "fullname": "Tal Liber",
-//                                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
-//                                 "color": "#8338ec"
-//                             },
-//                             {
-//                                 "id": "u102",
-//                                 "fullname": "Arnon Arditi",
-//                                 "imgUrl": "https://randomuser.me/api/portraits/men/22.jpg",
-//                                 "color": "#3a86ff"
-//                             },
-//                             {
-//                                 "id": "u104",
-//                                 "fullname": "Tal Amit",
-//                                 "color": "#ff006e"
-//                             }
-//                         ],
-//                         "date": "Dec-3",
-//                         "priority": "HIGH",
-//                     },
-//                     {
-//                         "id": "t2yvg",
-//                         "taskTitle": "Learn CSS",
-//                         "status": "STUCK",
-//                         "members": [{
-//                                 "id": "u101",
-//                                 "fullname": "Tal Liber",
-//                                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
-//                                 "color": "#8338ec"
-//                             },
-//                             {
-//                                 "id": "u102",
-//                                 "fullname": "Arnon Arditi",
-//                                 "imgUrl": "https://randomuser.me/api/portraits/men/22.jpg",
-//                                 "color": "#3a86ff"
-//                             }
-//                         ],
-//                         "date": "2022-03-28T21:00:00.000Z",
-//                         "priority": "LOW",
-//                         "comments": [{
-//                                 "creator": "Arnon Arditi",
-//                                 "content": "can some one help me"
-//                             },
-//                             {
-//                                 "creator": "Tal Amit",
-//                                 "content": "fix problem with bug"
-//                             },
-//                             {
-//                                 "creator": "Boaz Deri",
-//                                 "content": "i can help"
-//                             },
-//                             {
-//                                 "creator": "Tal Liber",
-//                                 "content": "made that dnd work"
-//                             }
-//                         ]
-//                     }
-//                 ],
-//             },
-//             {
-//                 "id": "tyCQHY",
-//                 "title": "Routes & pages",
-//                 "color": "#ff5ac4",
-//                 "tasks": [{
-//                     "id": "t2eevg",
-//                     "taskTitle": "finis grid layout",
-//                     "status": "Done",
+//             "id": "gy5LnM",
+//             "title": "Frontend",
+//             "color": "#579bfc",
+//             "tasks": [{
+//                     "id": "t2yn4E",
+//                     "taskTitle": "without comments",
+//                     "status": "IN WORK",
 //                     "members": [{
-//                             "id": "u102",
-//                             "fullname": "Arnon Arditi",
-//                             "imgUrl": "https://randomuser.me/api/portraits/men/22.jpg",
-//                             "color": "#8338ec"
-//                         },
-//                         {
 //                             "id": "u101",
 //                             "fullname": "Tal Liber",
 //                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
-//                             "color": "#ffbe0b"
+//                             "color": "#8338ec"
+//                         },
+//                         {
+//                             "id": "u102",
+//                             "fullname": "Arnon Arditi",
+//                             "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                             "color": "#3a86ff"
 //                         }
 //                     ],
-//                     "date": "2022-03-08T22:00:00.000Z",
-//                     "priority": "LOW"
-//                 }]
-//             }
-//         ]
+//                     "date": "2022-03-28T21:00:00.000Z",
+//                     "priority": "HIGH",
+//                     "comments": []
+//                 },
+//                 {
+//                     "id": "t2yvg",
+//                     "taskTitle": "With comments",
+//                     "status": "DONE",
+//                     "members": [{
+//                             "id": "u101",
+//                             "fullname": "Tal Liber",
+//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                             "color": "#8338ec"
+//                         },
+//                         {
+//                             "id": "u102",
+//                             "fullname": "Arnon Arditi",
+//                             "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                             "color": "#3a86ff"
+//                         }
+//                     ],
+//                     "date": "2022-03-28T21:00:00.000Z",
+//                     "priority": "LOW",
+//                     "comments": [{
+//                         "id": "ZdPnm",
+//                         "txt": "also @yaronb please CR this",
+//                         "createdAt": 1590999817436,
+//                         "byMember": {
+//                             "_id": "u101",
+//                             "fullname": "Tal Liber",
+//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                             "color": "#8338ec"
+//                         }
+//                     }]
+//                 }
+//             ]
+//         }]
 //     })
 // })()

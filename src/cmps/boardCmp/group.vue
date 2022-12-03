@@ -8,7 +8,7 @@
                 <div class="empty"></div>
                 <div class="task-border rad-tl-6" :style="{ 'background-color': groupInfo.color }"></div>
                 <div class=" cell">
-                    <input type="checkbox" class="checkbox" />
+                    <input ref="checkbox" type="checkbox" class="checkbox" @change="setAllTasksInContext" />
                 </div>
                 <div class="cell" v-for="(label, idx) in labels" :key="idx">{{ label }}</div>
             </section>
@@ -20,7 +20,7 @@
                     <span class="svg" v-icon="'more'"></span>
                 </div>
                 <div class="task-border" :style="{ 'background-color': groupInfo.color }"></div>
-                <side class="cell" :taskId="task.id" :color="groupInfo.color"></side>
+                <side class="cell" :groupId="groupId" :taskId="task.id" :color="groupInfo.color"></side>
 
                 <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
                     <component :is="cmp" :info="task" @update="updateTask($event, task.id)" />
@@ -73,11 +73,13 @@ export default {
             cmpOrder: ["taskTitle", "status", "members", "priority", "date", "text", "file"],
             labels: ["Items", "Status", "Person", "Priority", "Date", "Text", "File"],
             progress: ["status", "", "priority", "", "", ""],
+            groupId: null
         };
     },
     created() {
         eventBus.on('duplicateGroup', this.duplicateGroup)
         eventBus.on('deleteGroup', this.deleteGroup)
+        this.groupId = this.groupInfo.id
     },
     methods: {
         updateTask({ prop, toUpdate }, taskId) {
@@ -100,6 +102,12 @@ export default {
         async deleteGroup(groupId) {
             await this.$store.dispatch({ type: 'deleteGroup', payload: { groupId } })
             eventBus.emit('closeGroupDropdown')
+        },
+        setAllTasksInContext() {
+            const payload = { tasks: this.groupInfo.tasks, isSelected: this.$refs.checkbox.checked }
+            eventBus.emit('setAllTaskInContext', payload)
+
+            eventBus.emit('toggleAllTasksCheckbox',this.groupId)
         }
 
     },
@@ -111,7 +119,7 @@ export default {
         status,
         priority,
         groupTitle,
-        
+
     },
 
 };

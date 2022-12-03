@@ -2,6 +2,7 @@
     background-color: $bg-small-sidebar;
     color: white;
     grid-area: side-nav;
+    padding-top: 7px;
 }
 
 .monday-icon {
@@ -13,6 +14,8 @@
         border-radius: 6px;
         background-color: #545970;
     }
+   
+
 }
 
 .work-management {
