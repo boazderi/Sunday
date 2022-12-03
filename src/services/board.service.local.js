@@ -208,7 +208,6 @@ function getEmptyBoard() {
 //             {
 //                 "id": "u104",
 //                 "fullname": "Tal Amit",
-//                 "imgUrl": "https://randomuser.me/api/portraits/men/30.jpg",
 //                 "color": "#ff006e"
 //             }
 //         ],
@@ -245,6 +244,11 @@ function getEmptyBoard() {
 //                                 "fullname": "Arnon Arditi",
 //                                 "imgUrl": "https://randomuser.me/api/portraits/men/22.jpg",
 //                                 "color": "#3a86ff"
+//                             },
+//                             {
+//                                 "id": "u104",
+//                                 "fullname": "Tal Amit",
+//                                 "color": "#ff006e"
 //                             }
 //                         ],
 //                         "date": "Dec-3",

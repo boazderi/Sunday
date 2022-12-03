@@ -19,7 +19,7 @@
 
         <button @click="(isModalOpen = !isModalOpen)">color</button>
         <el-collapse-transition>
-            <div class="color-picker" v-if="isModalOpen">
+            <div class="color-picker" v-if="isOpen">
                 <color-picker @update="onChangeGroupColor($event)"></color-picker>
             </div>
         </el-collapse-transition>
@@ -48,6 +48,7 @@ export default {
     },
     methods: {
         onChangeGroupTitle(ev) {
+            this.isModalOpen = !this.isModalOpen
             this.$emit('update', { prop: 'title', toUpdate: ev.target.innerText })
         },
         toggleDropdown() {
@@ -63,6 +64,9 @@ export default {
     computed: {
         isDrop() {
             return { isDropOpen: this.isDropOpen }
+        },
+        isOpen() {
+            return this.isModalOpen
         }
     },
     components: {

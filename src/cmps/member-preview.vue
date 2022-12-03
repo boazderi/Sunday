@@ -1,6 +1,8 @@
 <template>
-    <div :style="{ 'background-image': `url(https://randomuser.me/api/portraits/men/22.jpg)` }" v-if="member"
+    <div v-if="member && member.imgUrl" :style="{ 'background-image': 'url(' + member.imgUrl + ')' }"
         class="member-priview" @click="print">
+    </div>
+    <div v-else :style="{ 'background-color': member.color }" class="member-priview" @click="print">
         {{ member.fullname.substring(0, 1).toUpperCase() }}
     </div>
 </template>
@@ -18,7 +20,7 @@ export default {
     },
     methods: {
         print() {
-            console.log(this.member);
+            // console.log(this.member);
         }
     }
 };

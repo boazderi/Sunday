@@ -2,21 +2,19 @@
     >* {
         cursor: pointer;
     }
-  
     .more {
         position: sticky;
         z-index: 10;
         background-color: white;
         left: 0;
-       
         width: 100%;
-        span{
+        span {
             opacity: 0;
         }
     }
     &:hover {
         .more {
-            span{
+            span {
                 opacity: 1;
             }
         }
@@ -59,7 +57,7 @@
     width: 172px;
     height: 140px;
     position: absolute;
-    z-index: 50;
+    z-index: 100;
     top: 36px;
     left: 73px;
     background-color: white;
