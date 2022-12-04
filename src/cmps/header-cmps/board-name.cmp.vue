@@ -6,10 +6,10 @@
         </h1>
       </el-tooltip>
       <el-tooltip content="Show board description">
-        <button class="icon outboard-hover" v-icon="'info'"></button>
+        <button class="icon outboard-hover board-name-icon" v-icon="'info'"></button>
       </el-tooltip>
       <el-tooltip content="Add to favorites ">
-        <button class="icon outboard-hover" v-icon="'star'"></button>
+        <button class="icon outboard-hover board-name-icon" v-icon="'star'"></button>
       </el-tooltip>
   </section>
 </template>

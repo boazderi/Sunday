@@ -1,5 +1,4 @@
 .task-conversation {
-    // background-color: lightblue;
     background-color: white;
     position: fixed;
     height: 100vh;
@@ -7,9 +6,10 @@
     z-index: 150;
     right: 0;
     top: 0;
-    box-shadow:0px 15px 50px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 15px 50px 0px rgba(0, 0, 0, 0.3);
 
     padding: 0 18px;
+
     >* {
         width: 100%;
     }
@@ -18,12 +18,14 @@
     .conversation-header {
         border-bottom: 1px solid $primary-border-clr;
         padding-top: 20px;
-        height: 117px;
+        height: 125px;
         background-color: white;
 
         .task-preview {
             margin-top: 2px;
+            margin-bottom: 10px;
             padding-inline-start: 4px;
+
 
             .add-member {
                 .member-pic {
@@ -57,50 +59,121 @@
         // background-color: lightblue;
         padding-inline-start: 5px;
         padding-inline-end: 10px;
-        padding-top: 20px ;
+        padding-top: 20px;
 
-        .content-header{
+        .content-header {
             margin-bottom: 20px;
-            >*{
+
+            >* {
                 width: 100%;
             }
-            input{
+
+            input {
                 border-radius: 6px;
                 border: 1px solid $link-color;
             }
 
-            .content-actions{
+            .content-actions {
                 margin-top: 5px;
-              
-               .update{
-                background-color: $primary-clr;
-                border-radius: 6px;
-                padding:9px 9px;
-                color: white;
-               }
+
+                .update {
+                    background-color: $primary-clr;
+                    border-radius: 6px;
+                    padding: 9px 9px;
+                    color: white;
+                }
             }
         }
+
         // chat section
-        .conversation-views{
+        .conversation-views {
             background-color: inherit;
             padding-top: 20px;
 
+            .dot {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                background-color: #06b506;
+                margin-inline-start: 3px;
+            }
 
+            // comment-preview
+            .comment-preview {
+                border: 1px solid $primary-border-clr;
+                position: relative;
+                border-radius: 6px;
+                min-height: 202px;
+                padding: 15px;
+                padding-bottom: 0;
+                margin-bottom: 16px;
 
+                // *>:not(.full){
+                //     padding: 0 15px;
+                // }
+                .comment-header {
+                    position: relative;
+                    margin-bottom: 24px;
 
+                    .wrapper1 {
+                        span {
+                            font-size: em(14px);
+                            margin-inline-start: 10px;
+                        }
+                    }
 
+                    // time indicator with bell and more icons
+                    .wrapper2 {
+                        position: absolute;
+                        right: 0px;
+                        top: 0px;
+                    }
+                }
 
-            .empty-conversation{
+                // comment-txt
+                p {
+                    color: #676879;
+                    font-size: em(15px);
+                }
+
+                .like-replay {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                    height: 41px;
+                    border-top: 1px solid $primary-border-clr;
+
+                    .like {
+                        border-inline-end: 1px solid $primary-border-clr;
+                    }
+
+                    button {
+                        height: 100%;
+                        width: 50%;
+                        font-weight: 200;
+                        color: #676879;
+                        span{
+                            margin-inline-end: 2px;
+                        }
+                    }
+
+                }
+
+            }
+
+            .empty-conversation {
                 padding: 29px;
-                img{
+
+                img {
                     width: 290px;
                     height: 150px;
                     margin-bottom: 39px;
                 }
 
-                .unread-message{
-                    p{
-                        // todo improve the font color and weight-some problem
+                .unread-message {
+                    p {
+                        color: #676879;
                         font-weight: 300;
                         max-width: 430px;
                         text-align: center;

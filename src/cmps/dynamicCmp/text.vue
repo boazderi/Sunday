@@ -1,21 +1,27 @@
 <template>
-    <div class="text">
-        <div contenteditable @blur="onChangeTaskText">{{ info }}</div>
-    </div>
+    <section class="task-text-section">
+        <div class="task-text" contenteditable @blur="onChangeTaskText">
+        {{ info.textNote || '&nbsp;' }}
+        </div>
+    </section>
 </template>
   
 <script>
 export default {
-    name: "text",
+    name: "text-note",
     props: {
-        info: String,
+        info: Object,
     },
     data() {
-        return {};
+        return {
+            isActive: false
+        };
+    },
+    mounted(){
     },
     methods: {
         onChangeTaskText(ev) {
-            // this.$emit('update', { prop: 'taskTitle', toUpdate: ev.target.innerText })
+            this.$emit('update', { prop: 'textNote', toUpdate: ev.target.innerText })
         }
     }
 }

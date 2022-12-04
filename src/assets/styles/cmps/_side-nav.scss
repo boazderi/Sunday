@@ -3,23 +3,92 @@
     color: white;
     grid-area: side-nav;
     padding-top: 7px;
-}
+    position: relative;
 
-.monday-icon {
-    width: 40px;
-    height: 40px;
-    margin: auto;
-    cursor: pointer;
-    &.active {
-        border-radius: 6px;
-        background-color: #545970;
+    .monday-icon {
+        height: 50px;
+        width: 50px;
+        margin-bottom: 16px;
+        border-bottom: 1px solid #838383;
+        cursor: pointer;
+
+        img {
+            width: 40px;
+            height: 40px;
+        }
+
+        &.active {
+            border-radius: 6px;
+            background-color: #545970;
+        }
+
     }
-   
 
-}
+    .work-management {
+        width: 30px;
+        cursor: pointer;
+        margin-bottom: 12px;
+    }
 
-.work-management {
-    width: 30px;
-    margin: auto;
-    cursor: pointer;
+    .icons-pattern1 {
+        margin-bottom: 227px;
+    }
+
+    .icons-pattern2 {
+        width: 50px;
+        border-bottom: 1px solid #838383;
+    }
+
+    .icon-wrapper {
+        display: flex;
+        justify-content: center;
+        width: em(36px);
+        height: em(36px);
+        border-radius: 6px;
+        cursor: pointer;
+        margin-bottom: 8px;
+
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .6);
+        }
+    }
+
+    .see-plans {
+        height: 108px;
+        width: 34px;
+        position: absolute;
+        background-color: #258750;
+        border-top-right-radius: 16px;
+        border-bottom-right-radius: 16px;
+        left: 0;
+        top: 360px;
+
+
+        .text-wrapper {
+            font-size: 14px;
+            padding-inline-start: 3px;
+            position: absolute;
+            top: 14px;
+            left: -10px;
+
+            .rot {
+                transform: rotate(-90deg);
+                margin: 6px;
+            }
+        }
+
+    }
+
+    .bottom-icon-wrapper{
+        width: em(42px);
+        height: em(42px);
+        border-radius: 6px;
+        margin-top: 8px;
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(0, 0, 0, .6);
+        }
+    }
+
 }

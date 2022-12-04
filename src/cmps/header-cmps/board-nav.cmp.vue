@@ -16,8 +16,23 @@
         Dashboard</router-link
       >
     </el-tooltip>
+    <div class="views-seprator"></div>
+    <el-tooltip content="Add View">
+      <router-link class="board-nav-item flex outboard-hover" to="/">
+      <span 
+      v-icon="'addSmall'"
+      ></span> </router-link
+      >
+    </el-tooltip>
   </section>
 </template>
 
 <script>
+export default {
+  data(){
+    return {
+      
+    }
+  }
+}
 </script>

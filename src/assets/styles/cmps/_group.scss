@@ -49,6 +49,8 @@
         }
     }
     &:hover {
+        background-color: $table-hover-clr;
+        box-shadow: 4px 3px 6px -3px #c3c6d4;
         .more {
             span {
                 opacity: 1;
