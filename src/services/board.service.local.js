@@ -82,7 +82,7 @@ async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
     } else {
         currBoard[prop] = toUpdate
     }
-    console.log(currBoard.groups);
+    // console.log(currBoard.groups);
     save(currBoard)
     return currBoard
 }

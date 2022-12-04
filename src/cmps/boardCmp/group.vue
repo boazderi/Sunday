@@ -153,7 +153,6 @@ export default {
   watch: {
     groupInfo: {
       handler() {
-        console.log('h');
         this.groupTasks = this.groupInfo.tasks
       },
       deep: true,
