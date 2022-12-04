@@ -16,17 +16,68 @@
         }
     }
 }
-
+// Progress-grid
+// todo to open a separate cmp 
 .progress-grid {
     >*:not(:first-child, .empty) {
         border-top: 1px solid $primary-border-clr;
     }
-
     // status cell
     >*:nth-child(5) {
         border-left: 1px solid $primary-border-clr;
         border-bottom-left-radius: 6px;
     }
+
+    .status-progress{
+        padding: 5px 8px;
+
+        .bar-container{
+            background-color: lightblue;
+
+            .done{
+                background-color: $bg-status-done;
+               
+            }
+            .working-on-it{
+                background-color: $bg-status-working;
+                
+            }
+            .stuck{
+                background-color: $bg-status-stuck;
+                flex-basis: 25%;
+            }
+            .empty{
+                background-color: $bg-status-empty;
+            }
+        }
+    }
+
+    .priority-progress{
+        padding: 5px 8px;
+        .bar-container{
+            .low{
+                background-color: $bg-priority-low;
+            }
+            .critical{
+                background-color: $bg-priority-critical;
+            }
+            .empty{
+                background-color: $bg-status-empty;
+            }
+            .medium{
+                    background-color: $bg-priority-medium;
+            }
+            .high{
+                background-color: $bg-priority-high;
+
+            }
+
+        }
+
+    }
+
+
+    
 }
 
 .main-table {
@@ -80,7 +131,7 @@
         background-color: white;
     }
 
-    >:nth-child(1),
+    >*:nth-child(1),
     :nth-child(2),
     :nth-child(3),
     :nth-child(4) {
@@ -121,10 +172,15 @@
         padding: 6px 10px;
 
         input {
-            padding: 0;
+            padding: 3px;
+            padding-inline-start: 22px;
             width: 100%;
-            padding-inline-start: 8px;
+           
             border: 0;
+            // todo focus visible on the border not workin
+            &:focus-visible{
+                border: 1px solid $primary-clr;
+            }
         }
     }
 }

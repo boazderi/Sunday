@@ -53,7 +53,7 @@
         "tasks": [{
                 "id": "t2yn4E",
                 "taskTitle": "without comments",
-                "status": "IN WORK",
+                "status": "Working",
                 "members": [{
                         "id": "u101",
                         "fullname": "Tal Liber",
@@ -75,7 +75,7 @@
             {
                 "id": "t2yvg",
                 "taskTitle": "With comments",
-                "status": "DONE",
+                "status": "Done",
                 "members": [{
                         "id": "u101",
                         "fullname": "Tal Liber",
@@ -90,7 +90,7 @@
                     }
                 ],
                 "date": "2022-03-28T21:00:00.000Z",
-                "priority": "LOW",
+                "priority":"LOW",
                 "textNote": "sass is good",
                 "comments": [{
                     "id": "ZdPnm",
