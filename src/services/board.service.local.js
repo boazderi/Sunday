@@ -285,28 +285,28 @@ function getEmptyBoard() {
 //                     "priority": "LOW",
 //                     "textNote": "sass is good",
 //                     "comments": [{
-//                             "id": "ZdPnm",
-//                             "txt": "also @yaronb please CR this",
-//                             "createdAt": 1590999817436,
-//                             "byMember": {
-//                                 "_id": "u101",
-//                                 "fullname": "Tal Liber",
-//                                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
-//                                 "color": "#8338ec"
-//                             }
-//                         },
-//                         {
-//                             "id": "ZdPfd",
-//                             "txt": "Baba and didi go to the yam",
-//                             "createdAt": 1590999212436,
-//                             "byMember": {
-//                                 "id": "u102",
-//                                 "fullname": "Arnon Arditi",
-//                                 "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
-//                                 "color": "#8338ec"
-//                             }
+//                         "id": "ZdPnm",
+//                         "txt": "also @yaronb please CR this",
+//                         "createdAt": 1590999817436,
+//                         "byMember": {
+//                             "_id": "u101",
+//                             "fullname": "Tal Liber",
+//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                             "color": "#8338ec"
 //                         }
-//                     ]
+//                     },
+//                     {
+//                         "id": "ZdPfd",
+//                         "txt": "Baba and didi go to the yam",
+//                         "createdAt": 1590999212436,
+//                         "byMember": {
+//                             "id": "u102",
+//                             "fullname": "Arnon Arditi",
+//                             "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                             "color": "#8338ec"
+//                         }
+//                     }
+//                 ]
 //                 }
 //             ]
 //         }]
