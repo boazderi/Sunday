@@ -154,12 +154,14 @@
     border-radius: 6px;
 }
 
-// .rad-tl-6 {
-//     border-top-left-radius: 6px;
-// }
-// .rad-bl-6 {
-//     border-bottom-left-radius: 6px;
-// }
+.rad-tl-6 {
+    border-top-left-radius: 6px;
+}
+
+.rad-bl-6 {
+    border-bottom-left-radius: 6px;
+}
+
 // full-width
 .full-width {
     width: 100%;
@@ -174,7 +176,6 @@
 .board-hover:hover {
     background-color: $table-hover-clr;
 }
-
 
 // Media helpers
 // 
