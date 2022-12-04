@@ -2,6 +2,7 @@
   <section class="group-container">
     <groupTitle :groupInfo="groupInfo" @update="updateTask" />
     <section class="group-content">
+      
       <!-- render group labels by labels array -->
       <section class="group-grid labels-grid">
         <div class="empty"></div>
@@ -18,7 +19,6 @@
       <draggable v-model="groupTasks" v-bind="dragOptions" item-key="order" @change="log">
         <template #item="{ element }">
           <section class="group-grid task-row">
-            <!-- todo-put in each cmp the cell class jsut if necc -->
             <div class="more">
               <span class="svg" v-icon="'more'"></span>
             </div>
@@ -45,7 +45,6 @@
         </div>
       </section>
 
-      <!-- todo change to progress func -->
       <!--  progress by progress array -->
       <section class="progress-grid group-grid">
         <div v-for="n in 4" class="empty" :key="n"></div>
