@@ -6,19 +6,21 @@
             }}
             </div>
 
-            <span class="open-con flex align-center space-between radius-4" 
-            :style="{ color: `#323338` }"
-            @click="goToConversation">
-                <button class="svg" v-icon="'openArrow'" ></button>
+            <span class="open-con flex align-center space-between radius-4" :style="{ color: `#323338` }"
+                @click="goToConversation">
+                <button class="svg" v-icon="'openArrow'"></button>
                 open</span>
-
         </div>
-
+        <!-- todo add counter to the numbers of comments in the conversation icon -->
         <div class="conversation-wrapper flex align-center">
-            <button class="svg" v-icon="'addConversation'" @click="goToConversation"/>
+            <button v-if="!info.comments.length" class="svg" v-icon="'addConversation'" @click="goToConversation" />
+            <div v-else class="already-written">
+                <button  class="svg" v-icon="'addConversation'"
+                 @click="goToConversation" />
+            </div>
         </div>
     </section>
-    
+
 </template>
   
 <script>
@@ -31,11 +33,10 @@ export default {
         return {};
     },
     methods: {
-        goToConversation(){
-           const boardId=this.$route.params.id
-           this.$router.push(`/board/${boardId}/main-table/pulses/${this.info.id}`)
-        //    this.$router.push(`/board/${boardId}/main-table`)
-         
+        goToConversation() {
+            const boardId = this.$route.params.id
+            this.$router.push(`/board/${boardId}/main-table/pulses/${this.info.id}`)
+           
         },
         onChangeTaskTitle(ev) {
             this.$emit('update', { prop: 'taskTitle', toUpdate: ev.target.innerText })
