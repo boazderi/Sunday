@@ -73,7 +73,7 @@
             @blur="onAddTask"
             class="flex align-center"
             type="text"
-            placeholder="+ Add item"
+            placeholder="+ Add task"
           />
         </div>
       </section>
@@ -97,6 +97,7 @@ import members from "../dynamicCmp/members.vue";
 import date from "../dynamicCmp/date.vue";
 import status from "../dynamicCmp/status.vue";
 import priority from "../dynamicCmp/priority.vue";
+import textNote from "../dynamicCmp/text.vue"
 import groupTitle from "./group-title.vue";
 import { eventBus } from "../../services/event-bus.service";
 import draggable from "vuedraggable";
@@ -115,10 +116,10 @@ export default {
         "members",
         "priority",
         "date",
-        "text",
+        "textNote",
         "file",
       ],
-      labels: ["Items", "Status", "Person", "Priority", "Date", "Text", "File"],
+      labels: ["Tasks", "Status", "Person", "Priority", "Date", "Text", "File"],
       progress: ["status", "", "priority", "", "", ""],
       groupId: null,
     };
@@ -171,6 +172,7 @@ export default {
     },
     log: function (evt, arr) {
       window.console.log(evt);
+      console.log(evt.moved)
     },
   },
   computed: {
@@ -186,7 +188,6 @@ export default {
   watch: {
     groupInfo: {
       handler() {
-          console.log('work');
           this.groupTasks = this.groupInfo.tasks
       },
       deep: true,
@@ -199,6 +200,7 @@ export default {
     date,
     status,
     priority,
+    textNote,
     groupTitle,
     draggable,
   },
