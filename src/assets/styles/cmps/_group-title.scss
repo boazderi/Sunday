@@ -80,23 +80,21 @@
     position: absolute;
     left: 20px;
     top: 30px;
-    z-index: 50;
-    box-shadow:0px 6px 8px 0px rgba(0,0,0,0.2);
-
+    z-index: 60;
+    box-shadow: 0px 6px 8px 0px rgba(0, 0, 0, 0.2);
     &.isDropOpen {
         display: inherit;
     }
     .action {
         cursor: pointer;
         margin-bottom: 6px;
-        padding: 4px ;
+        padding: 4px;
         padding-inline-start: 0;
         border-radius: 6px;
         &:hover {
             background-color: #dcdfeb;
         }
-
-        :first-child{
+         :first-child {
             margin-inline-end: 2px;
         }
     }

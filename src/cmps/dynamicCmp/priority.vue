@@ -8,10 +8,10 @@
         'priority-high': info.priority === 'HIGH',
         'priority-medium': info.priority === 'MEDIUM',
         'priority-low': info.priority === 'LOW',
-        'priority-empty': info.priority === '',
+        'priority-empty': info.priority === 'EMPTY',
       }"
     >
-      {{ info.priority }}
+      {{ formattedPriority }}
     </p>
     <el-collapse-transition>
       <div class="priority-picker-modal" v-if="priorityModalOpen">
@@ -43,6 +43,12 @@ export default {
       this.togglePriorityOptions();
       this.$emit("update", { prop: "priority", toUpdate: priorityOpt });
     },
+  },
+  computed:{
+    formattedPriority(){
+      if(this.info.priority==='EMPTY') return ''
+      return this.info.priority
+    }
   },
   components: {
     priorityModal,

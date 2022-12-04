@@ -1,22 +1,24 @@
 <template>
-    <div class="file">
-        <div>{{ info }}</div>
-    </div>
+    <section class="file">
+       
+      
+    </section>
 </template>
   
 <script>
 export default {
     name: "file",
     props: {
-        info: String,
+        info: Object,
     },
     data() {
         return {};
     },
+    created(){
+
+    },
     methods: {
-        onChangeTaskText(ev) {
-            // this.$emit('update', { prop: 'taskTitle', toUpdate: ev.target.innerText })
-        }
+
     }
 }
 </script>

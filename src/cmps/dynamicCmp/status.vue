@@ -1,11 +1,12 @@
 <template>
   <section>
+    <!-- todo return in computed the binding class -->
     <p class="status" @click="toggleStatusOptions" :class="{
       'status-done': info.status === 'Done',
-      'status-working': info.status === 'Working on it',
+      'status-working': info.status === 'Working',
       'status-stuck': info.status === 'Stuck',
-      'status-empty': info.status === '',
-    }">{{ info.status }}</p>
+      'status-empty': info.status === 'Empty',
+    }">{{ formattedStatus }}</p>
     <el-collapse-transition>
       <div class="status-picker-modal" v-if="statusModalOpen">
         <status-modal @setStatus="setStatus"></status-modal>
@@ -26,17 +27,23 @@ export default {
       statusModalOpen: false,
     };
   },
-  mounted() {},
+  mounted() { },
   methods: {
     toggleStatusOptions() {
-      console.log("toggle status options");
       this.statusModalOpen = !this.statusModalOpen;
-      console.log("this.statusModalOpen", this.statusModalOpen);
     },
     setStatus(statusOpt) {
       this.toggleStatusOptions();
       this.$emit("update", { prop: "status", toUpdate: statusOpt });
     },
+  },
+  computed: {
+    formattedStatus() {
+      if (this.info.status === 'Working') return 'Working on it'
+      else if (this.info.status === 'Empty') return ''
+      else return this.info.status
+    }
+
   },
   components: {
     statusModal,

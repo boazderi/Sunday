@@ -69,7 +69,6 @@ async function addBoardMsg(boardId, txt) {
 }
 
 async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
-    // console.log(groupId, toUpdate)
     var currBoard = await getById(boardId)
 
     if (taskId) {
@@ -82,7 +81,6 @@ async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
     } else {
         currBoard[prop] = toUpdate
     }
-    console.log(currBoard.groups);
     save(currBoard)
     return currBoard
 }
@@ -127,6 +125,7 @@ async function duplicateTasks({ boardId, selectedTasks }) {
             if (task) tasks.push(task)
         })
     })
+
     save(currBoard)
     return currBoard
 }
@@ -162,9 +161,11 @@ function _getEmptyTask(taskTitle) {
     return {
         id: utilService.makeId(),
         taskTitle,
-        status: '',
+        status: 'Empty',
+        priority: 'EMPTY',
         textNote: '',
         members: [],
+        comments: []
     }
 }
 
@@ -175,7 +176,6 @@ function _getEmptyGroup() {
         title: 'New Group',
         color: 'green',
         tasks: [],
-
     }
 }
 
@@ -245,7 +245,7 @@ function getEmptyBoard() {
 //             "tasks": [{
 //                     "id": "t2yn4E",
 //                     "taskTitle": "without comments",
-//                     "status": "IN WORK",
+//                     "status": "Working",
 //                     "members": [{
 //                             "id": "u101",
 //                             "fullname": "Tal Liber",
@@ -267,7 +267,7 @@ function getEmptyBoard() {
 //                 {
 //                     "id": "t2yvg",
 //                     "taskTitle": "With comments",
-//                     "status": "DONE",
+//                     "status": "Done",
 //                     "members": [{
 //                             "id": "u101",
 //                             "fullname": "Tal Liber",
