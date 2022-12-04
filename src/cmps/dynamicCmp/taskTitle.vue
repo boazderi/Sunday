@@ -1,9 +1,8 @@
 <template>
-    <section class="task-title flex align-center space-between">
+    <section class="task-title sticky flex align-center space-between sticky">
         <div class="task-title-sub flex space-between">
-            <div class="flex align-center content-edit radius-4" contenteditable @blur="onChangeTaskTitle">{{
-                    info.taskTitle
-            }}
+            <div class="flex align-center content-edit radius-4" contenteditable @blur="onChangeTaskTitle">
+                {{ info.taskTitle }}
             </div>
 
             <span class="open-con flex align-center space-between radius-4" :style="{ color: `#323338` }"

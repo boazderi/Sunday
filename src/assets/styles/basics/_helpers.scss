@@ -117,11 +117,11 @@
     transform: translate(-50%, -50%);
 }
 
-.sticky {
-    position: sticky;
-    left: 0;
-}
-
+// .sticky {
+//     position: sticky;
+//     z-index: 50;
+//     left: 0;
+// }
 // text helpers
 .uppercase {
     text-transform: uppercase;
@@ -137,7 +137,8 @@
 }
 
 // icon helpers
-.icon,.svg {
+.icon,
+.svg {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,24 +146,26 @@
 }
 
 // border helpers
-.radius-4{
+.radius-4 {
     border-radius: 4px;
 }
-.radius-6{
+
+.radius-6 {
     border-radius: 6px;
 }
-.rad-tl-6{
-border-top-left-radius: 6px;
+
+.rad-tl-6 {
+    border-top-left-radius: 6px;
 }
-.rad-bl-6{
-    border-bottom-left-radius: 6px; 
+
+.rad-bl-6 {
+    border-bottom-left-radius: 6px;
 }
 
 // full-width
-.full-width{
+.full-width {
     width: 100%;
 }
-
 
 // hover helpers
 .outboard-hover:hover {
@@ -173,7 +176,6 @@ border-top-left-radius: 6px;
 .board-hover:hover {
     background-color: $table-hover-clr;
 }
-
 
 // Media helpers
 // 

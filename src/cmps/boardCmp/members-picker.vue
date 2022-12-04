@@ -24,7 +24,6 @@ export default {
             var taskMembers = JSON.parse(JSON.stringify(this.task.members)) //DEEP COPY TO RETURN THE UPDATED MEMBERS ARRAY
             const idx = taskMembers.findIndex(taskMember => taskMember.id === memberId)
             taskMembers.splice(idx, 1)
-            // console.log(taskMembers);
             this.$emit('update', { toUpdate: taskMembers })
         },
         onAddMember(member) {

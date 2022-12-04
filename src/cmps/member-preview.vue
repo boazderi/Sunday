@@ -1,42 +1,22 @@
 <template>
     <div v-if="member && member.imgUrl" :style="{ 'background-image': 'url(' + member.imgUrl + ')' }"
-        class="member-priview" @click="print">
+        class="member-preview" @click="print">
     </div>
-    <div v-else :style="{ 'background-color': member.color }" class="member-priview" @click="print">
+    <div v-else :style="{ 'background-color': member.color }" class="member-preview" @click="print">
         {{ member.fullname.substring(0, 1).toUpperCase() }}
     </div>
 </template>
   
 <script>
 export default {
-    name: "member-priview",
-    props: { 
+    name: "member-preview",
+    props: {
         member: Object,
     },
     computed: {
         memberColor() {
-            return this.member.color;
+            return this.member.color
         },
     },
-    methods: {
-        print() {
-            // console.log(this.member);
-        }
-    }
-};
-</script>
-  
-<style>
-.member-priview {
-    color: #fff;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-inline-start: -10px;
-    background-size: cover;
-    background-position: center;
 }
-</style>
+</script>

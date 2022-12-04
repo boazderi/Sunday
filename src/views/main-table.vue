@@ -3,7 +3,7 @@
     <section class="group-list">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
         @updateSelectedTasks="updateSelectedTasks" />
-      <div class="flex align-center space-even new-group">
+      <div class="new-group-btn flex align-center space-even">
         <span class="svg" v-icon="'add'"></span>
         <button @click="onAddGroup">Add new group</button>
       </div>
@@ -89,6 +89,6 @@ export default {
     bottomCrud,
     draggable,
   },
-
-};
+  emits: ["updateSelectedTasks"]
+}
 </script>

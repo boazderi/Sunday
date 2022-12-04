@@ -2,6 +2,9 @@
   <!-- todo change handle the hovering that will cover and not push -->
   <section :class="getClass">
 
+    <!-- <div class="toggleWorkspace flex center align-center" @click="toggleWorkspace">
+      <span v-icon="arrowSide"></span>
+    </div> -->
     <div class="toggleWorkspace flex center align-center" @click="toggleWorkspace">
       <span v-if="isOpen" v-icon="'arrowLeft'"></span>
       <span v-else v-icon="'arrowRight'"></span>
@@ -77,6 +80,11 @@ export default {
     },
     getClass() {
       return ` ${this.isOpen ? 'isOpen' : ''} workspace flex column`
+    },
+    arrowSide() {
+      console.log(this.isOpen)
+      if (this.isOpen) return 'arrowLeft'
+      return 'arrowRight'
     }
 
   }

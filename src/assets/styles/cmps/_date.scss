@@ -1,3 +1,7 @@
+:root {
+    --el-border-color-light: transparent;
+}
+
 .el-icon.el-input__icon {
     display: none;
 }
@@ -5,6 +9,7 @@
 .el-input__inner {
     text-align: center;
     --el-input-inner-height: 27px;
+    background-color: white;
     &:hover {
         color: $link-color;
     }
