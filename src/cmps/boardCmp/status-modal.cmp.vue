@@ -23,6 +23,13 @@ export default {
   },
   methods: {
     setStatus(statusOpt) {
+
+      // todo verify its not breaking that area
+      if (statusOpt === 'Working on it') {
+        statusOpt = 'Working'
+      } else if (!statusOpt) {
+        statusOpt = 'Empty'
+      }
       this.$emit("setStatus", statusOpt);
     },
   },

@@ -24,9 +24,10 @@
             </div>
             <div class="task-border" :style="{ 'background-color': groupInfo.color }"></div>
             <side class="cell" :groupId="groupId" :taskId="element.id" :color="groupInfo.color"></side>
-
+            <!-- todo adjust the architecture of the cell wrapper section and resolve the problem  -->
+            <!-- :class="['cell', cmp]" -->
             <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
-              <component :is="cmp" :info="element" @update="updateTask($event, element.id)" />
+              <component  :is="cmp" :info="element" @update="updateTask($event, element.id)" />
             </section>
           </section>
         </template>
@@ -48,10 +49,14 @@
       <!--  progress by progress array -->
       <section class="progress-grid group-grid">
         <div v-for="n in 4" class="empty" :key="n"></div>
-        <div class="cell" v-for="(item, idx) in progress" :key="idx">
-          {{ item }}
-        </div>
+
+        <status-progress class="cell" :group="groupInfo" ></status-progress>
+        <div class="cell "></div>
+        <priority-progress class="cell" :group="groupInfo"></priority-progress>
+        <div class="cell  " v-for="n in 3" :key="n"></div>
+      
       </section>
+
     </section>
   </section>
 </template>
@@ -65,8 +70,11 @@ import status from "../dynamicCmp/status.vue";
 import priority from "../dynamicCmp/priority.vue";
 import textNote from "../dynamicCmp/text.vue"
 import groupTitle from "./group-title.vue";
-import { eventBus } from "../../services/event-bus.service";
+import statusProgress from "./status-progress.vue"
+import priorityProgress from "./priority-progress.vue"
 import draggable from "vuedraggable";
+
+import { eventBus } from "../../services/event-bus.service";
 
 export default {
   name: "group-list",
@@ -86,7 +94,6 @@ export default {
         "file",
       ],
       labels: ["Tasks", "Status", "Person", "Priority", "Date", "Text", "File"],
-      progress: ["status", "", "priority", "", "", ""],
       groupId: null,
     };
   },
@@ -172,6 +179,8 @@ export default {
     textNote,
     groupTitle,
     draggable,
+    statusProgress,
+    priorityProgress
   },
 };
 </script>

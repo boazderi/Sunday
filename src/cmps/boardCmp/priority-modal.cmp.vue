@@ -19,12 +19,12 @@
 export default {
   data() {
     return {
-      priorityOptions: ['CRITICAL', 'HIGH', 'MEDIUM','LOW', ''],
+      priorityOptions: ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', ''],
     };
   },
   methods: {
     setPriority(priorityOpt) {
-      console.log(priorityOpt);
+      if (!priorityOpt) priorityOpt = 'EMPTY'
       this.$emit("setPriority", priorityOpt);
     },
   },
