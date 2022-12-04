@@ -30,7 +30,6 @@ export default {
   mounted() { },
   methods: {
     toggleStatusOptions() {
-      console.log("toggle status options");
       this.statusModalOpen = !this.statusModalOpen;
     },
     setStatus(statusOpt) {

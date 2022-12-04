@@ -67,7 +67,10 @@ export const boardStore = {
             const newBoard = state.boards.find(board => board._id === boardId)
             state.currBoard = newBoard
         },
-
+        changeDragged(state, { groupId, toUpdate }) {
+            const idx = state.currBoard.groups.findIndex(group => group.id === groupId)
+            state.currBoard.groups[idx].tasks = toUpdate
+        }
     },
     actions: {
         async addBoard(context, { board }) {
@@ -81,7 +84,6 @@ export const boardStore = {
             }
         },
         async updateCurrBoard({ commit, state }, { groupId, taskId, prop, toUpdate }) {
-            // console.log(groupId, toUpdate);
             try {
                 const updatedBoard = await boardService.updateBoard(state.currBoard._id, groupId, taskId, prop, toUpdate)
                 commit({ type: 'updateBoard', board: updatedBoard })
@@ -90,17 +92,15 @@ export const boardStore = {
                 throw err
             }
         },
-        // async updateDraggedGroup({ commit, state }, { groupId, groupToUpdate }) {
-        //     console.log(groupId, groupToUpdate);
-        //     try {
-        //         // const updatedBoard = await boardService.updateDraggedGroup(state.currBoard._id, groupId, groupToUpdate)
-        //         // commit({ type: 'updateBoard', board: updatedBoard })
-        //     } catch (err) {
-        //         console.log('boardStore: Error in updateBoard', err)
-        //         throw err
-        //     }
-        // },
-
+        async updateDraggedGroup({ commit, state }, { groupId, toUpdate }) {
+            commit({ type: 'changeDragged', groupId, toUpdate })
+            try {
+                const updatedBoard = await boardService.save(state.currBoard)
+            } catch (err) {
+                console.log('boardStore: Error in updateBoard', err)
+                throw err
+            }
+        },
         async addNewTask({ commit, state }, { payload }) {
             try {
                 payload.boardId = state.currBoard._id
