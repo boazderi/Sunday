@@ -22,6 +22,7 @@
     border-radius: 2px;
     cursor: pointer;
     margin-bottom: 10px;
+
     &:hover {
         opacity: 90%;
     }
@@ -47,4 +48,13 @@
 
 .status-empty {
     background-color: $bg-status-empty;
+}
+
+.ghost {
+    opacity: 0.5;
+    background: grey;
+}
+
+.is-move {
+    border: 1px dotted $primary-border-clr;
 }

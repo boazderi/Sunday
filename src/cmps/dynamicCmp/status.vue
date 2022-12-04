@@ -15,7 +15,7 @@
 </template>
   
 <script>
-import statusModal from "../boardCmp/status-modal.cmp.vue"
+import statusModal from "../boardCmp/status-modal.cmp.vue";
 export default {
   name: "status",
   props: {
@@ -26,21 +26,21 @@ export default {
       statusModalOpen: false,
     };
   },
-  mounted() { },
+  mounted() {},
   methods: {
     toggleStatusOptions() {
       console.log("toggle status options");
       this.statusModalOpen = !this.statusModalOpen;
-      console.log('this.statusModalOpen', this.statusModalOpen);
+      console.log("this.statusModalOpen", this.statusModalOpen);
     },
     setStatus(statusOpt) {
-      this.toggleStatusOptions()
-      this.$emit('update', { prop: 'status', toUpdate: statusOpt })
-    }
+      this.toggleStatusOptions();
+      this.$emit("update", { prop: "status", toUpdate: statusOpt });
+    },
   },
   components: {
-    statusModal
-  }
+    statusModal,
+  },
 };
 </script>
 

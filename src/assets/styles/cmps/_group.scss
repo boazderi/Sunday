@@ -71,6 +71,7 @@
                 opacity: 1;
             }
         }
+
         .open-con {
             opacity: 1;
         }
@@ -197,4 +198,9 @@
 .checkbox {
     width: 14px;
     height: 16px;
+}
+
+.on-drag {
+    border: 1px dotted $primary-border-clr;
+    cursor: move;
 }
