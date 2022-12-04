@@ -1,9 +1,10 @@
 <template>
   <section class="group-title-dropdown flex column align-center">
-
-    <el-card class="">
-      <div class="flex align-center action" v-for="groupOpt in groupOpts" :key="groupOpt"
+    <el-card >
+      <div class="flex align-center action" v-for="(groupOpt,index) in groupOpts" :key="groupOpt"
         @click="setActionByCase(groupOpt.type)">
+
+        <span class="svg" v-icon="icons[index]" ></span>
         <span>{{ groupOpt.desc }}</span>
       </div>
 
@@ -23,7 +24,8 @@ export default {
       groupOpts: [{ desc: 'Collapse this group', type: 'collapse' },
       { desc: "Duplicate this group", type: 'duplicate' },
       { desc: "Delete", type: 'delete' }],
-    };
+      icons:['collapse','duplicateGrp','deleteGrp']
+    }
   },
   methods: {
     setActionByCase(type) {
@@ -40,22 +42,10 @@ export default {
         eventBus.emit('collapseGroup',this.groupId)
           break;
       }
-
     }
-
   },
 
 }
 </script>
 
-<style>
 
-</style>
-
-
-     <!-- :class="{
-          'status-done': statusOpt === 'Done',
-          'status-working': statusOpt === 'Working on it',
-          'status-stuck': statusOpt === 'Stuck',
-          'status-empty': !statusOpt,
-        }" -->

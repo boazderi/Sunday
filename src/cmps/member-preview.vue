@@ -10,7 +10,7 @@
 <script>
 export default {
     name: "member-priview",
-    props: {
+    props: { 
         member: Object,
     },
     computed: {

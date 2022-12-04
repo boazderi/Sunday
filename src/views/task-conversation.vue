@@ -8,11 +8,11 @@
       </button>
 
       <section class="task-preview flex align-center space-between">
-        <h3>{{task.taskTitle}}</h3>
+        <h3>{{ task.taskTitle }}</h3>
 
         <div class="add-member flex align-center">
-          <!-- todo render the byMember pic -->
-          <div class="member-pic">Mpic</div>
+          <!-- todo render the user/active-user pic -->
+          <div class="member-pic">Upic</div>
           <button>
             <span class="svg" v-icon="'moreMed'"></span>
           </button>
@@ -63,10 +63,53 @@
           </div>
         </div>
 
-        <section class="comment-preview" v-for="comment in task.comments" :key="comment.id">
-          <pre>{{comment}}</pre>
+        <section class="comment-preview flex column" v-for="comment in task.comments" :key="comment.id">
+
+          <header class="comment-header flex align-center space-between">
+            <div class="wrapper1 flex align-center">
+              <!-- todo render the user/active-user pic -->
+
+              <member-preview :member="comment.byMember"></member-preview>
+              <!-- <div>Upic</div> -->
+              <span>{{ comment.byMember.fullname }} </span>
+              <div class="dot"></div>
+            </div>
+
+            <div class="wrapper2 flex align-center">
+              <div class="post-time">
+                <span class="svg" v-icon="'timer'"></span>
+                <!-- todo render post time by computed-->
+              </div>
+
+              <span class="svg" v-icon="'notificationMember'"></span>
+              <span class="svg" v-icon="'moreMember'"></span>
+            </div>
+          </header>
+          <!-- commantTxt -->
+          <p class="comment-txt"> {{ comment.txt }} </p>
+          <!--  -->
+          <div class="like-replay flex align-center">
+            <button class="like flex align-center center">
+              <span class="svg" v-icon="'like'"></span>
+              Like</button>
+            <button class=" flex align-center center">
+              <span class="svg" v-icon="'reply'"></span>
+              Reply</button>
+          </div>
+
         </section>
       </section>
+      <!-- {
+  "id": "ZdPnm",
+  "txt": "also @yaronb please CR this",
+  "createdAt": 1590999817436,
+  "byMember": {
+    "_id": "u101",
+    "fullname": "Tal Liber",
+    "imgUrl": "http://some-img",
+    "color": "#8338ec"
+  }
+} -->
 
     </section>
 
@@ -74,6 +117,7 @@
 </template>
 
 <script>
+import memberPreview from '../cmps/member-preview.vue'
 
 
 export default {
@@ -109,9 +153,9 @@ export default {
       })
     }
   },
-//   components:{
-// 
-//   }
+  components: {
+    memberPreview
+  }
 }
 
 </script>

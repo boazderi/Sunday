@@ -121,9 +121,10 @@ async function duplicateTasks({ boardId, selectedTasks }) {
 }
 async function duplicateGroup({ boardId, groupId }) {
     var currBoard = await getById(boardId)
-    const dupGroup = currBoard.groups.find(g => g.id === groupId)
+    const dupGroup = JSON.parse(JSON.stringify(currBoard.groups.find(g => g.id === groupId))) 
     dupGroup.id = utilService.makeId()
-    dupGroup.tasks.id = utilService.makeId()
+
+    dupGroup.tasks.forEach(t => t.id = utilService.makeId())
     currBoard.groups.push(dupGroup)
     save(currBoard)
     return currBoard
@@ -178,71 +179,77 @@ function getEmptyBoard() {
 // ;
 // (async() => {
 //     await storageService.post(STORAGE_KEY, {
-//         "_id": "b101",
-//         "title": "Sprint4 - Project Mgmt",
-//         "description": "This board will be used for collaboration management on the Funday app project",
-//         "createdAt": 1589983468418,
-//         "createdBy": {
+//     "_id": "b101",
+//     "title": "Sprint4 - Project Mgmt",
+//     "description": "This board will be used for collaboration management on the Funday app project",
+//     "createdAt": 1589983468418,
+//     "createdBy": {
+//         "id": "u101",
+//         "fullname": "Tal Liber",
+//         "imgUrl": "http://some-img"
+//     },
+//     "members": [
+//         {
 //             "id": "u101",
 //             "fullname": "Tal Liber",
-//             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+//             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//             "color": "#8338ec"
 //         },
-//         "members": [{
-//                 "id": "u101",
-//                 "fullname": "Tal Liber",
-//                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
-//                 "color": "#8338ec"
-//             },
-//             {
-//                 "id": "u102",
-//                 "fullname": "Arnon Arditi",
-//                 "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
-//                 "color": "#8338ec"
-//             },
-//             {
-//                 "id": "u103",
-//                 "fullname": "Boaz Deri",
-//                 "imgUrl": "https://randomuser.me/api/portraits/men/4.jpg",
-//                 "color": "#3a86ff"
-//             },
-//             {
-//                 "id": "u104",
-//                 "fullname": "Tal Amit",
-//                 "color": "#ff006e"
-//             }
-//         ],
-//         "activities": [{
+//         {
+//             "id": "u102",
+//             "fullname": "Arnon Arditi",
+//             "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//             "color": "#8338ec"
+//         },
+//         {
+//             "id": "u103",
+//             "fullname": "Boaz Deri",
+//             "imgUrl": "https://randomuser.me/api/portraits/men/4.jpg",
+//             "color": "#3a86ff"
+//         },
+//         {
+//             "id": "u104",
+//             "fullname": "Tal Amit",
+//             "color": "#ff006e"
+//         }
+//     ],
+//     "activities": [
+//         {
 //             "id": "a101",
 //             "txt": "Changed Color",
 //             "createdAt": 154514,
 //             "byMember": {
 //                 "id": "u101",
 //                 "fullname": "Tal Liber",
-//                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+//                 "imgUrl": "http://some-img"
 //             },
 //             "task": {
 //                 "id": "c101",
 //                 "title": "Replace Logo"
 //             }
-//         }],
-//         "groups": [{
+//         }
+//     ],
+//     "groups": [
+//         {
 //             "id": "gy5LnM",
 //             "title": "Frontend",
 //             "color": "#579bfc",
-//             "tasks": [{
+//             "tasks": [
+//                 {
 //                     "id": "t2yn4E",
 //                     "taskTitle": "without comments",
 //                     "status": "IN WORK",
-//                     "members": [{
+//                     "members": [
+//                         {
 //                             "id": "u101",
 //                             "fullname": "Tal Liber",
-//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                             "imgUrl": "https://www.google.com",
 //                             "color": "#8338ec"
 //                         },
 //                         {
 //                             "id": "u102",
 //                             "fullname": "Arnon Arditi",
-//                             "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                             "imgUrl": "https://www.google.com",
 //                             "color": "#3a86ff"
 //                         }
 //                     ],
@@ -254,34 +261,49 @@ function getEmptyBoard() {
 //                     "id": "t2yvg",
 //                     "taskTitle": "With comments",
 //                     "status": "DONE",
-//                     "members": [{
+//                     "members": [
+//                         {
 //                             "id": "u101",
 //                             "fullname": "Tal Liber",
-//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                             "imgUrl": "https://www.google.com",
 //                             "color": "#8338ec"
 //                         },
 //                         {
 //                             "id": "u102",
 //                             "fullname": "Arnon Arditi",
-//                             "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                             "imgUrl": "https://www.google.com",
 //                             "color": "#3a86ff"
 //                         }
 //                     ],
 //                     "date": "2022-03-28T21:00:00.000Z",
 //                     "priority": "LOW",
-//                     "comments": [{
-//                         "id": "ZdPnm",
-//                         "txt": "also @yaronb please CR this",
-//                         "createdAt": 1590999817436,
-//                         "byMember": {
-//                             "_id": "u101",
-//                             "fullname": "Tal Liber",
-//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
-//                             "color": "#8338ec"
+//                     "comments": [
+//                         {
+//                             "id": "ZdPnm",
+//                             "txt": "also @yaronb please CR this",
+//                             "createdAt": 1590999817436,
+//                             "byMember": {
+//                                 "_id": "u101",
+//                                 "fullname": "Tal Liber",
+//                                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                                 "color": "#8338ec"
+//                             }
+//                         },
+//                         {
+//                             "id": "ZdPwa",
+//                             "txt": "Doda with didi and baba",
+//                             "createdAt": 1590999817436,
+//                             "byMember": {
+//                                 "id": "u102",
+//                                 "fullname": "Arnon Arditi",
+//                                 "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                                 "color": "#8338ec"
+//                             }
 //                         }
-//                     }]
+//                     ]
 //                 }
 //             ]
-//         }]
-//     })
+//         }
+//     ]
+// })
 // })()
