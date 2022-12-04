@@ -137,7 +137,11 @@ export default {
       eventBus.emit("toggleAllTasksCheckbox", this.groupId);
     },
     log: function (evt, arr) {
-      window.console.log(evt);
+      this.$store.dispatch({
+        type: "updateDraggedGroup",
+        groupId: this.groupInfo.id,
+        toUpdate: this.groupTasks
+      })
     },
   },
   computed: {

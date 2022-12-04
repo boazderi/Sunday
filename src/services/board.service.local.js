@@ -69,7 +69,6 @@ async function addBoardMsg(boardId, txt) {
 }
 
 async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
-    // console.log(groupId, toUpdate)
     var currBoard = await getById(boardId)
 
     if (taskId) {
@@ -82,7 +81,6 @@ async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
     } else {
         currBoard[prop] = toUpdate
     }
-    // console.log(currBoard.groups);
     save(currBoard)
     return currBoard
 }
@@ -165,6 +163,8 @@ function _getEmptyTask(taskTitle) {
         status: '',
         textNote: '',
         members: [],
+        textNote: '',
+        comments: []
     }
 }
 
@@ -175,7 +175,6 @@ function _getEmptyGroup() {
         title: 'New Group',
         color: 'green',
         tasks: [],
-
     }
 }
 
@@ -191,8 +190,8 @@ function getEmptyBoard() {
 // ;
 // (async() => {
 //     await storageService.post(STORAGE_KEY, {
-//         "_id": "b101",
-//         "title": "Sprint4 - Project Mgmt",
+//         "_id": "b102",
+//         "title": "Second Board Demo",
 //         "description": "This board will be used for collaboration management on the Funday app project",
 //         "createdAt": 1589983468418,
 //         "createdBy": {

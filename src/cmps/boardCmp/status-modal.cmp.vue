@@ -23,7 +23,6 @@ export default {
   },
   methods: {
     setStatus(statusOpt) {
-      console.log(statusOpt);
       this.$emit("setStatus", statusOpt);
     },
   },

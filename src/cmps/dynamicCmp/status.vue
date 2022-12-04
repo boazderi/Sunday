@@ -26,12 +26,10 @@ export default {
       statusModalOpen: false,
     };
   },
-  mounted() {},
+  mounted() { },
   methods: {
     toggleStatusOptions() {
-      console.log("toggle status options");
       this.statusModalOpen = !this.statusModalOpen;
-      console.log("this.statusModalOpen", this.statusModalOpen);
     },
     setStatus(statusOpt) {
       this.toggleStatusOptions();
