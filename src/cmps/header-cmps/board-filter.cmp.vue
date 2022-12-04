@@ -1,9 +1,16 @@
 <template>
   <section class="board-filter flex">
     <div class="flex new-task">
-      <button class="new-task-btn" @click="onAddTask">New Item</button>
-      <button class="new-task-arrow" style="  {  color: white;  }
-        " v-icon="'arrowDown'"></button>
+      <button class="new-task-btn" @click="onAddTask">New Task</button>
+      <button
+        class="new-task-arrow"
+        style="
+           {
+            color: white;
+          }
+        "
+        v-icon="'arrowDown'"
+      ></button>
     </div>
     <button class="flex align-center board-filter-item outboard-hover">
       <span v-icon="'search'"></span> Search
@@ -26,9 +33,12 @@
     </el-tooltip>
     <el-tooltip content="Hidden columns">
       <button class="flex align-center board-filter-item outboard-hover">
-        <span v-icon="'hide'"></span> Hide
+        <span v-icon="'hide'"></span> &nbsp;Hide
       </button>
     </el-tooltip>
+      <button class="flex align-center board-filter-item outboard-hover">
+        <span v-icon="'more'"></span>
+      </button>
   </section>
 </template>
 
@@ -36,25 +46,22 @@
 <script>
 export default {
   data() {
-    return {
-
-    }
+    return {};
   },
   methods: {
     onAddTask() {
-      const currBoard = this.$store.getters.getCurrBoard
-      const groupId = currBoard.groups[0].id
+      const currBoard = this.$store.getters.getCurrBoard;
+      const groupId = currBoard.groups[0].id;
       this.$store.dispatch({
-        type: 'addNewTask', payload: {
-          taskTitle: 'New Item',
-          groupId: groupId
-        }
-      })
-    }
+        type: "addNewTask",
+        payload: {
+          taskTitle: "New Task",
+          groupId: groupId,
+        },
+      });
+    },
   },
-
-
-}
+};
 </script>
 
 from group cmp

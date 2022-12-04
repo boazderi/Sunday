@@ -10,7 +10,7 @@
 
 .views-seprator {
     height: 1rem;
-    border-right: 1px solid $primary-border-clr;
+    border-right: 1px solid $primary-hover-clr;
     align-self: center;
 }
 
@@ -22,6 +22,20 @@
         outline: 1px solid $primary-border-clr;
     }
 }
+
+.board-name-icon{
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    margin-left: 2px;
+}
+
+.last-seen-btn, .invite-btn{
+    height: 32px;
+    border-radius: 4px;
+
+}
+
 
 .board-nav-container {
     margin-top: 8px;

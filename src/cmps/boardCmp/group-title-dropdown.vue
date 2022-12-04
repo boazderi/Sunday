@@ -51,11 +51,3 @@ export default {
 <style>
 
 </style>
-
-
-     <!-- :class="{
-          'status-done': statusOpt === 'Done',
-          'status-working': statusOpt === 'Working on it',
-          'status-stuck': statusOpt === 'Stuck',
-          'status-empty': !statusOpt,
-        }" -->

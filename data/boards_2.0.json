@@ -69,6 +69,7 @@
                 ],
                 "date": "2022-03-28T21:00:00.000Z",
                 "priority": "HIGH",
+                "textNote": "",
                 "comments": []
             },
             {
@@ -90,6 +91,7 @@
                 ],
                 "date": "2022-03-28T21:00:00.000Z",
                 "priority": "LOW",
+                "textNote": "sass is good",
                 "comments": [{
                     "id": "ZdPnm",
                     "txt": "also @yaronb please CR this",
