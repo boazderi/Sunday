@@ -58,6 +58,7 @@ export default {
             this.isDropOpen = false
         },
         onChangeGroupColor({ toUpdate }) {
+            this.isModalOpen = !this.isModalOpen
             this.$emit('update', { prop: 'color', toUpdate })
         }
     },

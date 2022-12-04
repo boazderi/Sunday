@@ -1,5 +1,5 @@
 <template>
-    <div class="side-indicator">
+    <div class="side-indicator sticky">
         <input :checked="false" ref="checkbox" class="checkbox" type="checkbox" @change="toggleSelected($event)" />
     </div>
 </template>

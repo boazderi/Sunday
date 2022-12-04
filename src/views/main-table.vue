@@ -1,10 +1,9 @@
 <template>
   <section v-if="board" class="main-table ">
-
     <section class="group-list">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
         @updateSelectedTasks="updateSelectedTasks" />
-      <div class="flex align-center space-even new-group">
+      <div class="new-group-btn flex align-center space-even">
         <span class="svg" v-icon="'add'"></span>
         <button @click="onAddGroup">Add new group</button>
       </div>
@@ -22,6 +21,7 @@
 import group from "../cmps/boardCmp/group.vue"
 import bottomCrud from "../cmps/boardCmp/bottom-crud.vue"
 import { eventBus } from "../services/event-bus.service.js"
+import draggable from "vuedraggable";
 
 export default {
   name: "App",
@@ -86,9 +86,9 @@ export default {
   },
   components: {
     group,
-    bottomCrud
-
+    bottomCrud,
+    draggable,
   },
-
-};
+  emits: ["updateSelectedTasks"]
+}
 </script>

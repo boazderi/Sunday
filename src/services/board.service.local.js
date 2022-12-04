@@ -17,7 +17,8 @@ export const boardService = {
     duplicateTasks,
     duplicateGroup,
     deleteGroup,
-    addGroup
+    addGroup,
+    // updateDraggedGroup
 }
 window.cs = boardService
 
@@ -68,7 +69,9 @@ async function addBoardMsg(boardId, txt) {
 }
 
 async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
+    // console.log(groupId, toUpdate)
     var currBoard = await getById(boardId)
+
     if (taskId) {
         const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
         const taskIdx = currBoard.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
@@ -79,11 +82,19 @@ async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
     } else {
         currBoard[prop] = toUpdate
     }
-
+    console.log(currBoard.groups);
     save(currBoard)
     return currBoard
 }
+// async function updateDraggedGroup(boardId, groupToUpdate) {
+//     var currBoard = await getById(boardId)
 
+//     const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
+//     currBoard.splice(groupIdx, 1, groupToUpdate)
+
+//     save(currBoard)
+//     return currBoard
+// }
 async function addNewTask({ boardId, groupId, taskTitle }) {
     var currBoard = await getById(boardId)
     const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
