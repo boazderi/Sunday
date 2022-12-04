@@ -165,6 +165,8 @@ function _getEmptyTask(taskTitle) {
         status: '',
         textNote: '',
         members: [],
+        textNote:'',
+        comments:[]
     }
 }
 
@@ -175,6 +177,7 @@ function _getEmptyGroup() {
         title: 'New Group',
         color: 'green',
         tasks: [],
+       
 
     }
 }

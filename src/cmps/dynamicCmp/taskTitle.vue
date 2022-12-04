@@ -13,9 +13,11 @@
         <!-- todo add counter to the numbers of comments in the conversation icon -->
         <div class="conversation-wrapper flex align-center">
             <button v-if="!info.comments.length" class="svg" v-icon="'addConversation'" @click="goToConversation" />
+            
             <div v-else class="already-written">
-                <button  class="svg" v-icon="'addConversation'"
+                <button   class="svg" v-icon="'addConversation'"
                  @click="goToConversation" />
+                 <div class="counter flex center align-center">{{info.comments.length}}</div>
             </div>
         </div>
     </section>
