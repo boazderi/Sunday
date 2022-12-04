@@ -172,7 +172,6 @@ export default {
     },
     log: function (evt, arr) {
       window.console.log(evt);
-      console.log(evt.moved)
     },
   },
   computed: {
