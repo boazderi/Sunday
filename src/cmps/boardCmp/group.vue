@@ -1,78 +1,90 @@
 <template>
   <section class="group-container">
     <groupTitle :groupInfo="groupInfo" @update="updateTask" />
+
     <section class="group-content">
+
       <!-- render group labels by labels array -->
       <section class="group-grid labels-grid">
-        <div class="empty"></div>
-        <div class="task-border rad-tl-6" :style="{ 'background-color': groupInfo.color }"></div>
-        <div class="cell">
-          <input ref="checkbox" type="checkbox" class="checkbox" @change="setAllTasksInContext" />
+        <div class="empty sticky first"></div>
+        <div class="task-border sticky second rad-tl-6" :style="{ 'background-color': groupInfo.color }"></div>
+        <div class="sticky third  cell1">
+          <input ref="checkbox" type="checkbox" class="checkbox " @change="setAllTasksInContext" />
         </div>
-        <div class="cell" v-for="(label, idx) in labels" :key="idx">
+        <div class="sticky forth cell1"> Tasks</div>
+        <div class="cell1" v-for="(label, idx) in labels" :key="idx">
           {{ label }}
         </div>
       </section>
 
       <!-- render grid cells by cmpOrder array -->
-      <draggable v-model="groupTasks" v-bind="dragOptions" item-key="order" @change="log">
-        <template #item="{ element }">
+      <!-- <draggable v-model="groupTasks" v-bind="dragOptions" item-key="order" @change="log"> -->
+
+      <!-- <template #item="{ element }"> -->
+      <Container @drop="(e) => onTaskDrop(groupInfo.id, e)" group-name="task-item"
+        :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-item')" orientation="vertical"
+        :get-child-payload="getTaskPayload(groupInfo.id)">
+        <!-- <Container @drop="onDrop" group-name="task-item"
+        :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-item')"> -->
+        <!-- @drag-start="(e) => log('drag start', e)" -->
+        <Draggable v-for="task in groupTasks" :key="task.id">
           <section class="group-grid task-row">
-            <!-- todo-put in each cmp the cell class jsut if necc -->
-            <div class="more">
+
+            <div class="more sticky">
               <span class="svg" v-icon="'more'"></span>
             </div>
-            <div class="task-border" :style="{ 'background-color': groupInfo.color }"></div>
-            <side class="cell" :groupId="groupId" :taskId="element.id" :color="groupInfo.color"></side>
-            <!-- todo adjust the architecture of the cell wrapper section and resolve the problem  -->
-            <!-- :class="['cell', cmp]" -->
-            <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
-              <component :is="cmp" :info="element" @update="updateTask($event, element.id)" />
-            </section>
+            <div class="task-border sticky" :style="{ 'background-color': groupInfo.color }"></div>
+            <side :groupId="groupId" :taskId="task.id" :color="groupInfo.color"></side>
+
+            <component v-for="(cmp, idx) in cmpOrder" :key="idx" :is="cmp" :info="task"
+              @update="updateTask($event, task.id)" />
           </section>
-        </template>
-      </draggable>
+        </Draggable>
+      </Container>
+
+      <!-- </template>
+      </draggable> -->
 
       <!-- CRUD-ADD TASK -->
       <section class="add-task group-grid">
-        <div class="empty"></div>
-        <div class="task-border add-task rad-bl-6" :style="{ 'background-color': groupInfo.color }"></div>
-        <div class="cell">
+        <div class="empty sticky first"></div>
+        <div class="task-border sticky second add-task rad-bl-6" :style="{ 'background-color': groupInfo.color }"></div>
+        <div class="cell1 sticky third">
           <input type="checkbox" class="checkbox" disabled />
         </div>
-        <div class="input-wrapper flex align-center">
+        <div class="input-wrapper cell1 sticky forth">
           <input ref="addTask" @blur="onAddTask" class="flex align-center" type="text" placeholder="+ Add task" />
         </div>
       </section>
 
-      <!-- todo change to progress func -->
       <!--  progress by progress array -->
       <section class="progress-grid group-grid">
-        <div v-for="n in 4" class="empty" :key="n"></div>
-
+        <div v-for="pos in positions" :class="['sticky', 'empty', pos]" :key="pos"></div>
+        <!-- todo: change to cell1/cell2 -->
         <status-progress class="cell" :group="groupInfo"></status-progress>
-        <div class="cell "></div>
+        <div class="cell"></div>
         <priority-progress class="cell" :group="groupInfo"></priority-progress>
         <div class="cell  " v-for="n in 3" :key="n"></div>
-
       </section>
-
     </section>
   </section>
 </template>
   
 <script>
-import taskTitle from "../dynamicCmp/taskTitle.vue";
+import taskTitle from "../dynamicCmp/task-title.vue";
 import side from "../dynamicCmp/side.vue";
 import members from "../dynamicCmp/members.vue";
 import date from "../dynamicCmp/date.vue";
 import status from "../dynamicCmp/status.vue";
 import priority from "../dynamicCmp/priority.vue";
-import textNote from "../dynamicCmp/text.vue"
+import file from "../dynamicCmp/file.vue"
+import textNote from "../dynamicCmp/text-note.vue"
 import groupTitle from "./group-title.vue";
 import statusProgress from "./status-progress.vue"
 import priorityProgress from "./priority-progress.vue"
-import draggable from "vuedraggable";
+import timeline from "../dynamicCmp/timeline.vue";
+// import draggable from "vuedraggable";
+import { Container, Draggable } from "vue3-smooth-dnd"
 
 import { eventBus } from "../../services/event-bus.service";
 
@@ -85,15 +97,18 @@ export default {
     return {
       groupTasks: this.groupInfo.tasks,
       cmpOrder: [
-        "taskTitle",
+        "task-title",
         "status",
         "members",
         "priority",
         "date",
         "textNote",
         "file",
+        "timeline",
       ],
-      labels: ["Tasks", "Status", "Person", "Priority", "Date", "Text", "File"],
+      // helper for progressRow
+      positions: ['first', 'second', 'third', 'forth'],
+      labels: ["Status", "Person", "Priority", "Date", "Text", "File", "Timeline"],
       groupId: null,
     };
   },
@@ -144,12 +159,59 @@ export default {
       eventBus.emit("toggleAllTasksCheckbox", this.groupId);
     },
     log: function (evt, arr) {
+      // console.log(evt);
       this.$store.dispatch({
         type: "updateDraggedGroup",
         groupId: this.groupInfo.id,
-        toUpdate: this.groupTasks
+        toUpdate: this.groupTasks,
+      });
+    },
+    onTaskDrop(groupId, dropResult) {
+      // console.log(groupId, { dropResult });
+      this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
+
+      // this.applyDrag(this.groupTasks, dropResult)
+      this.$store.dispatch({
+        type: "updateDraggedGroup",
+        groupId: this.groupInfo.id,
+        tasksToUpdate: this.groupTasks
       })
     },
+    getTaskPayload(groupId) {
+      return index => {
+        const currBoard = this.$store.getters.getCurrBoard
+        return currBoard.groups.filter(group => group.id === groupId)[0].tasks[index]
+      }
+    },
+    onDrop(dropResult) {
+      this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
+      console.log(this.groupInfo.id, this.groupTasks);
+      // this.$store.dispatch({
+      //   type: "updateDraggedGroup",
+      //   groupId: this.groupInfo.id,
+      //   toUpdate: this.groupTasks,
+      // })
+    },
+    log(...params) {
+      console.log(...params)
+    },
+    applyDrag(arr, dragResult) {
+      const { removedIndex, addedIndex, payload } = dragResult
+      if (removedIndex === null && addedIndex === null) return arr
+
+      const result = [...arr]
+      let itemToAdd = payload
+
+      if (removedIndex !== null) {
+        itemToAdd = result.splice(removedIndex, 1)[0]
+      }
+
+      if (addedIndex !== null) {
+        result.splice(addedIndex, 0, itemToAdd)
+      }
+
+      return result
+    }
   },
   computed: {
     dragOptions() {
@@ -178,9 +240,12 @@ export default {
     priority,
     textNote,
     groupTitle,
-    draggable,
+    Draggable,
+    Container,
     statusProgress,
-    priorityProgress
+    priorityProgress,
+    timeline,
+    file
   },
-};
+}
 </script>

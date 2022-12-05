@@ -1,3 +1,77 @@
+// TASK SECTION
+// for all the dynamic content
+.task-row {
+    >* {
+        cursor: pointer;
+    }
+
+    .more {
+        left: 0px;
+
+        span {
+            // ?baba
+
+            opacity: 0;
+        }
+    }
+
+    &:hover {
+        background-color: $table-hover-clr;
+        box-shadow: 4px 3px 6px -3px #c3c6d4;
+
+        .more {
+            span {
+                opacity: 1;
+            }
+        }
+
+        .open-con {
+            opacity: 1;
+        }
+    }
+}
+
+// main content-border
+.task-border {
+    left: 40px;
+    background-color: $primary-clr;
+
+    &.add-task {
+        opacity: 0.5;
+        background: rgb(87, 155, 252);
+    }
+}
+
+// side cmp
+.side {
+    left: 46px;
+    border-bottom: 1px solid $primary-border-clr;
+    border-right: 1px solid $primary-border-clr;
+}
+
+// add-task sec
+.add-task {
+    .input-wrapper {
+        border-bottom: 1px solid $primary-border-clr;
+        border-inline-end: 0;
+        padding: 6px 10px;
+
+        input {
+            padding: 3px;
+            padding-inline-start: 22px;
+            width: 100%;
+
+            border: 0;
+
+            // todo focus visible on the border not workin
+            &:focus-visible {
+                border: 1px solid $primary-clr;
+            }
+        }
+    }
+}
+
+
 .box-card {
     display: flex;
     flex-direction: column;
@@ -12,94 +86,14 @@
     background-color: white;
 }
 
-
-// status
-
-.status-modal-item {
-    text-align: center;
-    color: white;
-    padding: 6px;
-    border-radius: 2px;
-    cursor: pointer;
-    margin-bottom: 10px;
-
-    &:hover {
-        opacity: 90%;
-    }
-}
-
-.status {
-    width: 100%;
-    color: white;
-    text-align: center;
-}
-
-.status-done {
-    background-color: $bg-status-done;
-}
-
-.status-working {
-    background-color: $bg-status-working;
-}
-
-.status-stuck {
-    background-color: $bg-status-stuck;
-}
-
-.status-empty {
-    background-color: $bg-status-empty;
-}
-// priority
-
-.priority-modal-item{
-    text-align: center;
-    color: white;
-    padding: 6px;
-    border-radius: 2px;
-    cursor: pointer;
-    margin-bottom: 10px;
-
-    &:hover {
-        opacity: 90%;
-    }
-}
-
-.priority{
-    width: 100%;
-    color: white;
-    text-align: center;
-}
-
-
-.priority-critical {
-    background-color: $bg-priority-critical;
-}
-
-.priority-high {
-    background-color: $bg-priority-high;
-}
-
-.priority-medium {
-    background-color: $bg-priority-medium;
-}
-
-.priority-low {
-    background-color: $bg-priority-low;
-
-}
-
-.priority-empty {
-    background-color: $bg-priority-empty;
-
-}
-
-.task-text{
+.task-text {
     cursor: text;
     height: 24px;
     width: 100%;
     line-height: 24px;
     margin: 0 6px;
-    &:hover{
+
+    &:hover {
         border: 1px solid $primary-border-clr;
         padding: 0 2px;
     }
@@ -113,4 +107,9 @@
 
 .is-move {
     border: 1px dotted $primary-border-clr;
+}
+
+.checkbox {
+    width: 14px;
+    height: 16px;
 }

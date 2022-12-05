@@ -1,6 +1,6 @@
 <template>
-    <section class="task-text-section">
-        <div class="task-text" contenteditable @blur="onChangeTaskText">
+    <section class="cell2">
+        <div class="task-text flex align-center center" contenteditable @blur="onChangeTaskText">
         {{ info.textNote || '&nbsp;' }}
         </div>
     </section>

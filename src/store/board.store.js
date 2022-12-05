@@ -67,9 +67,9 @@ export const boardStore = {
             const newBoard = state.boards.find(board => board._id === boardId)
             state.currBoard = newBoard
         },
-        changeDragged(state, { groupId, toUpdate }) {
+        changeDragged(state, { groupId, tasksToUpdate }) {
             const idx = state.currBoard.groups.findIndex(group => group.id === groupId)
-            state.currBoard.groups[idx].tasks = toUpdate
+            state.currBoard.groups[idx].tasks = tasksToUpdate
         }
     },
     actions: {
@@ -92,8 +92,8 @@ export const boardStore = {
                 throw err
             }
         },
-        async updateDraggedGroup({ commit, state }, { groupId, toUpdate }) {
-            commit({ type: 'changeDragged', groupId, toUpdate })
+        async updateDraggedGroup({ commit, state }, { groupId, tasksToUpdate }) {
+            commit({ type: 'changeDragged', groupId, tasksToUpdate })
             try {
                 const updatedBoard = await boardService.save(state.currBoard)
             } catch (err) {

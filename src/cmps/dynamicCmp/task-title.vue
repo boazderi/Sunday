@@ -1,6 +1,6 @@
 <template>
-    <section class="task-title sticky flex align-center space-between sticky">
-        <div class="task-title-sub flex space-between">
+    <section class="task-title cell1  space-between sticky">
+        <div class="task-title-sub fully flex align-center space-between">
             <div class="flex align-center content-edit radius-4" contenteditable @blur="onChangeTaskTitle">
                 {{ info.taskTitle }}
             </div>
@@ -11,7 +11,7 @@
                 open</span>
         </div>
         <!-- todo add counter to the numbers of comments in the conversation icon -->
-        <div class="conversation-wrapper flex align-center">
+        <div class="conversation-wrapper fully flex align-center center">
             <button v-if="!info.comments.length" class="svg" v-icon="'addConversation'" @click="goToConversation" />
             
             <div v-else class="already-written">
