@@ -1,15 +1,20 @@
 <template>
   <section class="flex flex-col align-center">
-    <div v-icon="'arrowUpFull'"></div>
     <el-card class="box-card">
-      <div v-for="priorityOpt in priorityOptions" :key="priorityOpt" class="priority-modal-item" :class="{
-        'priority-critical': priorityOpt === 'CRITICAL',
-        'priority-high': priorityOpt === 'HIGH',
-        'priority-medium': priorityOpt === 'MEDIUM',
-        'priority-low': priorityOpt === 'LOW',
-        'priority-empty': priorityOpt === '',
-      }" @click="setPriority(priorityOpt)">
-        {{ priorityOpt || '&nbsp;' }}
+      <div
+        v-for="priorityOpt in priorityOptions"
+        :key="priorityOpt"
+        class="priority-modal-item"
+        :class="{
+          'priority-critical': priorityOpt === 'CRITICAL',
+          'priority-high': priorityOpt === 'HIGH',
+          'priority-medium': priorityOpt === 'MEDIUM',
+          'priority-low': priorityOpt === 'LOW',
+          'priority-empty': priorityOpt === '',
+        }"
+        @click="setPriority(priorityOpt)"
+      >
+        {{ priorityOpt || "&nbsp;" }}
       </div>
     </el-card>
   </section>
@@ -19,12 +24,12 @@
 export default {
   data() {
     return {
-      priorityOptions: ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', ''],
+      priorityOptions: ["CRITICAL", "HIGH", "MEDIUM", "LOW", ""],
     };
   },
   methods: {
     setPriority(priorityOpt) {
-      if (!priorityOpt) priorityOpt = 'EMPTY'
+      if (!priorityOpt) priorityOpt = "EMPTY";
       this.$emit("setPriority", priorityOpt);
     },
   },

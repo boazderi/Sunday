@@ -19,6 +19,13 @@
     text-align: center;
 }
 
+.priority-picker-modal{
+    z-index: 60 !important;
+    position: relative ;
+    right: 70px;
+    top: 18px;
+}
+
 
 .priority-critical {
     background-color: $bg-priority-critical;

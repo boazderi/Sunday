@@ -1,11 +1,17 @@
+.members-list-container{
+    position: relative;
+}
+
 .members-list {
-    min-width: 100%;
-    z-index: 10;
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
 }
 
 .plusIcon {
-    position: absolute;
-    left: 8px;
+    position:absolute;
+    z-index: 10;
+    margin-right: 107px;
     padding-top: 3px;
 }
 
@@ -21,10 +27,9 @@
     width: 360px;
     min-height: 230px;
     height: fit-content;
-    position: absolute !important;
+    position: absolute;
     z-index: 100;
-    top: 100%;
-    left: -100%;
+    right: -80%;
     border-radius: 10px;
     border: 1px solid $secondary-border-clr;
     --el-transition-duration: 0.1s;

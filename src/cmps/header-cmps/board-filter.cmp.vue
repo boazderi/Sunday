@@ -20,18 +20,18 @@
         <span v-icon="'person'"></span> &nbsp;Person
       </button>
     </el-tooltip>
-    <el-tooltip hide-after=0 content="Filter by anything">
+    <el-tooltip content="Filter by anything">
       <button class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'filter'"></span> &nbsp;Filter
         <span v-icon="'arrowDownBlack'"></span>
       </button>
     </el-tooltip>
-    <el-tooltip hide-after=0 content="Sort by any column">
+    <el-tooltip content="Sort by any column">
       <button class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'sort'"></span> &nbsp;Sort
       </button>
     </el-tooltip>
-    <el-tooltip hide-after="0" content="Hidden columns">
+    <el-tooltip content="Hidden columns">
       <button class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'hide'"></span> &nbsp; Hide
       </button>
