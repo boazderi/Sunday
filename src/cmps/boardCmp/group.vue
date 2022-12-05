@@ -18,15 +18,9 @@
       </section>
 
       <!-- render grid cells by cmpOrder array -->
-      <!-- <draggable v-model="groupTasks" v-bind="dragOptions" item-key="order" @change="log"> -->
-
-      <!-- <template #item="{ element }"> -->
       <Container @drop="(e) => onTaskDrop(groupInfo.id, e)" group-name="task-item"
         :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-item')" orientation="vertical"
         :get-child-payload="getTaskPayload(groupInfo.id)">
-        <!-- <Container @drop="onDrop" group-name="task-item"
-        :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-item')"> -->
-        <!-- @drag-start="(e) => log('drag start', e)" -->
         <Draggable v-for="task in groupTasks" :key="task.id">
           <section class="group-grid task-row">
 
@@ -41,9 +35,6 @@
           </section>
         </Draggable>
       </Container>
-
-      <!-- </template>
-      </draggable> -->
 
       <!-- CRUD-ADD TASK -->
       <section class="add-task group-grid">
@@ -167,19 +158,9 @@ export default {
 
       eventBus.emit("toggleAllTasksCheckbox", this.groupId);
     },
-    log: function (evt, arr) {
-      // console.log(evt);
-      this.$store.dispatch({
-        type: "updateDraggedGroup",
-        groupId: this.groupInfo.id,
-        toUpdate: this.groupTasks,
-      });
-    },
     onTaskDrop(groupId, dropResult) {
-      // console.log(groupId, { dropResult });
       this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
 
-      // this.applyDrag(this.groupTasks, dropResult)
       this.$store.dispatch({
         type: "updateDraggedGroup",
         groupId: this.groupInfo.id,
@@ -191,15 +172,6 @@ export default {
         const currBoard = this.$store.getters.getCurrBoard
         return currBoard.groups.filter(group => group.id === groupId)[0].tasks[index]
       }
-    },
-    onDrop(dropResult) {
-      this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
-      console.log(this.groupInfo.id, this.groupTasks);
-      // this.$store.dispatch({
-      //   type: "updateDraggedGroup",
-      //   groupId: this.groupInfo.id,
-      //   toUpdate: this.groupTasks,
-      // })
     },
     log(...params) {
       console.log(...params)
