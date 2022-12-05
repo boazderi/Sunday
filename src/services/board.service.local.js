@@ -17,8 +17,9 @@ export const boardService = {
     duplicateTasks,
     duplicateGroup,
     deleteGroup,
+    // collapseGroup,
     addGroup,
-    // updateDraggedGroup
+
 }
 window.cs = boardService
 
@@ -138,7 +139,6 @@ async function duplicateGroup({ boardId, groupId }) {
     currBoard.groups.push(dupGroup)
     save(currBoard)
     return currBoard
-
 }
 async function deleteGroup({ boardId, groupId }) {
     var currBoard = await getById(boardId)
@@ -146,8 +146,19 @@ async function deleteGroup({ boardId, groupId }) {
     currBoard.groups.splice(idx, 1)
     save(currBoard)
     return currBoard
-
 }
+
+// async function collapseGroup({ boardId, groupId }) {
+//     var currBoard = await getById(boardId)
+//     const updatedGroup = currBoard.groups.find(g => g.id === groupId)
+//     const idx = currBoard.groups.findIndex(g => g.id === groupId)
+//     updatedGroup.isCollapse = !updatedGroup.isCollapse
+//     currBoard.groups.splice(idx, 1,updatedGroup)
+//     save(currBoard)
+//     return currBoard
+// }
+
+
 async function addGroup(boardId) {
     var currBoard = await getById(boardId)
     const newGroup = _getEmptyGroup()
@@ -176,6 +187,7 @@ function _getEmptyGroup() {
         title: 'New Group',
         color: 'green',
         tasks: [],
+        isCollapse: false,
     }
 }
 
@@ -198,24 +210,24 @@ function getEmptyBoard() {
 //         "createdBy": {
 //             "id": "u101",
 //             "fullname": "Tal Liber",
-//             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+//             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg"
 //         },
 //         "members": [{
 //                 "id": "u101",
 //                 "fullname": "Tal Liber",
-//                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                 "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
 //                 "color": "#8338ec"
 //             },
 //             {
 //                 "id": "u102",
 //                 "fullname": "Arnon Arditi",
-//                 "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                 "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
 //                 "color": "#8338ec"
 //             },
 //             {
 //                 "id": "u103",
 //                 "fullname": "Boaz Deri",
-//                 "imgUrl": "https://randomuser.me/api/portraits/men/4.jpg",
+//                 "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
 //                 "color": "#3a86ff"
 //             },
 //             {
@@ -231,7 +243,7 @@ function getEmptyBoard() {
 //             "byMember": {
 //                 "id": "u101",
 //                 "fullname": "Tal Liber",
-//                 "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg"
+//                 "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg"
 //             },
 //             "task": {
 //                 "id": "c101",
@@ -242,6 +254,7 @@ function getEmptyBoard() {
 //             "id": "gy5LnM",
 //             "title": "Frontend",
 //             "color": "#579bfc",
+// "isCollapse":false,
 //             "tasks": [{
 //                     "id": "t2yn4E",
 //                     "taskTitle": "without comments",
@@ -249,13 +262,13 @@ function getEmptyBoard() {
 //                     "members": [{
 //                             "id": "u101",
 //                             "fullname": "Tal Liber",
-//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
 //                             "color": "#8338ec"
 //                         },
 //                         {
 //                             "id": "u102",
 //                             "fullname": "Arnon Arditi",
-//                             "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
 //                             "color": "#3a86ff"
 //                         }
 //                     ],
@@ -271,18 +284,18 @@ function getEmptyBoard() {
 //                     "members": [{
 //                             "id": "u101",
 //                             "fullname": "Tal Liber",
-//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
 //                             "color": "#8338ec"
 //                         },
 //                         {
 //                             "id": "u102",
 //                             "fullname": "Arnon Arditi",
-//                             "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
 //                             "color": "#3a86ff"
 //                         }
 //                     ],
 //                     "date": "2022-03-28T21:00:00.000Z",
-//                     "priority": "LOW",
+//                     "priority":"LOW",
 //                     "textNote": "sass is good",
 //                     "comments": [{
 //                         "id": "ZdPnm",
@@ -291,7 +304,7 @@ function getEmptyBoard() {
 //                         "byMember": {
 //                             "_id": "u101",
 //                             "fullname": "Tal Liber",
-//                             "imgUrl": "https://randomuser.me/api/portraits/women/2.jpg",
+//                             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
 //                             "color": "#8338ec"
 //                         }
 //                     },
@@ -302,7 +315,7 @@ function getEmptyBoard() {
 //                         "byMember": {
 //                             "id": "u102",
 //                             "fullname": "Arnon Arditi",
-//                             "imgUrl": "https://randomuser.me/api/portraits/men/3.jpg",
+//                             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
 //                             "color": "#8338ec"
 //                         }
 //                     }

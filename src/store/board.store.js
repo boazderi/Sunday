@@ -70,6 +70,12 @@ export const boardStore = {
         changeDragged(state, { groupId, toUpdate }) {
             const idx = state.currBoard.groups.findIndex(group => group.id === groupId)
             state.currBoard.groups[idx].tasks = toUpdate
+        },
+        updateGroupIsCollapse(state, { groupId }) {
+            const updatedGroup = state.currBoard.groups.find(g => g.id === groupId)
+            updatedGroup.isCollapse = !updatedGroup.isCollapse
+            const idx = state.currBoard.groups.findIndex(g => g.id === groupId)
+            state.currBoard.groups.splice(idx, 1, updatedGroup)
         }
     },
     actions: {
@@ -178,6 +184,16 @@ export const boardStore = {
 
             }
         },
+        async collapseGroup({ commit, state }, { payload }) {
+            //todo-for now Optimistic approach need to add prvBoard in case of failure
+            commit({ type: 'updateGroupIsCollapse', groupId: payload.groupId })
+
+            try {
+                await boardService.save(state.currBoard)
+            } catch (err) {
+                console.log('boardStore: Error in collapsing group', err)
+            }
+        },
         async addGroup({ commit, state }) {
             const boardId = state.currBoard._id
             try {
@@ -186,7 +202,9 @@ export const boardStore = {
             } catch (err) {
                 console.log('boardStore: Error with create a new group', err)
             }
-        }
+        },
+
+
     },
 
 }

@@ -1,0 +1,16 @@
+{
+    "fullname": "Tal Liber",
+   
+    "username": "Tal",
+    "password": "123",
+    "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+    "mentions": [{
+        "id": "m101",
+        "boardId": "b101",
+        "taskId": "t2yn4E"
+    }]
+}
+
+
+
+

@@ -15,20 +15,18 @@
       class="members-picker-input"
       type="text"
       placeholder="Search names, roles or teams"
+      v-model="filterBy.txt"
     />
     <!-- <input type="text" /> -->
     <section v-if="boardMembers.length" class="suggested-people flex flex-col">
       <div class="suggested-members-txt">Suggested people</div>
       <div
-        class="members-picker-suggestions outboard-hover flex "
+        class="members-picker-suggestions outboard-hover flex"
         v-for="(member, idx) in suggestedPeople"
         :key="idx"
-          @click="onAddMember(member)"
+        @click="onAddMember(member)"
       >
-        <member-preview
-          class="members-picker-preview"
-          :member="member"
-        />
+        <member-preview class="members-picker-preview" :member="member" />
         <span class="member-fullname"> {{ member.fullname }} </span>
       </div>
     </section>
@@ -43,8 +41,12 @@ export default {
   props: {
     task: Object,
   },
-  created() {
-    console.log(this.task);
+  data() {
+    return {
+      filterBy: {
+        txt: "",
+      },
+    };
   },
   methods: {
     onRemoveMember(memberId) {
@@ -63,11 +65,16 @@ export default {
   },
   computed: {
     suggestedPeople() {
-      return this.boardMembers.filter((boardMember) => {
+      var members = this.boardMembers.filter((boardMember) => {
         return !this.task.members.some(
           (taskMember) => boardMember.id === taskMember.id
-        );
-      });
+        )
+      })
+        if (this.filterBy.txt) {
+        const regex = new RegExp(this.filterBy.txt, "i");
+        members = members.filter((member) => regex.test(member.fullname));
+      }
+      return members;
     },
     boardMembers() {
       const board = this.$store.getters.getCurrBoard;

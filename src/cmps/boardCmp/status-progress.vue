@@ -50,7 +50,6 @@ export default {
         group: {
             handler() {
                 this.groupCmp = this.group
-                console.log(this.groupCmp.tasks)
                 this.setProgressMap()
             },
             deep: true

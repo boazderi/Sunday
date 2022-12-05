@@ -33,28 +33,6 @@ export default {
         memberPreview,
         membersPicker
     },
-    watch:{
-        isListOpen:{
-            handler(){
-                console.log(this.isListOpen)
-            }
-        }
-    }
 };
 </script>
   
-<!-- <style >
-p {
-    margin: 0;
-}
-
-.members-list {
-    display: inline-flex;
-    justify-items: center;
-    flex-direction: row;
-    background-color: lightseagreen;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-</style> -->

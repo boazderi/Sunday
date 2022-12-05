@@ -1,9 +1,9 @@
 <template>
-  <section class="group-container">
+  <section  class="group-container">
     <groupTitle :groupInfo="groupInfo" @update="updateTask" />
 
-    <section class="group-content">
-      
+    <section v-if="!groupInfo.isCollapse" class="group-content">
+
       <!-- render group labels by labels array -->
       <section class="group-grid labels-grid">
         <div class="empty sticky first"></div>
@@ -19,16 +19,17 @@
 
       <!-- render grid cells by cmpOrder array -->
       <draggable v-model="groupTasks" v-bind="dragOptions" item-key="order" @change="log">
-        
+
         <template #item="{ element }">
           <section class="group-grid task-row">
             <div class="more sticky">
               <span class="svg" v-icon="'more'"></span>
             </div>
             <div class="task-border sticky" :style="{ 'background-color': groupInfo.color }"></div>
-            <side  :groupId="groupId" :taskId="element.id" :color="groupInfo.color"></side>
-            
-              <component  v-for="(cmp, idx) in cmpOrder" :key="idx"  :is="cmp" :info="element" @update="updateTask($event, element.id)" />
+            <side :groupId="groupId" :taskId="element.id" :color="groupInfo.color"></side>
+
+            <component v-for="(cmp, idx) in cmpOrder" :key="idx" :is="cmp" :info="element"
+              @update="updateTask($event, element.id)" />
           </section>
         </template>
       </draggable>
@@ -47,16 +48,18 @@
 
       <!--  progress by progress array -->
       <section class="progress-grid group-grid">
-        <div v-for="pos in positions" :class="['sticky','empty', pos]" :key="pos"></div>
-
-        <status-progress class="cell" :group="groupInfo" ></status-progress>
-        <div class="cell "></div>
+        <div v-for="pos in positions" :class="['sticky', 'empty', pos]" :key="pos"></div>
+        <!-- todo: change to cell1/cell2 -->
+        <status-progress class="cell" :group="groupInfo"></status-progress>
+        <div class="cell"></div>
         <priority-progress class="cell" :group="groupInfo"></priority-progress>
         <div class="cell  " v-for="n in 3" :key="n"></div>
       </section>
-
     </section>
   </section>
+
+  
+  <!-- todo add a collapsed-group-cmp and change the place of the v-if to group-container-->
 </template>
   
 <script>
@@ -71,7 +74,7 @@ import textNote from "../dynamicCmp/text-note.vue"
 import groupTitle from "./group-title.vue";
 import statusProgress from "./status-progress.vue"
 import priorityProgress from "./priority-progress.vue"
-
+import timeline from "../dynamicCmp/timeline.vue";
 import draggable from "vuedraggable";
 
 import { eventBus } from "../../services/event-bus.service";
@@ -92,16 +95,19 @@ export default {
         "date",
         "textNote",
         "file",
+        "timeline",
       ],
       // helper for progressRow
-      positions:['first','second','third','forth'],
-      labels: [ "Status", "Person", "Priority", "Date", "Text", "File"],
+      positions: ['first', 'second', 'third', 'forth'],
+      labels: ["Status", "Person", "Priority", "Date", "Text", "File", "Timeline"],
       groupId: null,
+      isCollapse: false
     };
   },
   created() {
     eventBus.on("duplicateGroup", this.duplicateGroup);
     eventBus.on("deleteGroup", this.deleteGroup);
+    eventBus.on('collapseGroup', this.collapseGroup)
     this.groupId = this.groupInfo.id;
   },
   methods: {
@@ -130,11 +136,15 @@ export default {
         type: "duplicateGroup",
         payload: { groupId },
       });
-      eventBus.emit("closeGroupDropdown");
+      eventBus.emit("closeGroupDropdown")
     },
     async deleteGroup(groupId) {
       await this.$store.dispatch({ type: "deleteGroup", payload: { groupId } });
-      eventBus.emit("closeGroupDropdown");
+      eventBus.emit("closeGroupDropdown")
+    },
+     collapseGroup(groupId) {
+       this.$store.dispatch({ type: "collapseGroup", payload: { groupId } });
+      eventBus.emit("closeGroupDropdown")
     },
     setAllTasksInContext() {
       const payload = {
@@ -149,8 +159,8 @@ export default {
       this.$store.dispatch({
         type: "updateDraggedGroup",
         groupId: this.groupInfo.id,
-        toUpdate: this.groupTasks
-      })
+        toUpdate: this.groupTasks,
+      });
     },
   },
   computed: {
@@ -166,7 +176,8 @@ export default {
   watch: {
     groupInfo: {
       handler() {
-        this.groupTasks = this.groupInfo.tasks
+        this.groupTasks = this.groupInfo.tasks;
+
       },
       deep: true,
     },
@@ -183,6 +194,7 @@ export default {
     draggable,
     statusProgress,
     priorityProgress,
+    timeline,
     file
   },
 };
