@@ -1,5 +1,5 @@
 <template>
-    <section class="date">
+    <section class="date cell">
         <el-date-picker v-model="value" type="date" format="MMM D" value-format="MMM-D" @change="onChangeDate" />
     </section>
 </template>

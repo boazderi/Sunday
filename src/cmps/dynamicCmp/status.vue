@@ -1,12 +1,13 @@
 <template>
-  <section>
+  <section class="cell2">
     <!-- todo return in computed the binding class -->
-    <p class="status" @click="toggleStatusOptions" :class="{
+    <p class="status fully flex align-center center" @click="toggleStatusOptions" :class="{
       'status-done': info.status === 'Done',
       'status-working': info.status === 'Working',
       'status-stuck': info.status === 'Stuck',
       'status-empty': info.status === 'Empty',
     }">{{ formattedStatus }}</p>
+    
     <el-collapse-transition>
       <div class="status-picker-modal" v-if="statusModalOpen">
         <status-modal @setStatus="setStatus"></status-modal>

@@ -1,5 +1,5 @@
 <template>
-  <section class="timeline-container">
+  <section class="timeline-container cell1">
     <div
       class="timeline-btn"
       @mouseover="isHover = true"

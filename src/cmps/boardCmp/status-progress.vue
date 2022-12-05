@@ -41,11 +41,8 @@ export default {
                     progressMap[task.status] = {}
                     progressMap[task.status].count = 1
                 }
+                progressMap[task.status].percent = (progressMap[task.status].count / tasks.length) * 100
             })
-
-            for (const status in progressMap) {
-                progressMap[status].percent = (progressMap[status].count / tasks.length) * 100
-            }
             this.progressMap = progressMap
         }
     },
@@ -62,10 +59,3 @@ export default {
 
 }
 </script>
-
-<style>
-/* $bg-status-done: rgb(0, 200, 117);
-$bg-status-working: rgb(253, 171, 61);
-$bg-status-stuck: rgb(226, 68, 92);
-$bg-status-empty: #c3c4c3; */
-</style>

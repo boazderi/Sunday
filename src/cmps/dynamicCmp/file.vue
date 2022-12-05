@@ -1,7 +1,6 @@
 <template>
-    <section class="file">
-       
-      
+    <section class="file cell1">
+      <h3>file</h3>
     </section>
 </template>
   

@@ -3,12 +3,14 @@
 @import "setup/functions";
 @import "setup/mixins";
 @import "setup/typography";
+
 // Basics
 @import "basics/helpers";
 @import "basics/layout";
 @import "basics/base";
 @import "basics/links";
 @import "basics/forms";
+
 // Components
 @import "cmps/user-msg";
 @import "cmps/side-nav";
@@ -18,10 +20,14 @@
 @import "cmps/group";
 @import "cmps/bottom-crud";
 @import "cmps/task";
+@import "cmps/task-title";
+
 @import "cmps/date";
 @import "cmps/group-title";
 @import "cmps/members";
 @import "cmps/file";
+@import "cmps/priority";
+@import "cmps/status";
 
 // Views
 @import "views/board-app";

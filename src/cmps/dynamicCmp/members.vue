@@ -1,9 +1,11 @@
 <template>
   <section
-    class="members-list-container"
+    class="members-list-container cell1"
+    
     @mouseover="isHover = true"
     @mouseleave="isHover = false"
   >
+  <!-- todo: check if we need cell1 class -->
     <section class="members-list flex" @click="isListOpen = !isListOpen">
       <span v-if="isHover" class="plusIcon" v-icon="'plus'"> </span>
       <member-preview
@@ -54,18 +56,3 @@ export default {
 };
 </script>
   
-<!-- <style >
-p {
-    margin: 0;
-}
-
-.members-list {
-    display: inline-flex;
-    justify-items: center;
-    flex-direction: row;
-    background-color: lightseagreen;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-</style> -->
