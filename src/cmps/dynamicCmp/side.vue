@@ -1,5 +1,5 @@
 <template>
-    <div class="side-indicator sticky">
+    <div class="side flex align-center center sticky">
         <input :checked="false" ref="checkbox" class="checkbox" type="checkbox" @change="toggleSelected($event)" />
     </div>
 </template>
@@ -8,7 +8,7 @@
 import { eventBus } from '../../services/event-bus.service.js'
 export default {
 
-    name: "side-indicator",
+    name: "side",
     props: {
         taskId: String,
         color: String,

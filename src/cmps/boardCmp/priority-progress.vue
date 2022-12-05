@@ -42,10 +42,9 @@ methods: {
                     progressMap[task.priority] = {}
                     progressMap[task.priority].count = 1
                 }
+                progressMap[task.priority].percent = (progressMap[task.priority].count / tasks.length) * 100
+
             })
-            for (const priority in progressMap) {
-                progressMap[priority].percent = (progressMap[priority].count / tasks.length) * 100
-            }
             this.progressMap = progressMap
         }
     },

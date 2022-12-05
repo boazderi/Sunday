@@ -16,69 +16,6 @@
         }
     }
 }
-// Progress-grid
-// todo to open a separate cmp 
-.progress-grid {
-    >*:not(:first-child, .empty) {
-        border-top: 1px solid $primary-border-clr;
-    }
-    // status cell
-    >*:nth-child(5) {
-        border-left: 1px solid $primary-border-clr;
-        border-bottom-left-radius: 6px;
-    }
-
-    .status-progress{
-        padding: 5px 8px;
-
-        .bar-container{
-            background-color: lightblue;
-
-            .done{
-                background-color: $bg-status-done;
-               
-            }
-            .working-on-it{
-                background-color: $bg-status-working;
-                
-            }
-            .stuck{
-                background-color: $bg-status-stuck;
-                flex-basis: 25%;
-            }
-            .empty{
-                background-color: $bg-status-empty;
-            }
-        }
-    }
-
-    .priority-progress{
-        padding: 5px 8px;
-        .bar-container{
-            .low{
-                background-color: $bg-priority-low;
-            }
-            .critical{
-                background-color: $bg-priority-critical;
-            }
-            .empty{
-                background-color: $bg-status-empty;
-            }
-            .medium{
-                    background-color: $bg-priority-medium;
-            }
-            .high{
-                background-color: $bg-priority-high;
-
-            }
-
-        }
-
-    }
-
-
-    
-}
 
 .main-table {
     position: relative;
@@ -91,34 +28,7 @@
     width: 100%;
 }
 
-// TASKS SECTION
-.task-row {
-    >* {
-        cursor: pointer;
-    }
-
-    .more {
-        span {
-            opacity: 0;
-        }
-    }
-
-    &:hover {
-        background-color: $table-hover-clr;
-        box-shadow: 4px 3px 6px -3px #c3c6d4;
-
-        .more {
-            span {
-                opacity: 1;
-            }
-        }
-
-        .open-con {
-            opacity: 1;
-        }
-    }
-}
-
+//GROUP-GRID important
 .group-grid {
     display: grid;
     grid-template-columns: 40px 6px 32px 364px repeat(auto-fill, minmax(140px, 140px));
@@ -126,133 +36,60 @@
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
 
-    // todo- add generic style of sticky class
     >* {
         background-color: white;
     }
 
-    >*:nth-child(1),
-    :nth-child(2),
-    :nth-child(3),
-    :nth-child(4) {
-        position: sticky;
-        z-index: 50;
-    }
-
-    >:nth-child(1) {
+    .first {
         left: 0;
     }
 
-    >:nth-child(2) {
+    .second {
         left: 40px;
     }
 
-    >:nth-child(3) {
+    .third {
         left: 46px;
     }
 
-    >:nth-child(4) {
+    .forth {
         left: 78px;
     }
-
-    .task-border {
-        background-color: $primary-clr;
-
-        &.add-task {
-            opacity: 0.5;
-            background: rgb(87, 155, 252);
-        }
-    }
 }
 
-.add-task {
-    .input-wrapper {
-        border-bottom: 1px solid $primary-border-clr;
-        border-inline-end: 0;
-        padding: 6px 10px;
-
-        input {
-            padding: 3px;
-            padding-inline-start: 22px;
-            width: 100%;
-           
-            border: 0;
-            // todo focus visible on the border not workin
-            &:focus-visible{
-                border: 1px solid $primary-clr;
-            }
-        }
-    }
-}
-
-// task title
-.task-title {
-    padding-inline-start: 36px;
-
-    .open-con {
-        opacity: 0;
+// Progress-grid
+.progress-grid {
+    >*:not(:first-child, .empty) {
+        border-top: 1px solid $primary-border-clr;
     }
 
-    .task-title-sub {
-        width: 100%;
-        padding-inline-end: 16px;
-
-        // task title editable
-        .content-edit {
-            padding: 5px;
-            height: 20px;
-
-            //    todo-not working check this out
-            &:focus-visible {
-                border-color: $primary-clr;
-                border: 1px solid $primary-clr !important;
-            }
-        }
-    }
-
-    .conversation-wrapper {
-        width: 65px;
+    // status cell
+    >*:nth-child(5) {
         border-left: 1px solid $primary-border-clr;
-
-        .already-written {
-            position: relative;
-
-            button {
-               >* {
-                    fill: $primary-clr;
-                }
-            }
-
-            .counter {
-                width: 13px;
-                height: 13px;
-                text-align: center;
-                border-radius: 50%;
-                font-size: 8px;
-                background-color: $primary-clr;
-                color: white;
-                position: absolute;
-                right: -4px;
-                bottom: -2px;
-                z-index: 10;
-            }
-        }
-
-        // button{
-        //     >*{
-        //        
-        //     }
-        // }
+        border-bottom-left-radius: 6px;
     }
 }
 
 // CELL-SECTION
+.cell1,.cell2 {
+    border-bottom: 1px solid $primary-border-clr;
+    border-right: 1px solid $primary-border-clr;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cell1{
+    font-size: em(14px);
+}
+
+//NOTE--- try not use that class
 .cell {
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    // border: 1px solid $primary-border-clr;
     border-bottom: 1px solid $primary-border-clr;
     border-right: 1px solid $primary-border-clr;
     font-size: em(14px);
@@ -274,27 +111,13 @@
     }
 }
 
-.checkbox {
-    width: 14px;
-    height: 16px;
-}
-
 .on-drag {
     border: 1px dotted $primary-border-clr;
     cursor: move;
 }
 
-.border-radius-tl {
-    border-top-left-radius: 6px;
-}
-
-.border-radius-bl {
-    border-bottom-left-radius: 6px;
-}
-
 .new-group-btn {
     position: sticky;
-    // margin-inline-start: 40px;
     left: 40px;
     border: 1px solid $primary-border-clr;
     border-radius: 5px;
@@ -304,6 +127,3 @@
     width: fit-content;
 }
 
-.status-picker-modal {
-    position: absolute !important;
-}

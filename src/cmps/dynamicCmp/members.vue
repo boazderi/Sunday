@@ -1,5 +1,5 @@
 <template>
-    <section class="members-list" @click="(isListOpen = !isListOpen)">
+    <section class="members-list cell" @click="(isListOpen = !isListOpen)">
         <span class="plusIcon" v-icon="'plus'"></span>
         <member-preview v-for="(member, idx) in info.members" :key="idx" :member="member" />
     </section>
@@ -33,6 +33,13 @@ export default {
         memberPreview,
         membersPicker
     },
+    watch:{
+        isListOpen:{
+            handler(){
+                console.log(this.isListOpen)
+            }
+        }
+    }
 };
 </script>
   

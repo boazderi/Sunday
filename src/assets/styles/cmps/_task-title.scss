@@ -1,0 +1,55 @@
+// task title
+.task-title {
+    padding-inline-start: 36px;
+    left: 78px;
+
+    .open-con {
+        opacity: 0;
+    }
+
+    .task-title-sub {
+        width: 100%;
+        padding-inline-end: 16px;
+
+        // task title editable
+        .content-edit {
+            padding: 5px;
+            height: 20px;
+
+            //    todo-not working check this out
+            &:focus-visible {
+                border-color: $primary-clr;
+                border: 1px solid $primary-clr !important;
+            }
+        }
+    }
+
+    .conversation-wrapper {
+        width: 65px;
+        border-left: 1px solid $primary-border-clr;
+
+        .already-written {
+            position: relative;
+
+            button {
+                >* {
+                    fill: $primary-clr;
+                }
+            }
+
+            .counter {
+                width: 13px;
+                height: 13px;
+                text-align: center;
+                border-radius: 50%;
+                font-size: 8px;
+                background-color: $primary-clr;
+                color: white;
+                position: absolute;
+                right: -4px;
+                bottom: -2px;
+                z-index: 10;
+            }
+        }
+    }
+}

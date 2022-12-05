@@ -1,7 +1,7 @@
 <template>
-  <section>
+  <section class="cell2">
     <p
-      class="priority"
+      class="priority flex align-center center fully"
       @click="togglePriorityOptions"
       :class="{
         'priority-critical': info.priority === 'CRITICAL',

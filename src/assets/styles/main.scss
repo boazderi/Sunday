@@ -18,10 +18,15 @@
 @import "cmps/group";
 @import "cmps/bottom-crud";
 @import "cmps/task";
+@import "cmps/task-title";
+
 @import "cmps/date";
 @import "cmps/group-title";
 @import "cmps/members";
 @import "cmps/file";
+@import "cmps/priority";
+@import "cmps/status";
+
 
 // Views
 @import "views/board-app";

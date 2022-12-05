@@ -1,5 +1,8 @@
-.member-list {
-    display: inline;
+// ? 1 change
+.members-list {
+    // display: inline;
+    z-index: 10;
+    // background-color: green;
 }
 
 .plusIcon {

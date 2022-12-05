@@ -41,11 +41,8 @@ export default {
                     progressMap[task.status] = {}
                     progressMap[task.status].count = 1
                 }
+                progressMap[task.status].percent = (progressMap[task.status].count / tasks.length) * 100
             })
-
-            for (const status in progressMap) {
-                progressMap[status].percent = (progressMap[status].count / tasks.length) * 100
-            }
             this.progressMap = progressMap
         }
     },
