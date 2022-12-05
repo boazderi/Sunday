@@ -27,7 +27,7 @@
             <!-- todo adjust the architecture of the cell wrapper section and resolve the problem  -->
             <!-- :class="['cell', cmp]" -->
             <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
-              <component  :is="cmp" :info="element" @update="updateTask($event, element.id)" />
+              <component :is="cmp" :info="element" @update="updateTask($event, element.id)" />
             </section>
           </section>
         </template>
@@ -50,11 +50,11 @@
       <section class="progress-grid group-grid">
         <div v-for="n in 4" class="empty" :key="n"></div>
 
-        <status-progress class="cell" :group="groupInfo" ></status-progress>
+        <status-progress class="cell" :group="groupInfo"></status-progress>
         <div class="cell "></div>
         <priority-progress class="cell" :group="groupInfo"></priority-progress>
         <div class="cell  " v-for="n in 3" :key="n"></div>
-      
+
       </section>
 
     </section>
@@ -158,7 +158,7 @@ export default {
         group: "description",
         disabled: false,
         ghostClass: "ghost",
-      };
+      }
     },
   },
   watch: {

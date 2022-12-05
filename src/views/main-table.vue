@@ -1,8 +1,16 @@
 <template>
   <section v-if="board" class="main-table ">
+    <!-- <pre>{{ board.groups }}</pre> -->
     <section class="group-list">
-      <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
-        @updateSelectedTasks="updateSelectedTasks" />
+      <!-- <draggable v-model="groups" v-bind="dragOptions" item-key="order" @change="log"> -->
+      <!-- <template #item="{ element }"> -->
+      <!-- <pre>{{ element }}</pre> -->
+      <!-- <div>{{ element }}</div> -->
+      <group v-for="(group, idx) in board.groups" :key="group.id" :groupInfo="group" />
+      <!-- <group :key="element.id"
+        :groupInfo="element" @updateSelectedTasks="updateSelectedTasks" /> -->
+      <!-- </template> -->
+      <!-- </draggable> -->
       <div class="new-group-btn flex align-center space-even">
         <span class="svg" v-icon="'add'"></span>
         <button @click="onAddGroup">Add new group</button>
@@ -28,6 +36,8 @@ export default {
   data() {
     return {
       selectedTasks: [],
+      groups: this.board,
+      some: ['a', 'c']
     }
   },
   created() {
@@ -68,13 +78,23 @@ export default {
     setAllTaskInContext({ tasks, isSelected }) {
       this.selectedTasks = []
       if (isSelected) tasks.forEach(t => this.selectedTasks.push(t.id))
+    },
+    log: function (evt, arr) {
+      console.log(evt)
     }
-
   },
   computed: {
     board() {
       return this.$store.getters.getCurrBoard
-    }
+    },
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost",
+      }
+    },
   },
   watch: {
     selectedTasks: {
