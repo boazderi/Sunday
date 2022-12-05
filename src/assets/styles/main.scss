@@ -28,8 +28,10 @@
 @import "cmps/file";
 @import "cmps/priority";
 @import "cmps/status";
+@import "cmps/kanban-filter";
 
 // Views
 @import "views/board-app";
 @import "views/home-page";
 @import "views/task-conversation";
+@import "views/kanban";

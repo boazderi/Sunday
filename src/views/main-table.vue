@@ -3,21 +3,21 @@
     <section class="group-list">
       <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
         @updateSelectedTasks="updateSelectedTasks" />
+
       <div class="new-group-btn flex align-center space-even">
         <span class="svg" v-icon="'add'"></span>
         <button @click="onAddGroup">Add new group</button>
       </div>
     </section>
+
     <bottom-crud v-if="selectedTasks.length" :selectedTasks="selectedTasks" @removeTasks="removeTasks"
       @duplicateTasks="duplicateTasks" />
-
   </section>
   <!-- taskConversation -->
   <router-view></router-view>
 </template>
 
 <script>
-
 import group from "../cmps/boardCmp/group.vue"
 import bottomCrud from "../cmps/boardCmp/bottom-crud.vue"
 import { eventBus } from "../services/event-bus.service.js"
