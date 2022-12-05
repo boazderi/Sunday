@@ -1,8 +1,12 @@
 <template>
   <section v-if="board" class="main-table ">
     <section class="group-list">
-      <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
-        @updateSelectedTasks="updateSelectedTasks" />
+
+      <Container orientation="vertical" @drop="onGroupDrop($event)" @drag-start="(e) => log('drag start', e)">
+        <Draggable v-for="group in board.groups" :key="group.id">
+          <group :groupInfo="group" />
+        </Draggable>
+      </Container>
 
       <div class="new-group-btn flex align-center space-even">
         <span class="svg" v-icon="'add'"></span>
@@ -20,14 +24,16 @@
 <script>
 import group from "../cmps/boardCmp/group.vue"
 import bottomCrud from "../cmps/boardCmp/bottom-crud.vue"
+import { Container, Draggable } from "vue3-smooth-dnd"
+
 import { eventBus } from "../services/event-bus.service.js"
-import draggable from "vuedraggable";
 
 export default {
   name: "App",
   data() {
     return {
       selectedTasks: [],
+      groups: []
     }
   },
   created() {
@@ -68,13 +74,39 @@ export default {
     setAllTaskInContext({ tasks, isSelected }) {
       this.selectedTasks = []
       if (isSelected) tasks.forEach(t => this.selectedTasks.push(t.id))
-    }
+    },
+    log(...params) {
+      console.log(...params)
+    },
+    onGroupDrop(dropResult) {
+      this.groups = this.applyDrag(this.board.groups, dropResult)
+      this.$store.dispatch({
+        type: "updateDraggedItems",
+        groupsToUpdate: this.groups
+      })
+    },
+    applyDrag(arr, dragResult) {
+      const { removedIndex, addedIndex, payload } = dragResult
+      if (removedIndex === null && addedIndex === null) return arr
 
+      const result = [...arr]
+      let itemToAdd = payload
+
+      if (removedIndex !== null) {
+        itemToAdd = result.splice(removedIndex, 1)[0]
+      }
+
+      if (addedIndex !== null) {
+        result.splice(addedIndex, 0, itemToAdd)
+      }
+
+      return result
+    }
   },
   computed: {
     board() {
       return this.$store.getters.getCurrBoard
-    }
+    },
   },
   watch: {
     selectedTasks: {
@@ -87,7 +119,8 @@ export default {
   components: {
     group,
     bottomCrud,
-    draggable,
+    Draggable,
+    Container,
   },
   emits: ["updateSelectedTasks"]
 }

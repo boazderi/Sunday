@@ -1,14 +1,15 @@
 <template>
-  <section  class="group-container">
+  <section class="group-container">
     <groupTitle :groupInfo="groupInfo" @update="updateTask" />
 
-    <section v-if="!groupInfo.isCollapse" class="group-content">
+    <!-- <section v-if="!groupInfo.isCollapse" class="group-content"> -->
+    <section class="group-content">
 
       <!-- render group labels by labels array -->
       <section class="group-grid labels-grid">
         <div class="empty sticky first"></div>
         <div class="task-border sticky second rad-tl-6" :style="{ 'background-color': groupInfo.color }"></div>
-        <div class="sticky third  cell1">
+        <div class="sticky third cell1">
           <input ref="checkbox" type="checkbox" class="checkbox " @change="setAllTasksInContext" />
         </div>
         <div class="sticky forth cell1"> Tasks</div>
@@ -18,21 +19,23 @@
       </section>
 
       <!-- render grid cells by cmpOrder array -->
-      <draggable v-model="groupTasks" v-bind="dragOptions" item-key="order" @change="log">
-
-        <template #item="{ element }">
+      <Container @drop="(e) => onTaskDrop(groupInfo.id, e)" group-name="task-item"
+        :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-item')" orientation="vertical"
+        :get-child-payload="getTaskPayload(groupInfo.id)">
+        <Draggable v-for="task in groupTasks" :key="task.id">
           <section class="group-grid task-row">
+
             <div class="more sticky">
               <span class="svg" v-icon="'more'"></span>
             </div>
             <div class="task-border sticky" :style="{ 'background-color': groupInfo.color }"></div>
-            <side :groupId="groupId" :taskId="element.id" :color="groupInfo.color"></side>
+            <side :groupId="groupId" :taskId="task.id" :color="groupInfo.color"></side>
 
-            <component v-for="(cmp, idx) in cmpOrder" :key="idx" :is="cmp" :info="element"
-              @update="updateTask($event, element.id)" />
+            <component v-for="(cmp, idx) in cmpOrder" :key="idx" :is="cmp" :info="task"
+              @update="updateTask($event, task.id)" />
           </section>
-        </template>
-      </draggable>
+        </Draggable>
+      </Container>
 
       <!-- CRUD-ADD TASK -->
       <section class="add-task group-grid">
@@ -74,7 +77,7 @@ import groupTitle from "./group-title.vue";
 import statusProgress from "./status-progress.vue"
 import priorityProgress from "./priority-progress.vue"
 import timeline from "../dynamicCmp/timeline.vue";
-import draggable from "vuedraggable";
+import { Container, Draggable } from "vue3-smooth-dnd"
 
 import { eventBus } from "../../services/event-bus.service";
 
@@ -117,7 +120,7 @@ export default {
         taskId,
         prop,
         toUpdate,
-      });
+      })
     },
     // TODO-make it work for enter and blur but not both-get
     onAddTask() {
@@ -141,8 +144,8 @@ export default {
       await this.$store.dispatch({ type: "deleteGroup", payload: { groupId } });
       eventBus.emit("closeGroupDropdown")
     },
-     collapseGroup(groupId) {
-       this.$store.dispatch({ type: "collapseGroup", payload: { groupId } });
+    collapseGroup(groupId) {
+      this.$store.dispatch({ type: "collapseGroup", payload: { groupId } });
       eventBus.emit("closeGroupDropdown")
     },
     setAllTasksInContext() {
@@ -154,13 +157,42 @@ export default {
 
       eventBus.emit("toggleAllTasksCheckbox", this.groupId);
     },
-    log: function (evt, arr) {
+    onTaskDrop(groupId, dropResult) {
+      this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
+
       this.$store.dispatch({
-        type: "updateDraggedGroup",
+        type: "updateDraggedItems",
         groupId: this.groupInfo.id,
-        toUpdate: this.groupTasks,
-      });
+        tasksToUpdate: this.groupTasks
+      })
     },
+    getTaskPayload(groupId) {
+      return index => {
+        const currBoard = this.$store.getters.getCurrBoard
+        return currBoard.groups.filter(group => group.id === groupId)[0].tasks[index]
+      }
+    },
+
+    log(...params) {
+      console.log(...params)
+    },
+    applyDrag(arr, dragResult) {
+      const { removedIndex, addedIndex, payload } = dragResult
+      if (removedIndex === null && addedIndex === null) return arr
+
+      const result = [...arr]
+      let itemToAdd = payload
+
+      if (removedIndex !== null) {
+        itemToAdd = result.splice(removedIndex, 1)[0]
+      }
+
+      if (addedIndex !== null) {
+        result.splice(addedIndex, 0, itemToAdd)
+      }
+
+      return result
+    }
   },
   computed: {
     dragOptions() {
@@ -169,14 +201,13 @@ export default {
         group: "description",
         disabled: false,
         ghostClass: "ghost",
-      };
+      }
     },
   },
   watch: {
     groupInfo: {
       handler() {
-        this.groupTasks = this.groupInfo.tasks;
-
+        this.groupTasks = this.groupInfo.tasks
       },
       deep: true,
     },
@@ -190,11 +221,12 @@ export default {
     priority,
     textNote,
     groupTitle,
-    draggable,
+    Draggable,
+    Container,
     statusProgress,
     priorityProgress,
     timeline,
     file
   },
-};
+}
 </script>

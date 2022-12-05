@@ -76,14 +76,9 @@
     display: flex;
     flex-direction: column;
     position: absolute;
-    top: 72px;
-    left: 410px;
-    display: flex;
-    flex-direction: column;
     width: 184px;
-    height: 200px;
+    height: fit-content;
     z-index: 11;
-    background-color: white;
 }
 
 .task-text {

@@ -1,11 +1,17 @@
+.members-list-container {
+    position: relative;
+}
+
 .members-list {
-    min-width: 100%;
-    z-index: 10;
+    height: 100%;
+    width: 100%;
+    padding-left: 10px;
 }
 
 .plusIcon {
     position: absolute;
-    left: 8px;
+    z-index: 10;
+    margin-right: 107px;
     padding-top: 3px;
 }
 
@@ -21,23 +27,22 @@
     width: 360px;
     min-height: 230px;
     height: fit-content;
-    position: absolute !important;
+    position: absolute;
     z-index: 100;
-    top: 100%;
-    left: -100%;
+    right: -80%;
     border-radius: 10px;
     border: 1px solid $secondary-border-clr;
     --el-transition-duration: 0.1s;
     box-shadow: 0px 0px 6px 2px #d0d0d0;
 }
 
-.members-picker-container{
+.members-picker-container {
     width: 100%;
     display: flex;
     // flex-wrap: wrap;
     flex-direction: column;
     justify-content: space-between;
-    padding: 8px 1rem ;
+    padding: 8px 1rem;
 }
 
 .member-preview {
@@ -54,17 +59,17 @@
     background-position: center;
 }
 
-.img-container{
+.img-container {
     width: 28px;
     height: 28px;
 }
 
-.members-picker-preview{
+.members-picker-preview {
     height: 25px;
     width: 25px;
 }
 
-.members-picker-input{
+.members-picker-input {
     width: 100%;
     height: 1.5em;
     margin: 12px 0;
@@ -72,16 +77,16 @@
     border-radius: 5px;
 }
 
-.suggested-people{
+.suggested-people {
     width: 100%;
     gap: 15px;
 }
 
-.suggested-members-txt{
+.suggested-members-txt {
     color: #676879;
 }
 
-.members-picker-suggestions{
+.members-picker-suggestions {
     width: 100%;
     padding: 5px;
     padding-left: 15px;
@@ -89,13 +94,13 @@
     border-radius: 5px;
 }
 
-.task-members{
+.task-members {
     width: 100%;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.task-member{
+.task-member {
     align-items: center;
     padding-right: 5px;
     width: fit-content;
@@ -105,19 +110,18 @@
     margin-top: 5px;
 }
 
-.member-fullname{
+.member-fullname {
     padding: 4px;
     font-size: 12px;
 }
 
-.delete-member{
+.delete-member {
     border-radius: 50%;
     text-align: center;
     height: 16px;
     line-height: 16px;
-
     width: 16px;
-    &:hover{
+    &:hover {
         background-color: #fff;
     }
 }
