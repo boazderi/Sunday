@@ -23,11 +23,11 @@
         class="members-picker-suggestions outboard-hover flex "
         v-for="(member, idx) in suggestedPeople"
         :key="idx"
+          @click="onAddMember(member)"
       >
         <member-preview
           class="members-picker-preview"
           :member="member"
-          @click="onAddMember(member)"
         />
         <span class="member-fullname"> {{ member.fullname }} </span>
       </div>
