@@ -5,9 +5,17 @@
       <!-- render group labels by labels array -->
       <section class="group-grid labels-grid">
         <div class="empty"></div>
-        <div class="task-border rad-tl-6" :style="{ 'background-color': groupInfo.color }"></div>
+        <div
+          class="task-border rad-tl-6"
+          :style="{ 'background-color': groupInfo.color }"
+        ></div>
         <div class="cell">
-          <input ref="checkbox" type="checkbox" class="checkbox" @change="setAllTasksInContext" />
+          <input
+            ref="checkbox"
+            type="checkbox"
+            class="checkbox"
+            @change="setAllTasksInContext"
+          />
         </div>
         <div class="cell" v-for="(label, idx) in labels" :key="idx">
           {{ label }}
@@ -15,19 +23,36 @@
       </section>
 
       <!-- render grid cells by cmpOrder array -->
-      <draggable v-model="groupTasks" v-bind="dragOptions" item-key="order" @change="log">
+      <draggable
+        v-model="groupTasks"
+        v-bind="dragOptions"
+        item-key="order"
+        @change="log"
+      >
         <template #item="{ element }">
           <section class="group-grid task-row">
             <!-- todo-put in each cmp the cell class jsut if necc -->
             <div class="more">
               <span class="svg" v-icon="'more'"></span>
             </div>
-            <div class="task-border" :style="{ 'background-color': groupInfo.color }"></div>
-            <side class="cell" :groupId="groupId" :taskId="element.id" :color="groupInfo.color"></side>
+            <div
+              class="task-border"
+              :style="{ 'background-color': groupInfo.color }"
+            ></div>
+            <side
+              class="cell"
+              :groupId="groupId"
+              :taskId="element.id"
+              :color="groupInfo.color"
+            ></side>
             <!-- todo adjust the architecture of the cell wrapper section and resolve the problem  -->
             <!-- :class="['cell', cmp]" -->
             <section class="cell" v-for="(cmp, idx) in cmpOrder" :key="idx">
-              <component  :is="cmp" :info="element" @update="updateTask($event, element.id)" />
+              <component
+                :is="cmp"
+                :info="element"
+                @update="updateTask($event, element.id)"
+              />
             </section>
           </section>
         </template>
@@ -36,12 +61,21 @@
       <!-- CRUD-ADD TASK -->
       <section class="add-task group-grid">
         <div class="empty"></div>
-        <div class="task-border add-task rad-bl-6" :style="{ 'background-color': groupInfo.color }"></div>
+        <div
+          class="task-border add-task rad-bl-6"
+          :style="{ 'background-color': groupInfo.color }"
+        ></div>
         <div class="cell">
           <input type="checkbox" class="checkbox" disabled />
         </div>
         <div class="input-wrapper flex align-center">
-          <input ref="addTask" @blur="onAddTask" class="flex align-center" type="text" placeholder="+ Add task" />
+          <input
+            ref="addTask"
+            @blur="onAddTask"
+            class="flex align-center"
+            type="text"
+            placeholder="+ Add task"
+          />
         </div>
       </section>
 
@@ -50,13 +84,11 @@
       <section class="progress-grid group-grid">
         <div v-for="n in 4" class="empty" :key="n"></div>
 
-        <status-progress class="cell" :group="groupInfo" ></status-progress>
-        <div class="cell "></div>
+        <status-progress class="cell" :group="groupInfo"></status-progress>
+        <div class="cell"></div>
         <priority-progress class="cell" :group="groupInfo"></priority-progress>
-        <div class="cell  " v-for="n in 3" :key="n"></div>
-      
+        <div class="cell" v-for="n in 3" :key="n"></div>
       </section>
-
     </section>
   </section>
 </template>
@@ -68,10 +100,11 @@ import members from "../dynamicCmp/members.vue";
 import date from "../dynamicCmp/date.vue";
 import status from "../dynamicCmp/status.vue";
 import priority from "../dynamicCmp/priority.vue";
-import textNote from "../dynamicCmp/text.vue"
+import textNote from "../dynamicCmp/text.vue";
+import timeline from "../dynamicCmp/timeline.vue";
 import groupTitle from "./group-title.vue";
-import statusProgress from "./status-progress.vue"
-import priorityProgress from "./priority-progress.vue"
+import statusProgress from "./status-progress.vue";
+import priorityProgress from "./priority-progress.vue";
 import draggable from "vuedraggable";
 
 import { eventBus } from "../../services/event-bus.service";
@@ -92,8 +125,18 @@ export default {
         "date",
         "textNote",
         "file",
+        "timeline",
       ],
-      labels: ["Tasks", "Status", "Person", "Priority", "Date", "Text", "File"],
+      labels: [
+        "Tasks",
+        "Status",
+        "Person",
+        "Priority",
+        "Date",
+        "Text",
+        "File",
+        "Timeline",
+      ],
       groupId: null,
     };
   },
@@ -147,8 +190,8 @@ export default {
       this.$store.dispatch({
         type: "updateDraggedGroup",
         groupId: this.groupInfo.id,
-        toUpdate: this.groupTasks
-      })
+        toUpdate: this.groupTasks,
+      });
     },
   },
   computed: {
@@ -164,7 +207,7 @@ export default {
   watch: {
     groupInfo: {
       handler() {
-        this.groupTasks = this.groupInfo.tasks
+        this.groupTasks = this.groupInfo.tasks;
       },
       deep: true,
     },
@@ -180,7 +223,8 @@ export default {
     groupTitle,
     draggable,
     statusProgress,
-    priorityProgress
+    priorityProgress,
+    timeline,
   },
 };
 </script>
