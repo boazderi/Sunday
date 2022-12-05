@@ -33,7 +33,7 @@ export default {
       priorityModalOpen: false,
     };
   },
-    methods: {
+  methods: {
     togglePriorityOptions() {
       this.priorityModalOpen = !this.priorityModalOpen;
     },
@@ -42,11 +42,11 @@ export default {
       this.$emit("update", { prop: "priority", toUpdate: priorityOpt });
     },
   },
-  computed:{
-    formattedPriority(){
-      if(this.info.priority==='EMPTY') return ''
-      return this.info.priority
-    }
+  computed: {
+    formattedPriority() {
+      if (this.info.priority === "EMPTY") return "";
+      return this.info.priority;
+    },
   },
   components: {
     priorityModal,

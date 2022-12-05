@@ -1,13 +1,19 @@
 <template>
   <section class="cell2">
     <!-- todo return in computed the binding class -->
-    <p class="status fully flex align-center center" @click="toggleStatusOptions" :class="{
-      'status-done': info.status === 'Done',
-      'status-working': info.status === 'Working',
-      'status-stuck': info.status === 'Stuck',
-      'status-empty': info.status === 'Empty',
-    }">{{ formattedStatus }}</p>
-    
+    <p
+      class="status fully flex align-center center"
+      @click="toggleStatusOptions"
+      :class="{
+        'status-done': info.status === 'Done',
+        'status-working': info.status === 'Working',
+        'status-stuck': info.status === 'Stuck',
+        'status-empty': info.status === 'Empty',
+      }"
+    >
+      {{ formattedStatus }}
+    </p>
+
     <el-collapse-transition>
       <div class="status-picker-modal" v-if="statusModalOpen">
         <status-modal @setStatus="setStatus"></status-modal>
@@ -28,7 +34,7 @@ export default {
       statusModalOpen: false,
     };
   },
-  mounted() { },
+  mounted() {},
   methods: {
     toggleStatusOptions() {
       this.statusModalOpen = !this.statusModalOpen;
@@ -40,11 +46,10 @@ export default {
   },
   computed: {
     formattedStatus() {
-      if (this.info.status === 'Working') return 'Working on it'
-      else if (this.info.status === 'Empty') return ''
-      else return this.info.status
-    }
-
+      if (this.info.status === "Working") return "Working on it";
+      else if (this.info.status === "Empty") return "";
+      else return this.info.status;
+    },
   },
   components: {
     statusModal,
