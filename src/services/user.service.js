@@ -88,14 +88,44 @@ async function changeScore(by) {
 
 
 function saveLocalUser(user) {
-    user = {_id: user._id, fullname: user.fullname, imgUrl: user.imgUrl, score: user.score}
     sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
     return user
 }
 
 function getLoggedinUser() {
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+    var user = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+    if (!user) {
+        user = {
+            "_id":"u101",
+            "fullname": "Tal Liber",
+            "username": "Tal",
+            "password": 123,
+            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+            "mentions": [{
+                "id": "m101",
+                "boardId": "b101",
+                "taskId": "t2yn4E"
+            }]
+        }
+        return saveLocalUser(user)
+    }
+    return user
 }
+
+
+// user-props 5.12
+// {
+//     "fullname": "Tal Liber",
+//
+//     "username": "Tal",
+//     "password": "123",
+//     "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+//     "mentions": [{
+//         "id": "m101",
+//         "boardId": "b101",
+//         "taskId": "t2yn4E"
+//     }]
+// }
 
 
 // ;(async ()=>{

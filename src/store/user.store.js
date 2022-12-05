@@ -17,8 +17,9 @@ export const userStore = {
     },
     mutations: {
         setLoggedinUser(state, { user }) {
-            // Yaron: needed this workaround as for score not reactive from birth
+            // todo- verify its not making bugs this shallow copy
             state.loggedinUser = (user)? {...user} : null
+           
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user
@@ -117,5 +118,13 @@ export const userStore = {
             commit(payload)
         },       
 
+    },
+    watch:{
+        loggedinUser:{
+            handler(){
+                console.log(this.loggedinUser)
+            }
+        },
+        deep:true
     }
 }

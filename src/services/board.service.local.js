@@ -17,8 +17,9 @@ export const boardService = {
     duplicateTasks,
     duplicateGroup,
     deleteGroup,
+    // collapseGroup,
     addGroup,
-    // updateDraggedGroup
+
 }
 window.cs = boardService
 
@@ -138,7 +139,6 @@ async function duplicateGroup({ boardId, groupId }) {
     currBoard.groups.push(dupGroup)
     save(currBoard)
     return currBoard
-
 }
 async function deleteGroup({ boardId, groupId }) {
     var currBoard = await getById(boardId)
@@ -146,8 +146,19 @@ async function deleteGroup({ boardId, groupId }) {
     currBoard.groups.splice(idx, 1)
     save(currBoard)
     return currBoard
-
 }
+
+// async function collapseGroup({ boardId, groupId }) {
+//     var currBoard = await getById(boardId)
+//     const updatedGroup = currBoard.groups.find(g => g.id === groupId)
+//     const idx = currBoard.groups.findIndex(g => g.id === groupId)
+//     updatedGroup.isCollapse = !updatedGroup.isCollapse
+//     currBoard.groups.splice(idx, 1,updatedGroup)
+//     save(currBoard)
+//     return currBoard
+// }
+
+
 async function addGroup(boardId) {
     var currBoard = await getById(boardId)
     const newGroup = _getEmptyGroup()
@@ -176,6 +187,7 @@ function _getEmptyGroup() {
         title: 'New Group',
         color: 'green',
         tasks: [],
+        isCollapse: false,
     }
 }
 
@@ -242,6 +254,7 @@ function getEmptyBoard() {
 //             "id": "gy5LnM",
 //             "title": "Frontend",
 //             "color": "#579bfc",
+// "isCollapse":false,
 //             "tasks": [{
 //                     "id": "t2yn4E",
 //                     "taskTitle": "without comments",

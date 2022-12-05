@@ -2,7 +2,7 @@
   <section class="group-container">
     <groupTitle :groupInfo="groupInfo" @update="updateTask" />
 
-    <section class="group-content">
+    <section v-if="!groupInfo.isCollapse" class="group-content">
 
       <!-- render group labels by labels array -->
       <section class="group-grid labels-grid">
@@ -68,6 +68,9 @@
       </section>
     </section>
   </section>
+
+
+  <!-- todo add a collapsed-group-cmp and change the place of the v-if to group-container-->
 </template>
   
 <script>
@@ -110,11 +113,13 @@ export default {
       positions: ['first', 'second', 'third', 'forth'],
       labels: ["Status", "Person", "Priority", "Date", "Text", "File", "Timeline"],
       groupId: null,
+      isCollapse: false
     };
   },
   created() {
     eventBus.on("duplicateGroup", this.duplicateGroup);
     eventBus.on("deleteGroup", this.deleteGroup);
+    eventBus.on('collapseGroup', this.collapseGroup)
     this.groupId = this.groupInfo.id;
   },
   methods: {
@@ -143,11 +148,15 @@ export default {
         type: "duplicateGroup",
         payload: { groupId },
       });
-      eventBus.emit("closeGroupDropdown");
+      eventBus.emit("closeGroupDropdown")
     },
     async deleteGroup(groupId) {
       await this.$store.dispatch({ type: "deleteGroup", payload: { groupId } });
-      eventBus.emit("closeGroupDropdown");
+      eventBus.emit("closeGroupDropdown")
+    },
+    collapseGroup(groupId) {
+      this.$store.dispatch({ type: "collapseGroup", payload: { groupId } });
+      eventBus.emit("closeGroupDropdown")
     },
     setAllTasksInContext() {
       const payload = {

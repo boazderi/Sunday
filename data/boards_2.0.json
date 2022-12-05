@@ -50,6 +50,7 @@
         "id": "gy5LnM",
         "title": "Frontend",
         "color": "#579bfc",
+        "isCollapse":false,
         "tasks": [{
                 "id": "t2yn4E",
                 "taskTitle": "without comments",

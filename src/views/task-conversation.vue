@@ -10,9 +10,11 @@
       <section class="task-preview flex align-center space-between">
         <h3>{{ task.taskTitle }}</h3>
 
-        <div class="add-member flex align-center">
-          <!-- todo render the user/active-user pic -->
-          <div class="member-pic">Upic</div>
+        <div class="user-more-sec flex align-center">
+          <div class="pic-wrapper flex align-center center">
+            <member-preview class="" :member="user"></member-preview>
+          </div>
+
           <button>
             <span class="svg" v-icon="'moreMed'"></span>
           </button>
@@ -21,7 +23,7 @@
 
       <section class="conversation-nav flex align-center space-between">
         <div class="sub-nav flex align-center">
-          <!-- todo-render the sum of updates -->
+          <!-- todo-render the sum of comments in title attribute when hover -->
           <div><span>Updates</span></div>
           <div><span>Files</span></div>
           <div><span>Activity Log</span></div>
@@ -38,7 +40,7 @@
       <!-- header -->
       <header class="content-header flex column">
         <!-- todo-change it afterward to button el that open quill -->
-        <input type="text" placeholder="Write an update...">
+        <input type="text" placeholder="Write an update..." v-model="commentTxt">
 
         <!-- todo open the actions bar only after input is focused -->
         <div class="content-actions flex align-items space-between">
@@ -47,7 +49,7 @@
             Add files
           </div>
 
-          <button class="update">Update</button>
+          <button class="update" @click="onAddComment">Update</button>
         </div>
       </header>
 
@@ -67,10 +69,8 @@
 
           <header class="comment-header flex align-center space-between">
             <div class="wrapper1 flex align-center">
-              <!-- todo render the user/active-user pic -->
-
               <member-preview :member="comment.byMember"></member-preview>
-              <!-- <div>Upic</div> -->
+
               <span>{{ comment.byMember.fullname }} </span>
               <div class="dot"></div>
             </div>
@@ -87,7 +87,8 @@
           </header>
           <!-- commantTxt -->
           <p class="comment-txt"> {{ comment.txt }} </p>
-          <!--  -->
+          <!-- todo add how many see that conversation- in socket phase -->
+          <!--bottom btns  -->
           <div class="like-replay flex align-center">
             <button class="like flex align-center center">
               <span class="svg" v-icon="'like'"></span>
@@ -99,18 +100,6 @@
 
         </section>
       </section>
-      <!-- {
-  "id": "ZdPnm",
-  "txt": "also @yaronb please CR this",
-  "createdAt": 1590999817436,
-  "byMember": {
-    "_id": "u101",
-    "fullname": "Tal Liber",
-    "imgUrl": "http://some-img",
-    "color": "#8338ec"
-  }
-} -->
-
     </section>
 
   </section>
@@ -118,7 +107,7 @@
 
 <script>
 import memberPreview from '../cmps/member-preview.vue'
-
+import { utilService } from '../services/util.service.js'
 
 export default {
 
@@ -126,7 +115,9 @@ export default {
     return {
       //TODO?- maybe need to do deep copy
       task: null,
-      groupId: null
+      groupId: null,
+      user: null,
+      commentTxt: ''
     }
   },
   created() {
@@ -134,8 +125,37 @@ export default {
     const currBoard = this.$store.getters.getCurrBoard
     this.setConversationData(currBoard, taskId)
 
+    this.user = this.$store.getters.loggedinUser
   },
   methods: {
+    async onAddComment() {
+      const { _id, fullname, imgUrl, color } = this.user
+      const newComment = {
+        id: utilService.makeId(),
+        txt: this.commentTxt,
+        createdAt: Date.now(),
+        byMember: {
+          _id,
+          fullname,
+          imgUrl,
+          color
+        }
+      }
+      var toUpdate = this.task.comments
+      toUpdate.push(newComment)
+
+      await this.$store.dispatch({
+        type: "updateCurrBoard",
+        groupId: this.groupId,
+        taskId: this.task.id,
+        prop: 'comments',
+        toUpdate,
+      });
+
+      const currBoard = this.$store.getters.getCurrBoard
+      this.setConversationData(currBoard, this.task.id)
+    },
+
     goBackToMainTable() {
       const boardId = this.$route.params.id
       this.$router.push(`/board/${boardId}/main-table`)
