@@ -1,8 +1,7 @@
 <template>
   <section v-if="board" class="main-table ">
     <section class="group-list">
-      <group v-for="(group, idx) in board.groups" :key="idx" :groupInfo="group"
-        @updateSelectedTasks="updateSelectedTasks" />
+      <group v-for="(group, idx) in board.groups" :key="group.id" :groupInfo="group" />
       <div class="new-group-btn flex align-center space-even">
         <span class="svg" v-icon="'add'"></span>
         <button @click="onAddGroup">Add new group</button>
@@ -21,13 +20,14 @@
 import group from "../cmps/boardCmp/group.vue"
 import bottomCrud from "../cmps/boardCmp/bottom-crud.vue"
 import { eventBus } from "../services/event-bus.service.js"
-import draggable from "vuedraggable";
 
 export default {
   name: "App",
   data() {
     return {
       selectedTasks: [],
+      groups: this.board,
+      some: ['a', 'c']
     }
   },
   created() {
@@ -68,13 +68,23 @@ export default {
     setAllTaskInContext({ tasks, isSelected }) {
       this.selectedTasks = []
       if (isSelected) tasks.forEach(t => this.selectedTasks.push(t.id))
+    },
+    log: function (evt, arr) {
+      console.log(evt)
     }
-
   },
   computed: {
     board() {
       return this.$store.getters.getCurrBoard
-    }
+    },
+    dragOptions() {
+      return {
+        animation: 200,
+        group: "description",
+        disabled: false,
+        ghostClass: "ghost",
+      }
+    },
   },
   watch: {
     selectedTasks: {
@@ -87,7 +97,6 @@ export default {
   components: {
     group,
     bottomCrud,
-    draggable,
   },
   emits: ["updateSelectedTasks"]
 }

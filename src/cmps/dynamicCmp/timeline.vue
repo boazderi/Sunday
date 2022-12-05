@@ -26,6 +26,7 @@
 import { ref } from "vue";
 
 export default {
+  name: "timeline",
   data() {
     return {
       isHover: false,

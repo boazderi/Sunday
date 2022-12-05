@@ -2,8 +2,8 @@
   <section class="group-container">
     <groupTitle :groupInfo="groupInfo" @update="updateTask" />
 
-    <section class="group-content">
-      
+    <section v-if="!groupInfo.isCollapse" class="group-content">
+
       <!-- render group labels by labels array -->
       <section class="group-grid labels-grid">
         <div class="empty sticky first"></div>
@@ -18,20 +18,23 @@
       </section>
 
       <!-- render grid cells by cmpOrder array -->
-      <draggable v-model="groupTasks" v-bind="dragOptions" item-key="order" @change="log">
-        
-        <template #item="{ element }">
+      <Container @drop="(e) => onTaskDrop(groupInfo.id, e)" group-name="task-item"
+        :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-item')" orientation="vertical"
+        :get-child-payload="getTaskPayload(groupInfo.id)">
+        <Draggable v-for="task in groupTasks" :key="task.id">
           <section class="group-grid task-row">
+
             <div class="more sticky">
               <span class="svg" v-icon="'more'"></span>
             </div>
             <div class="task-border sticky" :style="{ 'background-color': groupInfo.color }"></div>
-            <side  :groupId="groupId" :taskId="element.id" :color="groupInfo.color"></side>
-            
-              <component  v-for="(cmp, idx) in cmpOrder" :key="idx"  :is="cmp" :info="element" @update="updateTask($event, element.id)" />
+            <side :groupId="groupId" :taskId="task.id" :color="groupInfo.color"></side>
+
+            <component v-for="(cmp, idx) in cmpOrder" :key="idx" :is="cmp" :info="task"
+              @update="updateTask($event, task.id)" />
           </section>
-        </template>
-      </draggable>
+        </Draggable>
+      </Container>
 
       <!-- CRUD-ADD TASK -->
       <section class="add-task group-grid">
@@ -47,8 +50,8 @@
 
       <!--  progress by progress array -->
       <section class="progress-grid group-grid">
-        <div v-for="pos in positions" :class="['sticky','empty', pos]" :key="pos"></div>
-  <!-- todo: change to cell1/cell2 -->
+        <div v-for="pos in positions" :class="['sticky', 'empty', pos]" :key="pos"></div>
+        <!-- todo: change to cell1/cell2 -->
         <status-progress class="cell" :group="groupInfo"></status-progress>
         <div class="cell"></div>
         <priority-progress class="cell" :group="groupInfo"></priority-progress>
@@ -56,6 +59,9 @@
       </section>
     </section>
   </section>
+
+
+  <!-- todo add a collapsed-group-cmp and change the place of the v-if to group-container-->
 </template>
   
 <script>
@@ -71,7 +77,8 @@ import groupTitle from "./group-title.vue";
 import statusProgress from "./status-progress.vue"
 import priorityProgress from "./priority-progress.vue"
 import timeline from "../dynamicCmp/timeline.vue";
-import draggable from "vuedraggable";
+// import draggable from "vuedraggable";
+import { Container, Draggable } from "vue3-smooth-dnd"
 
 import { eventBus } from "../../services/event-bus.service";
 
@@ -94,14 +101,16 @@ export default {
         "timeline",
       ],
       // helper for progressRow
-      positions:['first','second','third','forth'],
-      labels: [ "Status", "Person", "Priority", "Date", "Text", "File",  "Timeline"],
+      positions: ['first', 'second', 'third', 'forth'],
+      labels: ["Status", "Person", "Priority", "Date", "Text", "File", "Timeline"],
       groupId: null,
+      isCollapse: false
     };
   },
   created() {
     eventBus.on("duplicateGroup", this.duplicateGroup);
     eventBus.on("deleteGroup", this.deleteGroup);
+    eventBus.on('collapseGroup', this.collapseGroup)
     this.groupId = this.groupInfo.id;
   },
   methods: {
@@ -130,11 +139,15 @@ export default {
         type: "duplicateGroup",
         payload: { groupId },
       });
-      eventBus.emit("closeGroupDropdown");
+      eventBus.emit("closeGroupDropdown")
     },
     async deleteGroup(groupId) {
       await this.$store.dispatch({ type: "deleteGroup", payload: { groupId } });
-      eventBus.emit("closeGroupDropdown");
+      eventBus.emit("closeGroupDropdown")
+    },
+    collapseGroup(groupId) {
+      this.$store.dispatch({ type: "collapseGroup", payload: { groupId } });
+      eventBus.emit("closeGroupDropdown")
     },
     setAllTasksInContext() {
       const payload = {
@@ -145,13 +158,41 @@ export default {
 
       eventBus.emit("toggleAllTasksCheckbox", this.groupId);
     },
-    log: function (evt, arr) {
+    onTaskDrop(groupId, dropResult) {
+      this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
+
       this.$store.dispatch({
         type: "updateDraggedGroup",
         groupId: this.groupInfo.id,
-        toUpdate: this.groupTasks,
-      });
+        tasksToUpdate: this.groupTasks
+      })
     },
+    getTaskPayload(groupId) {
+      return index => {
+        const currBoard = this.$store.getters.getCurrBoard
+        return currBoard.groups.filter(group => group.id === groupId)[0].tasks[index]
+      }
+    },
+    log(...params) {
+      console.log(...params)
+    },
+    applyDrag(arr, dragResult) {
+      const { removedIndex, addedIndex, payload } = dragResult
+      if (removedIndex === null && addedIndex === null) return arr
+
+      const result = [...arr]
+      let itemToAdd = payload
+
+      if (removedIndex !== null) {
+        itemToAdd = result.splice(removedIndex, 1)[0]
+      }
+
+      if (addedIndex !== null) {
+        result.splice(addedIndex, 0, itemToAdd)
+      }
+
+      return result
+    }
   },
   computed: {
     dragOptions() {
@@ -160,13 +201,13 @@ export default {
         group: "description",
         disabled: false,
         ghostClass: "ghost",
-      };
+      }
     },
   },
   watch: {
     groupInfo: {
       handler() {
-        this.groupTasks = this.groupInfo.tasks;
+        this.groupTasks = this.groupInfo.tasks
       },
       deep: true,
     },
@@ -180,11 +221,12 @@ export default {
     priority,
     textNote,
     groupTitle,
-    draggable,
+    Draggable,
+    Container,
     statusProgress,
     priorityProgress,
     timeline,
     file
   },
-};
+}
 </script>

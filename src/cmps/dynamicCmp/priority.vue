@@ -35,9 +35,7 @@ export default {
   },
   methods: {
     togglePriorityOptions() {
-      console.log("toggle priority options");
       this.priorityModalOpen = !this.priorityModalOpen;
-      console.log("this.priorityModalOpen", this.priorityModalOpen);
     },
     setPriority(priorityOpt) {
       this.togglePriorityOptions();

@@ -18,20 +18,25 @@
     .conversation-header {
         border-bottom: 1px solid $primary-border-clr;
         padding-top: 20px;
-        height: 125px;
+        min-height: 125px;
         background-color: white;
 
         .task-preview {
-            margin-top: 2px;
+            margin-top: 5px;
             margin-bottom: 10px;
             padding-inline-start: 4px;
 
 
-            .add-member {
-                .member-pic {
+            .user-more-sec {
+                .pic-wrapper {
                     padding-inline-end: 16px;
-                    margin-inline-end: 12px;
-                    border-inline-end: 1px solid $primary-border-clr;
+                    padding-inline-start: 10px;
+
+                }
+
+                button {
+                    border-left: 1px solid $primary-border-clr;
+                    padding-inline-start: 16px;
                 }
             }
         }
@@ -153,7 +158,8 @@
                         width: 50%;
                         font-weight: 200;
                         color: #676879;
-                        span{
+
+                        span {
                             margin-inline-end: 2px;
                         }
                     }

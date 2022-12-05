@@ -67,9 +67,15 @@ export const boardStore = {
             const newBoard = state.boards.find(board => board._id === boardId)
             state.currBoard = newBoard
         },
-        changeDragged(state, { groupId, toUpdate }) {
+        changeDragged(state, { groupId, tasksToUpdate }) {
             const idx = state.currBoard.groups.findIndex(group => group.id === groupId)
-            state.currBoard.groups[idx].tasks = toUpdate
+            state.currBoard.groups[idx].tasks = tasksToUpdate
+        },
+        updateGroupIsCollapse(state, { groupId }) {
+            const updatedGroup = state.currBoard.groups.find(g => g.id === groupId)
+            updatedGroup.isCollapse = !updatedGroup.isCollapse
+            const idx = state.currBoard.groups.findIndex(g => g.id === groupId)
+            state.currBoard.groups.splice(idx, 1, updatedGroup)
         }
     },
     actions: {
@@ -92,8 +98,8 @@ export const boardStore = {
                 throw err
             }
         },
-        async updateDraggedGroup({ commit, state }, { groupId, toUpdate }) {
-            commit({ type: 'changeDragged', groupId, toUpdate })
+        async updateDraggedGroup({ commit, state }, { groupId, tasksToUpdate }) {
+            commit({ type: 'changeDragged', groupId, tasksToUpdate })
             try {
                 const updatedBoard = await boardService.save(state.currBoard)
             } catch (err) {
@@ -178,6 +184,16 @@ export const boardStore = {
 
             }
         },
+        async collapseGroup({ commit, state }, { payload }) {
+            //todo-for now Optimistic approach need to add prvBoard in case of failure
+            commit({ type: 'updateGroupIsCollapse', groupId: payload.groupId })
+
+            try {
+                await boardService.save(state.currBoard)
+            } catch (err) {
+                console.log('boardStore: Error in collapsing group', err)
+            }
+        },
         async addGroup({ commit, state }) {
             const boardId = state.currBoard._id
             try {
@@ -186,7 +202,9 @@ export const boardStore = {
             } catch (err) {
                 console.log('boardStore: Error with create a new group', err)
             }
-        }
+        },
+
+
     },
 
 }

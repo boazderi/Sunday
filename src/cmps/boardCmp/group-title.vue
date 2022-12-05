@@ -1,5 +1,5 @@
 <template>
-    <div class="group-grid group-title flex align-center">
+    <section class="group-grid group-title flex align-center">
 
         <div class="more sticky first" @click="toggleDropdown">
             <span class="svg" v-icon="'more'"></span>
@@ -17,15 +17,16 @@
             <div class="tasks-count">{{ groupInfo.tasks.length }} Tasks</div>
         </div>
 
-        <button @click="(isModalOpen = !isModalOpen)">color</button>
+        <!-- <button @click="(isModalOpen = !isModalOpen)">color</button> -->
         <el-collapse-transition>
             <div class="color-picker" v-if="isOpen">
                 <color-picker @update="onChangeGroupColor($event)"></color-picker>
             </div>
         </el-collapse-transition>
 
-    </div>
-    <group-title-dropdown :groupId="groupInfo.id" v-if="isDropOpen" :class="isDrop" />
+    </section>
+    <group-title-dropdown 
+    :group="groupInfo" v-if="isDropOpen" :class="isDrop" />
 </template>
   
 <script>

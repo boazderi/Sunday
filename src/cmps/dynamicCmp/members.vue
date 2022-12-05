@@ -1,5 +1,9 @@
 <template>
-  <section class="members-list-container" @mouseover="isHover = true" @mouseleave="isHover = false">
+  <section
+    class="members-list-container"
+    @mouseover="isHover = true"
+    @mouseleave="isHover = false"
+  >
     <!-- todo: check if we need cell1 class -->
     <section class="members-list cell1" @click="isListOpen = !isListOpen">
       <div v-if="isHover" class="plusIcon" v-icon="'plus'"></div>

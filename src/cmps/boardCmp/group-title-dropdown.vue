@@ -17,11 +17,13 @@ import { eventBus } from '../../services/event-bus.service.js'
 
 export default {
   props: {
-    groupId: String
+    group: Object
   },
   data() {
     return {
-      groupOpts: [{ desc: 'Collapse this group', type: 'collapse' },
+      // TODO add collapse all groups
+      groupOpts: [{ desc:this.group.isCollapse? 'Expand this group':'Collapse this group'
+      , type: 'collapse' },
       { desc: "Duplicate this group", type: 'duplicate' },
       { desc: "Delete", type: 'delete' }],
       icons:['collapse','duplicateGrp','deleteGrp']
@@ -31,15 +33,15 @@ export default {
     setActionByCase(type) {
       switch (type) {
         case 'duplicate':
-          eventBus.emit('duplicateGroup', this.groupId)
+          eventBus.emit('duplicateGroup', this.group.id)
           break;
 
         case 'delete':
-        eventBus.emit('deleteGroup', this.groupId)
+        eventBus.emit('deleteGroup', this.group.id)
           break;
 
         case 'collapse':
-        eventBus.emit('collapseGroup',this.groupId)
+        eventBus.emit('collapseGroup',this.group.id)
           break;
       }
     }
