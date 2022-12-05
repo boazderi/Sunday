@@ -59,10 +59,3 @@ export default {
 
 }
 </script>
-
-<style>
-/* $bg-status-done: rgb(0, 200, 117);
-$bg-status-working: rgb(253, 171, 61);
-$bg-status-stuck: rgb(226, 68, 92);
-$bg-status-empty: #c3c4c3; */
-</style>
