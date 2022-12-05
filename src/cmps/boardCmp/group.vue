@@ -2,13 +2,14 @@
   <section class="group-container">
     <groupTitle :groupInfo="groupInfo" @update="updateTask" />
 
-    <section v-if="!groupInfo.isCollapse" class="group-content">
+    <!-- <section v-if="!groupInfo.isCollapse" class="group-content"> -->
+    <section class="group-content">
 
       <!-- render group labels by labels array -->
       <section class="group-grid labels-grid">
         <div class="empty sticky first"></div>
         <div class="task-border sticky second rad-tl-6" :style="{ 'background-color': groupInfo.color }"></div>
-        <div class="sticky third  cell1">
+        <div class="sticky third cell1">
           <input ref="checkbox" type="checkbox" class="checkbox " @change="setAllTasksInContext" />
         </div>
         <div class="sticky forth cell1"> Tasks</div>
@@ -77,7 +78,6 @@ import groupTitle from "./group-title.vue";
 import statusProgress from "./status-progress.vue"
 import priorityProgress from "./priority-progress.vue"
 import timeline from "../dynamicCmp/timeline.vue";
-// import draggable from "vuedraggable";
 import { Container, Draggable } from "vue3-smooth-dnd"
 
 import { eventBus } from "../../services/event-bus.service";
@@ -121,7 +121,7 @@ export default {
         taskId,
         prop,
         toUpdate,
-      });
+      })
     },
     // TODO-make it work for enter and blur but not both-get
     onAddTask() {
@@ -162,7 +162,7 @@ export default {
       this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
 
       this.$store.dispatch({
-        type: "updateDraggedGroup",
+        type: "updateDraggedItems",
         groupId: this.groupInfo.id,
         tasksToUpdate: this.groupTasks
       })
@@ -173,6 +173,7 @@ export default {
         return currBoard.groups.filter(group => group.id === groupId)[0].tasks[index]
       }
     },
+
     log(...params) {
       console.log(...params)
     },

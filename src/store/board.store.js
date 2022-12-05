@@ -31,7 +31,6 @@ export const boardStore = {
     state: {
         boards: [],
         currBoard: null,
-
     },
     getters: {
         getBoards({ boards }) {
@@ -67,9 +66,14 @@ export const boardStore = {
             const newBoard = state.boards.find(board => board._id === boardId)
             state.currBoard = newBoard
         },
-        changeDragged(state, { groupId, tasksToUpdate }) {
-            const idx = state.currBoard.groups.findIndex(group => group.id === groupId)
-            state.currBoard.groups[idx].tasks = tasksToUpdate
+        changeDragged(state, { groupId, tasksToUpdate, groupsToUpdate }) {
+            console.log(groupId, tasksToUpdate, groupsToUpdate);
+            if (groupId) {
+                const idx = state.currBoard.groups.findIndex(group => group.id === groupId)
+                state.currBoard.groups[idx].tasks = tasksToUpdate
+            } else {
+                state.currBoard.groups = groupsToUpdate
+            }
         },
         updateGroupIsCollapse(state, { groupId }) {
             const updatedGroup = state.currBoard.groups.find(g => g.id === groupId)
@@ -98,8 +102,8 @@ export const boardStore = {
                 throw err
             }
         },
-        async updateDraggedGroup({ commit, state }, { groupId, tasksToUpdate }) {
-            commit({ type: 'changeDragged', groupId, tasksToUpdate })
+        async updateDraggedItems({ commit, state }, { groupId, tasksToUpdate, groupsToUpdate }) {
+            commit({ type: 'changeDragged', groupId, tasksToUpdate, groupsToUpdate })
             try {
                 const updatedBoard = await boardService.save(state.currBoard)
             } catch (err) {
