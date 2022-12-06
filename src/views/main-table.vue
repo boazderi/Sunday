@@ -13,16 +13,15 @@
         <button @click="onAddGroup">Add new group</button>
       </div>
     </section>
+
     <bottom-crud v-if="selectedTasks.length" :selectedTasks="selectedTasks" @removeTasks="removeTasks"
       @duplicateTasks="duplicateTasks" />
-
   </section>
   <!-- taskConversation -->
   <router-view></router-view>
 </template>
 
 <script>
-
 import group from "../cmps/boardCmp/group.vue"
 import bottomCrud from "../cmps/boardCmp/bottom-crud.vue"
 import { Container, Draggable } from "vue3-smooth-dnd"

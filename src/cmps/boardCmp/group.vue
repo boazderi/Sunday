@@ -65,7 +65,6 @@
     </section>
   </section>
 
-
   <!-- todo add a collapsed-group-cmp and change the place of the v-if to group-container-->
 </template>
   

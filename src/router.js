@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 import homePage from './views/home-page.vue'
 import boardApp from './views/board-app.vue'
 import mainTable from './views/main-table.vue'
+import kanban from './views/kanban.vue'
 import taskConversation from './views/task-conversation.vue'
 
 const routes = [
@@ -28,7 +29,13 @@ const routes = [
             component: taskConversation,
           }
         ]
-      },
+      }, 
+      {
+        path: '/board/:id/kanban',
+        name: 'kanban',
+        component:kanban
+      }
+
     ]
   },
 
