@@ -33,7 +33,7 @@
     </el-tooltip>
     <el-tooltip content="Hidden columns">
       <button class="flex align-center board-filter-item outboard-hover">
-        <span v-icon="'hide'"></span> &nbsp; Hide
+        <span class="hide-icon" v-icon="'hide'"></span>&nbsp;Hide
       </button>
     </el-tooltip>
       <button class="flex align-center board-filter-item outboard-hover">

@@ -1,6 +1,42 @@
 
-.timeline-container{
+.cell1.timeline-container{
     // left: 78px;
     text-align: center;
     line-height: 22px;
+    width: 187px;
+}
+
+.wide-cell{
+    width: 187px;
+    position: relative;
+}
+
+.timeline-btn {
+    position: relative;
+    width: 100%;
+    max-height: 22px;
+    margin: 0 20px;
+    border-radius: 15px;
+    background-color: #c3c4c3;
+    color: #fff !important;
+}
+
+.timeline-input{
+    position:absolute;
+    right: 0px;
+    min-width: 148px;
+    max-height: 22px;
+    border-radius: 15px;
+    background-color: #c3c4c3;
+    color: #fff !important;
+    opacity: 0;
+    z-index: 2;
+}
+
+.el-popper.is-pure.is-light.el-picker__popper{
+    top: 600px;
+}
+#el-popper-container-6352{
+    top: 600px !important;
+    inset: 0 !important;
 }

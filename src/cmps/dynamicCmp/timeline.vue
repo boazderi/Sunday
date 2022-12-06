@@ -5,20 +5,23 @@
       class="timeline-btn"
       @mouseover="isHover = true"
       @mouseleave="isHover = false"
-      @click="isDatePickerOpen = !isDatePickerOpen"
+      @click="
+        isDatePickerOpen = !isDatePickerOpen;
+        handleOpen;
+      "
     >
-      <span v-if="isHover">Set Dates</span>
-      <span v-else> - </span>
-      <span  class="timeline-picker">
-        <el-date-picker v-if="isHover"
-          format="YYYY/MM/DD"
-          @change="printVal"
-          v-model="value"
-          type="daterange"
-        />
-      </span>
+      <span v-if="isHover">{{ timelineContent ? `${timelineContent[0]} - ${timelineContent[1]}` : 'Set Dates'}}</span>
+      <span v-else> {{timelineContent ? `${timelineContent[0]} - ${timelineContent[1]}` : '-'}} </span>
+      <el-date-picker
+        class="timeline-input"
+        format="YYYY/MM/DD"
+        @change="printVal"
+        v-model="value"
+        value-format="x"
+        placeholder="Set Dates"
+        type="daterange"
+      />
     </div>
-    <div class="date-picker" v-if="isDatePickerOpen"></div>
   </section>
 </template>
 
@@ -32,18 +35,26 @@ export default {
       isHover: false,
       isDatePickerOpen: false,
       value: ref(""),
-      defaultTime:
-        ref <
-        [Date, Date] >
-        [new Date(2000, 1, 1, 0, 0, 0), new Date(2000, 2, 1, 23, 59, 59)],
     };
   },
   created() {
-    console.log(this.value);
+    console.log(this.timelineContent);
   },
   methods: {
     printVal() {
       console.log(this.value);
+    },
+  },
+  computed: {
+    timelineContent() {
+      console.log('this.value',this.value);
+      if (this.value){
+        var fromDate= new Date(this.value[0]);
+        var toDate= new Date(this.value[1]);
+        console.log([fromDate.toDateString(), toDate.toDateString()]);
+        return [fromDate.toDateString(), toDate.toDateString()]
+      }
+      return ''
     },
   },
 };
@@ -66,16 +77,16 @@ progress[value]::-webkit-progress-value {
   /* transition: all 0.2s ease-in-out; */
   background: rgb(255, 79, 234);
   border-radius: 2em;
-    color: white;
+  color: white;
 }
 progress:before {
   content: attr(data-label);
   font-size: 0.8em;
   vertical-align: 0;
-  
+
   /*Position text over the progress bar */
-  position:absolute;
-  left:0;
-  right:0;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 </style>

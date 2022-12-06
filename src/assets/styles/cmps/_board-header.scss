@@ -58,12 +58,19 @@
     border-radius: 6px;
     margin-left: 4px;
     padding: 6px;
+    color: $primary-txt-clr;
 }
 
 .new-task {
     border-radius: 6px;
     height: 2em;
     background-color: $primary-clr;
+}
+
+.hide-icon{
+    width: 25px;
+    height: 20px;
+    color: #676879;
 }
 
 .new-task-btn {
