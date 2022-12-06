@@ -51,12 +51,13 @@
 .board-filter-bar {
     padding: 16px 0;
     height: 4em;
+    gap: 10px;
 }
 
 .board-filter-item {
     border-radius: 6px;
     margin-left: 4px;
-    padding: 6px;
+    padding: 4px;
     color: $primary-txt-clr;
 }
 

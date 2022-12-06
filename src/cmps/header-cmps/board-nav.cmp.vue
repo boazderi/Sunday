@@ -10,8 +10,8 @@
     </el-tooltip>
     <div class="views-seprator"></div>
     <el-tooltip content="Dashboard">
-      <router-link class="board-nav-item flex outboard-hover" to="/">
-        Dashboard</router-link>
+      <div class="board-nav-item flex outboard-hover" @click="onNavToDashboard">
+        Dashboard</div>
     </el-tooltip>
     <div class="views-seprator"></div>
     <el-tooltip content="Add View">
@@ -37,6 +37,9 @@ export default {
     },
     onNavToMainTable(){
       this.$router.push(`/board/${this.boardId}/main-table`)
+    },
+    onNavToDashboard(){
+      this.$router.push(`/board/${this.boardId}/dashboard`)
     }
   }
 }
