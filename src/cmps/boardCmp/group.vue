@@ -13,7 +13,7 @@
           <input ref="checkbox" type="checkbox" class="checkbox " @change="setAllTasksInContext" />
         </div>
         <div class="sticky forth cell1"> Tasks</div>
-        <div class="cell1" v-for="(label, idx) in labels" :class="{'wide-cell': label === 'Timeline'}" :key="idx">
+        <div class="cell1" v-for="(label, idx) in labels" :class="{ 'wide-cell': label === 'Timeline' }" :key="idx">
           {{ label }}
         </div>
       </section>
@@ -101,7 +101,7 @@ export default {
         "date",
         "textNote",
         "file",
-        "timeline",
+        // "timeline",
       ],
       // helper for progressRow
       positions: ['first', 'second', 'third', 'forth'],

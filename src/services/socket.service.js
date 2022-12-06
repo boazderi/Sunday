@@ -1,8 +1,8 @@
 import io from 'socket.io-client'
 import { userService } from './user.service'
 
-export const SOCKET_EVENT_ADD_MSG = 'chat-add-msg'
-export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
+export const SOCKET_EVENT_ADD_COMMENTS  = 'chat-add-comments'
+export const SOCKET_EMIT_SEND_COMMENTS = 'chat-send-comments'
 export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
 export const SOCKET_EMIT_USER_WATCH = 'user-watch'
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
@@ -14,8 +14,8 @@ const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 
 const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
-// export const socketService = createSocketService()
-export const socketService = createDummySocketService()
+export const socketService = createSocketService()
+// export const socketService = createDummySocketService()
 
 // for debugging from console
 window.socketService = socketService

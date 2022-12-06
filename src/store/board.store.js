@@ -44,7 +44,6 @@ export const boardStore = {
         setBoards(state, { boards }) {
             // todo- set a flexable for all boardById
             state.boards = boards
-            state.currBoard = boards[0]
         },
         addBoard(state, { board }) {
             state.boards.push(board)
@@ -111,14 +110,18 @@ export const boardStore = {
                 throw err
             }
         },
-        async addNewTask({ commit, state }, { payload }) {
+        // NOTE- example for the all-around pattern with errors
+        async addNewTask({ dispatch, commit, state }, { payload }) {
             try {
                 payload.boardId = state.currBoard._id
                 const updatedBoard = await boardService.addNewTask(payload)
                 commit({ type: 'updateBoard', board: updatedBoard })
-            } catch (err) {
-                console.log("boardStore: Error in addNewTask:", err)
-                throw err
+                //todo usermsg about success
+            }
+            // Note-the err is string with loadBoards-action th
+            catch (err) {
+                await dispatch(err)
+                //todo usermsg about failure
             }
         },
         async removeTasks({ commit, state }, { payload }) {
@@ -142,10 +145,20 @@ export const boardStore = {
                 throw err
             }
         },
+        // NOTE-new mechanism verify nothing is broken
         async loadBoards(context) {
             try {
                 const boards = await boardService.query()
                 context.commit({ type: 'setBoards', boards })
+
+                //NOTE: for first time login--- the else is when we get into that action in
+                //  failure from data and that we dont wanna update the currBoard
+                if (!context.state.currBoard) {
+                    context.commit({
+                        type: 'setCurrBoard',
+                        boardId: context.state.boards[0]._id
+                    })
+                }
             } catch (err) {
                 console.log('boardStore: Error in loadBoards', err)
                 throw err

@@ -121,6 +121,7 @@
 
 // DRAG AND DROP
 .smooth-dnd-container {
+    min-height: 0px;
     &.vertical {
         &> {
             .smooth-dnd-draggable-wrapper {

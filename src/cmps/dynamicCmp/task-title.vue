@@ -13,11 +13,10 @@
         <!-- todo add counter to the numbers of comments in the conversation icon -->
         <div class="conversation-wrapper fully flex align-center center">
             <button v-if="!info.comments.length" class="svg" v-icon="'addConversation'" @click="goToConversation" />
-            
+
             <div v-else class="already-written">
-                <button   class="svg" v-icon="'addConversation'"
-                 @click="goToConversation" />
-                 <div class="counter flex center align-center">{{info.comments.length}}</div>
+                <button class="svg" v-icon="'addConversation'" @click="goToConversation" />
+                <div class="counter flex center align-center">{{ info.comments.length }}</div>
             </div>
         </div>
     </section>
@@ -37,7 +36,7 @@ export default {
         goToConversation() {
             const boardId = this.$route.params.id
             this.$router.push(`/board/${boardId}/main-table/pulses/${this.info.id}`)
-           
+
         },
         onChangeTaskTitle(ev) {
             this.$emit('update', { prop: 'taskTitle', toUpdate: ev.target.innerText })
