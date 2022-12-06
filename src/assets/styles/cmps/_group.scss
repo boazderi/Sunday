@@ -119,6 +119,7 @@
     width: fit-content;
 }
 
+// DRAG AND DROP
 .smooth-dnd-container {
     &.vertical {
         &> {
@@ -127,4 +128,16 @@
             }
         }
     }
+}
+
+.on-drag {
+    background-color: $primary-hover-clr;
+    color: $primary-clr;
+    transform: rotate(1deg);
+    // transform: scale(1.1);
+}
+
+.drop-placeholder {
+    background-color: white;
+    border: 2px dotted $primary-border-clr
 }

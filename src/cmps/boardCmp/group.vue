@@ -21,7 +21,11 @@
       <!-- render grid cells by cmpOrder array -->
       <Container @drop="(e) => onTaskDrop(groupInfo.id, e)" group-name="task-item"
         :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-item')" orientation="vertical"
-        :get-child-payload="getTaskPayload(groupInfo.id)">
+        :get-child-payload="getTaskPayload(groupInfo.id)" :drop-placeholder="{
+          className: 'drop-placeholder',
+          animationDuration: '200',
+          showOnTop: true
+        }" drag-class="on-drag">
         <Draggable v-for="task in groupTasks" :key="task.id">
           <section class="group-grid task-row">
 
@@ -231,3 +235,4 @@ export default {
   },
 }
 </script>
+<!-- drag-class="bg-primary dark:bg-primary border-2 border-primary-hover text-white transition duration-100 ease-in z-50transform rotate-6 scale-110" -->
