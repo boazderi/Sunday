@@ -1,5 +1,4 @@
 <template>
-
   <section v-if="task" class="task-conversation flex column">
     <header class="conversation-header flex column">
 

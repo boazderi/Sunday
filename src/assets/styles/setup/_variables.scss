@@ -4,14 +4,15 @@ $primary-txt-clr: #323338;
 $secondary-txt-clr: #676879;
 // text hover colors
 // BACKGROUNDS COLORS
+$dark-background-color: #f6f7fb;
 // side bars
 $bg-big-sidebar: rgb(246 247 251);
 $bg-small-sidebar: rgb(41 47 76);
 $bg-big-sidebar-active: rgb(204 229 255);
 // status-bgs
-$bg-status-done: rgb(0, 200, 117);
-$bg-status-working: rgb(253, 171, 61);
-$bg-status-stuck: rgb(226, 68, 92);
+$bg-status-done: #00c875;
+$bg-status-working: #fdab3d;
+$bg-status-stuck: #e2445c;
 $bg-status-empty: #c3c4c3;
 // priority-bgs
 $bg-priority-critical: #333333;
@@ -19,7 +20,6 @@ $bg-priority-high: #401794;
 $bg-priority-medium: #5559df;
 $bg-priority-low: #579bfc;
 $bg-priority-empty: #c3c4c3;
-
 // groups-clrs
 $group-clr-darkgreen: rgb(3, 127, 76);
 $group-clr-green: rgb(0, 200, 117);
