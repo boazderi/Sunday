@@ -2,11 +2,12 @@ import { storageService } from './async-storage.service.js'
 import { utilService } from './util.service.js'
 import { userService } from './user.service.js'
 
+// todo- change the storagekey to base url the Baseurl
 const STORAGE_KEY = 'board'
 
 export const boardService = {
     query,
-    getById,
+    getById: getBoardById,
     save,
     remove,
     getEmptyBoard,
@@ -22,7 +23,7 @@ export const boardService = {
 }
 window.cs = boardService
 
-// todo: this function need to be edit later
+// todo: this function need to be edit later-without filter
 async function query(filterBy = { txt: '' }) {
     var boards = await storageService.query(STORAGE_KEY)
     if (filterBy.txt) {
@@ -31,8 +32,8 @@ async function query(filterBy = { txt: '' }) {
     }
     return boards
 }
-
-function getById(boardId) {
+// todo-verify rename didnt break the whole thing
+function getBoardById(boardId) {
     return storageService.get(STORAGE_KEY, boardId)
 }
 
@@ -40,21 +41,32 @@ async function remove(boardId) {
     await storageService.remove(STORAGE_KEY, boardId)
 }
 
+// note the backend future 6.12
 async function save(board) {
     var savedBoard
-    if (board._id) {
-        savedBoard = await storageService.put(STORAGE_KEY, board)
-    } else {
-        // Later, owner is set by the backend
-        board.owner = userService.getLoggedinUser()
-        savedBoard = await storageService.post(STORAGE_KEY, board)
+    try{
+        if (board._id) {
+             // http.put(/currBoardid,currboard(as req.body))
+            savedBoard = await storageService.put(STORAGE_KEY, board)
+        }
+        // Note- meanwhile we didnt produce a new board
+        else {
+            // Later, owner is set by the backend
+            board.owner = userService.getLoggedinUser()
+            savedBoard = await storageService.post(STORAGE_KEY, board)
+        }
+        return savedBoard
+
+    }catch(err){
+        // Note we bubble that to each func that use the save and the func
+        // send a new Error with dispatch to the load board
+        throw err
     }
-    return savedBoard
 }
 
 async function addBoardMsg(boardId, txt) {
     // Later, this is all done by the backend
-    const board = await getById(boardId)
+    const board = await getBoardById(boardId)
     if (!board.msgs) board.msgs = []
 
     const msg = {
@@ -69,7 +81,7 @@ async function addBoardMsg(boardId, txt) {
 }
 
 async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
-    var currBoard = await getById(boardId)
+    var currBoard = await getBoardById(boardId)
 
     if (taskId) {
         const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
@@ -81,29 +93,32 @@ async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
     } else {
         currBoard[prop] = toUpdate
     }
+   
     save(currBoard)
     return currBoard
 }
-// async function updateDraggedGroup(boardId, groupToUpdate) {
-//     var currBoard = await getById(boardId)
 
-//     const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
-//     currBoard.splice(groupIdx, 1, groupToUpdate)
-
-//     save(currBoard)
-//     return currBoard
-// }
+// NOTE- example for the all-around pattern with errors
 async function addNewTask({ boardId, groupId, taskTitle }) {
-    var currBoard = await getById(boardId)
-    const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
-    const newTask = _getEmptyTask(taskTitle)
-    currBoard.groups[groupIdx].tasks.push(newTask)
-    save(currBoard)
-    return currBoard
+    try{
+        var currBoard = await getBoardById(boardId)
+        const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
+        const newTask = _getEmptyTask(taskTitle)
+        currBoard.groups[groupIdx].tasks.push(newTask)
+        
+        // note keep it synchronous and in failure 
+        // the loadBoards dispatch will action
+        save(currBoard)
+        return currBoard
+
+    }catch(err){
+        // todo-important verify its working!!!!
+       throw new Error('loadBoards')
+    }
 }
 
 async function removeTasks({ boardId, selectedTasks }) {
-    var currBoard = await getById(boardId)
+    var currBoard = await getBoardById(boardId)
     currBoard.groups.forEach(group => {
         var tasks = group.tasks
 
@@ -116,7 +131,7 @@ async function removeTasks({ boardId, selectedTasks }) {
     return currBoard
 }
 async function duplicateTasks({ boardId, selectedTasks }) {
-    var currBoard = await getById(boardId)
+    var currBoard = await getBoardById(boardId)
     currBoard.groups.forEach(group => {
         var tasks = group.tasks
 
@@ -130,7 +145,7 @@ async function duplicateTasks({ boardId, selectedTasks }) {
     return currBoard
 }
 async function duplicateGroup({ boardId, groupId }) {
-    var currBoard = await getById(boardId)
+    var currBoard = await getBoardById(boardId)
     const dupGroup = JSON.parse(JSON.stringify(currBoard.groups.find(g => g.id === groupId)))
     dupGroup.id = utilService.makeId()
 
@@ -141,7 +156,7 @@ async function duplicateGroup({ boardId, groupId }) {
 
 }
 async function deleteGroup({ boardId, groupId }) {
-    var currBoard = await getById(boardId)
+    var currBoard = await getBoardById(boardId)
     const idx = currBoard.groups.findIndex(g => g.id === groupId)
     currBoard.groups.splice(idx, 1)
     save(currBoard)
@@ -149,7 +164,7 @@ async function deleteGroup({ boardId, groupId }) {
 
 }
 async function addGroup(boardId) {
-    var currBoard = await getById(boardId)
+    var currBoard = await getBoardById(boardId)
     const newGroup = _getEmptyGroup()
     currBoard.groups.push(newGroup)
 
