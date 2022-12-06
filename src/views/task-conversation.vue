@@ -107,9 +107,9 @@
 <script>
 import memberPreview from '../cmps/member-preview.vue'
 import { utilService } from '../services/util.service.js'
+import { socketService, SOCKET_EMIT_SEND_COMMENTS, SOCKET_EVENT_ADD_COMMENTS, SOCKET_EMIT_SET_TOPIC } from '../services/socket.service.js'
 
 export default {
-
   data() {
     return {
       //TODO?- maybe need to do deep copy
@@ -123,8 +123,21 @@ export default {
     const taskId = this.$route.params.taskId
     const currBoard = this.$store.getters.getCurrBoard
     this.setConversationData(currBoard, taskId)
-
     this.user = this.$store.getters.loggedinUser
+
+    socketService.emit(SOCKET_EMIT_SET_TOPIC, taskId)
+    socketService.on(SOCKET_EVENT_ADD_COMMENTS, this.addCommentsBySocket)
+  },
+  unmounted() {
+    // update the state after all the comments-socket is finished and user is out
+    var toUpdate = this.task.comments
+    this.$store.dispatch({
+      type: "updateCurrBoard",
+      groupId: this.groupId,
+      taskId: this.task.id,
+      prop: 'comments',
+      toUpdate,
+    });
   },
   methods: {
     async onAddComment() {
@@ -140,21 +153,14 @@ export default {
           color
         }
       }
-      var toUpdate = this.task.comments
-      toUpdate.push(newComment)
 
-      await this.$store.dispatch({
-        type: "updateCurrBoard",
-        groupId: this.groupId,
-        taskId: this.task.id,
-        prop: 'comments',
-        toUpdate,
-      });
-
-      const currBoard = this.$store.getters.getCurrBoard
-      this.setConversationData(currBoard, this.task.id)
+      const updatedComments = [...this.task.comments, newComment]
+      this.task.comments = updatedComments
+      socketService.emit(SOCKET_EMIT_SEND_COMMENTS, updatedComments)
     },
-
+    addCommentsBySocket(comments) {
+      this.task.comments = comments
+    },
     goBackToMainTable() {
       const boardId = this.$route.params.id
       this.$router.push(`/board/${boardId}/main-table`)
@@ -167,7 +173,6 @@ export default {
             this.task = JSON.parse(JSON.stringify(task))
             this.groupId = group.id
           }
-
         })
       })
     }
