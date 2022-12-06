@@ -2,15 +2,14 @@
 
     <section class="kanban">
         <section class="kanban-content fully flex ">
-            <section class="tasks-by-order" 
-            v-for="(value) in statusMap" :key="value">
-            <pre>{{value}}</pre>
+            <section class="tasks-by-order" v-for="(value) in statusMap" :key="value">
+                <pre>{{ value }}</pre>
+
+            </section>
 
         </section>
 
-        </section>
-
-        <kanban-filter></kanban-filter>
+        <kanban-filter />
     </section>
 </template>
 
