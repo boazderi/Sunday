@@ -1,32 +1,85 @@
-
-
-.dashboard-content{
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0.5em;
+    grid-template-areas:
+      'stats  doughnut-chart'
+      'bar-chart  polar-chart';
+    padding: 0 2rem;
     background-color: $bg-big-sidebar;
     width: 100%;
-    height: 100%;
-    padding: 20px;
-    justify-content: space-evenly;
-    flex-wrap:wrap;
-    margin-bottom: 25px;
+    height: 80vh;
 }
 
+.memberDashPic{
+    border-radius: 50%;
+    width: 90%;
+    border: double 2px rgb(255, 255, 255);
+}
 
-.chart-container{
+.stats {
+    grid-area: stats;
+    grid-row: 1;
+    grid-column: 1;
+    gap: 1em;
+    justify-content: space-between;
+    height: 1fr;
+    align-items: center;
+    padding: 15px;
+}
+
+.doughnut-chart{
+    grid-area: doughnut-chart;
+    grid-row: 1;
+    grid-column: 2;
+    gap: 1em;
+    // justify-content: space-between;
+    // height: 300px;
+    // width: 500px;
+}
+.bar-chart{
+    grid-area: bar-chart;
+    gap: 1em;
+}
+
+.polar-chart{
+    grid-area: polar-chart;
+    gap: 1em;
+}
+
+.chart-container {
     border: 1px solid $primary-border-clr;
     border-radius: 10px;
     background-color: #fff;
-    height: fit-content;
+    height: 1fr;
+    margin: 0.5rem;
 }
 
-.chartHead{
-  width: 100%;
-  padding: 10px 0;
-  padding-left: 20px;
-  border-bottom: 1px solid $primary-border-clr;
+.chartHead {
+    width: 100%;
+    padding: 10px 0;
+    padding-left: 20px;
+    border-bottom: 1px solid $primary-border-clr;
 }
 
-.chart{
-    padding: 25px;
-    width: 400px;
-    height: 400px;
+.chart {
+    width: 78%;
+    height: 78%;
+}
+
+
+.stat {
+    height: 90%;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: center;
+    flex: 1;
+    box-shadow: 0 0 2px grey;
+    border-radius: 6px;
+    background: linear-gradient(rgb(175, 175, 175), rgb(233, 233, 233));
+}
+
+.stat h2 {
+    font-size: 72px;
 }
