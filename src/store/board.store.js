@@ -31,13 +31,27 @@ export const boardStore = {
     state: {
         boards: [],
         currBoard: null,
+        filterBy: {
+            text: '',
+            members: [],
+            groupTitle: '',
+            dynamicProps: [{
+                    prop: 'priority',
+                    values: []
+                },
+                {
+                    prop: 'status',
+                    values: []
+                },
+            ]
+        }
     },
     getters: {
         getBoards({ boards }) {
             return boards
         },
-        getCurrBoard({ currBoard }) {
-            return currBoard
+        getCurrBoard({ filterBy, currBoard }) {
+            return boardService.filterCurrBoard(currBoard, filterBy)
         }
     },
     mutations: {
@@ -109,6 +123,16 @@ export const boardStore = {
                 console.log('boardStore: Error in updateBoard', err)
                 throw err
             }
+        },
+        async updateDraggedKanban({ commit, state }, { groupId, taskId, prop, toUpdate }) {
+            // console.log(groupId, taskId, prop, toUpdate);
+            // commit({ type: 'changeDragged', groupId, tasksToUpdate, groupsToUpdate })
+            // try {
+            //     const updatedBoard = await boardService.save(state.currBoard)
+            // } catch (err) {
+            //     console.log('boardStore: Error in updateBoard', err)
+            //     throw err
+            // }
         },
         // NOTE- example for the all-around pattern with errors
         async addNewTask({ dispatch, commit, state }, { payload }) {

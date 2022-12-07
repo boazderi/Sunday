@@ -19,6 +19,7 @@ export const boardService = {
     duplicateGroup,
     deleteGroup,
     addGroup,
+    filterCurrBoard
     // updateDraggedGroup
 }
 window.cs = boardService
@@ -44,9 +45,9 @@ async function remove(boardId) {
 // note the backend future 6.12
 async function save(board) {
     var savedBoard
-    try{
+    try {
         if (board._id) {
-             // http.put(/currBoardid,currboard(as req.body))
+            // http.put(/currBoardid,currboard(as req.body))
             savedBoard = await storageService.put(STORAGE_KEY, board)
         }
         // Note- meanwhile we didnt produce a new board
@@ -57,7 +58,7 @@ async function save(board) {
         }
         return savedBoard
 
-    }catch(err){
+    } catch (err) {
         // Note we bubble that to each func that use the save and the func
         // send a new Error with dispatch to the load board
         throw err
@@ -93,27 +94,27 @@ async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
     } else {
         currBoard[prop] = toUpdate
     }
-   
+
     save(currBoard)
     return currBoard
 }
 
 // NOTE- example for the all-around pattern with errors
 async function addNewTask({ boardId, groupId, taskTitle }) {
-    try{
+    try {
         var currBoard = await getBoardById(boardId)
         const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
         const newTask = _getEmptyTask(taskTitle)
         currBoard.groups[groupIdx].tasks.push(newTask)
-        
+
         // note keep it synchronous and in failure 
         // the loadBoards dispatch will action
         save(currBoard)
         return currBoard
 
-    }catch(err){
+    } catch (err) {
         // todo-important verify its working!!!!
-       throw new Error('loadBoards')
+        throw new Error('loadBoards')
     }
 }
 
@@ -170,6 +171,66 @@ async function addGroup(boardId) {
 
     save(currBoard)
     return currBoard
+}
+
+function filterCurrBoard(currBoard, filterBy) {
+    var filteredBoard = JSON.parse(JSON.stringify(currBoard))
+    const regex = new RegExp(filterBy.text, 'i')
+    var filteredGroups = []
+    for (var i = 0; i < filteredBoard.groups.length; i++) {
+        var currGroup = filteredBoard.groups[i]
+        if (regex.test(currGroup.title)) {
+            filteredGroups.push(currGroup)
+            continue
+        }
+        var filteredTasks = []
+        for (var j = 0; j < currGroup.tasks.length; j++) {
+            var toContinue = false
+            const currTask = currGroup.tasks[j]
+            if (regex.test(currTask.taskTitle)) {
+                filteredTasks.push(currTask)
+                toContinue = true
+                continue
+            }
+            if (toContinue) continue
+
+            for (var x = 0; x < filterBy.members.length; x++) {
+                const currMember = filterBy.members[x]
+                for (var n = 0; n < currTask.members.length; n++) {
+                    if (currTask.members[n] === currMember.id) {
+                        filteredTasks.push(currTask)
+                        toContinue = true
+                        continue
+                    }
+                }
+            }
+            if (toContinue) continue
+
+            for (var y = 0; y < filterBy.dynamicProps.length; y++) {
+                if (toContinue) continue
+                const currProp = filterBy.dynamicProps[y].prop
+                const currValues = filterBy.dynamicProps[y].values
+                for (var m = 0; m < currValues.length; m++) {
+                    if (currTask[currProp] === currValues[m]) {
+                        filteredTasks.push(currTask)
+                        toContinue = true
+                        continue
+                    }
+                    if (toContinue) continue
+                }
+            }
+            if (toContinue) continue
+        }
+        if (filteredTasks.length) {
+            currGroup.tasks = filteredTasks
+            filteredGroups.push(currGroup)
+        }
+    }
+    filteredBoard.groups = filteredGroups
+
+    // console.log(filteredGroups);
+    return filteredBoard
+
 }
 
 function _getEmptyTask(taskTitle) {
