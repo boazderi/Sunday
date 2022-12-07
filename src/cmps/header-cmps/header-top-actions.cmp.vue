@@ -8,19 +8,19 @@
                 <member-preview class="login-img" :member="loggedinUser"></member-preview>
             </div>
 
-        <section class="users-dropdown flex column " v-if="isDropOpen">
-            <div class="user-item flex align-center" v-for="user in users" :key="user">
-                <member-preview :member="user" class="user-img"></member-preview>
-                <span>{{user.fullname}}</span>
-            </div>
-        </section>
+            <section class="users-dropdown flex column" v-if="isDropOpen">
+                <div class="user-item flex align-center" v-for="user in users" :key="user">
+                    <member-preview :member="user" class="user-img"></member-preview>
+                    <span>{{ user.fullname }}</span>
+                </div>
+            </section>
         </div>
 
-    
         <div class="invite-btn flex align-center outboard-hover">
             <span v-icon="'invite'"></span>
             <button>Invite / 1</button>
         </div>
+
     </section>
 </template>
 
@@ -31,7 +31,7 @@ export default {
         return {
             users: null,
             loggedinUser: null,
-            isDropOpen:false
+            isDropOpen: false
         }
     },
     created() {
@@ -39,8 +39,8 @@ export default {
         this.loggedinUser = this.$store.getters.loggedinUser
     },
     methods: {
-        toggleDropDown(){
-            this.isDropOpen=! this.isDropOpen
+        toggleDropDown() {
+            this.isDropOpen = !this.isDropOpen
         }
     },
     components: {

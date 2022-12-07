@@ -5,6 +5,7 @@ import boardApp from './views/board-app.vue'
 import mainTable from './views/main-table.vue'
 import kanban from './views/kanban.vue'
 import taskConversation from './views/task-conversation.vue'
+import dashboard from './views/dashboard.vue'
 
 const routes = [
   {
@@ -34,6 +35,11 @@ const routes = [
         path: '/board/:id/kanban',
         name: 'kanban',
         component:kanban
+      }, 
+      {
+        path: '/board/:id/dashboard',
+        name: 'dashboard',
+        component:dashboard
       }
 
     ]

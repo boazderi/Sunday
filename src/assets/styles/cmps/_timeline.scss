@@ -1,12 +1,11 @@
-
-.cell1.timeline-container{
+.cell1.timeline-container {
     // left: 78px;
     text-align: center;
     line-height: 22px;
     width: 187px;
 }
 
-.wide-cell{
+.wide-cell {
     width: 187px;
     position: relative;
 }
@@ -15,14 +14,15 @@
     position: relative;
     width: 100%;
     max-height: 22px;
-    margin: 0 20px;
+    margin: 0 15px;
     border-radius: 15px;
     background-color: #c3c4c3;
+    font-size: 13px;
     color: #fff !important;
 }
 
-.timeline-input{
-    position:absolute;
+.timeline-input {
+    position: absolute;
     right: 0px;
     min-width: 148px;
     max-height: 22px;
@@ -33,10 +33,20 @@
     z-index: 2;
 }
 
-.el-popper.is-pure.is-light.el-picker__popper{
+.after-set-date {
+    background-color: #333333;
+    padding: 0 8px;
+}
+
+.el-popper.is-pure.is-light.el-picker__popper {
     top: 600px;
 }
-#el-popper-container-6352{
+
+#el-popper-container-6352 {
     top: 600px !important;
     inset: 0 !important;
+}
+
+.el-range-input {
+    cursor: pointer;
 }

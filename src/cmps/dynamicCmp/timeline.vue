@@ -5,13 +5,21 @@
       class="timeline-btn"
       @mouseover="isHover = true"
       @mouseleave="isHover = false"
+        :class=" {'after-set-date':isDateSet}"
       @click="
         isDatePickerOpen = !isDatePickerOpen;
         handleOpen;
       "
     >
-      <span v-if="isHover">{{ timelineContent ? `${timelineContent[0]} - ${timelineContent[1]}` : 'Set Dates'}}</span>
-      <span v-else> {{timelineContent ? `${timelineContent[0]} - ${timelineContent[1]}` : '-'}} </span>
+      <span v-if="isHover">{{
+        isDateSet ? timelineHover : "Set Dates"
+      }}</span>
+      <span v-else
+      >
+        {{
+          timelineContent ? timelineContent : "-"
+        }}
+      </span>
       <el-date-picker
         class="timeline-input"
         format="YYYY/MM/DD"
@@ -34,28 +42,48 @@ export default {
     return {
       isHover: false,
       isDatePickerOpen: false,
+      isDateSet: false,
       value: ref(""),
     };
   },
   created() {
-    console.log(this.timelineContent);
   },
   methods: {
     printVal() {
-      console.log(this.value);
     },
   },
   computed: {
     timelineContent() {
-      console.log('this.value',this.value);
-      if (this.value){
-        var fromDate= new Date(this.value[0]);
-        var toDate= new Date(this.value[1]);
-        console.log([fromDate.toDateString(), toDate.toDateString()]);
-        return [fromDate.toDateString(), toDate.toDateString()]
+      if (this.value) {
+        this.isDateSet = true
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        // from
+        var fromDate = new Date(this.value[0]);
+        var fromYear = `,'${(fromDate.getFullYear()+'').substring(2, 4)}`
+        var fromMonth = fromDate.getMonth();
+        var fromDay = fromDate.getDate();
+        // to
+        var toDate = new Date(this.value[1]);
+        var toYear = `,'${(toDate.getFullYear()+'').substring(2, 4)}`
+        var toMonth = toDate.getMonth();
+        var toDay = toDate.getDate();
+        var dates = [fromDate, toDate];
+        if (fromYear === toYear) {
+          console.log("same year");
+          if(fromMonth === toMonth){
+            console.log("same month");
+            return `${months[fromMonth].substring(0,3)} ${fromDay} - ${toDay}`
+          }
+        }
+        console.log("not same year");
+        return  `${months[fromMonth].substring(0,3)} ${fromDay} ${fromYear} - ${months[toMonth].substring(0,3)} ${toDay} ${toYear}`;
       }
-      return ''
+      return "";
     },
+    timelineHover(){
+      var tsRange = this.value[1] - this.value[0]
+      return (tsRange / 24 / 60 / 60 / 1000) + 'd' 
+    }
   },
 };
 </script>

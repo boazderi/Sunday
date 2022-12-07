@@ -84,29 +84,43 @@
     margin-top: 8px;
 }
 
-.board-nav-item {
-    padding: 8px;
-    border-radius: 6px 6px 0 0;
-
+.nav-item-container{
+    display: flex;
     &.active {
         border-bottom: 2px solid $primary-clr;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        font-weight: 500;
     }
+}
+
+.board-nav-item {
+    padding: 4px 14px;
+    cursor: pointer;
+    font-size: 0.875em;
+    border-radius: 6px;
+    align-items: center;
+    margin: 4px 0 ;
+}
+
+.board-nav-item.main-table-nav{
+    padding-left: 4px;
 }
 
 .board-filter-bar {
     padding: 16px 0;
     height: 4em;
+    gap: 10px;
 }
 
 .board-filter-item {
     border-radius: 6px;
     margin-left: 4px;
-    padding: 6px;
+    padding: 4px;
     color: $primary-txt-clr;
 }
 
 .new-task {
-    border-radius: 6px;
+    border-radius: 4px;
     height: 2em;
     background-color: $primary-clr;
 }
@@ -123,7 +137,7 @@
     border-right: 1px solid #0360b9;
 
     &:hover {
-        border-radius: 6px 0 0 6px;
+        border-radius: 4px 0 0 4px;
         background-color: #0360b9;
     }
 }
@@ -133,7 +147,7 @@
     margin: 0 4px;
 
     &:hover {
-        border-radius: 0 6px 6px 0;
+        border-radius: 0 4px 4px 0;
         background-color: #0360b9;
     }
 }
