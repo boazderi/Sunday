@@ -12,7 +12,7 @@ import { Chart, registerables } from "chart.js";
 Chart.register(...registerables);
 
 export default {
-  name: "Home",
+  name: "doughnut-chart",
   props: {
     data: Object,
     options: Object,

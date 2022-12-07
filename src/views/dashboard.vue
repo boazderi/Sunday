@@ -1,9 +1,9 @@
 <template>
-  <section class="dashboard-content fully flex">
-    <doughnut-chart :data="statusData" :options="options"></doughnut-chart>
-    <bar-chart :data="priorityData" :options="options"></bar-chart>
-    <polar-chart :data="membersData" :options="options"></polar-chart>
-    <pie-chart :data="statusData" :options="options"></pie-chart>
+  <section class="dashboard-content">
+    <cards-chart class="stats" :data="boardStats" :members="membersList"></cards-chart>
+    <doughnut-chart class="doughnut-chart" :data="statusData" :options="options"></doughnut-chart>
+    <polar-chart class="polar-chart" :data="membersData" :options="options"></polar-chart>
+    <bar-chart class="bar-chart" :data="priorityData" :options="options"></bar-chart>
   </section>
 </template>
 
@@ -12,12 +12,21 @@ import barChart from "../cmps/dashboard-cmps/bar-chart.cmp.vue";
 import doughnutChart from "../cmps/dashboard-cmps/doughnut-chart.cmp.vue";
 import polarChart from "../cmps/dashboard-cmps/poalar-chart.cmp.vue";
 import pieChart from "../cmps/dashboard-cmps/pie-chart.cmp.vue";
+import cardsChart from "../cmps/dashboard-cmps/cards-chart.cmp.vue";
+
 export default {
   data() {
     return {
       orderBy: "status",
       currentBoard: this.$store.getters.getCurrBoard,
       priorityMap: { CRITICAL: [], HIGH: [], MEDIUM: [], LOW: [], EMPTY: [] },
+      membersList: null
+      ,
+      boardStats: {
+        groups : 0,
+        tasks : 0,
+        members : 0,
+      },
       options: {
         plugins: {
           legend: {
@@ -62,12 +71,20 @@ export default {
   },
   async created() {
     this.currentBoard = await this.$store.getters.getCurrBoard
-    console.log('this.currentBoard',this.currentBoard)
     this.setPriorityMap()
     this.setStatusData()
     this.setmembersMap()
+    this.setBoardStats()
   },
   methods: {
+    setBoardStats(){
+      this.boardStats.groups = this.currentBoard.groups.length
+      this.boardStats.members = this.currentBoard.members.length
+      this.membersList = this.currentBoard.members
+      this.currentBoard.groups.forEach(group => {
+        this.boardStats.tasks += group.tasks.length
+      })
+    },
     setStatusData() {
       var data = this.statusData.datasets[0].data
       var dataLabels = this.statusData.labels
@@ -106,6 +123,7 @@ export default {
     barChart,
     polarChart,
     pieChart,
+    cardsChart,
   },
 };
 </script>

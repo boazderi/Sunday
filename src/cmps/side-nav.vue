@@ -5,7 +5,7 @@
       <img class="flex center" src="../../src/assets/img/monday_logo_icon.png" width="30" height="30" alt="">
     </div>
 
-    <el-tooltip content="Work management">
+    <el-tooltip transition="none" auto-close="0" content="Work management">
       <div class="work-management">
         <span v-icon="'workManagement'"></span>
     </div>
