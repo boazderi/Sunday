@@ -8,7 +8,8 @@
           }
         " v-icon="'arrowDown'"></button>
     </div>
-    <button class="flex align-center board-filter-item outboard-hover">
+    <input v-if="isSearch" @blur="isSearch = false" @change="setFilter" type="search" autofocus class="board-filter-item">
+    <button v-else @click="isSearch = true" class="flex align-center board-filter-item outboard-hover">
       <span v-icon="'search'"></span> Search
     </button>
     <el-tooltip transition="none" auto-close=0  content="Filter by person">
@@ -42,7 +43,12 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      isSearch: false,
+      filterBy: {
+        
+      }
+    };
   },
   methods: {
     onAddTask() {
@@ -56,6 +62,7 @@ export default {
         },
       });
     },
+
   },
 };
 </script>
