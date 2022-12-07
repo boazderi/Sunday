@@ -66,7 +66,7 @@ export const boardStore = {
             state.currBoard = newBoard
         },
         changeDragged(state, { groupId, tasksToUpdate, groupsToUpdate }) {
-            console.log(groupId, tasksToUpdate, groupsToUpdate);
+            // console.log(groupId, tasksToUpdate, groupsToUpdate);
             if (groupId) {
                 const idx = state.currBoard.groups.findIndex(group => group.id === groupId)
                 state.currBoard.groups[idx].tasks = tasksToUpdate
@@ -116,12 +116,12 @@ export const boardStore = {
                 payload.boardId = state.currBoard._id
                 const updatedBoard = await boardService.addNewTask(payload)
                 commit({ type: 'updateBoard', board: updatedBoard })
-                //todo usermsg about success
+                    //todo usermsg about success
             }
             // Note-the err is string with loadBoards-action th
             catch (err) {
                 await dispatch(err)
-                //todo usermsg about failure
+                    //todo usermsg about failure
             }
         },
         async removeTasks({ commit, state }, { payload }) {

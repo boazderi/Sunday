@@ -1,50 +1,39 @@
 <template>
     <section v-if="kanbanColumn.length" class="kanban">
         <section class="kanban-content">
-            <Container orientation="horizontal" @drop="onColumnDrop($event)" drag-handle-selector=".column-drag-handle"
-                :drop-placeholder="{
-                    className: 'drop-placeholder1',
-                    animationDuration: '200',
-                    showOnTop: true
-                }">
-                <Draggable v-for="column in kanbanColumn" :key="column.title">
+            <section class="kanban-col" v-for="column in kanbanColumn" :key="column.title"
+                :style="{ 'background-color': column.color }">
+                <div class="col-header">
+                    <div>{{ column.title }} / {{ column.tasks.length }}</div>
+                </div>
+                <div class="col-content">
+                    <section class="cards-container">
+                        <Container @drop="(ev) => onTaskDrop(column.title, ev)" group-name="task-card"
+                            :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-card')" orientation="vertical"
+                            :get-child-payload="getTaskPayload(column.title)" :drop-placeholder="{
+                                className: 'drop-placeholder',
+                                animationDuration: '200',
+                                showOnTop: true
+                            }" drag-class="on-drag">
+                            <Draggable v-for="task in column.tasks" :key="task.content.id">
 
-                    <section class="kanban-col" :style="{ 'background-color': column.color }">
-                        <div class="col-header">
-                            <span class="column-drag-handle" v-icon="'handle'" />
-                            <div>{{ column.title }} / {{ column.tasks.length }}</div>
-                        </div>
-                        <div class="col-content">
-                            <section class="cards-container">
-                                <Container @drop="(ev) => onTaskDrop(column.title, ev)" group-name="task-card"
-                                    :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-card')"
-                                    orientation="vertical" :get-child-payload="getTaskPayload(column.title)"
-                                    :drop-placeholder="{
-                                        className: 'drop-placeholder',
-                                        animationDuration: '200',
-                                        showOnTop: true
-                                    }" drag-class="on-drag">
-                                    <Draggable v-for="task in column.tasks" :key="task.content.id">
+                                <article class="task-card">
+                                    <div class="card-item" v-for="(cmp, idx) in cardColumns" :key="idx">
+                                        <!-- <div class="card-label">{{ cmp }}</div> -->
+                                        <component :is="cmp" :info="task.content"
+                                            @update="updateTask($event, task.groupId, task.content.id)" />
+                                    </div>
+                                </article>
+                            </Draggable>
+                        </Container>
 
-                                        <article class="task-card">
-                                            <div class="card-item" v-for="(cmp, idx) in cardColumns" :key="idx">
-                                                <!-- <div class="card-label">{{ cmp }}</div> -->
-                                                <component :is="cmp" :info="task.content"
-                                                    @update="updateTask($event, task.groupId, task.content.id)" />
-                                            </div>
-                                        </article>
-                                    </Draggable>
-                                </Container>
-
-                            </section>
-                            <div class="add-task-btn">
-                                <span v-icon="'addXSmall'" />
-                                Add task
-                            </div>
-                        </div>
                     </section>
-                </Draggable>
-            </Container>
+                    <div class="add-task-btn">
+                        <span v-icon="'addXSmall'" />
+                        Add task
+                    </div>
+                </div>
+            </section>
         </section>
         <!-- <kanban-filter :updateFilter="updateFilter" /> -->
     </section>
@@ -120,39 +109,28 @@ export default {
             })
             this.setKanbanColumn()
         },
-        onColumnDrop(dropResult) {
-            var kanbanColumn = JSON.parse(JSON.stringify(this.kanbanColumn))
-            kanbanColumn = this.applyDrag(kanbanColumn, dropResult)
-            this.kanbanColumn = kanbanColumn
-        },
-        async onTaskDrop(columnTitle, dropResult) {
-
+        onTaskDrop(columnTitle, dropResult) {
+            // console.log(columnTitle, dropResult);
+            console.log(this.kanbanColumn);
             if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
                 const kanbanColumn = JSON.parse(JSON.stringify(this.kanbanColumn))
                 const column = kanbanColumn.filter(column => column.title === columnTitle)[0]
                 const columnIdx = kanbanColumn.findIndex(currColumn => currColumn.title === column.title)
-
+                
                 const newColumn = JSON.parse(JSON.stringify(column))
                 newColumn.tasks = this.applyDrag(newColumn.tasks, dropResult)
-                // console.log(newColumn);
+                console.log(newColumn);
 
                 kanbanColumn.splice(columnIdx, 1, newColumn)
-
+                
                 this.kanbanColumn = kanbanColumn
             }
-            if (dropResult.addedIndex && !dropResult.removedIndex) {
-                console.log(dropResult);
-                await this.$store.dispatch({
-                    type: "updateCurrBoard",
-                    groupId: dropResult.payload.groupId,
-                    taskId: dropResult.payload.content.id,
-                    prop: this.filterBy,
-                    toUpdate: columnTitle,
-                })
-                this.setKanbanColumn()
-                
-            }
 
+            //   this.$store.dispatch({
+            //     type: "updateDraggedItems",
+            //     groupId: this.groupInfo.id,
+            //     tasksToUpdate: this.groupTasks
+            //   })
         },
         getTaskPayload(columnTitle) {
             return index => {
@@ -198,8 +176,3 @@ export default {
 }
 </script>
 
-<style>
-.smooth-dnd-container.horizontal {
-    display: flex !important;
-}
-</style>

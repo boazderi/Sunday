@@ -162,6 +162,7 @@ export default {
       eventBus.emit("toggleAllTasksCheckbox", this.groupId);
     },
     onTaskDrop(groupId, dropResult) {
+      // console.log(dropResult);
       this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
 
       this.$store.dispatch({
