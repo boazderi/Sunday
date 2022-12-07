@@ -101,7 +101,7 @@ export default {
         "date",
         "textNote",
         "file",
-        // "timeline",
+        "timeline",
       ],
       // helper for progressRow
       positions: ['first', 'second', 'third', 'forth'],

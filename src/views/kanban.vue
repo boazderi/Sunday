@@ -140,8 +140,9 @@ export default {
 
                 this.kanbanColumn = kanbanColumn
             }
-            if (dropResult.addedIndex && !dropResult.removedIndex) {
-                console.log(dropResult);
+
+            console.log(dropResult);
+            if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
                 await this.$store.dispatch({
                     type: "updateCurrBoard",
                     groupId: dropResult.payload.groupId,
@@ -150,7 +151,7 @@ export default {
                     toUpdate: columnTitle,
                 })
                 this.setKanbanColumn()
-                
+                console.log('THIS', dropResult);
             }
 
         },

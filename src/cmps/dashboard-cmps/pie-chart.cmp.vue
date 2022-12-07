@@ -1,12 +1,14 @@
 <template>
   <section class="flex flex-col align-center chart-container">
-    <h3 class="chartHead" >Tasks by status</h3>
-    <DoughnutChart class="chart" :chartData="data" :options="options"/>
+    <h3 class="chartHead">Tasks by status</h3>
+    <PieChart
+ class="chart" :chartData="data" :options="options" />
   </section>
 </template>
 
 <script>
-import { DoughnutChart } from "vue-chart-3";
+import { PieChart
+ } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
 
 Chart.register(...registerables);
@@ -22,9 +24,11 @@ export default {
 
     };
   },
+  mounted() {
+  },
   components: {
-    DoughnutChart,
+    PieChart
+,
   },
 };
 </script>
-

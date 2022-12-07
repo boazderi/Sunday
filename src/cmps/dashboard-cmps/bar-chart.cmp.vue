@@ -1,41 +1,32 @@
 <template>
-    <section class="inventory-by-label ">
-            <BarChart :chartData="data" :options="inventoryOptions"/>
-    </section>
+  <section class="flex flex-col align-center chart-container">
+    <h3 class="chartHead">Tasks by priority</h3>
+    <BarChart class="chart" :chartData="data" :options="options" />
+  </section>
 </template>
-  
-<script >
-import { BarChart } from 'vue-chart-3';
+
+<script>
+import { BarChart } from "vue-chart-3";
 import { Chart, registerables } from "chart.js";
 
 Chart.register(...registerables);
 
 export default {
-    name: 'vue-chart',
-    props: {
-        data:Object
-    },
-    created(){
-        console.log(this.data);
-    },
-    data() {
-        return {
-            inventoryOptions: {
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
-                },
-            },
-        }
-    },
-    components: { BarChart},
-}
-</script>
+  name: "Home",
+  props: {
+    data: Object,
+    options: Object,
+  },
+  data() {
+    return {
 
-<style>
-#bar-chart{
-    width:300px;
-    height: 300px;
-}
-</style>
+    };
+  },
+  mounted() {
+    console.log(this.data);
+  },
+  components: {
+    BarChart,
+  },
+};
+</script>
