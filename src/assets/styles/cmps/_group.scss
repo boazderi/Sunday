@@ -34,8 +34,12 @@
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
-    >* {
+    >* :not(.more){
         background-color: white;
+// 
+//         &:hover{
+//             background-color: lightgray;
+//         }
     }
     .first {
         left: 0;

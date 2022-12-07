@@ -4,6 +4,49 @@
     padding-inline-end: 30px;
 }
 
+.users-list {
+    cursor: pointer;
+    position: relative;
+    margin-inline-end: 22px;
+    padding: 6px;
+    border-radius: 4px 6px;
+
+    span {
+        padding-top: 5px;
+        font-size: em(14px);
+        color: #323338;
+    }
+
+    .login-img {
+        margin-inline-start: 8px;
+    }
+
+    .users-dropdown {
+        position: absolute;
+        top: 46px;
+        background-color: white;
+        box-shadow:0px 3px 14px 0px rgba(0,0,0,0.3);
+
+        padding: 5px;
+        padding-top: 9px;
+        border-radius: 4px;
+    }
+
+    .user-item {
+        margin-bottom: 8px;
+        min-width: 150px;
+        border-radius: 4px;
+
+        :first-child {
+            margin: 6px;
+        }
+        &:hover {
+            background-color: $primary-hover-clr;
+        }
+    }
+
+}
+
 .board-upper-header {
     border-bottom: 1px solid $primary-border-clr;
 }
@@ -18,6 +61,7 @@
     width: max-content;
     font-size: 1.5rem;
     padding: 4px;
+
     &:hover {
         outline: 1px solid $primary-border-clr;
     }
@@ -43,6 +87,7 @@
 .board-nav-item {
     padding: 8px;
     border-radius: 6px 6px 0 0;
+
     &.active {
         border-bottom: 2px solid $primary-clr;
     }
@@ -66,7 +111,7 @@
     background-color: $primary-clr;
 }
 
-.hide-icon{
+.hide-icon {
     width: 25px;
     height: 20px;
     color: #676879;
@@ -76,6 +121,7 @@
     color: white;
     padding: 4px 8px;
     border-right: 1px solid #0360b9;
+
     &:hover {
         border-radius: 6px 0 0 6px;
         background-color: #0360b9;
@@ -85,6 +131,7 @@
 .new-task-arrow {
     color: white;
     margin: 0 4px;
+
     &:hover {
         border-radius: 0 6px 6px 0;
         background-color: #0360b9;

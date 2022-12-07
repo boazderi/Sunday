@@ -1,5 +1,6 @@
 import { userService } from '../services/user.service'
 import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from '../services/socket.service'
+import { START_ALIGNMENT } from 'element-plus/es/components/virtual-list/src/defaults'
 
 // var localLoggedinUser = null
 // if (sessionStorage.user) localLoggedinUser = JSON.parse(sessionStorage.user || null)
@@ -18,14 +19,15 @@ export const userStore = {
     mutations: {
         setLoggedinUser(state, { user }) {
             // todo- verify its not making bugs this shallow copy
-            state.loggedinUser = (user)? {...user} : null
-           
+            state.loggedinUser = (user) ? { ...user } : null
+
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user
-        },       
+        },
         setUsers(state, { users }) {
             state.users = users
+            if (!state.loggedinUser) state.loggedinUser = users[0]
         },
         removeUser(state, { userId }) {
             state.users = state.users.filter(user => user._id !== userId)
@@ -70,16 +72,17 @@ export const userStore = {
             try {
                 const users = await userService.getUsers()
                 commit({ type: 'setUsers', users })
+
             } catch (err) {
                 console.log('userStore: Error in loadUsers', err)
                 throw err
             }
-        },        
+        },
         async loadAndWatchUser({ commit }, { userId }) {
             try {
                 const user = await userService.getById(userId)
                 commit({ type: 'setWatchedUser', user })
-                
+
             } catch (err) {
                 console.log('userStore: Error in loadAndWatchUser', err)
                 throw err
@@ -114,17 +117,17 @@ export const userStore = {
             }
         },
         // Keep this action for compatability with a common user.service ReactJS/VueJS
-        setWatchedUser({commit}, payload) {
+        setWatchedUser({ commit }, payload) {
             commit(payload)
-        },       
+        },
 
     },
-    watch:{
-        loggedinUser:{
-            handler(){
+    watch: {
+        loggedinUser: {
+            handler() {
                 console.log(this.loggedinUser)
             }
         },
-        deep:true
+        deep: true
     }
 }

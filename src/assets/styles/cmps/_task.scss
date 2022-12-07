@@ -1,10 +1,13 @@
 // TASK SECTION
 // for all the dynamic content
+
+// helper for hover
+
 .task-row {
     >* {
         cursor: pointer;
     }
-
+  
     .more {
         left: 0px;
 
@@ -17,8 +20,15 @@
 
     &:hover {
         background-color: $table-hover-clr;
+        // background-color: green !important;
         box-shadow: 4px 3px 6px -3px #c3c6d4;
 
+        *>{
+            background-color:inherit; 
+            *>{
+                background-color: inherit;
+            }
+        }
         .more {
             span {
                 opacity: 1;

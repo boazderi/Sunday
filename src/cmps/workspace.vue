@@ -6,12 +6,12 @@
       <span v-icon="arrowSide"></span>
     </div> -->
     <div class="toggleWorkspace flex center align-center" @click="toggleWorkspace">
-      <span v-if="isOpen" v-icon="'arrowLeft'"></span>
-      <span v-else v-icon="'arrowRight'"></span>
+      <span v-if="isOpen" class="svg first" v-icon="'arrowLeft'"></span>
+      <span class="svg second" v-else v-icon="'arrowRight'"></span>
     </div>
 
     <div class="dropdown-nav-header flex space-between align-center">
-      <span>workspace</span>
+      <span>Workspace</span>
       <div v-icon="'moreMed'"></div>
     </div>
 
@@ -29,15 +29,19 @@
     </div>
 
     <section class="action-list flex column">
+      <!-- action-list -->
       <div v-for="action in actionList" class="flex align-center item " :key="action">
         <div class="flex align-center" v-icon="`${action.icon}`"></div>
-        {{ action.title }}
+        <span :class="action.icon"> {{ action.title }}</span>
       </div>
     </section>
 
+    <!-- syntactic border -->
+    <div class="lists-border flex center"></div>
+
     <!-- board-list -->
-    <section v-if="(boards.length)" class="">
-      <ul class="clean-list board-list">
+    <section v-if="(boards.length)" class="fully">
+      <ul class="clean-list board-list fully">
         <li @click="setBoard(board._id)" v-for="board in boards" :key="board._id">
           <div class="item flex align-center">
             <span class="flex align-center" v-icon="'folderIcon'"></span>
@@ -80,6 +84,9 @@ export default {
     },
     getClass() {
       return ` ${this.isOpen ? 'isOpen' : ''} workspace flex column`
+    },
+    actionListItem() {
+
     },
     arrowSide() {
       console.log(this.isOpen)
