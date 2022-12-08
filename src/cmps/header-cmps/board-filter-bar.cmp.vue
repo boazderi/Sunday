@@ -68,7 +68,7 @@ export default {
       });
     },
     setFilterBy(filter) {
-      console.log(filter);
+      console.log(filter.target.innerText);
       if (filter.member) {
         this.filterBy.member = filter.member
       }
