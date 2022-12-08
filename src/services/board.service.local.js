@@ -49,7 +49,7 @@ async function save(board) {
     try {
         if (board._id) {
             await httpService.put(`board/${board._id}`, board)
-            // socket for each update
+                // socket for each update
             socketService.emit(SOCKET_EMIT_LOAD_CURRBOARD, board._id)
             return
         }
@@ -198,28 +198,36 @@ async function addGroup(boardId) {
 function filterCurrBoard(currBoard, filterBy) {
     var filteredBoard = JSON.parse(JSON.stringify(currBoard))
     const regex = new RegExp(filterBy.text, 'i')
+
     var filteredGroups = []
-    for (var i = 0; i < filteredBoard.groups.length ; i++) {
+    for (var i = 0; i < filteredBoard.groups.length; i++) {
+        var toPush = true
         var currGroup = filteredBoard.groups[i]
-        if (regex.test(currGroup.title)) {
-            filteredGroups.push(currGroup)
-            continue
+        if (filterBy.text) {
+            if (regex.test(currGroup.title)) {
+                filteredGroups.push(currGroup)
+                continue
+            }
         }
         var filteredTasks = []
         for (var j = 0; j < currGroup.tasks.length; j++) {
             var toContinue = false
             const currTask = currGroup.tasks[j]
-            if (regex.test(currTask.taskTitle)) {
-                filteredTasks.push(currTask)
-                toContinue = true
-                continue
+            if (filterBy.text) {
+                toPush = false
+                if (regex.test(currTask.taskTitle)) {
+                    filteredTasks.push(currTask)
+                    toContinue = true
+                    continue
+                }
             }
             if (toContinue) continue
 
             for (var x = 0; x < filterBy.members.length; x++) {
+                toPush = false
                 const currMember = filterBy.members[x]
                 for (var n = 0; n < currTask.members.length; n++) {
-                    if (currTask.members[n] === currMember.id) {
+                    if (currTask.members[n].id === currMember.id) {
                         filteredTasks.push(currTask)
                         toContinue = true
                         continue
@@ -233,6 +241,8 @@ function filterCurrBoard(currBoard, filterBy) {
                 const currProp = filterBy.dynamicProps[y].prop
                 const currValues = filterBy.dynamicProps[y].values
                 for (var m = 0; m < currValues.length; m++) {
+                    toPush = false
+
                     if (currTask[currProp] === currValues[m]) {
                         filteredTasks.push(currTask)
                         toContinue = true
@@ -247,6 +257,7 @@ function filterCurrBoard(currBoard, filterBy) {
             currGroup.tasks = filteredTasks
             filteredGroups.push(currGroup)
         }
+        if (toPush) filteredGroups.push(currGroup)
     }
     filteredBoard.groups = filteredGroups
 

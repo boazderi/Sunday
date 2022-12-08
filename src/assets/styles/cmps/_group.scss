@@ -34,8 +34,7 @@
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
-
-    >*{
+    >* {
         background-color: white;
     }
     .first {
@@ -46,9 +45,15 @@
     }
     .third {
         left: 46px;
+        &.empty {
+            border-top: 1px solid $primary-border-clr;
+        }
     }
     .forth {
         left: 78px;
+        &.empty {
+            border-top: 1px solid $primary-border-clr;
+        }
     }
     &.labels-grid {
         grid-template-columns: 40px 6px 32px 364px 1027px;
@@ -163,6 +168,7 @@
 
 .smooth-dnd-container.horizontal>.smooth-dnd-draggable-wrapper {
     display: flex;
+    height: unset;
 }
 
 .label-drag {

@@ -24,6 +24,7 @@ export const boardStore = {
             return boards
         },
         getCurrBoard({ filterBy, currBoard }) {
+            // return currBoard
             return boardService.filterCurrBoard(currBoard, filterBy)
         },
         getCmpOrder({ currBoard }) {
@@ -41,7 +42,8 @@ export const boardStore = {
             // todo- set a flexable for all boardById
             state.boards = boards
         },
-        setFilterBy(state, { filterBy }){
+        setFilterBy(state, { filterBy }) {
+            filterBy = JSON.parse(JSON.stringify(filterBy))
             state.filterBy = filterBy
         },
         addBoard(state, { board }) {
@@ -50,8 +52,8 @@ export const boardStore = {
         updateBoard(state, { board }) {
             const idx = state.boards.findIndex(c => c.id === board._id)
             state.boards.splice(idx, 1, board)
-            // todo understand why its duplicate the boards in the workspace and in general
-            // state.currBoard = state.boards[idx]
+                // todo understand why its duplicate the boards in the workspace and in general
+                // state.currBoard = state.boards[idx]
             state.currBoard = board
         },
         removeBoard(state, { boardId }) {
@@ -132,8 +134,8 @@ export const boardStore = {
             try {
                 const boards = await boardService.query()
                 context.commit({ type: 'setBoards', boards })
-                //NOTE: for first time login--- the else is when we get into that action in
-                //  failure from data and that we dont wanna update the currBoard
+                    //NOTE: for first time login--- the else is when we get into that action in
+                    //  failure from data and that we dont wanna update the currBoard
                 if (!context.state.currBoard) {
                     context.commit({
                         type: 'setCurrBoard',
@@ -187,7 +189,7 @@ export const boardStore = {
             // Note-the err.message is string with loadBoards-action 
             catch (err) {
                 await dispatch({ type: err.message })
-                //todo usermsg about failure
+                    //todo usermsg about failure
             }
         },
         async removeTasks({ commit, state }, { payload }) {
@@ -200,14 +202,14 @@ export const boardStore = {
                 throw err
             }
         },
-        async setFilterBy({ commit, state }, { payload }){
+        async setFilterBy({ commit, state }, { payload }) {
             try {
                 const currFilterBy = state.filterBy
-                if(payload.filterBy.text){
+                if (payload.filterBy.text) {
                     currFilterBy.text = payload.filterBy.text
-                    commit({type: 'setFilterBy', filterBy: currFilterBy})
+                    commit({ type: 'setFilterBy', filterBy: currFilterBy })
                 }
-            } catch (err){
+            } catch (err) {
 
             }
         },

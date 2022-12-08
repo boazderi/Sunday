@@ -4,8 +4,8 @@
       <button class="new-task-btn" @click="onAddTask">New Task</button>
       <button class="new-task-arrow" style="{ color: white;}" v-icon="'arrowDown'"></button>
     </div>
-    <input v-if="isSearch" @blur="isSearch = false" @input="setFilterBy" v-model="filterBy.text" type="search" autofocus
-      class="board-filter-item" />
+    <input v-if="isSearch" @blur="isSearch = false" @input="setFilterBy('text')" v-model="filterBy.text" type="search"
+      autofocus class="board-filter-item" />
     <button v-else @click="isSearch = true" class="flex align-center board-filter-item outboard-hover">
       <span v-icon="'search'"></span> Search
     </button>
@@ -16,9 +16,10 @@
       </button>
     </el-tooltip>
     <el-tooltip transition="none" auto-close="0" content="Filter by anything">
-      <button class="flex align-center board-filter-item outboard-hover">
+      <button @click="isMainFilter = !isMainFilter" :class="{ 'active-filter': isMainFilter }"
+       class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'filter'"></span> &nbsp;Filter
-        <span v-icon="'arrowDownBlack'"></span>
+        <span v-icon="'arrowDownBlack'" />
       </button>
     </el-tooltip>
     <el-tooltip transition="none" auto-close="0" content="Sort by any column">
@@ -32,33 +33,49 @@
       </button>
     </el-tooltip>
     <button class="flex align-center board-filter-item outboard-hover">
-      <span v-icon="'more'"></span>
+      <span v-icon="'more'" />
     </button>
   </section>
   <el-collapse-transition v-if="isPersonFilter">
-    <person-filter @setFilterBy="setFilterBy" :board="currBoard"> </person-filter>
+    <person-filter @setFilterBy="setFilterBy" :board="currBoard" />
+  </el-collapse-transition>
+  <el-collapse-transition v-if="isMainFilter">
+    <main-filter @setFilterBy="setFilterBy" :board="currBoard"> </main-filter>
   </el-collapse-transition>
 </template>
 
 
 <script>
 import personFilter from "../filter-cmps/person-filter-modal.cmp.vue";
+import mainFilter from "../filter-cmps/main-filter-modal.cmp.vue";
+
 export default {
   data() {
     return {
       isSearch: false,
       isPersonFilter: false,
+      isMainFilter: false,
       filterBy: {
-        text: "",
-        member: null,
+        text: '',
+        members: [],
+        groupTitle: '',
+        dynamicProps: [{
+          prop: 'priority',
+          values: []
+        },
+        {
+          prop: 'status',
+          values: []
+        },
+        ]
       },
       currBoard: this.$store.getters.getCurrBoard,
     };
   },
   methods: {
     onAddTask() {
-      const currBoard = this.$store.getters.getCurrBoard;
-      const groupId = currBoard.groups[0].id;
+      const currBoard = this.$store.getters.getCurrBoard
+      const groupId = currBoard.groups[0].id
       this.$store.dispatch({
         type: "addNewTask",
         payload: {
@@ -67,26 +84,30 @@ export default {
         },
       });
     },
-    setFilterBy(filter) {
-      console.log(filter);
-      if (filter.member) {
-        this.filterBy.member = filter.member
+    setFilterBy({ prop, toUpdate }) {
+
+      switch (prop) {
+        case 'text':
+          break
+        case 'members':
+          this.filterBy.members = toUpdate
+          break
       }
-      this.$store.dispatch({
+
+      this.$store.commit({
         type: "setFilterBy",
-        payload: {
-          filterBy: this.filterBy,
-        },
-      });
+        filterBy: this.filterBy,
+      })
     },
   },
   components: {
     personFilter,
+    mainFilter
   },
-};
+}
 </script>
 
-from group cmp
+<!-- from group cmp -->
      <!-- onAddTask() {
             this.$store.dispatch({
                 type: 'addNewTask', payload: {
