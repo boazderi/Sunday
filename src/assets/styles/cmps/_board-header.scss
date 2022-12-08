@@ -120,6 +120,10 @@
     color: $primary-txt-clr;
 }
 
+.active-filter{
+    background-color: $bg-big-sidebar-active;
+}
+
 .new-task {
     border-radius: 4px;
     height: 2em;

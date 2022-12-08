@@ -25,12 +25,24 @@ export const boardStore = {
         },
         getCurrBoard({ filterBy, currBoard }) {
             return boardService.filterCurrBoard(currBoard, filterBy)
-        }
+        },
+        getCmpOrder({ currBoard }) {
+            return currBoard.cmpOrder
+        },
+        getLabels({ currBoard }) {
+            return currBoard.labels
+        },
+        getProgLineOrder({ currBoard }) {
+            return currBoard.progLineOrder
+        },
     },
     mutations: {
         setBoards(state, { boards }) {
             // todo- set a flexable for all boardById
             state.boards = boards
+        },
+        setFilterBy(state, { filterBy }){
+            state.filterBy = filterBy
         },
         addBoard(state, { board }) {
             state.boards.push(board)
@@ -65,6 +77,48 @@ export const boardStore = {
             } else {
                 state.currBoard.groups = groupsToUpdate
             }
+        },
+        changeDraggedCols(state, { labels }) {
+
+            var cmpOrder = []
+            var progLineOrder = []
+            labels.forEach(label => {
+                switch (label) {
+                    case 'Status':
+                        cmpOrder.push('status')
+                        progLineOrder.push('status-progress')
+                        break;
+                    case 'Person':
+                        cmpOrder.push('members')
+                        progLineOrder.push('div')
+                        break;
+                    case 'Priority':
+                        cmpOrder.push('priority')
+                        progLineOrder.push('priority-progress')
+                        break;
+                    case 'Date':
+                        cmpOrder.push('date')
+                        progLineOrder.push('div')
+                        break;
+                    case 'Text':
+                        cmpOrder.push('textNote')
+                        progLineOrder.push('div')
+                        break;
+                    case 'File':
+                        cmpOrder.push('file')
+                        progLineOrder.push('div')
+                        break;
+                    case 'Timeline':
+                        cmpOrder.push('timeline')
+                        progLineOrder.push('timeline-width')
+                        break;
+                }
+            })
+
+            state.currBoard.labels = labels
+            state.currBoard.cmpOrder = cmpOrder
+            state.currBoard.progLineOrder = progLineOrder
+                // console.log(state.currBoard.labels, state.currBoard.cmpOrder);
         },
         updateGroupIsCollapse(state, { groupId }) {
             const updatedGroup = state.currBoard.groups.find(g => g.id === groupId)
@@ -112,8 +166,10 @@ export const boardStore = {
                 throw err
             }
         },
-        async updateDraggedItems({ commit, state }, { groupId, tasksToUpdate, groupsToUpdate }) {
-            commit({ type: 'changeDragged', groupId, tasksToUpdate, groupsToUpdate })
+        async updateDraggedItems({ commit, state }, { groupId, tasksToUpdate, groupsToUpdate, labels }) {
+            // console.log(groupId, tasksToUpdate, groupsToUpdate, labels);
+            if (labels) commit({ type: 'changeDraggedCols', labels })
+            else commit({ type: 'changeDragged', groupId, tasksToUpdate, groupsToUpdate })
             try {
                 const updatedBoard = await boardService.save(state.currBoard)
             } catch (err) {
@@ -155,6 +211,17 @@ export const boardStore = {
                 throw err
             }
         },
+        async setFilterBy({ commit, state }, { payload }){
+            try {
+                const currFilterBy = state.filterBy
+                if(payload.filterBy.text){
+                    currFilterBy.text = payload.filterBy.text
+                    commit({type: 'setFilterBy', filterBy: currFilterBy})
+                }
+            } catch (err){
+
+            }
+        },
         async duplicateTasks({ commit, state }, { payload }) {
             try {
                 payload.boardId = state.currBoard._id
@@ -166,6 +233,11 @@ export const boardStore = {
                 throw err
             }
         },
+        // NOTE-new mechanism verify nothing is broken
+        async loadBoards(context) {
+            try {
+                const boards = await boardService.query()
+                context.commit({ type: 'setBoards', boards })
 
         async removeBoard(context, { boardId }) {
             try {
