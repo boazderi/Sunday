@@ -3,19 +3,20 @@
     <el-card class="main-filter-modal">
       <div class="flex flex-col justify-between">
         <div class="flex flex-row main-filter-header">
-          <div class="main-filter-title">Quick filters </div>
-          <div class="main-filter-summary"> Showing all of {{ showAllTasksNumber }} tasks</div>
+          <div class="main-filter-title">Quick filters</div>
+          <div class="main-filter-summary">
+            Showing all of {{ showAllTasksNumber }} tasks
+          </div>
           <!-- <div><span v-icon="'help'"></span></div> -->
         </div>
-        <div> Recent filters</div>
-        <div class="filters-lists-container">
-            <div class="flex">
-              <div v-for="(title, idx) in titles" :key="idx">
-                <main-filter-card
-                  :title="title"
-                />
-              </div>
-            </div>
+        <div class="main-filter-subheader">Recent filters</div>
+        <div class="filters-lists-container flex">
+          <div v-for="(title, idx) in titles" :key="idx">
+            <main-filter-card
+              :title="title"
+              :filterOptions="filterOptionsData"
+            />
+          </div>
         </div>
       </div>
     </el-card>
@@ -31,9 +32,33 @@ export default {
   },
   data() {
     return {
-      isActive: '',
-      titles:['Priiority', 'Status', 'Person'],
-
+      isActive: "",
+      titles: ["priority", "status", "person"],
+      filterOptionsData: {
+        priority: {
+          labels: ["CRITICAL", "HIGH", "MEDIUM", "LOW", "EMPTY"],
+          backgroundColor: [
+            "#333333",
+            "#401794",
+            "#5559df",
+            "#579bfc",
+            "#c4c4c4",
+          ],
+        },
+        status: {
+          labels: ["Done", "Working", "Stuck", "Empty"],
+          backgroundColor: ["#00c875", "#fdab3d", "#e2435c", "#c4c4c4"],
+        },
+        person: {
+          imgUrls: [
+            "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
+            "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
+            "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+            
+          ],
+          labels: ["Boaz Deri", "Arnon Arditi", "Tal Liber", "Empty"],
+        },
+      },
       filterBy: {
         memberId: null,
       },
@@ -56,7 +81,7 @@ export default {
       return sumAllTasks;
     },
     showPartialTasksNumber() {
-        // todo need to be ediited - use later.
+      // todo need to be ediited - use later.
       var sumPartialTasks = 0;
       this.board.groups.forEach((group) => {
         sumPartialTasks += group.tasks.length;
@@ -66,7 +91,7 @@ export default {
   },
   components: {
     memberPreview,
-    mainFilterCard
+    mainFilterCard,
   },
 };
 </script>
