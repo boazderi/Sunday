@@ -16,7 +16,7 @@ import homePage from './views/home-page.vue'
 
 export default {
 
-   created() {
+    created() {
     console.log('Vue App created')
      this.$store.dispatch({ type: 'loadBoards' })
     

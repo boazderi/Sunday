@@ -2,33 +2,47 @@
   <section class="board-filter-bar flex">
     <div class="flex new-task">
       <button class="new-task-btn" @click="onAddTask">New Task</button>
-      <button class="new-task-arrow" style="
-           {
-            color: white;
-          }
-        " v-icon="'arrowDown'"></button>
+      <button
+        class="new-task-arrow"
+        style="{ color: white;}"
+        v-icon="'arrowDown'"
+      ></button>
     </div>
-    <input v-if="isSearch" @blur="isSearch = false" @change="setFilter" type="search" autofocus class="board-filter-item">
-    <button v-else @click="isSearch = true" class="flex align-center board-filter-item outboard-hover">
+    <input
+      v-if="isSearch"
+      @blur="isSearch = false"
+      @input="setFilterBy"
+      v-model="filterBy.text"
+      type="search"
+      autofocus
+      class="board-filter-item"/>
+    <button
+      v-else
+      @click="isSearch = true"
+      class="flex align-center board-filter-item outboard-hover"
+    >
       <span v-icon="'search'"></span> Search
     </button>
-    <el-tooltip transition="none" auto-close=0  content="Filter by person">
-      <button class="flex align-center board-filter-item outboard-hover">
-        <span v-icon="'person'"></span> &nbsp;Person
+    <el-tooltip transition="none" auto-close="0" content="Filter by person">
+      <button
+        @click="isPersonFilter = !isPersonFilter"
+        :class="{'active-filter': isPersonFilter}"
+        class="flex align-center board-filter-item outboard-hover">
+        <span v-icon="'person'"> </span> &nbsp;Person
       </button>
     </el-tooltip>
-    <el-tooltip transition="none" auto-close=0  content="Filter by anything">
+    <el-tooltip transition="none" auto-close="0" content="Filter by anything">
       <button class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'filter'"></span> &nbsp;Filter
         <span v-icon="'arrowDownBlack'"></span>
       </button>
     </el-tooltip>
-    <el-tooltip transition="none" auto-close=0  content="Sort by any column">
+    <el-tooltip transition="none" auto-close="0" content="Sort by any column">
       <button class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'sort'"></span> &nbsp;Sort
       </button>
     </el-tooltip>
-    <el-tooltip transition="none" auto-close=0  content="Hidden columns">
+    <el-tooltip transition="none" auto-close="0" content="Hidden columns">
       <button class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'hide'"></span> &nbsp; Hide
       </button>
@@ -37,17 +51,24 @@
       <span v-icon="'more'"></span>
     </button>
   </section>
+  <el-collapse-transition v-if="isPersonFilter">
+    <person-filter @setFilterBy="setFilterBy" :board="currBoard"> </person-filter>
+  </el-collapse-transition>
 </template>
 
 
 <script>
+import personFilter from "../filter-cmps/person-filter-modal.cmp.vue";
 export default {
   data() {
     return {
       isSearch: false,
+      isPersonFilter: false,
       filterBy: {
-        
-      }
+        text: "",
+        member: null,
+      },
+      currBoard: this.$store.getters.getCurrBoard,
     };
   },
   methods: {
@@ -62,7 +83,20 @@ export default {
         },
       });
     },
-
+    setFilterBy(filter) {
+      if(filter.member){
+        this.filterBy.member = filter.member
+      }
+      this.$store.dispatch({
+        type: "setFilterBy",
+        payload: {
+          filterBy: this.filterBy,
+        },
+      });
+    },
+  },
+  components: {
+    personFilter,
   },
 };
 </script>
