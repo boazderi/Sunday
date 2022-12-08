@@ -35,7 +35,6 @@
                                             <div class="title-wrapper flex align-center space-between">
                                                 <task-title :info="task.content"
                                                     @update="updateTask($event, task.groupId, task.content.id)"></task-title>
-
                                                 <span class="svg" v-icon="'moreKanban'"></span>
                                             </div>
 
