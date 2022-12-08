@@ -8,27 +8,25 @@
     <el-tooltip transition="none" auto-close="0" content="Work management">
       <div class="work-management">
         <span v-icon="'workManagement'"></span>
-    </div>
-      </el-tooltip>
+      </div>
+    </el-tooltip>
 
     <section class="icons-pattern1 flex column align-center">
       <div class="icon-wrapper" v-for="icon in pattern1Icons" :key="icon">
-        <span class="svg" 
-         v-icon="icon" ></span>
+        <span class="svg" v-icon="icon"></span>
       </div>
     </section>
 
     <section class="see-plans">
       <div class="text-wrapper flex column">
-        <div class="rot">plans</div> 
-        <div class="rot">See </div> 
+        <div class="rot">plans</div>
+        <div class="rot">See </div>
       </div>
     </section>
 
     <section class="icons-pattern2 flex column align-center">
       <div class="icon-wrapper" v-for="icon in pattern2Icons" :key="icon">
-        <span class="svg" 
-         v-icon="icon" ></span>
+        <span class="svg" v-icon="icon"></span>
       </div>
     </section>
 
@@ -45,10 +43,10 @@
 
 <script>
 export default {
-  data(){
-    return{
-      pattern1Icons:['notifications','inbox','myWork','sideStar'],
-      pattern2Icons:['apps','sideInvite','sideSearch','help']
+  data() {
+    return {
+      pattern1Icons: ['notifications', 'inbox', 'myWork', 'sideStar'],
+      pattern2Icons: ['apps', 'sideInvite', 'sideSearch', 'help']
     }
   }
 }

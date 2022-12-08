@@ -61,18 +61,17 @@ export default {
         },
       },
       filterBy: {
-        members: [],
-        priority:[],
-        status:[],
+        status: [],
+        priority: [],
+        members: []
       },
     };
   },
-  created() {},
+  created() { },
   methods: {
-    setFilterBy(member) {
-      this.filterBy.members.push(member)
-      this.$emit('setFilterBy', { prop: 'members', toUpdate: [member] })
-    }
+    setFilterBy({ label, title }) {
+      console.log(label, title);
+    },
   },
   computed: {
     showAllTasksNumber() {
