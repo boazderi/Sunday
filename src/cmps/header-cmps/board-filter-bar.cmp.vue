@@ -16,7 +16,8 @@
       </button>
     </el-tooltip>
     <el-tooltip transition="none" auto-close="0" content="Filter by anything">
-      <button class="flex align-center board-filter-item outboard-hover">
+      <button @click="isMainFilter = !isMainFilter" :class="{ 'active-filter': isMainFilter }"
+       class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'filter'"></span> &nbsp;Filter
         <span v-icon="'arrowDownBlack'"></span>
       </button>
@@ -38,16 +39,22 @@
   <el-collapse-transition v-if="isPersonFilter">
     <person-filter @setFilterBy="setFilterBy" :board="currBoard"> </person-filter>
   </el-collapse-transition>
+  <el-collapse-transition v-if="isMainFilter">
+    <main-filter @setFilterBy="setFilterBy" :board="currBoard"> </main-filter>
+  </el-collapse-transition>
 </template>
 
 
 <script>
 import personFilter from "../filter-cmps/person-filter-modal.cmp.vue";
+import mainFilter from "../filter-cmps/main-filter-modal.cmp.vue";
+
 export default {
   data() {
     return {
       isSearch: false,
       isPersonFilter: false,
+      isMainFilter: false,
       filterBy: {
         text: "",
         member: null,
@@ -82,6 +89,7 @@ export default {
   },
   components: {
     personFilter,
+    mainFilter
   },
 };
 </script>

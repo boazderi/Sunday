@@ -7,10 +7,8 @@
           <div>Filter items and subitems by person</div>
         </div>
         <div class="flex">
-          <div
-            v-for="(member, idx) in board.members"
-            :key="idx"
-          >
+          <div v-for="(member, idx) in board.members"
+            :key="idx">
             <member-preview
               class="person-member-btn"
               @click="setFilterBy(member.id)"
