@@ -1,20 +1,22 @@
 <template>
-    <section v-if="kanbanColumn.length" class="kanban">
-        <section class="kanban-content">
+    <section v-if="kanbanColumn.length" class="kanban flex align-center space-between">
+        <section class="kanban-content flex align-center ">
             <Container orientation="horizontal" @drop="onColumnDrop($event)" drag-handle-selector=".column-drag-handle"
                 :drop-placeholder="{
                     className: 'drop-placeholder1',
                     animationDuration: '200',
                     showOnTop: true
                 }">
+                <!-- KANBAN-COLUMN -->
                 <Draggable v-for="column in kanbanColumn" :key="column.title">
 
                     <section class="kanban-col" :style="{ 'background-color': column.color }">
                         <div class="col-header">
-                            <span class="column-drag-handle" v-icon="'handle'" />
+                            <!-- <span class="column-drag-handle" v-icon="'handle'" /> -->
                             <div>{{ column.title }} / {{ column.tasks.length }}</div>
                         </div>
-                        <div class="col-content">
+                        <!-- Column content -->
+                        <div class="col-content flex column">
                             <section class="cards-container">
                                 <Container @drop="(ev) => onTaskDrop(column.title, ev)" group-name="task-card"
                                     :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-card')"
@@ -24,13 +26,32 @@
                                         animationDuration: '200',
                                         showOnTop: true
                                     }" drag-class="on-drag">
+
+                                    <!-- task-item -->
                                     <Draggable v-for="task in column.tasks" :key="task.content.id">
 
-                                        <article class="task-card">
-                                            <div class="card-item" v-for="(cmp, idx) in cardColumns" :key="idx">
-                                                <!-- <div class="card-label">{{ cmp }}</div> -->
-                                                <component :is="cmp" :info="task.content"
-                                                    @update="updateTask($event, task.groupId, task.content.id)" />
+                                        <article class="task-card flex column">
+                                            <!-- todo add more icon -->
+                                            <task-title :info="task.content"
+                                                @update="updateTask($event, task.groupId, task.content.id)"></task-title>
+
+                                            <div class="card-item flex align-center space-between"
+                                                v-for="(cmp, idx) in cardColumns" :key="idx">
+
+                                                <div class="sub1 flex align-center">
+                                                    <!-- todo add logo to each field -->
+                                                    <div class="logo">l</div>
+                                                    <span class="card-label">{{ cmp.charAt(0).toUpperCase() +
+                                                            cmp.slice(1)
+                                                    }}</span>
+                                                </div>
+                                                <!-- Dynamic cmps by -->
+                                                <!-- todo 0handle the dropdowns-modal that need to be open -->
+                                                <div class="cmp-wrapper">
+                                                    <component :is="cmp" :info="task.content"
+                                                        @update="updateTask($event, task.groupId, task.content.id)" />
+
+                                                </div>
                                             </div>
                                         </article>
                                     </Draggable>
@@ -46,7 +67,8 @@
                 </Draggable>
             </Container>
         </section>
-        <!-- <kanban-filter :updateFilter="updateFilter" /> -->
+
+        <kanban-filter :updateFilter="updateFilter" />
     </section>
 
 </template>
@@ -64,6 +86,7 @@ import textNote from "../cmps/dynamicCmp/text-note.vue"
 import timeline from "../cmps/dynamicCmp/timeline.vue"
 import { Container, Draggable } from "vue3-smooth-dnd"
 
+
 export default {
     name: 'kanban',
     created() {
@@ -73,7 +96,7 @@ export default {
         return {
             currBoard: this.getBoard,
             kanbanColumn: [],
-            cardColumns: ['taskTitle', 'members', 'status'],
+            cardColumns: ['members', 'status',],
             options: {
                 status: [
                     { title: 'Done', color: '#00c875' },
@@ -107,6 +130,7 @@ export default {
                     })
                 })
 
+                // the kanban column map
                 this.kanbanColumn[idx] = { title: col.title, tasks, color: col.color }
             })
         },
@@ -141,8 +165,8 @@ export default {
                 this.kanbanColumn = kanbanColumn
             }
 
-            console.log(dropResult);
-            if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
+            if (dropResult.addedIndex !== null && dropResult.removedIndex === null) {
+                // console.log(columnTitle, dropResult);    
                 await this.$store.dispatch({
                     type: "updateCurrBoard",
                     groupId: dropResult.payload.groupId,
@@ -151,7 +175,6 @@ export default {
                     toUpdate: columnTitle,
                 })
                 this.setKanbanColumn()
-                console.log('THIS', dropResult);
             }
 
         },

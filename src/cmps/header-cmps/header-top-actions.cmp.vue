@@ -9,7 +9,8 @@
             </div>
 
             <section class="users-dropdown flex column" v-if="isDropOpen">
-                <div class="user-item flex align-center" v-for="user in users" :key="user">
+                <div @click="setLoggedInUser(user._id)" class="user-item flex align-center" v-for="user in users"
+                    :key="user">
                     <member-preview :member="user" class="user-img"></member-preview>
                     <span>{{ user.fullname }}</span>
                 </div>
@@ -41,6 +42,12 @@ export default {
     methods: {
         toggleDropDown() {
             this.isDropOpen = !this.isDropOpen
+        },
+        setLoggedInUser(userId) {
+            const user = this.users.find(u => u._id === userId)
+            this.$store.commit({ type: 'setLoggedinUser', user })
+            this.loggedinUser = user
+            this.isDropOpen = false
         }
     },
     components: {

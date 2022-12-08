@@ -15,5 +15,11 @@ const icon = {
     el.innerHTML = icon
   },
 }
+const iconK={
+  mounted: (el, binding) => {
+    const icon = svgService.getMondayKanbanSvg(binding.value)
+    el.innerHTML = icon
+  },
+}
 
-export { edit, icon }
+export { edit, icon,iconK }

@@ -34,12 +34,9 @@
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
-    >* :not(.more){
+
+    >*{
         background-color: white;
-// 
-//         &:hover{
-//             background-color: lightgray;
-//         }
     }
     .first {
         left: 0;
@@ -57,6 +54,7 @@
 
 // Progress-grid
 .progress-grid {
+    margin-top: -1px;
     >*:not(:first-child, .empty) {
         border-top: 1px solid $primary-border-clr;
     }

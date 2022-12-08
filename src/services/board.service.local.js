@@ -21,7 +21,8 @@ export const boardService = {
     duplicateGroup,
     deleteGroup,
     addGroup,
-
+    filterCurrBoard
+    // updateDraggedGroup
 }
 window.cs = boardService
 
@@ -108,6 +109,9 @@ async function addNewTask({ boardId, groupId, taskTitle }) {
         const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
         const newTask = _getEmptyTask(taskTitle)
         currBoard.groups[groupIdx].tasks.push(newTask)
+
+        // note keep it synchronous and in failure 
+        // the loadBoards dispatch will action
         save(currBoard)
         return currBoard
 
@@ -189,6 +193,126 @@ async function addGroup(boardId) {
     } catch (err) {
         throw new Error('loadBoards')
     }
+}
+
+// function filterCurrBoard(currBoard, filterBy) {
+//     var filteredBoard = JSON.parse(JSON.stringify(currBoard))
+//     const regex = new RegExp(filterBy.text, 'i')
+//     var filteredGroups = []
+//     for (var i = 0; i < filteredBoard.groups.length; i++) {
+//         var currGroup = filteredBoard.groups[i]
+//         if (regex.test(currGroup.title)) {
+//             filteredGroups.push(currGroup)
+//             continue
+//         }
+//         var filteredTasks = []
+//         for (var j = 0; j < currGroup.tasks.length; j++) {
+//             var toContinue = false
+//             const currTask = currGroup.tasks[j]
+//             if (regex.test(currTask.taskTitle)) {
+//                 filteredTasks.push(currTask)
+//                 toContinue = true
+//                 continue
+//             }
+//             if (toContinue) continue
+// 
+//             for (var x = 0; x < filterBy.members.length; x++) {
+//                 const currMember = filterBy.members[x]
+//                 for (var n = 0; n < currTask.members.length; n++) {
+//                     if (currTask.members[n] === currMember.id) {
+//                         filteredTasks.push(currTask)
+//                         toContinue = true
+//                         continue
+//                     }
+//                 }
+//             }
+//             if (toContinue) continue
+// 
+//             for (var y = 0; y < filterBy.dynamicProps.length; y++) {
+//                 if (toContinue) continue
+//                 const currProp = filterBy.dynamicProps[y].prop
+//                 const currValues = filterBy.dynamicProps[y].values
+//                 for (var m = 0; m < currValues.length; m++) {
+//                     if (currTask[currProp] === currValues[m]) {
+//                         filteredTasks.push(currTask)
+//                         toContinue = true
+//                         continue
+//                     }
+//                     if (toContinue) continue
+//                 }
+//             }
+//             if (toContinue) continue
+//         }
+//         if (filteredTasks.length) {
+//             currGroup.tasks = filteredTasks
+//             filteredGroups.push(currGroup)
+//         }
+//     }
+//     filteredBoard.groups = filteredGroups
+// 
+//     // console.log(filteredGroups);
+//     return filteredBoard
+// 
+// }
+
+function filterCurrBoard(currBoard, filterBy) {
+    var filteredBoard = JSON.parse(JSON.stringify(currBoard))
+    const regex = new RegExp(filterBy.text, 'i')
+    var filteredGroups = []
+    for (var i = 0; i < filteredBoard.groups.length; i++) {
+        var currGroup = filteredBoard.groups[i]
+        if (regex.test(currGroup.title)) {
+            filteredGroups.push(currGroup)
+            continue
+        }
+        var filteredTasks = []
+        for (var j = 0; j < currGroup.tasks.length; j++) {
+            var toContinue = false
+            const currTask = currGroup.tasks[j]
+            if (regex.test(currTask.taskTitle)) {
+                filteredTasks.push(currTask)
+                toContinue = true
+                continue
+            }
+            if (toContinue) continue
+
+            for (var x = 0; x < filterBy.members.length; x++) {
+                const currMember = filterBy.members[x]
+                for (var n = 0; n < currTask.members.length; n++) {
+                    if (currTask.members[n] === currMember.id) {
+                        filteredTasks.push(currTask)
+                        toContinue = true
+                        continue
+                    }
+                }
+            }
+            if (toContinue) continue
+
+            for (var y = 0; y < filterBy.dynamicProps.length; y++) {
+                if (toContinue) continue
+                const currProp = filterBy.dynamicProps[y].prop
+                const currValues = filterBy.dynamicProps[y].values
+                for (var m = 0; m < currValues.length; m++) {
+                    if (currTask[currProp] === currValues[m]) {
+                        filteredTasks.push(currTask)
+                        toContinue = true
+                        continue
+                    }
+                    if (toContinue) continue
+                }
+            }
+            if (toContinue) continue
+        }
+        if (filteredTasks.length) {
+            currGroup.tasks = filteredTasks
+            filteredGroups.push(currGroup)
+        }
+    }
+    filteredBoard.groups = filteredGroups
+
+    // console.log(filteredGroups);
+    return filteredBoard
+
 }
 
 function _getEmptyTask(taskTitle) {

@@ -18,9 +18,7 @@ export const userStore = {
     },
     mutations: {
         setLoggedinUser(state, { user }) {
-            // todo- verify its not making bugs this shallow copy
             state.loggedinUser = (user) ? { ...user } : null
-
         },
         setWatchedUser(state, { user }) {
             state.watchedUser = user
