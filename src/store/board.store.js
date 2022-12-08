@@ -68,6 +68,9 @@ export const boardStore = {
             // todo- set a flexable for all boardById
             state.boards = boards
         },
+        setFilterBy(state, { filterBy }){
+            state.filterBy = filterBy
+        },
         addBoard(state, { board }) {
             state.boards.push(board)
         },
@@ -211,6 +214,17 @@ export const boardStore = {
                 throw err
             }
         },
+        async setFilterBy({ commit, state }, { payload }){
+            try {
+                const currFilterBy = state.filterBy
+                if(payload.filterBy.text){
+                    currFilterBy.text = payload.filterBy.text
+                    commit({type: 'setFilterBy', filterBy: currFilterBy})
+                }
+            } catch (err){
+
+            }
+        },
         async duplicateTasks({ commit, state }, { payload }) {
             try {
                 payload.boardId = state.currBoard._id
@@ -222,6 +236,7 @@ export const boardStore = {
                 throw err
             }
         },
+
         // NOTE-new mechanism verify nothing is broken
         async loadBoards(context) {
             try {

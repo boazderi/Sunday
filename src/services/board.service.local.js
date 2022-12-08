@@ -177,7 +177,7 @@ function filterCurrBoard(currBoard, filterBy) {
     var filteredBoard = JSON.parse(JSON.stringify(currBoard))
     const regex = new RegExp(filterBy.text, 'i')
     var filteredGroups = []
-    for (var i = 0; i < filteredBoard.groups.length; i++) {
+    for (var i = 0; i < filteredBoard.groups.length ; i++) {
         var currGroup = filteredBoard.groups[i]
         if (regex.test(currGroup.title)) {
             filteredGroups.push(currGroup)
