@@ -1,8 +1,8 @@
 .main-filter-modal{
     top: 160px;
     margin-left: 40px;
-    width: 800px;
-    height: 440px;
+    width: fit-content;
+    height: 380px;
     position: absolute;
     z-index: 51;
 }
@@ -28,10 +28,54 @@
 
 .filters-lists-container{
     height: 230px;
+    gap: 15px;
 }
 
 .main-filter-card{
     width: 150px;
     height: fit-content;
-    background-color: rgb(62, 190, 190);
+}
+
+.main-filter-subheader{
+    font-size: 0.875em;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    margin: 15px 0;
+}
+
+.card-title-item{
+    margin-bottom: 16px;
+    text-transform: capitalize;
+    font-size: 0.875em;
+    color: #666879;
+}
+.main-filter-card-item{
+    background-color: #f5f6f8;
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    height: 34px;
+    gap: 5px;
+    font-size: 0.75em;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.card-items-container{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.card-color-circle{
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+}
+
+.card-member-pic{
+    border-radius: 50%;
+    height: 25px;
+    width: 25px;
 }

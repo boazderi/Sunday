@@ -34,7 +34,7 @@
       <div class="bottom-icon-wrapper flex center align-center">
         <span class="svg" v-icon="'ninePoints'"></span>
       </div>
-      
+
       <div class="member-wrapper flex align-center center">
         <member-preview :member="loggedInUser"></member-preview>
 

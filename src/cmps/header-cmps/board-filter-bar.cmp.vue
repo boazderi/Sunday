@@ -2,7 +2,11 @@
   <section class="board-filter-bar flex">
     <div class="flex new-task">
       <button class="new-task-btn" @click="onAddTask">New Task</button>
-      <button class="new-task-arrow" style="{ color: white;}" v-icon="'arrowDown'"></button>
+      <button class="new-task-arrow" style="
+           {
+            color: white;
+          }
+        " v-icon="'arrowDown'"></button>
     </div>
     <input v-if="isSearch" @blur="isSearch = false" @input="setFilterBy('text')" v-model="filterBy.text" type="search"
       autofocus class="board-filter-item" />
@@ -17,7 +21,7 @@
     </el-tooltip>
     <el-tooltip transition="none" auto-close="0" content="Filter by anything">
       <button @click="isMainFilter = !isMainFilter" :class="{ 'active-filter': isMainFilter }"
-       class="flex align-center board-filter-item outboard-hover">
+        class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'filter'"></span> &nbsp;Filter
         <span v-icon="'arrowDownBlack'" />
       </button>
@@ -56,26 +60,27 @@ export default {
       isPersonFilter: false,
       isMainFilter: false,
       filterBy: {
-        text: '',
+        text: "",
         members: [],
-        groupTitle: '',
-        dynamicProps: [{
-          prop: 'priority',
-          values: []
-        },
-        {
-          prop: 'status',
-          values: []
-        },
-        ]
+        groupTitle: "",
+        dynamicProps: [
+          {
+            prop: "priority",
+            values: [],
+          },
+          {
+            prop: "status",
+            values: [],
+          },
+        ],
       },
       currBoard: this.$store.getters.getCurrBoard,
     };
   },
   methods: {
     onAddTask() {
-      const currBoard = this.$store.getters.getCurrBoard
-      const groupId = currBoard.groups[0].id
+      const currBoard = this.$store.getters.getCurrBoard;
+      const groupId = currBoard.groups[0].id;
       this.$store.dispatch({
         type: "addNewTask",
         payload: {
@@ -87,24 +92,30 @@ export default {
     setFilterBy({ prop, toUpdate }) {
 
       switch (prop) {
-        case 'text':
-          break
-        case 'members':
-          this.filterBy.members = toUpdate
-          break
+        case "text":
+          break;
+        case "members":
+          this.filterBy.members = toUpdate;
+          break;
+        case "priority":
+          this.filterBy.dynamicProps[0].values = toUpdate
+          break;
+        case "status":
+          this.filterBy.dynamicProps[1].values = toUpdate
+          break;
       }
 
       this.$store.commit({
         type: "setFilterBy",
         filterBy: this.filterBy,
-      })
+      });
     },
   },
   components: {
     personFilter,
-    mainFilter
+    mainFilter,
   },
-}
+};
 </script>
 
 <!-- from group cmp -->

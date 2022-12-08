@@ -1,7 +1,5 @@
 // todo Media-q for blur the scroll x non-stability
-
 .workspace {
-
     background-color: $bg-big-sidebar;
     padding-inline-start: 14px;
     padding-inline-end: 16px;
@@ -12,53 +10,41 @@
     position: relative;
     border-right: 1.2px solid $primary-border-clr;
     grid-area: workspace;
-
     .toggleWorkspace {
         position: absolute;
         border-radius: 50%;
         padding: 0px 2px;
-        
         border: 1px solid #c3c6d4;
         transform: translateX(-50%);
         top: 22px;
         right: -26px;
         background-color: white;
-
         &:hover {
             background-color: $primary-hover-clr;
         }
-
         .first {
             height: 22px;
             padding-inline-end: 3px;
         }
     }
-
     >* {
         cursor: pointer;
     }
-
     // Toggle handling
     >*:not(.toggleWorkspace) {
         width: 224px;
         display: none;
     }
-
     &.isOpen {
         >* {
             display: inherit;
         }
-
         .toggleWorkspace {
             left: 255px;
             z-index: 100;
-
-         span{
-
-            }
+            span {}
         }
     }
-
     // todo upgrade hover
     // &:hover {
     //     position: absolute;
@@ -71,10 +57,8 @@
         border: 1px solid #676879;
         padding: 7px 6px;
         border-radius: 4px;
-
         .home {
             position: relative;
-
             .logo-text {
                 background-color: rgb(242, 121, 242);
                 color: white;
@@ -85,81 +69,78 @@
                 border-radius: 8px;
                 margin-inline-end: 6px;
             }
-
             .logo {
                 position: absolute;
                 top: 9px;
                 left: 13px;
             }
-
             .text {
                 font-weight: bold;
             }
         }
     }
-
     .dropdown-nav-header {
         padding-bottom: 2px;
-
         span {
             font-size: 14px;
             color: rgb(103, 104, 121);
             padding-bottom: 3px;
         }
     }
-
-
     // LISTS
     .action-list {
         padding-inline-start: 5px;
         padding-bottom: 16px;
         // border-bottom: 1.3px solid $primary-border-clr;
         // margin-bottom: 15px;
-
         .filter {
             padding-inline-start: 2.3px;
         }
-
         .search {
             margin-inline-start: -2.3px;
         }
     }
-
-    .lists-border{
+    .lists-border {
         border-bottom: 1px solid $primary-border-clr;
         margin-bottom: 22px;
         margin-inline-start: 6px;
         width: 214px;
         height: 1px;
     }
-
-
     .board-list {
         padding-inline-start: 8px;
     }
-
     // todo - some problem with the font-weight--fix
     .item,
     .board-item {
         font-size: 14px;
         border-radius: 6px;
         line-height: 32px;
-        margin-bottom: 2px;
-
+        // margin-bottom: 2px;
         >* {
             margin-inline-end: 8px;
         }
-
         &:hover {
             background-color: $primary-hover-clr;
         }
+        // &:first-child {
+        //     margin-inline-start: -2.4px;
+        // }
+        // .workspace-dropdown-select {
+        //     margin-bottom: 18px;
+        // }
+    }
+}
 
-        &:first-child {
-            margin-inline-start: -2.4px;
-        }
-
-        .workspace-dropdown-select {
-            margin-bottom: 18px;
-        }
+.list-item {
+    background-color: $primary-selected-color;
+    width: 226px;
+    height: 34px;
+    margin-bottom: 0px;
+    padding: 0px 8px;
+    border-radius: 4px;
+    margin-inline-start: -9px;
+    &:hover {
+        background-color: $primary-hover-clr;
     }
 }

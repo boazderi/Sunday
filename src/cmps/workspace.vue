@@ -42,7 +42,7 @@
     <!-- board-list -->
     <section v-if="(boards.length)" class="fully">
       <ul class="clean-list board-list fully">
-        <li @click="setBoard(board._id)" v-for="board in boards" :key="board._id">
+        <li class="list-item" @click="setBoard(board._id)" v-for="board in boards" :key="board._id">
           <div class="item flex align-center">
             <span class="flex align-center" v-icon="'folderIcon'"></span>
             <span>{{ board.title }}</span>

@@ -28,7 +28,7 @@ export default {
     return {
       isActive: "",
       filterBy: {
-        memberId: null
+        member: []
       },
     };
   },
@@ -36,9 +36,14 @@ export default {
   },
   methods: {
     setFilterBy(member) {
-      this.isActive = member.id
-      this.filterBy.memberId = member.id
-      this.$emit('setFilterBy', { prop: 'members', toUpdate: [member] })
+      if (this.isActive === member.id) {
+        this.isActive = ""
+        this.filterBy.member = []
+      } else {
+        this.isActive = member.id
+        this.filterBy.member.push(member)
+      }
+      this.$emit('setFilterBy', { prop: 'members', toUpdate: this.filterBy.member })
     }
   },
   components: {

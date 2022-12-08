@@ -35,7 +35,7 @@
                                             <div class="title-wrapper flex align-center space-between">
                                                 <task-title :info="task.content"
                                                     @update="updateTask($event, task.groupId, task.content.id)"></task-title>
-                                                    <span class="svg" v-icon="'moreKanban'"></span>
+                                                <span class="svg" v-icon="'moreKanban'"></span>
                                             </div>
 
                                             <div class="card-item flex align-center space-between"
@@ -121,7 +121,7 @@ export default {
     methods: {
         setKanbanColumn() {
             const currBoard = this.$store.getters.getCurrBoard
-            this.kanbanColumn=[]
+            this.kanbanColumn = []
             this.options[this.filterBy].forEach((col, idx) => {
                 var tasks = []
 
