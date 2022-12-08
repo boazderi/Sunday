@@ -65,8 +65,8 @@ export default {
   },
   created() { },
   methods: {
-    setFilterBy({ title, label }) {
-      console.log(title, label);
+    setFilterBy({ label, title }) {
+      console.log(label, title);
     },
   },
   computed: {
