@@ -9,14 +9,12 @@
 }
 
 .kanban-content {
-    
-    display: flex;
+    flex: 1;
     gap: 12px;
-    padding: 16px 0 0 16px;
-    width: 80%;
+    padding: 16px 0 0 20px;
     // todo thats a wrong why-improve that
-    max-width: 100vh;
-    overflow-x: scroll;
+    max-width: 70vw;
+    overflow-x: auto;
     height: 100%;
 }
 
@@ -28,7 +26,6 @@
     display: flex;
     flex-direction: column;
     height: fit-content;
-    max-height: 580px;
     // overflow: hidden;
 
     margin-inline-end: 15px;
@@ -51,26 +48,40 @@
 
         //todo need to handle the covering of dropdowns in the daynamic cmps
         // overflow-y: scroll;
+        // todo remove that when there is a designed scroller just for the good scales meanwhile
+        padding-inline-end: 10px;
+
     }
 
     .cards-container {
+        .smooth-dnd-container{
+            min-height: 38px;
+        }
+
         flex-grow: 1;
     }
 
     .task-card {
         background-color: white;
-        width: 229px;
+        width: 100%;
         margin: 6px 0;
         padding: 8px;
         border-radius: 6px;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, .2);
-         // Note thats how tame the inherit dynamic cmp
-         .task-title {
-            padding-inline-start: 0;
-            margin-bottom: 14px;
-            .conversation-wrapper {
-                border-left: none;
-                width: fit-content;
+
+        .title-wrapper {
+            .svg{
+               margin-inline-start: 4px; 
+            }
+            .task-title {
+                padding-inline-start: 0;
+                width: 100%;
+                position: unset;
+    
+                .conversation-wrapper {
+                    border-left: none;
+                    width: fit-content;
+                }
             }
         }
 
@@ -85,23 +96,33 @@
 
     // Controling the defualt scss dynamic cmps -card-item is a one row
     .card-item {
-        margin-bottom: 8px;
+        padding: 4px 0;
+        height: 46px;
 
-        .sub1{
-            .logo{
+        &:nth-child(2){
+            margin-top: 12px;
+        }
+        .sub1 {
+            .logo {
                 margin-inline-end: 6px;
             }
-            span{
+
+            span {
                 font-size: em(14px);
                 color: #676879;
             }
         }
 
-        .cmp-wrapper{
+        .cmp-wrapper {
             background-color: #f5f6f8;
             flex-grow: 1;
-            max-width: 132px;
-         
+            // max-width: 132px;
+            max-width: 139px;
+
+            .timeline-container {
+                width: 100%;
+            }
+
         }
     }
 }
@@ -121,5 +142,17 @@
         height: 100%;
         display: flex;
         align-items: center;
+    }
+}
+
+
+
+// MEDIA-Query
+
+@media(min-width:1280px){
+    .kanban-content {
+        width: 100vw;
+        flex-basis: 100%;
+        flex-wrap: nowrap;
     }
 }

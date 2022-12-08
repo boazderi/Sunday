@@ -1,18 +1,81 @@
-
-.kanban-filter{
+.kanban-filter {
     // position:absolute;
-    padding: 16px;
     // right: 0;
     // top: 0;
+    padding: 16px;
+    margin-inline-start: auto;
     height: 100%;
     z-index: 50;
     width: 268px;
-    background-color: rgb(238, 180, 62);
+    background-color: white;
+    border-left: 2px solid $primary-border-clr;
 
-    .customize{
+    >* {
+        margin-bottom: 16px;
+    }
+
+    .customize {
         color: #676879;
         margin-bottom: 16px;
     }
 
-    
+    .sub-header {
+        // margin-bottom: 16px;
+        padding-inline-end: 8px;
+        font-size: em(14px);
+    }
+
+    .select-wrapper {
+        width: 100%;
+
+        select {
+            padding: 2px 8px 2px 12px;
+            width: 100%;
+            border-radius: 6px;
+            color: #323338;
+            height: 38px;
+            border: 1px solid #c3c6d4;
+
+        }
+    }
+
+    .card-columns-wrapper {
+        padding-inline-end: 8px;
+        padding-top: 6px;
+
+        .sub2-header {
+            margin-bottom: 8px;
+        }
+
+        >* {
+            font-size: 14px;
+            line-height: 22px;
+        }
+
+        .card-col {
+            margin-bottom: 8px;
+
+            // .sub2{
+            //     input{
+            //         width: 14px;
+            //         height: 14px;
+            //         border: 1px solid $primary-border-clr;
+            //         margin-inline-end: 8px;
+            //     }
+            // }
+        }
+
+        input{
+            width: 14px;
+            height: 14px;
+            border: 1px solid $primary-border-clr;
+            margin-inline-end: 8px;
+        }
+        .all-columns{
+            margin-bottom: 22px;
+         
+        }
+    }
+
+
 }
