@@ -40,11 +40,9 @@ export default {
     };
   },
   created() {
-    console.log(this.board);
   },
   methods: {
       setFilterBy(memberId){
-          console.log(memberId);
           this.isActive = memberId
           this.filterBy.memberId = memberId
           this.$emit('setFilterBy', filterBy)
