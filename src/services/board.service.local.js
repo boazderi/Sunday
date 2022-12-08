@@ -262,7 +262,7 @@ function getEmptyBoard() {
     }
 }
 
-// TEST DATA
+// // TEST DATA
 
 // ;
 // (async() => {
@@ -271,6 +271,9 @@ function getEmptyBoard() {
 //         "title": "Sprint4 - Project Mgmt",
 //         "description": "This board will be used for collaboration management on the Funday app project",
 //         "createdAt": 1589983468418,
+//         "cmpOrder": ["status", "members", "priority", "date", "textNote", "file", "timeline"],
+//         "labels": ["Status", "Person", "Priority", "Date", "Text", "File", "Timeline"],
+//         "progLineOrder": ["status-progress", "div", "priority-progress", "div", "div", "div", "timeline-width"],
 //         "createdBy": {
 //             "id": "u101",
 //             "fullname": "Tal Liber",

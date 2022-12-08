@@ -13,9 +13,16 @@
           <input ref="checkbox" type="checkbox" class="checkbox " @change="setAllTasksInContext" />
         </div>
         <div class="sticky forth cell1"> Tasks</div>
-        <div class="cell1" v-for="(label, idx) in labels" :class="{ 'wide-cell': label === 'Timeline' }" :key="idx">
-          {{ label }}
-        </div>
+        <Container orientation="horizontal" @drop="onColumnDrop($event)" :drop-placeholder="{
+          className: 'drop-placeholder1',
+          animationDuration: '200',
+          showOnTop: true
+        }">
+          <Draggable v-for="(label, idx) in getLabels" :key="idx" :class="labelClass(label)">
+            {{ label }}
+          </Draggable>
+        </Container>
+
       </section>
 
       <!-- render grid cells by cmpOrder array -->
@@ -35,7 +42,8 @@
             <div class="task-border sticky" :style="{ 'background-color': groupInfo.color }"></div>
             <side :groupId="groupId" :taskId="task.id" :color="groupInfo.color"></side>
 
-            <component v-for="(cmp, idx) in cmpOrder" :key="idx" :is="cmp" :info="task"
+            <task-title :info="task" @update="updateTask($event, task.id)" />
+            <component v-for="(cmp, idx) in getCmpOrder" :key="idx" :is="cmp" :info="task"
               @update="updateTask($event, task.id)" />
           </section>
         </Draggable>
@@ -57,10 +65,7 @@
       <section class="progress-grid group-grid">
         <div v-for="pos in positions" :class="['sticky', 'empty', pos]" :key="pos"></div>
         <!-- todo: change to cell1/cell2 -->
-        <status-progress class="cell" :group="groupInfo"></status-progress>
-        <div class="cell"></div>
-        <priority-progress class="cell" :group="groupInfo"></priority-progress>
-        <div class="cell  " v-for="n in 3" :key="n"></div>
+        <component v-for="(cell, idx) in getProgLineOrder" :key="idx" :is="cell" :group="groupInfo" class="cell" />
       </section>
     </section>
   </section>
@@ -81,6 +86,7 @@ import groupTitle from "./group-title.vue";
 import statusProgress from "./status-progress.vue"
 import priorityProgress from "./priority-progress.vue"
 import timeline from "../dynamicCmp/timeline.vue";
+import timelineWidth from "../boardCmp/timeline-width.vue";
 import { Container, Draggable } from "vue3-smooth-dnd"
 
 import { eventBus } from "../../services/event-bus.service";
@@ -90,31 +96,26 @@ export default {
   props: {
     groupInfo: Object,
   },
+  created() {
+    eventBus.on("duplicateGroup", this.duplicateGroup)
+    eventBus.on("deleteGroup", this.deleteGroup)
+    eventBus.on('collapseGroup', this.collapseGroup)
+    this.groupId = this.groupInfo.id
+    this.cmpOrder = this.$store.getters.getCmpOrder
+    this.labels = this.$store.getters.getLabels
+    this.progLineOrder = this.$store.getters.getProgLineOrder
+  },
   data() {
     return {
       groupTasks: this.groupInfo.tasks,
-      cmpOrder: [
-        "task-title",
-        "status",
-        "members",
-        "priority",
-        "date",
-        "textNote",
-        "file",
-        "timeline",
-      ],
+      cmpOrder: [],
+      labels: [],
+      progLineOrder: [],
       // helper for progressRow
       positions: ['first', 'second', 'third', 'forth'],
-      labels: ["Status", "Person", "Priority", "Date", "Text", "File", "Timeline"],
       groupId: null,
       isCollapse: false
-    };
-  },
-  created() {
-    eventBus.on("duplicateGroup", this.duplicateGroup);
-    eventBus.on("deleteGroup", this.deleteGroup);
-    eventBus.on('collapseGroup', this.collapseGroup)
-    this.groupId = this.groupInfo.id;
+    }
   },
   methods: {
     updateTask({ prop, toUpdate }, taskId) {
@@ -161,12 +162,19 @@ export default {
 
       eventBus.emit("toggleAllTasksCheckbox", this.groupId);
     },
+    onColumnDrop(dropResult) {
+      var draggedLabels = JSON.parse(JSON.stringify(this.labels))
+      draggedLabels = this.applyDrag(draggedLabels, dropResult)
+      // console.log(draggedLabels);
+      this.labels = draggedLabels
+      this.$store.dispatch({ type: 'updateDraggedItems', labels: this.labels })
+    },
     onTaskDrop(groupId, dropResult) {
       // console.log(dropResult);
       this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
 
       this.$store.dispatch({
-        type: "updateDraggedItems",
+        type: 'updateDraggedItems',
         groupId: this.groupInfo.id,
         tasksToUpdate: this.groupTasks
       })
@@ -197,16 +205,21 @@ export default {
       }
 
       return result
-    }
+    },
+    labelClass(label) {
+      return (label === 'Timeline') ? 'cell1 wide-cell label' : 'cell1 label'
+    },
+
   },
   computed: {
-    dragOptions() {
-      return {
-        animation: 200,
-        group: "description",
-        disabled: false,
-        ghostClass: "ghost",
-      }
+    getCmpOrder() {
+      return this.$store.getters.getCmpOrder
+    },
+    getLabels() {
+      return this.$store.getters.getLabels
+    },
+    getProgLineOrder() {
+      return this.$store.getters.getProgLineOrder
     },
   },
   watch: {
@@ -231,7 +244,8 @@ export default {
     statusProgress,
     priorityProgress,
     timeline,
-    file
+    file,
+    timelineWidth
   },
 }
 </script>

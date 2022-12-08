@@ -49,6 +49,9 @@
     .forth {
         left: 78px;
     }
+    &.labels-grid {
+        grid-template-columns: 40px 6px 32px 364px 1027px;
+    }
 }
 
 // Progress-grid
@@ -76,6 +79,14 @@
 
 .cell1 {
     font-size: em(14px);
+}
+
+.label {
+    width: 140px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -1px;
 }
 
 //NOTE--- try not use that class
@@ -142,4 +153,18 @@
 .drop-placeholder {
     background-color: white;
     border: 2px dotted $primary-border-clr
+}
+
+.smooth-dnd-container.horizontal {
+    display: flex !important;
+}
+
+.smooth-dnd-container.horizontal>.smooth-dnd-draggable-wrapper {
+    display: flex;
+}
+
+.label-drag {
+    background-color: black;
+    height: 150px;
+    transform: rotate(20deg);
 }
