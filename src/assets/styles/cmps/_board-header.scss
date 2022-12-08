@@ -4,6 +4,50 @@
     padding-inline-end: 30px;
 }
 
+.users-list {
+    cursor: pointer;
+    position: relative;
+    margin-inline-end: 22px;
+    padding: 6px;
+    border-radius: 4px 6px;
+
+    span {
+        padding-top: 5px;
+        font-size: em(14px);
+        color: #323338;
+    }
+
+    .login-img {
+        margin-inline-start: 8px;
+    }
+
+    .users-dropdown {
+        position: absolute;
+        z-index: 70;
+        top: 46px;
+        background-color: white;
+        box-shadow:0px 3px 14px 0px rgba(0,0,0,0.3);
+
+        padding: 8px;
+        padding-top: 9px;
+        border-radius: 6px;
+    }
+
+    .user-item {
+        margin-bottom: 8px;
+        min-width: 150px;
+        border-radius: 4px;
+
+        :first-child {
+            margin: 6px;
+        }
+        &:hover {
+            background-color: $primary-hover-clr;
+        }
+    }
+
+}
+
 .board-upper-header {
     border-bottom: 1px solid $primary-border-clr;
 }

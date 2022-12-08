@@ -1,6 +1,13 @@
 <template>
-  <section class="kanban-filter">
-    <h2>kanban-filter</h2>
+
+  <section class="kanban-filter flex column ">
+    <span class="customize" >Customize View </span>
+
+    <div class="sub-header flex align-center space-between">
+      <span>Kanban Column</span>
+      
+    </div>
+    
 
   </section>
 </template>

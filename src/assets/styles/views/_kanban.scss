@@ -2,18 +2,25 @@
     border-top: 1px solid $secondary-border-clr;
     font-family: roboto;
     width: 100%;
+    // max-width: 85vh;
     height: 100%;
+    position: relative;
+    // overflow-x: hidden;
 }
 
 .kanban-content {
+    
     display: flex;
     gap: 12px;
     padding: 16px 0 0 16px;
-    width: 100%;
-    overflow-x: hidden;
-    // height: 800px;
+    width: 80%;
+    // todo thats a wrong why-improve that
+    max-width: 100vh;
+    overflow-x: scroll;
+    height: 100%;
 }
 
+//KANBAN-COLUMN
 .kanban-col {
     width: 260px;
     background-color: red;
@@ -22,66 +29,94 @@
     flex-direction: column;
     height: fit-content;
     max-height: 580px;
-    overflow: hidden;
-}
+    // overflow: hidden;
 
-.col-header {
-    display: flex;
-    justify-content: center;
-    font-size: rem(16px);
-    padding-bottom: 8px;
-    padding-top: 12px;
-    color: white
-}
+    margin-inline-end: 15px;
 
-.col-content {
-    display: flex;
-    flex-direction: column;
-    background-color: $dark-background-color;
-    min-height: 110px;
-    max-height: 100%;
-    padding: 0px 4px 0 10px;
-    margin: 8px 0px 0px 4px;
-    overflow-y: scroll;
-}
+    .col-header {
+        display: flex;
+        justify-content: center;
+        font-size: rem(16px);
+        padding-bottom: 8px;
+        padding-top: 12px;
+        color: white
+    }
 
-.cards-container {
-    flex-grow: 1;
-}
+    .col-content {
+        background-color: $dark-background-color;
+        min-height: 110px;
+        max-height: 100%;
+        padding-inline-start: 4px;
+        margin: 8px 0px 0px 4px;
 
-.task-card {
-    background-color: white;
-    width: 229px;
-    margin-bottom: 4px;
-    border-radius: 6px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, .2);
-    .task-title {
-        .conversation-wrapper {
-            border-left: none;
+        //todo need to handle the covering of dropdowns in the daynamic cmps
+        // overflow-y: scroll;
+    }
+
+    .cards-container {
+        flex-grow: 1;
+    }
+
+    .task-card {
+        background-color: white;
+        width: 229px;
+        margin: 6px 0;
+        padding: 8px;
+        border-radius: 6px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, .2);
+         // Note thats how tame the inherit dynamic cmp
+         .task-title {
+            padding-inline-start: 0;
+            margin-bottom: 14px;
+            .conversation-wrapper {
+                border-left: none;
+                width: fit-content;
+            }
+        }
+
+        .cell1,
+        .cell2 {
+            border-bottom: none;
+            border-right: none;
+            height: 38px;
+        }
+
+    }
+
+    // Controling the defualt scss dynamic cmps -card-item is a one row
+    .card-item {
+        margin-bottom: 8px;
+
+        .sub1{
+            .logo{
+                margin-inline-end: 6px;
+            }
+            span{
+                font-size: em(14px);
+                color: #676879;
+            }
+        }
+
+        .cmp-wrapper{
+            background-color: #f5f6f8;
+            flex-grow: 1;
+            max-width: 132px;
+         
         }
     }
-    .cell1,
-    .cell2 {
-        border-bottom: none;
-        border-right: none;
-        height: 38px;
-    }
-    .status {
-        border-bottom-left-radius: 6px;
-        border-bottom-right-radius: 6px;
-    }
 }
 
-// .card-item {
-//     display: flex;
-//     justify-content: space-between;
-// }
+
+
+
+
 .add-task-btn {
     height: 45px;
     padding: 4px 8px 4px 10px;
     display: flex;
     align-items: center;
     font-size: rem(14px);
+
     span {
         height: 100%;
         display: flex;

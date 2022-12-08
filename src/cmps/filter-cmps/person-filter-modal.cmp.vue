@@ -7,16 +7,9 @@
           <div>Filter items and subitems by person</div>
         </div>
         <div class="flex">
-          <div
-            v-for="(member, idx) in board.members"
-            :key="idx"
-          >
-            <member-preview
-              class="person-member-btn"
-              @click="setFilterBy(member.id)"
-              :class="{ 'active-member': isActive === member.id }"
-              :member="member"
-            />
+          <div v-for="(member, idx) in board.members" :key="idx">
+            <member-preview class="person-member-btn" @click="setFilterBy(member)"
+              :class="{ 'active-member': isActive === member.id }" :member="member" />
           </div>
         </div>
       </div>
@@ -35,18 +28,18 @@ export default {
     return {
       isActive: "",
       filterBy: {
-          memberId: null
+        memberId: null
       },
     };
   },
   created() {
   },
   methods: {
-      setFilterBy(memberId){
-          this.isActive = memberId
-          this.filterBy.memberId = memberId
-          this.$emit('setFilterBy', filterBy)
-      }
+    setFilterBy(member) {
+      this.isActive = member.id
+      this.filterBy.memberId = member.id
+      this.$emit('setFilterBy', { prop: 'members', toUpdate: [member] })
+    }
   },
   components: {
     memberPreview,

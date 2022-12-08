@@ -1,5 +1,5 @@
 import { storageService } from './async-storage.service'
-// import { httpService } from './http.service'
+import { httpService } from './http.service'
 import { store } from '../store/store'
 import { socketService, SOCKET_EVENT_USER_UPDATED, SOCKET_EMIT_USER_WATCH } from './socket.service'
 import { showSuccessMsg } from './event-bus.service'
@@ -23,8 +23,8 @@ window.userService = userService
 
 
 function getUsers() {
-    return storageService.query('user')
-    // return httpService.get(`user`)
+    // return storageService.query('user')
+    return httpService.get(`user`)
 }
 
 function onUserUpdate(user) {
@@ -92,6 +92,7 @@ function saveLocalUser(user) {
     return user
 }
 
+// todo adjust this func to our needs
 function getLoggedinUser() {
     var user = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
     if (!user) {
@@ -99,13 +100,8 @@ function getLoggedinUser() {
             "_id":"u101",
             "fullname": "Tal Liber",
             "username": "Tal",
-            "password": 123,
             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
-            "mentions": [{
-                "id": "m101",
-                "boardId": "b101",
-                "taskId": "t2yn4E"
-            }]
+            "mentions": []
         }
         return saveLocalUser(user)
     }

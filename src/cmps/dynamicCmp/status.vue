@@ -1,6 +1,6 @@
 <template>
   <section class="cell2">
-    <!-- todo return in computed the binding class -->
+  <!-- todo-arnon code something wrong with showing the status -->
     <p
       class="status fully flex align-center center"
       @click="toggleStatusOptions"
@@ -46,6 +46,7 @@ export default {
   },
   computed: {
     formattedStatus() {
+      // console.log(this.info.status)
       if (this.info.status === "Working") return "Working on it";
       else if (this.info.status === "Empty") return "";
       else return this.info.status;

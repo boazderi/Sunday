@@ -4,12 +4,15 @@
     grid-area: side-nav;
     padding-top: 7px;
     position: relative;
+    width: 66px;
 
     .monday-icon {
-        height: 50px;
+        height: 46px;
         width: 50px;
         margin-bottom: 16px;
-        border-bottom: 1px solid #838383;
+        border-bottom: 1px solid #757575;
+       
+
         cursor: pointer;
 
         img {
@@ -31,12 +34,14 @@
     }
 
     .icons-pattern1 {
-        margin-bottom: 227px;
+        margin-bottom: auto;
+
     }
 
     .icons-pattern2 {
         width: 50px;
-        border-bottom: 1px solid #838383;
+        border-bottom: 1px solid #757575;
+        padding-bottom: 1px;
     }
 
     .icon-wrapper {
@@ -55,19 +60,19 @@
     }
 
     .see-plans {
-        height: 108px;
+        height: 112px;
         width: 34px;
         position: absolute;
         background-color: #258750;
         border-top-right-radius: 16px;
         border-bottom-right-radius: 16px;
         left: 0;
-        top: 360px;
+        top: 386px;
 
 
         .text-wrapper {
             font-size: 14px;
-            padding-inline-start: 3px;
+            padding-inline-start: 5px;
             position: absolute;
             top: 14px;
             left: -10px;
@@ -81,6 +86,7 @@
     }
 
     .bottom-icon-wrapper{
+        padding-top: 1px;
         width: em(42px);
         height: em(42px);
         border-radius: 6px;

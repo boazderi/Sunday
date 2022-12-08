@@ -1,32 +1,5 @@
 import { boardService } from '../services/board.service.local'
 
-export function getActionRemoveBoard(boardId) {
-    return {
-        type: 'removeBoard',
-        boardId
-    }
-}
-export function getActionAddBoard(board) {
-    return {
-        type: 'addBoard',
-        board
-    }
-}
-export function getActionUpdateBoard(board) {
-    return {
-        type: 'updateBoard',
-        board
-    }
-}
-
-export function getActionAddBoardMsg(boardId) {
-    return {
-        type: 'addBoardMsg',
-        boardId,
-        txt: 'Stam txt'
-    }
-}
-
 export const boardStore = {
     state: {
         boards: [],
@@ -51,6 +24,7 @@ export const boardStore = {
             return boards
         },
         getCurrBoard({ filterBy, currBoard }) {
+            // return currBoard
             return boardService.filterCurrBoard(currBoard, filterBy)
         },
         getCmpOrder({ currBoard }) {
@@ -68,7 +42,8 @@ export const boardStore = {
             // todo- set a flexable for all boardById
             state.boards = boards
         },
-        setFilterBy(state, { filterBy }){
+        setFilterBy(state, { filterBy }) {
+            filterBy = JSON.parse(JSON.stringify(filterBy))
             state.filterBy = filterBy
         },
         addBoard(state, { board }) {
@@ -77,6 +52,8 @@ export const boardStore = {
         updateBoard(state, { board }) {
             const idx = state.boards.findIndex(c => c.id === board._id)
             state.boards.splice(idx, 1, board)
+                // todo understand why its duplicate the boards in the workspace and in general
+                // state.currBoard = state.boards[idx]
             state.currBoard = board
         },
         removeBoard(state, { boardId }) {
@@ -90,6 +67,9 @@ export const boardStore = {
         setCurrBoard(state, { boardId }) {
             const newBoard = state.boards.find(board => board._id === boardId)
             state.currBoard = newBoard
+        },
+        setCurrBoardBySocket(state, { board }) {
+            state.currBoard = board
         },
         changeDragged(state, { groupId, tasksToUpdate, groupsToUpdate }) {
             // console.log(groupId, tasksToUpdate, groupsToUpdate);
@@ -150,6 +130,24 @@ export const boardStore = {
         }
     },
     actions: {
+        async loadBoards(context) {
+            try {
+                const boards = await boardService.query()
+                context.commit({ type: 'setBoards', boards })
+                    //NOTE: for first time login--- the else is when we get into that action in
+                    //  failure from data and that we dont wanna update the currBoard
+                if (!context.state.currBoard) {
+                    context.commit({
+                        type: 'setCurrBoard',
+                        boardId: context.state.boards[0]._id
+                    })
+                }
+
+            } catch (err) {
+                console.log('boardStore: Error in loadBoards', err)
+                throw err
+            }
+        },
         async addBoard(context, { board }) {
             try {
                 board = await boardService.save(board)
@@ -180,16 +178,6 @@ export const boardStore = {
                 throw err
             }
         },
-        async updateDraggedKanban({ commit, state }, { groupId, taskId, prop, toUpdate }) {
-            // console.log(groupId, taskId, prop, toUpdate);
-            // commit({ type: 'changeDragged', groupId, tasksToUpdate, groupsToUpdate })
-            // try {
-            //     const updatedBoard = await boardService.save(state.currBoard)
-            // } catch (err) {
-            //     console.log('boardStore: Error in updateBoard', err)
-            //     throw err
-            // }
-        },
         // NOTE- example for the all-around pattern with errors
         async addNewTask({ dispatch, commit, state }, { payload }) {
             try {
@@ -198,9 +186,9 @@ export const boardStore = {
                 commit({ type: 'updateBoard', board: updatedBoard })
                     //todo usermsg about success
             }
-            // Note-the err is string with loadBoards-action th
+            // Note-the err.message is string with loadBoards-action 
             catch (err) {
-                await dispatch(err)
+                await dispatch({ type: err.message })
                     //todo usermsg about failure
             }
         },
@@ -214,14 +202,14 @@ export const boardStore = {
                 throw err
             }
         },
-        async setFilterBy({ commit, state }, { payload }){
+        async setFilterBy({ commit, state }, { payload }) {
             try {
                 const currFilterBy = state.filterBy
-                if(payload.filterBy.text){
+                if (payload.filterBy.text) {
                     currFilterBy.text = payload.filterBy.text
-                    commit({type: 'setFilterBy', filterBy: currFilterBy})
+                    commit({ type: 'setFilterBy', filterBy: currFilterBy })
                 }
-            } catch (err){
+            } catch (err) {
 
             }
         },
@@ -236,35 +224,8 @@ export const boardStore = {
                 throw err
             }
         },
-
         // NOTE-new mechanism verify nothing is broken
-        async loadBoards(context) {
-            try {
-                const boards = await boardService.query()
-                context.commit({ type: 'setBoards', boards })
 
-                //NOTE: for first time login--- the else is when we get into that action in
-                //  failure from data and that we dont wanna update the currBoard
-                if (!context.state.currBoard) {
-                    context.commit({
-                        type: 'setCurrBoard',
-                        boardId: context.state.boards[0]._id
-                    })
-                }
-            } catch (err) {
-                console.log('boardStore: Error in loadBoards', err)
-                throw err
-            }
-        },
-        async removeBoard(context, { boardId }) {
-            try {
-                await boardService.remove(boardId)
-                context.commit(getActionRemoveBoard(boardId))
-            } catch (err) {
-                console.log('boardStore: Error in removeBoard', err)
-                throw err
-            }
-        },
         async addBoardMsg(context, { boardId, txt }) {
             try {
                 const msg = await boardService.addBoardMsg(boardId, txt)
@@ -312,8 +273,6 @@ export const boardStore = {
                 console.log('boardStore: Error with create a new group', err)
             }
         },
-
-
     },
 
 }

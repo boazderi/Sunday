@@ -1,30 +1,32 @@
 // TASK SECTION
 // for all the dynamic content
+// helper for hover
 .task-row {
     >* {
         cursor: pointer;
     }
-
     .more {
         left: 0px;
-
         span {
             // ?baba
-
             opacity: 0;
         }
     }
-
     &:hover {
         background-color: $table-hover-clr;
+        // background-color: green !important;
         box-shadow: 4px 3px 6px -3px #c3c6d4;
-
+        *> {
+            background-color: inherit;
+            *> {
+                background-color: inherit;
+            }
+        }
         .more {
             span {
                 opacity: 1;
             }
         }
-
         .open-con {
             opacity: 1;
         }
@@ -35,7 +37,6 @@
 .task-border {
     left: 40px;
     background-color: $primary-clr;
-
     &.add-task {
         opacity: 0.5;
         background: rgb(87, 155, 252);
@@ -55,14 +56,11 @@
         border-bottom: 1px solid $primary-border-clr;
         border-inline-end: 0;
         padding: 6px 10px;
-
         input {
             padding: 3px;
             padding-inline-start: 22px;
             width: 100%;
-
             border: 0;
-
             // todo focus visible on the border not workin
             &:focus-visible {
                 border: 1px solid $primary-clr;
@@ -70,7 +68,6 @@
         }
     }
 }
-
 
 .box-card {
     display: flex;
@@ -87,13 +84,11 @@
     width: 100%;
     line-height: 24px;
     margin: 0 6px;
-
     &:hover {
         border: 1px solid $primary-border-clr;
         padding: 0 2px;
     }
 }
-
 
 .ghost {
     opacity: 0.5;
