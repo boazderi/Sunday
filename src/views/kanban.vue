@@ -1,6 +1,7 @@
 <template>
     <section v-if="kanbanColumn.length" class="kanban flex align-center space-between">
-        <section class="kanban-content flex align-center ">
+
+        <section class="kanban-content flex ">
             <Container orientation="horizontal" @drop="onColumnDrop($event)" drag-handle-selector=".column-drag-handle"
                 :drop-placeholder="{
                     className: 'drop-placeholder1',
@@ -27,13 +28,16 @@
                                         showOnTop: true
                                     }" drag-class="on-drag">
 
-                                    <!-- task-item -->
+                                    <!-- task-cards -->
                                     <Draggable v-for="task in column.tasks" :key="task.content.id">
 
                                         <article class="task-card flex column">
-                                            <!-- todo add more icon -->
-                                            <task-title :info="task.content"
-                                                @update="updateTask($event, task.groupId, task.content.id)"></task-title>
+                                            <div class="title-wrapper flex align-center space-between">
+                                                <task-title :info="task.content"
+                                                    @update="updateTask($event, task.groupId, task.content.id)"></task-title>
+
+                                                    <span class="svg" v-icon="'moreKanban'"></span>
+                                            </div>
 
                                             <div class="card-item flex align-center space-between"
                                                 v-for="(cmp, idx) in cardColumns" :key="idx">
@@ -60,7 +64,7 @@
                             </section>
                             <div class="add-task-btn">
                                 <span v-icon="'addXSmall'" />
-                                Add task
+                                Add Item
                             </div>
                         </div>
                     </section>
@@ -68,7 +72,7 @@
             </Container>
         </section>
 
-        <kanban-filter :updateFilter="updateFilter" />
+        <kanban-filter @setSelectedColumns="setSelectedColumns" @setFilterBy="setFilterBy" />
     </section>
 
 </template>
@@ -96,8 +100,10 @@ export default {
         return {
             currBoard: this.getBoard,
             kanbanColumn: [],
-            cardColumns: ['members', 'status',],
+            // todo add file cmp
+            cardColumns: [],
             options: {
+                // todo something in the empty is render twice
                 status: [
                     { title: 'Done', color: '#00c875' },
                     { title: 'Working', color: '#fdab3d' },
@@ -118,7 +124,7 @@ export default {
     methods: {
         setKanbanColumn() {
             const currBoard = this.$store.getters.getCurrBoard
-
+            this.kanbanColumn=[]
             this.options[this.filterBy].forEach((col, idx) => {
                 var tasks = []
 
@@ -133,6 +139,14 @@ export default {
                 // the kanban column map
                 this.kanbanColumn[idx] = { title: col.title, tasks, color: col.color }
             })
+        },
+        setSelectedColumns(selectedCols) {
+            this.cardColumns = selectedCols
+        },
+        setFilterBy(filterBy) {
+
+            this.filterBy = filterBy
+            this.setKanbanColumn()
         },
         async updateTask({ prop, toUpdate }, groupId, taskId) {
             await this.$store.dispatch({
