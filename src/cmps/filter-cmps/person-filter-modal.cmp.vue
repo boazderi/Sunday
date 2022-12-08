@@ -28,7 +28,7 @@ export default {
     return {
       isActive: "",
       filterBy: {
-        memberId: null
+        memberId: []
       },
     };
   },
@@ -36,8 +36,13 @@ export default {
   },
   methods: {
     setFilterBy(member) {
-      this.isActive = member.id
+      if(this.isActive === member.id){
+        this.isActive = null
+        this.filterBy.memberId = []
+      } else{
+        this.isActive = member.id
       this.filterBy.memberId = member.id
+      }
       this.$emit('setFilterBy', { prop: 'members', toUpdate: [member] })
     }
   },
