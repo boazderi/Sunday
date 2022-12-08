@@ -57,6 +57,20 @@
     margin: 0.5rem;
 }
 
+.dashboard-stats{
+    justify-content: start;
+}
+
+.cards-data-title{
+    height: fit-content;
+}
+
+.cards-stats-container{
+    height: 100%;
+    width: 100%;
+    gap: 25px;
+}
+
 .chartHead {
     width: 100%;
     padding: 10px 0;
@@ -72,6 +86,7 @@
 
 .stat {
     height: 90%;
+    width: 30%;
     justify-content: space-evenly;
     flex-direction: column;
     text-align: center;
