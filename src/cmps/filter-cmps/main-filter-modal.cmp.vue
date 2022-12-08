@@ -12,10 +12,7 @@
         <div class="main-filter-subheader">Recent filters</div>
         <div class="filters-lists-container flex">
           <div v-for="(title, idx) in titles" :key="idx">
-            <main-filter-card
-              :title="title"
-              :filterOptions="filterOptionsData"
-            />
+            <main-filter-card :title="title" :filterOptions="filterOptionsData" />
           </div>
         </div>
       </div>
@@ -54,22 +51,22 @@ export default {
             "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
             "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
             "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
-            
+            "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670197677/tvg88ynh3rjkldkfvvjr.png",
           ],
           labels: ["Boaz Deri", "Arnon Arditi", "Tal Liber", "Empty"],
         },
       },
       filterBy: {
-        memberId: null,
+        status: [],
+        priority: [],
+        members: []
       },
     };
   },
-  created() {},
+  created() { },
   methods: {
-    setFilterBy(memberId) {
-      this.isActive = memberId;
-      this.filterBy.memberId = memberId;
-      this.$emit("setFilterBy", filterBy);
+    setFilterBy({ title, label }) {
+      console.log(title, label);
     },
   },
   computed: {
