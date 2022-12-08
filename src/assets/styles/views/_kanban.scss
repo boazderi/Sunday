@@ -26,7 +26,6 @@
     display: flex;
     flex-direction: column;
     height: fit-content;
-    max-height: 580px;
     // overflow: hidden;
 
     margin-inline-end: 15px;
@@ -56,7 +55,7 @@
 
     .cards-container {
         .smooth-dnd-container{
-            min-height: 30px;
+            min-height: 38px;
         }
 
         flex-grow: 1;
@@ -76,8 +75,8 @@
             }
             .task-title {
                 padding-inline-start: 0;
-    
                 width: 100%;
+                position: unset;
     
                 .conversation-wrapper {
                     border-left: none;
@@ -143,5 +142,17 @@
         height: 100%;
         display: flex;
         align-items: center;
+    }
+}
+
+
+
+// MEDIA-Query
+
+@media(min-width:1280px){
+    .kanban-content {
+        width: 100vw;
+        flex-basis: 100%;
+        flex-wrap: nowrap;
     }
 }

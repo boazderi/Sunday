@@ -13,7 +13,7 @@
 
                     <section class="kanban-col" :style="{ 'background-color': column.color }">
                         <div class="col-header">
-                            <!-- <span class="column-drag-handle" v-icon="'handle'" /> -->
+                            <span class="column-drag-handle" v-icon="'handle'" />
                             <div>{{ column.title }} / {{ column.tasks.length }}</div>
                         </div>
                         <!-- Column content -->
@@ -35,7 +35,6 @@
                                             <div class="title-wrapper flex align-center space-between">
                                                 <task-title :info="task.content"
                                                     @update="updateTask($event, task.groupId, task.content.id)"></task-title>
-
                                                     <span class="svg" v-icon="'moreKanban'"></span>
                                             </div>
 
