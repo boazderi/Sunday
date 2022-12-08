@@ -54,9 +54,17 @@ export default {
   data() {
     return {
       cardColumns: ['members', 'status', 'priority', 'date', 'textNote', 'timeline'],
-      selectedColumns: []
+      selectedColumns: ['members', 'status']
 
     }
+  },
+  created() {
+    this.$emit('setSelectedColumns', this.selectedColumns)
+
+  },
+  mounted() {
+    this.$refs.members[0].checked = true
+    this.$refs.status[0].checked = true
   },
 
   methods: {
