@@ -54,15 +54,11 @@
 
         .card-col {
             margin-bottom: 8px;
+            cursor: pointer;
+            input{
+                cursor: pointer;
+            }
 
-            // .sub2{
-            //     input{
-            //         width: 14px;
-            //         height: 14px;
-            //         border: 1px solid $primary-border-clr;
-            //         margin-inline-end: 8px;
-            //     }
-            // }
         }
 
         input{

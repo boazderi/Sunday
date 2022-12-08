@@ -38,7 +38,7 @@
           </div>
 
           <!-- todo render icons by cmp name -->
-          <span class="svg" v-icon="'information'"></span>
+          <span class="svg" v-icon="col"></span>
         </div>
 
       </div>
