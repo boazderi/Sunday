@@ -1,7 +1,7 @@
 <template>
   <section class="board-filter-bar flex">
     <div class="flex new-task">
-      <button class="new-task-btn" @click="onAddTask">New Task</button>
+      <button class="new-task-btn" @click="onAddTask">New Item</button>
       <button class="new-task-arrow" style="
            {
             color: white;

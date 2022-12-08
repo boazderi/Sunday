@@ -1,12 +1,12 @@
 <template>
   <section class="side-nav flex column align-center">
 
-    <div class="monday-icon flex center ">
+    <div class="monday-icon flex center " @click="onNavToHomePage">
       <img class="flex center" src="../../src/assets/img/monday_logo_icon.png" width="30" height="30" alt="">
     </div>
 
     <el-tooltip transition="none" auto-close="0" content="Work management">
-      <div class="work-management">
+      <div class="work-management flex align-center center">
         <span v-icon="'workManagement'"></span>
       </div>
     </el-tooltip>
@@ -30,10 +30,16 @@
       </div>
     </section>
 
-    <section class="bottom-icons">
-      <div class="bottom-icon-wrapper">
+    <section class="bottom-icons flex column align-center">
+      <div class="bottom-icon-wrapper flex center align-center">
         <span class="svg" v-icon="'ninePoints'"></span>
       </div>
+
+      <div class="member-wrapper flex align-center center">
+        <member-preview :member="loggedInUser"></member-preview>
+
+      </div>
+
     </section>
 
     <!-- todo add user preview with img -->
@@ -42,12 +48,23 @@
 </template>
 
 <script>
+import memberPreview from './member-preview.vue'
+
 export default {
   data() {
     return {
+      loggedInUser: this.$store.getters.loggedinUser,
       pattern1Icons: ['notifications', 'inbox', 'myWork', 'sideStar'],
       pattern2Icons: ['apps', 'sideInvite', 'sideSearch', 'help']
     }
+  },
+  methods: {
+    onNavToHomePage() {
+      this.$router.push('/')
+    }
+  },
+  components: {
+    memberPreview
   }
 }
 </script>

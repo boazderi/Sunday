@@ -41,19 +41,17 @@
                                             <div class="card-item flex align-center space-between"
                                                 v-for="(cmp, idx) in cardColumns" :key="idx">
 
-                                                <div class="sub1 flex align-center">
-                                                    <!-- todo add logo to each field -->
-                                                    <div class="logo">l</div>
+                                                <div class="sub1 flex align-center ">
+                                                    <div class="logo flex align-center center" v-icon="cmp"></div>
                                                     <span class="card-label">{{ cmp.charAt(0).toUpperCase() +
                                                             cmp.slice(1)
                                                     }}</span>
                                                 </div>
                                                 <!-- Dynamic cmps by -->
-                                                <!-- todo 0handle the dropdowns-modal that need to be open -->
+                                                <!-- todo adjust the dropdowns-modal that need to be open -->
                                                 <div class="cmp-wrapper">
                                                     <component :is="cmp" :info="task.content"
                                                         @update="updateTask($event, task.groupId, task.content.id)" />
-
                                                 </div>
                                             </div>
                                         </article>

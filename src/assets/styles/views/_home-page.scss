@@ -1,13 +1,195 @@
-.start-btn{
-    background: linear-gradient(90deg,#5034FF 25.69%,#B4B4FF 100%);
-    border-radius: 20px;
-    color: #ffffff;
-    padding: 1rem;
-    font-size: 1rem;
-    font-family: 'Poppins';
-    font-weight: 300;
-}
+.home-page {
+    position: relative;
+    height: 100vh;
+    // background-color: green;
+    font-family: Roboto;
 
-.start-btn:hover{
-    background: linear-gradient(90deg, #432cd5 25.69%, #9797d5 100%);
+    .first-layout {
+        height: 600px;
+        width: 100%;
+        background: linear-gradient(rgb(0, 1, 51) 0%, rgb(15, 16, 72) 100%);
+    }
+
+    .header-line {
+        display: block;
+        text-align: center;
+        // todo make it work after word
+        // background: linear-gradient(360deg,#ffffff 53.95%,#0b0b4a 207.37%);
+        // -webkit-background-clip: text;
+        // -webkit-text-fill-color: transparent;
+        color: #fff;
+        padding-bottom: 12px;
+        font-weight: 400;
+        font-size: 80px;
+        line-height: 85px;
+        padding-top: 150px;
+
+    }
+
+    .sub-line {
+        font-size: 24px;
+        line-height: 40px;
+        margin-top: 20px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .start-btn {
+        background: linear-gradient(90deg, #5034FF 25.69%, #B4B4FF 100%);
+        border-radius: 30px;
+        color: #ffffff;
+        padding: 1rem;
+        font-size: 1rem;
+        font-family: 'Poppins';
+        font-weight: 300;
+        width: 156px;
+        margin-top: 44px;
+
+        &:hover {
+            background: linear-gradient(90deg, #432cd5 25.69%, #9797d5 100%);
+
+        }
+    }
+
+    .home-img {
+
+        background-image: url(https://taskndrop-drko.onrender.com/dist/home-page.4b79e61c.png);
+        background-repeat: no-repeat;
+        background-size: auto;
+        background-position: top;
+    }
+
+    .star{
+        background-image: url(https://dapulse-res.cloudinary.com/image/upload/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/parallax/integrations/star.svg);
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 500px;
+        background-size: cover;
+        width: 8.55173px;
+        height: 8.55173px;
+        animation-duration: 3s;
+        border-radius: 50%;
+        animation-delay: 6s;
+        will-change: transform;
+        animation-timing-function: ease;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-fill-mode: none;
+        animation-play-state: running;
+        animation-name: twinkle;
+    }
+
+    .star2{
+        width: 4.55173px;
+        height: 4.55173px;
+        left: 200px;
+        top: 150px;
+        position: absolute;
+    }
+    .star3{
+        width: 8.55173px;
+        height: 8.55173px;
+        left: 600px;
+        top: 100px;
+        position: absolute;
+    }
+    // .star4{
+    //     width: 2.55173px;
+    //     height: 2.55173px;
+    //     left: 550px;
+    //     position: absolute;
+    // }
+    .star5{
+        width: 7.55173px;
+        height: 7.55173px;
+        left: 350px;
+        top: 250px;
+        position: absolute;
+    }
+    .star6{
+        width: 3.55173px;
+        height: 3.55173px;
+        left: 300px;
+        top: 300px;
+        position: absolute;
+    }
+    .star7{
+        width: 2.55173px;
+        height: 2.55173px;
+        left: 500px;
+        top: 550px;
+        position: absolute;
+    }
+    .star8{
+        width: 8.55173px;
+        height: 8.55173px;
+        left: 100px;
+        top: 100px;
+        position: absolute;
+    }
+    .star9 {
+        width: 3.55173px;
+        height: 3.55173px;
+        left: 150px;
+        top: 150px;
+        position: absolute;
+    }
+    .star10 {
+        width: 5.55173px;
+        height: 5.55173px;
+        left: 125px;
+        top: 200px;
+        position: absolute;
+    }
+    .star11 {
+        width: 9.55173px;
+        height: 9.55173px;
+        left: 366px;
+        top: 450px;
+        position: absolute;
+    }
+    .star12 {
+        width: 4.55173px;
+        height: 4.55173px;
+        left: 460px;
+        top: 190px;
+        position: absolute;
+    }
+    .star13 {
+        width: 2.55173px;
+        height: 2.55173px;
+        left: 450px;
+        top: 180px;
+        position: absolute;
+    }
+    .star14 {
+        width: 5.55173px;
+        height: 5.55173px;
+        left: 100px;
+        top: 100px;
+        position: absolute;
+    }
+    .star15 {
+        width: 4.55173px;
+        height: 4.55173px;
+        left: 260px;
+        top: 190px;
+        position: absolute;
+    }
+    // .star16{
+    //     width: 7.55173px;
+    //     height: 6.55173px;
+    //     left: 760px;
+    //     top: 477px;
+    //     position: absolute;
+    // }
+    // .star17{
+    //     width: 5.55173px;
+    //     height: 5.55173px;
+    //     left: 760px;
+    //     top: 640px;
+    //     position: absolute;
+    // }
+
+
 }

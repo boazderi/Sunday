@@ -9,11 +9,14 @@
     .monday-icon {
         height: 46px;
         width: 50px;
-        margin-bottom: 16px;
+        margin-bottom: 10px;
+        border-radius: 6px;
         border-bottom: 1px solid #757575;
-       
-
         cursor: pointer;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, .6);
+        }
 
         img {
             width: 40px;
@@ -28,9 +31,15 @@
     }
 
     .work-management {
-        width: 30px;
+        width: 42px;
+        height: 42px;
+        border-radius: 6px;
         cursor: pointer;
-        margin-bottom: 12px;
+        margin-bottom: 6px;
+        // padding: 6px;
+        &:hover {
+            background-color: rgba(0, 0, 0, .6);
+        }
     }
 
     .icons-pattern1 {
@@ -85,12 +94,31 @@
 
     }
 
+    .bottom-icons{
+        margin-bottom: 12px;
+
+        .member-wrapper{
+            padding: 6px;
+            padding-top: 10px;
+          
+
+            .member-preview{
+                margin-inline-start: 0px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+    }
+
     .bottom-icon-wrapper{
         padding-top: 1px;
+        padding-bottom: 2px;
         width: em(42px);
         height: em(42px);
         border-radius: 6px;
         margin-top: 8px;
+        margin-bottom: 3px;
+       
         cursor: pointer;
         &:hover {
             background-color: rgba(0, 0, 0, .6);
