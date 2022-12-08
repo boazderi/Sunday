@@ -13,7 +13,7 @@
 
                     <section class="kanban-col" :style="{ 'background-color': column.color }">
                         <div class="col-header">
-                            <!-- <span class="column-drag-handle" v-icon="'handle'" /> -->
+                            <span class="column-drag-handle" v-icon="'handle'" />
                             <div>{{ column.title }} / {{ column.tasks.length }}</div>
                         </div>
                         <!-- Column content -->
@@ -36,7 +36,7 @@
                                                 <task-title :info="task.content"
                                                     @update="updateTask($event, task.groupId, task.content.id)"></task-title>
 
-                                                    <span class="svg" v-icon="'moreKanban'"></span>
+                                                <span class="svg" v-icon="'moreKanban'"></span>
                                             </div>
 
                                             <div class="card-item flex align-center space-between"
@@ -124,7 +124,7 @@ export default {
     methods: {
         setKanbanColumn() {
             const currBoard = this.$store.getters.getCurrBoard
-            this.kanbanColumn=[]
+            this.kanbanColumn = []
             this.options[this.filterBy].forEach((col, idx) => {
                 var tasks = []
 
