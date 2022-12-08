@@ -128,7 +128,6 @@ export const boardStore = {
         }
     },
     actions: {
-
         async loadBoards(context) {
             try {
                 const boards = await boardService.query()
@@ -177,16 +176,6 @@ export const boardStore = {
                 throw err
             }
         },
-        async updateDraggedKanban({ commit, state }, { groupId, taskId, prop, toUpdate }) {
-            // console.log(groupId, taskId, prop, toUpdate);
-            // commit({ type: 'changeDragged', groupId, tasksToUpdate, groupsToUpdate })
-            // try {
-            //     const updatedBoard = await boardService.save(state.currBoard)
-            // } catch (err) {
-            //     console.log('boardStore: Error in updateBoard', err)
-            //     throw err
-            // }
-        },
         // NOTE- example for the all-around pattern with errors
         async addNewTask({ dispatch, commit, state }, { payload }) {
             try {
@@ -234,20 +223,7 @@ export const boardStore = {
             }
         },
         // NOTE-new mechanism verify nothing is broken
-        async loadBoards(context) {
-            try {
-                const boards = await boardService.query()
-                context.commit({ type: 'setBoards', boards })
 
-        async removeBoard(context, { boardId }) {
-            try {
-                await boardService.remove(boardId)
-                context.commit(getActionRemoveBoard(boardId))
-            } catch (err) {
-                console.log('boardStore: Error in removeBoard', err)
-                throw err
-            }
-        },
         async addBoardMsg(context, { boardId, txt }) {
             try {
                 const msg = await boardService.addBoardMsg(boardId, txt)
