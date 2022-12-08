@@ -12,11 +12,7 @@
         <div class="main-filter-subheader">Recent filters</div>
         <div class="filters-lists-container flex">
           <div v-for="(title, idx) in titles" :key="idx">
-            <main-filter-card
-              :title="title"
-              :filterOptions="filterOptionsData"
-              @setFilter="setFilterBy"
-            />
+            <main-filter-card :title="title" :filterOptions="filterOptionsData" @setFilter="setFilterBy" />
           </div>
         </div>
       </div>
@@ -69,8 +65,16 @@ export default {
   },
   created() { },
   methods: {
-    setFilterBy({ label, title }) {
-      console.log(label, title);
+    setFilterBy({ title, label }) {
+      const idx = this.filterBy[title].findIndex(currLabel => currLabel === label)
+
+      if (idx === -1) {
+        this.filterBy[title].push(label)
+      } else {
+        this.filterBy[title].splice(idx, 1)
+      }
+
+      this.$emit('setFilterBy', { prop: title, toUpdate: this.filterBy[title] })
     },
   },
   computed: {

@@ -2,47 +2,26 @@
   <section class="board-filter-bar flex">
     <div class="flex new-task">
       <button class="new-task-btn" @click="onAddTask">New Task</button>
-      <button
-        class="new-task-arrow"
-        style="
+      <button class="new-task-arrow" style="
            {
             color: white;
           }
-        "
-        v-icon="'arrowDown'"
-      ></button>
+        " v-icon="'arrowDown'"></button>
     </div>
-    <input
-      v-if="isSearch"
-      @blur="isSearch = false"
-      @input="setFilterBy('text')"
-      v-model="filterBy.text"
-      type="search"
-      autofocus
-      class="board-filter-item"
-    />
-    <button
-      v-else
-      @click="isSearch = true"
-      class="flex align-center board-filter-item outboard-hover"
-    >
+    <input v-if="isSearch" @blur="isSearch = false" @input="setFilterBy('text')" v-model="filterBy.text" type="search"
+      autofocus class="board-filter-item" />
+    <button v-else @click="isSearch = true" class="flex align-center board-filter-item outboard-hover">
       <span v-icon="'search'"></span> Search
     </button>
     <el-tooltip transition="none" auto-close="0" content="Filter by person">
-      <button
-        @click="isPersonFilter = !isPersonFilter"
-        :class="{ 'active-filter': isPersonFilter }"
-        class="flex align-center board-filter-item outboard-hover"
-      >
+      <button @click="isPersonFilter = !isPersonFilter" :class="{ 'active-filter': isPersonFilter }"
+        class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'person'"> </span> &nbsp;Person
       </button>
     </el-tooltip>
     <el-tooltip transition="none" auto-close="0" content="Filter by anything">
-      <button
-        @click="isMainFilter = !isMainFilter"
-        :class="{ 'active-filter': isMainFilter }"
-        class="flex align-center board-filter-item outboard-hover"
-      >
+      <button @click="isMainFilter = !isMainFilter" :class="{ 'active-filter': isMainFilter }"
+        class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'filter'"></span> &nbsp;Filter
         <span v-icon="'arrowDownBlack'" />
       </button>
@@ -111,6 +90,7 @@ export default {
       });
     },
     setFilterBy({ prop, toUpdate }) {
+
       switch (prop) {
         case "text":
           break;
@@ -118,10 +98,10 @@ export default {
           this.filterBy.members = toUpdate;
           break;
         case "priority":
-          this.filterBy.dynamicProps.priority = toUpdate;
+          this.filterBy.dynamicProps[0].values = toUpdate
           break;
         case "status":
-          this.filterBy.dynamicProps.status = toUpdate;
+          this.filterBy.dynamicProps[1].values = toUpdate
           break;
       }
 
