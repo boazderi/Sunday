@@ -15,6 +15,7 @@
             <main-filter-card
               :title="title"
               :filterOptions="filterOptionsData"
+              @setFilter="setFilterBy"
             />
           </div>
         </div>
