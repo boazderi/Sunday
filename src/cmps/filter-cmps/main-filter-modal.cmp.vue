@@ -60,17 +60,18 @@ export default {
         },
       },
       filterBy: {
-        memberId: null,
+        members: [],
+        priority:[],
+        status:[],
       },
     };
   },
   created() {},
   methods: {
-    setFilterBy(memberId) {
-      this.isActive = memberId;
-      this.filterBy.memberId = memberId;
-      this.$emit("setFilterBy", filterBy);
-    },
+    setFilterBy(member) {
+      this.filterBy.members.push(member)
+      this.$emit('setFilterBy', { prop: 'members', toUpdate: [member] })
+    }
   },
   computed: {
     showAllTasksNumber() {

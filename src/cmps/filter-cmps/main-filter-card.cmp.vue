@@ -4,9 +4,9 @@
       <h4 class="card-title-item">{{ title }}</h4>
       <div class="card-items-container" v-if="title === 'priority' || title === 'status'">
         <div
-          @click="setFilter"
           class="main-filter-card-item outboard-hover"
           v-for="(label, idx) in filterOptions[title].labels"
+          @click="setFilter(label,title)"
           :key="idx">
           <div
             class="card-color-circle"
@@ -43,8 +43,10 @@ export default {
     console.log(this.filterOptions);
   },
   methods: {
-      setFilter(){
-          this.$emit('setFilter')
+      setFilter(label, title){
+          console.log('label:',label);
+          console.log('title:',title);
+          this.$emit('setFilter', {label, title})
       }
   },
   components: {
