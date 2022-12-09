@@ -53,6 +53,7 @@ import memberPreview from './member-preview.vue'
 export default {
   data() {
     return {
+      // todo make the loggedin reactive
       loggedInUser: this.$store.getters.loggedinUser,
       pattern1Icons: ['notifications', 'inbox', 'myWork', 'sideStar'],
       pattern2Icons: ['apps', 'sideInvite', 'sideSearch', 'help']
