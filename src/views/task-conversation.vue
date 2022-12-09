@@ -45,7 +45,7 @@
         <div class="content-actions flex align-items space-between">
           <!-- todo improve that section design -->
           <div class="content-features flex align-center">
-            Add files
+            <!-- Add files -->
           </div>
 
           <button class="update" @click="onAddComment">Update</button>
