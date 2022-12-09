@@ -14,12 +14,10 @@
     }
     &:hover {
         background-color: $table-hover-clr;
-        // background-color: green !important;
-        box-shadow: 4px 3px 6px -3px #c3c6d4;
-        *> {
+        >*:not(:first-child) {
             background-color: inherit;
-            *> {
-                background-color: inherit;
+            >* {
+                opacity: 0.8;
             }
         }
         .more {
