@@ -30,12 +30,11 @@ export default {
   data() {
     return {
       isActive: "",
-      titles: ["priority", "status", "person"],
+      titles: ["priority", "status", "members"],
       filterOptionsData: {
         priority: {
           labels: ["CRITICAL", "HIGH", "MEDIUM", "LOW", "EMPTY"],
-          backgroundColor: [
-            "#333333",
+          backgroundColor: ["#333333",
             "#401794",
             "#5559df",
             "#579bfc",
@@ -46,14 +45,10 @@ export default {
           labels: ["Done", "Working", "Stuck", "Empty"],
           backgroundColor: ["#00c875", "#fdab3d", "#e2435c", "#c4c4c4"],
         },
-        person: {
-          imgUrls: [
-            "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
-            "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
-            "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
-            "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670197677/tvg88ynh3rjkldkfvvjr.png",
-          ],
-          labels: ["Boaz Deri", "Arnon Arditi", "Tal Liber", "Empty"],
+        members: {
+          imgUrls: [],
+          labels: [],
+          members: []
         },
       },
       filterBy: {
@@ -63,19 +58,45 @@ export default {
       },
     };
   },
-  created() { },
+  created() {
+    this.setPersons()
+  },
   methods: {
     setFilterBy({ title, label }) {
-      const idx = this.filterBy[title].findIndex(currLabel => currLabel === label)
+      if (title === 'members') {
+        const idx = this.filterBy.members.findIndex(member => member.fullname === label)
 
-      if (idx === -1) {
-        this.filterBy[title].push(label)
+        if (idx === -1) {
+          const currMember = this.filterOptionsData.members.members.find(member => member.fullname === label)
+          this.filterBy.members.push(currMember)
+        }
+        else {
+          this.filterBy.members.splice(idx, 1)
+        }
       } else {
-        this.filterBy[title].splice(idx, 1)
-      }
+        const idx = this.filterBy[title].findIndex(currLabel => currLabel === label)
 
+        if (idx === -1) {
+          this.filterBy[title].push(label)
+        } else {
+          this.filterBy[title].splice(idx, 1)
+        }
+      }
       this.$emit('setFilterBy', { prop: title, toUpdate: this.filterBy[title] })
     },
+    setPersons() {
+      this.filterOptionsData.members.members = this.board.members
+      this.filterOptionsData.members.imgUrls = []
+      this.filterOptionsData.members.labels = []
+
+      this.board.members.forEach(member => {
+        this.filterOptionsData.members.labels.push(member.fullname)
+        if (member.imgUrl)
+          this.filterOptionsData.members.imgUrls.push(member.imgUrl)
+        else
+          this.filterOptionsData.members.imgUrls.push("https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670197677/tvg88ynh3rjkldkfvvjr.png")
+      })
+    }
   },
   computed: {
     showAllTasksNumber() {
