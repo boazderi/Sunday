@@ -17,6 +17,7 @@
     <bottom-crud v-if="selectedTasks.length" :selectedTasks="selectedTasks" @removeTasks="removeTasks"
       @duplicateTasks="duplicateTasks" @closeBottomCrud="closeBottomCrud" />
   </section>
+  
   <!-- taskConversation -->
   <router-view></router-view>
 </template>

@@ -1,12 +1,12 @@
 <template>
   <section class="group-title-dropdown flex column align-center">
-    <el-card>
+    <!-- <el-card> -->
       <div class="flex align-center action" v-for="(groupOpt, index) in groupOpts" :key="groupOpt"
         @click="setActionByCase(groupOpt.type)">
         <span class="svg" v-icon="icons[index]"></span>
-        <span>{{ groupOpt.desc }}</span>
+        <span class="desc flex align-center">{{ groupOpt.desc }}</span>
       </div>
-    </el-card>
+    <!-- </el-card> -->
   </section>
 </template>
 
