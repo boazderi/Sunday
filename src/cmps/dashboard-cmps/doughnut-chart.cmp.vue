@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col align-center chart-container">
-    <h3 class="chartHead" >Tasks by status</h3>
+    <h3 class="chart-head" >Tasks by status</h3>
     <DoughnutChart class="chart" :chartData="data" :options="options"/>
   </section>
 </template>

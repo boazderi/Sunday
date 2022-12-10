@@ -3,9 +3,9 @@
     v-if="isDataSection"
     @click="toggleSections"
     title="Click to switch"
-    class="dashboard-stats chart-container flex flex-col"
+    class="dashboard-stats flip-horizontal-bottom chart-container flex flex-col"
   >
-  <h3 class="cards-data-title"> Data Cards </h3>
+  <h3 class="chart-head"> Data Cards </h3>
   <div class="flex cards-stats-container">
     <article class="stat flex">
       <h4 class="card-title-item">Total board tasks</h4>
@@ -25,22 +25,72 @@
     v-else
     @click="toggleSections"
     title="Click to switch"
-    class="dashboard-stats chart-container flex flex-col"
+    class="dashboard-stats flip-horizontal-bottom chart-container flex flex-col"
   >
-    <h3 class="cards-data-title"> Members Cards </h3>
+    <h3 class="chart-head"> Members Cards </h3>
   <div class="flex cards-stats-container">
-
-    <article class="stat flex">
+    <article class="stat member-card flex">
       <h4 class="card-title-item">Tal Liber</h4>
       <div><img class="memberDashPic" :src="this.members[0].imgUrl" alt="" /></div>
+      <div class="flex icons-container align-items-center">
+                <a href="https://www.linkedin.com/in/boaz-deri/" target="_blank">
+                    <div class="icon">
+                        <img class="linkedin-icon img-icon" src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670587995/t8jum7b1nn8emby15kee.png" width="30" height="30" alt="">
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/tal.liber" target="_blank">
+                    <div class="icon">
+                        <img class="facebook-icon img-icon" src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670587995/oq4ndyyjo4je5n1jpil3.png" width="30" height="30" alt="">
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/boazderi/" target="_blank">
+                    <div class="icon">
+                        <img class="instagram-icon img-icon " src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670587995/dwxkrzgbntfrf1z1wggf.png" width="30" height="30" alt="">
+                    </div>
+                </a>
+            </div>
     </article>
-    <article class="stat flex">
+    <article class="stat member-card flex">
       <h4 class="card-title-item">Boaz Deri</h4>
         <div><img class="memberDashPic" :src="this.members[2].imgUrl" alt="" /></div>
+        <div class="flex icons-container align-items-center">
+                <a href="https://www.linkedin.com/in/boaz-deri/" target="_blank">
+                    <div class="icon">
+                        <img class="linkedin-icon img-icon" src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670587995/t8jum7b1nn8emby15kee.png" width="30" height="30" alt="">
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/boazderi/" target="_blank">
+                    <div class="icon">
+                        <img class="facebook-icon img-icon" src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670587995/oq4ndyyjo4je5n1jpil3.png" width="30" height="30" alt="">
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/boazderi/" target="_blank">
+                    <div class="icon">
+                        <img class="instagram-icon img-icon " src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670587995/dwxkrzgbntfrf1z1wggf.png" width="30" height="30" alt="">
+                    </div>
+                </a>
+            </div>
     </article>
-    <article class="stat flex">
-        <h4 class="card-title-item">Arnon Ardity</h4>
+    <article class="stat member-card flex">
+        <h4 class="card-title-item">Arnon Arditi</h4>
         <div><img class="memberDashPic" :src="this.members[1].imgUrl" alt="" /></div>
+        <div class="flex icons-container align-items-center">
+                <a href="https://www.linkedin.com/in/boaz-deri/" target="_blank">
+                    <div class="icon">
+                        <img class="linkedin-icon img-icon" src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670587995/t8jum7b1nn8emby15kee.png" width="30" height="30" alt="">
+                    </div>
+                </a>
+                <a href="https://www.facebook.com/arnon.rdt" target="_blank">
+                    <div class="icon">
+                        <img class="facebook-icon img-icon" src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670587995/oq4ndyyjo4je5n1jpil3.png" width="30" height="30" alt="">
+                    </div>
+                </a>
+                <a href="https://www.instagram.com/boazderi/" target="_blank">
+                    <div class="icon">
+                        <img class="instagram-icon img-icon " src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670587995/dwxkrzgbntfrf1z1wggf.png" width="30" height="30" alt="">
+                    </div>
+                </a>
+            </div>
     </article>
           </div>
   </section>

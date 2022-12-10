@@ -16,7 +16,7 @@
         background-color: $table-hover-clr;
         >*:not(:first-child) {
             background-color: inherit;
-            >* {
+            >*:only-child {
                 opacity: 0.8;
             }
         }

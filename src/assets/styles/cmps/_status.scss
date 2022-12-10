@@ -1,4 +1,5 @@
 // status
+
 .status-modal-item {
     text-align: center;
     color: white;
@@ -19,11 +20,26 @@
     position: relative;
 }
 
+.confety{
+    position:relative;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.status-container{
+    position: relative;
+}
+
+.peeling-box{
+  z-index: 100;
+}
+
 .status-picker-modal {
     z-index: 60 !important;
     position: relative ;
     right: 70px;
-    top: 28px;
+    top: 23px;
 }
 
 .status-done {
@@ -42,6 +58,15 @@
     background-color: $bg-status-empty;
 }
 
+.arrow-up-div{
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    background-color: #fff;
+    top: -5px;
+    z-index: 52;
+    rotate: 45deg;
+}
 
 .status-progress {
     z-index: 0;
@@ -66,3 +91,89 @@
         }
     }
 }
+
+.prevrnt-hover{
+    pointer-events:fill;
+}
+
+
+.scale-up-tr{
+    height: 10px;
+    width: 10px;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.304) 50%, #fff 50%);
+    position: absolute;
+    z-index: 100;
+    right: 0;
+    top: 0;
+	-webkit-animation: scale-up-tr 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-tr 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes scale-up-tr {
+    0% {
+      -webkit-transform: scale(0.5);
+              transform: scale(0.5);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+  }
+  @keyframes scale-up-tr {
+    0% {
+      -webkit-transform: scale(0.5);
+              transform: scale(0.5);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+    100% {
+      -webkit-transform: scale(1);
+              transform: scale(1);
+      -webkit-transform-origin: 100% 0%;
+              transform-origin: 100% 0%;
+    }
+  }
+  
+
+@keyframes bang {
+    from {
+      transform: translate3d(0,0,0);
+      opacity: 1;
+    }
+  }
+  .hoverme {
+    width: 240px;
+    margin:150px auto 0;
+    text-align: center;
+    padding: 10px 0;
+    cursor: pointer;
+    position: relative;
+    span {
+      color: #333;
+      font-size: .9em;
+    }
+    i {
+      position: absolute;
+      display: block;
+      left: 50%;
+      top: 0;
+      width: 3px;
+      height: 5px;
+      background: red;
+      opacity: 0;
+    }
+    &:hover {
+      @for $i from 1 through 50 {
+        i:nth-of-type(#{$i}) {
+          transform: translate3d(random(190) - 100 + px,random(50) - 100 + px,0) rotate(random(360) + deg);
+          background: hsla(random(360),100%,50%,1);
+          animation: bang 700ms ease-out forwards;
+          opacity: 0;
+        }
+      }
+    }
+  }
