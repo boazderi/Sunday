@@ -22,6 +22,7 @@
 
       <section class="conversation-nav flex align-center space-between">
         <div class="sub-nav flex align-center">
+          <div class="border1"></div>
           <!-- todo-render the sum of comments in title attribute when hover -->
           <div><span>Updates</span></div>
           <div><span>Files</span></div>
@@ -34,21 +35,24 @@
       </section>
     </header>
 
+    <div class="main-border"></div>
+
     <!-- Main-content -->
     <section class="conversation-content grow flex column">
+
       <!-- header -->
       <header class="content-header flex column">
-        <!-- todo-change it afterward to button el that open quill -->
-        <input type="text" placeholder="Write an update..." v-model="commentTxt">
+        <div v-if="!isFormFocus" @click="onOpenForm" contenteditable class="open-update-form flex align-center">
+          Write an update...
+        </div>
 
-        <!-- todo open the actions bar only after input is focused -->
-        <div class="content-actions flex align-items space-between">
-          <!-- todo improve that section design -->
-          <div class="content-features flex align-center">
-            Add files
-          </div>
-
-          <button class="update" @click="onAddComment">Update</button>
+        <div v-else>
+          <!-- todo---Quill -->
+          <form class="update-form flex align-center column" @submit="onAddComment">
+            <input class="grow" ref="commentInput"
+             type="text" v-model="commentTxt" placeholder="" />
+            <button  class="update flex align-center">Update</button>
+          </form>
         </div>
       </header>
 
@@ -68,7 +72,7 @@
 
           <header class="comment-header flex align-center space-between">
             <div class="wrapper1 flex align-center">
-              <member-preview :member="comment.byMember"></member-preview>
+              <member-preview class="member-img" :member="comment.byMember"></member-preview>
 
               <span>{{ comment.byMember.fullname }} </span>
               <div class="dot"></div>
@@ -116,7 +120,8 @@ export default {
       task: null,
       groupId: null,
       user: null,
-      commentTxt: ''
+      commentTxt: '',
+      isFormFocus: false
     }
   },
   created() {
@@ -138,6 +143,7 @@ export default {
       prop: 'comments',
       toUpdate,
     });
+    this.isFormFocus = false
   },
   methods: {
     async onAddComment() {
@@ -157,6 +163,10 @@ export default {
       const updatedComments = [...this.task.comments, newComment]
       this.task.comments = updatedComments
       socketService.emit(SOCKET_EMIT_SEND_COMMENTS, updatedComments)
+      this.$refs.commentInput.value = ''
+      // todo fix that 
+      console.log(this.$refs.commentInput.value)
+      this.isFormFocus = false
     },
     addCommentsBySocket(comments) {
       this.task.comments = comments
@@ -164,6 +174,18 @@ export default {
     goBackToMainTable() {
       const boardId = this.$route.params.id
       this.$router.push(`/board/${boardId}/main-table`)
+    },
+    onOpenForm() {
+      this.isFormFocus = true
+    },
+    onCloseForm() {
+      this.isFormFocus = false
+    },
+    onBlurInput(ev) {
+      console.log('blur')
+      // ev.bubbles=true
+      // console.log(ev)
+      // this.isInputFocus = false
     },
     setConversationData(currBoard, taskId) {
 

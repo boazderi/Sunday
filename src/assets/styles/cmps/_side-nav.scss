@@ -34,12 +34,11 @@
         width: 42px;
         height: 42px;
         border-radius: 6px;
-        cursor: pointer;
+        // cursor: pointer;
         margin-bottom: 6px;
-        // padding: 6px;
-        &:hover {
-            background-color: rgba(0, 0, 0, .6);
-        }
+        // &:hover {
+        //     background-color: rgba(0, 0, 0, .6);
+        // }
     }
 
     .icons-pattern1 {
@@ -59,38 +58,7 @@
         width: em(36px);
         height: em(36px);
         border-radius: 6px;
-        cursor: pointer;
         margin-bottom: 8px;
-
-
-        &:hover {
-            background-color: rgba(0, 0, 0, .6);
-        }
-    }
-
-    .see-plans {
-        height: 112px;
-        width: 34px;
-        position: absolute;
-        background-color: #258750;
-        border-top-right-radius: 16px;
-        border-bottom-right-radius: 16px;
-        left: 0;
-        top: 386px;
-
-
-        .text-wrapper {
-            font-size: 14px;
-            padding-inline-start: 5px;
-            position: absolute;
-            top: 14px;
-            left: -10px;
-
-            .rot {
-                transform: rotate(-90deg);
-                margin: 6px;
-            }
-        }
 
     }
 
@@ -118,11 +86,7 @@
         border-radius: 6px;
         margin-top: 8px;
         margin-bottom: 3px;
-       
-        cursor: pointer;
-        &:hover {
-            background-color: rgba(0, 0, 0, .6);
-        }
+   
     }
 
 }

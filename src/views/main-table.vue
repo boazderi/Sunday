@@ -15,7 +15,7 @@
     </section>
 
     <bottom-crud v-if="selectedTasks.length" :selectedTasks="selectedTasks" @removeTasks="removeTasks"
-      @duplicateTasks="duplicateTasks" />
+      @duplicateTasks="duplicateTasks" @closeBottomCrud="closeBottomCrud" />
   </section>
   <!-- taskConversation -->
   <router-view></router-view>
@@ -56,7 +56,11 @@ export default {
         payload: { selectedTasks: this.selectedTasks }
       })
       this.selectedTasks = []
-      // TODO- make all inputs checked=false in the side cmps
+      
+    },
+    closeBottomCrud() {
+      this.selectedTasks = []
+      eventBus.emit('turnOffAllCheckbox')
     },
     updateSelectedTasks(selectedTasks) {
       this.selectedTasks = selectedTasks
