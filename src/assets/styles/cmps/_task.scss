@@ -15,6 +15,7 @@
     &:hover {
         background-color: $table-hover-clr;
         >*:not(:first-child) {
+            // box-shadow: 4px 3px 6px -3px #c3c6d4;
             background-color: inherit;
             >*:only-child {
                 opacity: 0.8;
