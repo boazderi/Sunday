@@ -10,55 +10,98 @@
     position: relative;
     border-right: 1.2px solid $primary-border-clr;
     grid-area: workspace;
+
+    // the blue famous btn
     .toggleWorkspace {
         position: absolute;
+        background-color: white;
         border-radius: 50%;
+        justify-content: center;
         padding: 0px 2px;
         border: 1px solid #c3c6d4;
         transform: translateX(-50%);
-        top: 22px;
+        top: 20px;
+        width: 26px;
         right: -26px;
-        background-color: white;
+
+        // transition
+        transition: width .15s ease,
+            padding-inline-end .15s ease,
+            padding-inline-start .15s ease,
+            background-color .15s ease;
+
+        // hover when workspace is close
         &:hover {
-            background-color: $primary-hover-clr;
+            width: 33px;
+            height: 22px;
+            border-radius: 20px;
+            justify-content: start;
+            padding-inline-start: 12px;
+            background-color: #0073ea;
+            right: -34px;
+
+            .svg {
+                svg {
+                    fill: white;
+                }
+            }
         }
+
         .first {
             height: 22px;
+            width: inherit;
             padding-inline-end: 3px;
         }
     }
+
+
     >* {
         cursor: pointer;
     }
+
     // Toggle handling
     >*:not(.toggleWorkspace) {
         width: 224px;
         display: none;
     }
+
     &.isOpen {
         >* {
             display: inherit;
         }
+
         .toggleWorkspace {
             left: 255px;
             z-index: 100;
-            span {}
+
+            // hover when workspace is open
+            &:hover {
+                width: 33px;
+                height: 22px;
+                border-radius: 20px;
+                justify-content: end;
+                padding-inline-end: 9px;
+                background-color: #0073ea;
+
+                .svg {
+                    svg {
+                        fill: white;
+                    }
+                }
+            }
+
         }
     }
-    // todo upgrade hover
-    // &:hover {
-    //     position: absolute;
-    //     height: 100%;
-    //     z-index: 100;
-    //     margin-inline-start: 50px;
-    // }
+
     .workspace-dropdown {
         margin-bottom: 18px;
         border: 1px solid #676879;
         padding: 7px 6px;
         border-radius: 4px;
+
         .home {
             position: relative;
+
             .logo-text {
                 background-color: rgb(242, 121, 242);
                 color: white;
@@ -69,37 +112,56 @@
                 border-radius: 8px;
                 margin-inline-end: 6px;
             }
+
             .logo {
                 position: absolute;
                 top: 9px;
                 left: 13px;
             }
+
             .text {
                 font-weight: bold;
             }
         }
     }
+
     .dropdown-nav-header {
         padding-bottom: 2px;
+
         span {
             font-size: 14px;
             color: rgb(103, 104, 121);
             padding-bottom: 3px;
+            padding-top: 2px;
+            padding-inline-start: 1px;
+        }
+
+        .more-medium{
+            cursor:default;
+            padding-bottom: 3px;
         }
     }
+
     // LISTS
     .action-list {
         padding-inline-start: 5px;
         padding-bottom: 16px;
-        // border-bottom: 1.3px solid $primary-border-clr;
-        // margin-bottom: 15px;
+
+        // the action.title class
+        .Add {
+            padding-inline-start: 4px;
+        }
+
+        // the action.icon class
         .filter {
             padding-inline-start: 2.3px;
         }
+
         .search {
             margin-inline-start: -2.3px;
         }
     }
+
     .lists-border {
         border-bottom: 1px solid $primary-border-clr;
         margin-bottom: 22px;
@@ -107,39 +169,44 @@
         width: 214px;
         height: 1px;
     }
+
     .board-list {
         padding-inline-start: 8px;
     }
+
     // todo - some problem with the font-weight--fix
     .item,
     .board-item {
         font-size: 14px;
         border-radius: 6px;
         line-height: 32px;
-        // margin-bottom: 2px;
+
         >* {
             margin-inline-end: 8px;
         }
+
         &:hover {
             background-color: $primary-hover-clr;
         }
-        // &:first-child {
-        //     margin-inline-start: -2.4px;
-        // }
-        // .workspace-dropdown-select {
-        //     margin-bottom: 18px;
-        // }
     }
+
+    .item {
+        width: 224px;
+        padding-inline-start: 6px;
+        margin-inline-start: -6px;
+    }
+
 }
 
 .list-item {
-    background-color: $primary-selected-color;
-    width: 226px;
+    background-color: inherit;
+    width: 224px;
     height: 34px;
     margin-bottom: 0px;
     padding: 0px 8px;
     border-radius: 4px;
     margin-inline-start: -9px;
+
     &:hover {
         background-color: $primary-hover-clr;
     }

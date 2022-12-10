@@ -21,7 +21,8 @@ export const boardService = {
     duplicateGroup,
     deleteGroup,
     addGroup,
-    filterCurrBoard
+    filterCurrBoard,
+    addBoard
     // updateDraggedGroup
 }
 window.cs = boardService
@@ -49,18 +50,17 @@ async function save(board) {
     try {
         if (board._id) {
             await httpService.put(`board/${board._id}`, board)
-                // socket for each update
+            // socket for each update
             socketService.emit(SOCKET_EMIT_LOAD_CURRBOARD, board._id)
             return
         }
-
         // Note- meanwhile we didnt produce a new board
-        // else {
         // yaronb: Later, owner is set by the backend
         // board.owner = userService.getLoggedinUser()
-        // savedBoard = await storageService.post(STORAGE_KEY, board)
-        // return httpService.post('board', board)
-        // }
+        else {
+            // savedBoard = await storageService.post(STORAGE_KEY, board)
+            return httpService.post('board', board)
+        }
     } catch (err) {
         throw err
     }
@@ -100,6 +100,58 @@ async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
 
     } catch (err) {
         throw new Error('loadBoards')
+    }
+}
+async function addBoard() {
+    try {
+        const newBoard = _getEmptyBoard()
+        const boardId = await save(newBoard)
+        newBoard._id = boardId
+        return newBoard
+
+    } catch (err) {
+        throw new Error('loadBoards')
+    }
+}
+function _getEmptyBoard() {
+    return {
+        title: 'New board',
+        description: 'New board description',
+        createdAt: Date.now(),
+        cmpOrder: ["status", "members", "priority", "date", "textNote", "file", "timeline"],
+        labels: ["Status", "Person", "Priority", "Date", "Text", "File", "Timeline"],
+        progLineOrder: ["status-progress", "div", "priority-progress", "div", "div", "div", "timeline-width"],
+        createdBy: {
+            "id": "u101",
+            "fullname": "Tal Liber",
+            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg"
+        },
+        members: [{
+            "id": "u101",
+            "fullname": "Tal Liber",
+            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+            "color": "#8338ec"
+        },
+        {
+            "id": "u102",
+            "fullname": "Arnon Arditi",
+            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
+            "color": "#8338ec"
+        },
+        {
+            "id": "u103",
+            "fullname": "Boaz Deri",
+            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
+            "color": "#3a86ff"
+        },
+        {
+            "id": "u104",
+            "fullname": "Tal Amit",
+            "color": "#ff006e"
+        }
+        ],
+        activities: [],
+        groups: [_getEmptyGroup()]
     }
 }
 

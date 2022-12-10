@@ -1,18 +1,14 @@
 <template>
-  <!-- todo change handle the hovering that will cover and not push -->
   <section :class="getClass">
 
-    <!-- <div class="toggleWorkspace flex center align-center" @click="toggleWorkspace">
-      <span v-icon="arrowSide"></span>
-    </div> -->
-    <div class="toggleWorkspace flex center align-center" @click="toggleWorkspace">
+    <div class="toggleWorkspace flex  align-center" @click="toggleWorkspace">
       <span v-if="isOpen" class="svg first" v-icon="'arrowLeft'"></span>
       <span class="svg second" v-else v-icon="'arrowRight'"></span>
     </div>
 
     <div class="dropdown-nav-header flex space-between align-center">
       <span>Workspace</span>
-      <div v-icon="'moreMed'"></div>
+      <div class="more-medium flex " v-icon="'moreMed'"></div>
     </div>
 
     <div class="workspace-dropdown flex align-center space-between">
@@ -23,15 +19,14 @@
         <span class="text">Main workspace</span>
       </div>
 
-      <!-- todo -need smaller  arrowdown -->
       <div class="flex align-center" v-icon="'arrowDownBlack'"></div>
-
     </div>
 
     <section class="action-list flex column">
       <!-- action-list -->
-      <div v-for="action in actionList" class="flex align-center item " :key="action">
-        <div class="flex align-center" v-icon="`${action.icon}`"></div>
+      <div v-for="action in actionList" @click="onSetActionByTitle(action.title)"
+       :class="['flex', 'align-center','item',action.title]" :key="action">
+        <div class="flex align-center" v-icon="`${action.icon}`" ></div>
         <span :class="action.icon"> {{ action.title }}</span>
       </div>
     </section>
@@ -43,10 +38,12 @@
     <section v-if="(boards.length)" class="fully">
       <ul class="clean-list board-list fully">
         <li class="list-item" @click="setBoard(board._id)" v-for="board in boards" :key="board._id">
-          <div class="item flex align-center">
+          <div class="board-item flex align-center">
             <span class="flex align-center" v-icon="'folderIcon'"></span>
             <span>{{ board.title }}</span>
+            
           </div>
+
         </li>
       </ul>
     </section>
@@ -76,6 +73,11 @@ export default {
     setBoard(boardId) {
       this.$store.commit({ type: 'setCurrBoard', boardId })
       this.$router.push(`/board/${boardId}/main-table`)
+    },
+    onSetActionByTitle(title){
+      if(title==='Add'){
+        this.$store.dispatch({ type: 'addBoard' })
+      }
     }
   },
   computed: {
