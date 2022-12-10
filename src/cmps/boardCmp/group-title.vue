@@ -1,6 +1,6 @@
 <template>
     <section class="group-grid group-title flex align-center">
-        <div class="more sticky first" @click="toggleDropdown">
+        <div :class="getMoreClass" @click="toggleDropdown">
             <span class="svg" v-icon="'more'"></span>
         </div>
         <div class="task-border sticky second"></div>
@@ -54,6 +54,10 @@ export default {
         isDrop() {
             return { isDropOpen: this.isDropOpen }
         },
+        getMoreClass() {
+            var currClass = 'more sticky first'
+            return (this.isDropOpen ? currClass + ' open' : currClass)
+        }
     },
     components: {
         groupTitleDropdown,
