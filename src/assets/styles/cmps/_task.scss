@@ -55,13 +55,15 @@
         border-inline-end: 0;
         padding: 6px 10px;
         input {
-            padding: 3px;
-            padding-inline-start: 22px;
+            padding:  4px 3px;
+            padding-inline-start: 17px;
+            border-radius: 4px;
             width: 100%;
             border: 0;
-            // todo focus visible on the border not workin
-            &:focus-visible {
-                border: 1px solid $primary-clr;
+         
+            &:focus-within {
+                outline:1px solid $primary-clr ;
+                border: 0;
             }
         }
     }

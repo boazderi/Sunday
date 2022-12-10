@@ -68,6 +68,7 @@ export const boardStore = {
         setCurrBoard(state, { boardId }) {
             const newBoard = state.boards.find(board => board._id === boardId)
             state.currBoard = newBoard
+            console.log('currBoard:',state.currBoard.title)
         },
         setCurrBoardBySocket(state, { board }) {
             state.currBoard = board
@@ -160,6 +161,7 @@ export const boardStore = {
         async updateCurrBoard({ commit, state }, { groupId, taskId, prop, toUpdate }) {
             try {
                 const updatedBoard = await boardService.updateBoard(state.currBoard._id, groupId, taskId, prop, toUpdate)
+                console.log(updatedBoard.title)
                 commit({ type: 'updateBoard', board: updatedBoard })
             } catch (err) {
                 console.log('boardStore: Error in updateBoard', err)
