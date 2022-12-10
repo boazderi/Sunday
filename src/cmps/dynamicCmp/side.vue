@@ -21,7 +21,7 @@ export default {
     },
     created() {
         eventBus.on('selectedTasks', this.setSelectedTasks)
-        // eventBus.on('toggleAllTasksCheckbox', this.toggleCheckbox)
+        eventBus.on('toggleAllTasksCheckbox', this.toggleCheckbox)
         eventBus.on('turnOffAllCheckbox', this.turnOffAllCheckbox)
 
     },
@@ -43,6 +43,12 @@ export default {
         },
         turnOffAllCheckbox() {
             this.$refs.checkbox.checked = false
+        },
+        toggleCheckbox({ groupId, isSelected }) {
+            if (groupId === this.groupId) {
+                if (!isSelected) this.$refs.checkbox.checked = false
+                else this.$refs.checkbox.checked = true
+            }
         }
 
     }
