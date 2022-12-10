@@ -2,22 +2,24 @@
     background-color: white;
     position: fixed;
     height: 100vh;
-    width: 569px;
+    // width: 569px;
+    width: 654px;
     z-index: 150;
     right: 0;
     top: 0;
     box-shadow: 0px 15px 50px 0px rgba(0, 0, 0, 0.3);
-    overflow-y: scroll;
-
+    overflow-y: auto;
     padding: 0 18px;
 
     >* {
         width: 100%;
     }
 
+
+
     // Header-section
     .conversation-header {
-        border-bottom: 1px solid $primary-border-clr;
+        // border-bottom: 1px solid $primary-border-clr;
         padding-top: 20px;
         min-height: 125px;
         background-color: white;
@@ -27,67 +29,137 @@
             margin-bottom: 10px;
             padding-inline-start: 4px;
 
-
             .user-more-sec {
+                
                 .pic-wrapper {
                     padding-inline-end: 16px;
                     padding-inline-start: 10px;
-
+                    cursor: default;
                 }
 
                 button {
                     border-left: 1px solid $primary-border-clr;
                     padding-inline-start: 16px;
+                    cursor: default;
                 }
             }
         }
 
         .conversation-nav {
-            padding: 8px;
             padding-inline-end: 4px;
 
             .sub-nav {
                 height: 21px;
+                padding-inline-start: 4px;
+                position: relative;
+                .border1{
+                    background-color: $primary-clr;
+                    position: absolute;
+                    height: 2px;
+                    width: 73px;
+                    top: 28px;
+                    left: 6px;
+                }
 
-                >* {
-                    font-size: em(15px);
-                    padding: 0 11px;
-                    border-inline-end: 1px solid $primary-border-clr;
+                div:not(.border1) {
+                    padding: 6px 0px 7px 0;
+                    border-radius: 4px;
                     cursor: pointer;
+                    &:hover{
+                        background-color: #dcdfec;
+                        outline: 1px solid #dcdfec;
+                    }
+                    &:active{
+                    border-bottom: blue solid 3px;
+                    }
+                }
+
+                span {
+                    font-size: em(14px);
+                    line-height: 14px;
+                    padding: 0px 11px;
+                    border-inline-end: 1px solid #dcdfec;
                 }
             }
         }
 
     }
 
+    // Main-Border
+    .main-border {
+        position: absolute;
+        width: 100%;
+        left: 0;
+        height: 1px;
+        top: 121px;
+        background-color: $primary-border-clr;
+    }
+
+
     // Main-content
     .conversation-content {
-        // background-color: lightblue;
         padding-inline-start: 5px;
         padding-inline-end: 10px;
         padding-top: 20px;
 
         .content-header {
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            position: relative;
 
             >* {
                 width: 100%;
             }
 
-            input {
+            .open-update-form {
+                display: flex;
+                align-items: center;
                 border-radius: 6px;
                 border: 1px solid $link-color;
+                // padding-top: 8px;
+                padding-inline-start: 8px;
+                height: 40px;
+                color: #323338;
             }
+
+            .update-form {
+                height: 181px;
+
+                input {
+
+                    width: 100%;
+                    border-radius: 6px;
+                    border: 1px solid $link-color;
+                    padding-top: 8px;
+                    height: 144px;
+                    margin: 0;
+                    margin-bottom: 6px;
+                    padding-bottom: 114px;
+
+                    &:focus-within {
+                        height: 144px;
+                        // height: 40px;
+                        // padding-bottom: 114px;
+                        outline: none !important;
+                    }
+                }
+
+                .update {
+                    align-self: flex-end;
+                    width: 61px;
+                    background-color: $primary-clr;
+                    border-radius: 4px;
+                    height: 31px;
+                    padding: 8px 8px;
+                    font-size: 14px;
+                    color: white;
+                    margin: 0;
+                }
+            }
+
 
             .content-actions {
                 margin-top: 5px;
 
-                .update {
-                    background-color: $primary-clr;
-                    border-radius: 6px;
-                    padding: 9px 9px;
-                    color: white;
-                }
             }
         }
 
@@ -126,6 +198,14 @@
                             font-size: em(14px);
                             margin-inline-start: 10px;
                         }
+
+                        .member-preview {
+                            width: 40px;
+                            height: 40px;
+                            margin-inline-start: 0px;
+                        }
+
+
                     }
 
                     // time indicator with bell and more icons

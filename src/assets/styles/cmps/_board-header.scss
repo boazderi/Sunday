@@ -26,7 +26,7 @@
         z-index: 70;
         top: 46px;
         background-color: white;
-        box-shadow:0px 3px 14px 0px rgba(0,0,0,0.3);
+        box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.3);
 
         padding: 8px;
         padding-top: 9px;
@@ -41,6 +41,7 @@
         :first-child {
             margin: 6px;
         }
+
         &:hover {
             background-color: $primary-hover-clr;
         }
@@ -85,8 +86,9 @@
     margin-top: 8px;
 }
 
-.nav-item-container{
+.nav-item-container {
     display: flex;
+
     &.active {
         border-bottom: 2px solid $primary-clr;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -100,10 +102,10 @@
     font-size: 0.875em;
     border-radius: 6px;
     align-items: center;
-    margin: 4px 0 ;
+    margin: 4px 0;
 }
 
-.board-nav-item.main-table-nav{
+.board-nav-item.main-table-nav {
     padding-left: 4px;
 }
 
@@ -111,50 +113,72 @@
     padding: 16px 0;
     height: 4em;
     gap: 10px;
+
+    // note arnon change 10.12
+    .new-task {
+        position: relative;
+        border-radius: 4px;
+        height: 2em;
+        min-width: 102px;
+        background-color: $primary-clr;
+
+        .dropDown1 {
+            position: absolute;
+            left: 50px;
+            top: 20px;
+            width: 220px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            padding: 8px;
+            box-shadow: 0px 8px 10px 0px rgba(0, 0, 0, 0.3);
+            z-index: 80;
+            .svg {
+                margin-inline-end: 6px;
+            }
+
+            &:hover{
+                background-color:$primary-hover-clr ;
+            }
+        }
+    }
+
+    .board-filter-item {
+        border-radius: 6px;
+        margin-left: 4px;
+        padding: 4px;
+        color: $primary-txt-clr;
+    }
+
+    .new-task-btn {
+        color: white;
+        padding: 4px 8px;
+        border-right: 1px solid #0360b9;
+
+        &:hover {
+            border-radius: 4px 0 0 4px;
+            background-color: #0360b9;
+        }
+    }
+
+    .new-task-arrow {
+        color: white;
+        margin: 0 4px;
+
+        &:hover {
+            border-radius: 0 4px 4px 0;
+            background-color: #0360b9;
+        }
+    }
 }
 
-.board-filter-item {
-    border-radius: 6px;
-    margin-left: 4px;
-    padding: 4px;
-    color: $primary-txt-clr;
-}
-
-.active-filter{
+.active-filter {
     background-color: $bg-big-sidebar-active;
-}
-
-.new-task {
-    border-radius: 4px;
-    height: 2em;
-    background-color: $primary-clr;
 }
 
 .hide-icon {
     width: 25px;
     height: 20px;
     color: #676879;
-}
-
-.new-task-btn {
-    color: white;
-    padding: 4px 8px;
-    border-right: 1px solid #0360b9;
-
-    &:hover {
-        border-radius: 4px 0 0 4px;
-        background-color: #0360b9;
-    }
-}
-
-.new-task-arrow {
-    color: white;
-    margin: 0 4px;
-
-    &:hover {
-        border-radius: 0 4px 4px 0;
-        background-color: #0360b9;
-    }
 }
 
 .board-top-actions {
