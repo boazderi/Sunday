@@ -1,6 +1,10 @@
 .board-content {
     position: relative;
     width: 100%;
+    height: 100%;
+    // background-color: red;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .group-container {
@@ -20,6 +24,7 @@
     position: relative;
     height: 100%;
     overflow-x: scroll;
+    // display: none;
 }
 
 .group-list {
