@@ -1,6 +1,9 @@
 <template>
-  <section class="group-container">
-    <groupTitle :groupInfo="groupInfo" @update="updateTask" />
+  <section v-if="groupInfo.isCollapse">
+    <collapsed-group :groupInfo="groupInfo" @collapse="collapseGroup" @update="updateTask" />
+  </section>
+  <section v-else class="group-container">
+    <groupTitle :groupInfo="groupInfo" @update="updateTask" @collapse="collapseGroup" />
 
     <!-- <section v-if="!groupInfo.isCollapse" class="group-content"> -->
     <section class="group-content">
@@ -43,7 +46,7 @@
             <side :groupId="groupId" :taskId="task.id" :color="groupInfo.color"></side>
 
             <task-title :info="task" @update="updateTask($event, task.id)" />
-            <component v-for="(cmp, idx) in getCmpOrder" :key="idx" :is="cmp" :info="task"
+            <component v-for="(cmp, idx) in getCmpOrder" :key="idx" :is="cmp" :info="task" :group="groupInfo"
               @update="updateTask($event, task.id)" />
           </section>
         </Draggable>
@@ -85,8 +88,9 @@ import textNote from "../dynamicCmp/text-note.vue"
 import groupTitle from "./group-title.vue";
 import statusProgress from "./status-progress.vue"
 import priorityProgress from "./priority-progress.vue"
-import timeline from "../dynamicCmp/timeline.vue";
 import timelineWidth from "../boardCmp/timeline-width.vue";
+import timeline from "../dynamicCmp/timeline.vue";
+import collapsedGroup from "./collapsed-group.vue";
 import { Container, Draggable } from "vue3-smooth-dnd"
 
 import { eventBus } from "../../services/event-bus.service";
@@ -99,7 +103,6 @@ export default {
   created() {
     eventBus.on("duplicateGroup", this.duplicateGroup)
     eventBus.on("deleteGroup", this.deleteGroup)
-    eventBus.on('collapseGroup', this.collapseGroup)
     this.groupId = this.groupInfo.id
     this.cmpOrder = this.$store.getters.getCmpOrder
     this.labels = this.$store.getters.getLabels
@@ -149,7 +152,7 @@ export default {
       await this.$store.dispatch({ type: "deleteGroup", payload: { groupId } });
       eventBus.emit("closeGroupDropdown")
     },
-    collapseGroup(groupId) {
+    collapseGroup({ groupId }) {
       this.$store.dispatch({ type: "collapseGroup", payload: { groupId } });
       eventBus.emit("closeGroupDropdown")
     },
@@ -230,6 +233,7 @@ export default {
       deep: true,
     },
   },
+  emits: ["collapse"],
   components: {
     side,
     taskTitle,
@@ -245,7 +249,8 @@ export default {
     priorityProgress,
     timeline,
     file,
-    timelineWidth
+    timelineWidth,
+    collapsedGroup
   },
 }
 </script>

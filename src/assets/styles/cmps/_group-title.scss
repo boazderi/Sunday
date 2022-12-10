@@ -34,6 +34,10 @@
             transition: border 3s;
         }
     }
+    .color-icon {
+        width: 16px;
+        height: 16px;
+    }
     .tasks-count {
         color: $secondary-txt-clr;
         font-size: rem(14px);
@@ -44,11 +48,42 @@
         //     opacity: 1;
         // }
     }
+    .color-btn {
+        display: none;
+    }
     &:hover {
         .tasks-count {
             opacity: 1;
         }
     }
+    &:focus-within {
+        .title-input {
+            border: none;
+        }
+    }
+    .title-input:focus-within {
+        outline: none;
+    }
+}
+
+.focused {
+    border: 1px solid $primary-clr;
+    border-radius: 4px;
+    .tasks-count {
+        display: none;
+    }
+    .color-btn {
+        display: block;
+    }
+    .title-input {
+        &:hover {
+            border: none;
+        }
+    }
+}
+
+.arrow-down {
+    text-align: center;
 }
 
 .color-picker {

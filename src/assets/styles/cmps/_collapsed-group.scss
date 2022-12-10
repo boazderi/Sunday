@@ -1,0 +1,43 @@
+.collapsed-group {
+    padding-bottom: 20px;
+    &.group-grid {
+        grid-template-rows: rem(60px);
+        >* {
+            padding-top: 4px;
+            padding-bottom: 8px;
+            border-top: 1px solid $primary-border-clr;
+            border-bottom: 1px solid $primary-border-clr;
+        }
+        .first {
+            border: none;
+        }
+        .title-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            .title-input {
+                font-size: 18px;
+            }
+        }
+        .status-progress {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .priority-progress {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .forth {
+            border-right: 1px solid $primary-border-clr;
+        }
+    }
+    .arrow {
+        display: flex;
+        // align-items: center;
+        justify-content: center;
+    }
+}

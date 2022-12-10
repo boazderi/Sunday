@@ -123,10 +123,8 @@ export const boardStore = {
                 // console.log(state.currBoard.labels, state.currBoard.cmpOrder);
         },
         updateGroupIsCollapse(state, { groupId }) {
-            const updatedGroup = state.currBoard.groups.find(g => g.id === groupId)
-            updatedGroup.isCollapse = !updatedGroup.isCollapse
-            const idx = state.currBoard.groups.findIndex(g => g.id === groupId)
-            state.currBoard.groups.splice(idx, 1, updatedGroup)
+            const idx = state.currBoard.groups.findIndex(group => group.id === groupId)
+            state.currBoard.groups[idx].isCollapse = !state.currBoard.groups[idx].isCollapse
         }
     },
     actions: {

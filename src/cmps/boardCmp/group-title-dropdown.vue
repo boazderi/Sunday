@@ -1,13 +1,11 @@
 <template>
   <section class="group-title-dropdown flex column align-center">
-    <el-card >
-      <div class="flex align-center action" v-for="(groupOpt,index) in groupOpts" :key="groupOpt"
+    <el-card>
+      <div class="flex align-center action" v-for="(groupOpt, index) in groupOpts" :key="groupOpt"
         @click="setActionByCase(groupOpt.type)">
-
-        <span class="svg" v-icon="icons[index]" ></span>
+        <span class="svg" v-icon="icons[index]"></span>
         <span>{{ groupOpt.desc }}</span>
       </div>
-
     </el-card>
   </section>
 </template>
@@ -22,11 +20,13 @@ export default {
   data() {
     return {
       // TODO add collapse all groups
-      groupOpts: [{ desc:this.group.isCollapse? 'Expand this group':'Collapse this group'
-      , type: 'collapse' },
+      groupOpts: [{
+        desc: this.group.isCollapse ? 'Expand this group' : 'Collapse this group'
+        , type: 'collapse'
+      },
       { desc: "Duplicate this group", type: 'duplicate' },
       { desc: "Delete", type: 'delete' }],
-      icons:['collapse','duplicateGrp','deleteGrp']
+      icons: ['collapse', 'duplicateGrp', 'deleteGrp']
     }
   },
   methods: {
@@ -37,11 +37,12 @@ export default {
           break;
 
         case 'delete':
-        eventBus.emit('deleteGroup', this.group.id)
+          eventBus.emit('deleteGroup', this.group.id)
           break;
 
         case 'collapse':
-        eventBus.emit('collapseGroup',this.group.id)
+          this.$emit('collapse')
+          // eventBus.emit('collapseGroup', { groupId: this.group.id })
           break;
       }
     }

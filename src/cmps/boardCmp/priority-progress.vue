@@ -1,5 +1,6 @@
 <template>
     <section class="priority-progress">
+        <div v-if="group.isCollapse">Priority</div>
         <div class="bar-container flex align-center">
             <div v-if="progressMap.LOW" class="low" :style="{ 'flex-basis': `${progressMap.LOW.percent}%` }"></div>
             <div v-if="progressMap.CRITICAL" class="critical"

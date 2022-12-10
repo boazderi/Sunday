@@ -2,50 +2,44 @@
   <section class="timeline-container cell1">
     <!-- <progress value="32" max="100" data-label="" ></progress> -->
     <div class="timeline-btn" @mouseover="isHover = true" @mouseleave="isHover = false"
-      :class=" {'after-set-date':isDateSet}" @click="isDatePickerOpen = !isDatePickerOpen" :style="{'background': timelineBcg
-      }">
-      <span v-if="isHover">{{ isDateSet ? timelineHover : "Set Dates" }}</span>
-      <span v-else>{{ timelineContent ? timelineContent : "-" }}</span>
-      <el-date-picker class="timeline-input" format="YYYY/MM/DD" @change="updateTimePassed" v-model="value"
-        value-format="x" placeholder="Set Dates" type="daterange" />
+      :class=" {'after-set-date':isDateSet}" @click="
+  isDatePickerOpen = !isDatePickerOpen,
+  handleOpen;
+      ">
+      <span v-if="isHover">{{
+          isDateSet ? timelineHover : "Set Dates"
+      }}</span>
+      <span v-else>
+        {{
+            timelineContent ? timelineContent : "-"
+        }}
+      </span>
+      <el-date-picker class="timeline-input" format="YYYY/MM/DD" @change="printVal" v-model="value" value-format="x"
+        placeholder="Set Dates" type="daterange" />
     </div>
   </section>
 </template>
 
 <script>
-import { now } from "lodash";
 import { ref } from "vue";
 
 export default {
   name: "timeline",
-  props: {
-    group: Object
-  },
   data() {
     return {
       isHover: false,
       isDatePickerOpen: false,
       isDateSet: false,
       value: ref(""),
-      timePassed: 0
     };
   },
   created() {
   },
   methods: {
-    updateTimePassed(ev) {
-      if ((Date.now() - ev[1]) >= 0) this.timePassed = 100
-      else if ((Date.now() - ev[0]) < 0) this.timePassed = 0
-      else this.timePassed = ((new Date().getDate() - new Date(ev[0]).getDate()) / (new Date(ev[1]).getDate() - new Date(ev[0]).getDate())) * 100
-
-      console.log();
+    printVal() {
     },
   },
   computed: {
-    timelineBcg() {
-      if (!this.isDateSet) return '#a0a0a0'
-      return `linear-gradient(90deg, ${this.group.color} ${this.timePassed}%, #000000 ${this.timePassed}%)`
-    },
     timelineContent() {
       if (this.value) {
         this.isDateSet = true
@@ -62,10 +56,13 @@ export default {
         var toDay = toDate.getDate();
         var dates = [fromDate, toDate];
         if (fromYear === toYear) {
+          console.log("same year");
           if (fromMonth === toMonth) {
+            console.log("same month");
             return `${months[fromMonth].substring(0, 3)} ${fromDay} - ${toDay}`
           }
         }
+        console.log("not same year");
         return `${months[fromMonth].substring(0, 3)} ${fromDay} ${fromYear} - ${months[toMonth].substring(0, 3)} ${toDay} ${toYear}`;
       }
       return "";
@@ -88,7 +85,7 @@ progress[value] {
 }
 
 progress[value]::-webkit-progress-bar {
-  background-color: #a0a0a0;
+  background-color: rgb(160, 160, 160);
   border-radius: 2em;
   color: white;
 }
@@ -110,8 +107,4 @@ progress:before {
   left: 0;
   right: 0;
 }
-
-/* .after-set-date {
-  background: linear-gradient(90deg, #FFC0CB 80%, #00FFFF 20%);
-} */
 </style>

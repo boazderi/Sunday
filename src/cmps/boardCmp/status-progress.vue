@@ -1,8 +1,8 @@
 <template>
     <section class="status-progress">
+        <div v-if="group.isCollapse">Status</div>
         <div class="bar-container flex align-center">
-            <div v-if="progressMap.Done" class="done" 
-            :style="{ 'flex-basis': `${progressMap.Done.percent}%` }"></div>
+            <div v-if="progressMap.Done" class="done" :style="{ 'flex-basis': `${progressMap.Done.percent}%` }"></div>
             <div v-if="progressMap.Working" class="working-on-it"
                 :style="{ 'flex-basis': `${progressMap.Working.percent}%` }"></div>
             <div v-if="progressMap.Stuck" class="stuck" :style="{ 'flex-basis': `${progressMap.Stuck.percent}%` }">

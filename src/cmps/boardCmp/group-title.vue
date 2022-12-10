@@ -1,37 +1,26 @@
 <template>
     <section class="group-grid group-title flex align-center">
-
         <div class="more sticky first" @click="toggleDropdown">
             <span class="svg" v-icon="'more'"></span>
         </div>
         <div class="task-border sticky second"></div>
-
-        <svg class="sticky third" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" :fill="groupInfo.color">
-            <path d="M0 0h24v24H0z" fill="none" />
-            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
-        </svg>
-        <div class="flex align-center title-wrapper sticky forth">
-            <div class="title-input" contenteditable @blur="onChangeGroupTitle" :style="{ color: groupInfo.color }">{{
-                    groupInfo.title
-            }}</div>
-            <div class="tasks-count">{{ groupInfo.tasks.length }} Tasks</div>
+        <div class="sticky third arrow-down" @click="this.$emit('collapse', { groupId: groupInfo.id })">
+            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px"
+                :fill="groupInfo.color">
+                <path d="M0 0h24v24H0z" fill="none" />
+                <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+            </svg>
         </div>
-
-        <!-- <button @click="(isModalOpen = !isModalOpen)">color</button> -->
-        <el-collapse-transition>
-            <div class="color-picker" v-if="isOpen">
-                <color-picker @update="onChangeGroupColor($event)"></color-picker>
-            </div>
-        </el-collapse-transition>
-
+        <title-content :groupInfo="groupInfo" @update="update" />
     </section>
-    <group-title-dropdown 
-    :group="groupInfo" v-if="isDropOpen" :class="isDrop" />
+    <group-title-dropdown :group="groupInfo" v-if="isDropOpen" :class="isDrop"
+        @collapse="this.$emit('collapse', { groupId: groupInfo.id })" />
 </template>
   
 <script>
 import groupTitleDropdown from './group-title-dropdown.vue'
-import colorPicker from './color-picker.vue'
+import titleContent from "./title-content.vue";
+
 import { eventBus } from '../../services/event-bus.service.js'
 export default {
     name: "group-title",
@@ -41,40 +30,35 @@ export default {
     data() {
         return {
             isDropOpen: false,
-            isModalOpen: false
-        };
+        }
     },
     created() {
         eventBus.on('closeGroupDropdown', this.closeGroupDropdown)
     },
     methods: {
-        onChangeGroupTitle(ev) {
-            this.isModalOpen = !this.isModalOpen
-            this.$emit('update', { prop: 'title', toUpdate: ev.target.innerText })
-        },
         toggleDropdown() {
             this.isDropOpen = !this.isDropOpen
         },
         closeGroupDropdown() {
             this.isDropOpen = false
         },
-        onChangeGroupColor({ toUpdate }) {
-            this.isModalOpen = !this.isModalOpen
-            this.$emit('update', { prop: 'color', toUpdate })
-        }
+        update({ prop, toUpdate }) {
+            this.$emit('update', { prop, toUpdate })
+        },
     },
     computed: {
+        getFocusClass() {
+            var currClass = 'flex align-center title-wrapper sticky forth'
+            return (this.isFocused ? currClass + ' focused' : currClass)
+        },
         isDrop() {
             return { isDropOpen: this.isDropOpen }
         },
-        isOpen() {
-            return this.isModalOpen
-        }
     },
     components: {
         groupTitleDropdown,
-        colorPicker
+        titleContent
     },
-    emits: ["update"],
+    emits: ["update", "collapse"],
 }
 </script>
