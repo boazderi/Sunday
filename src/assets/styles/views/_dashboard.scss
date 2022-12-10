@@ -3,16 +3,19 @@
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: 0.5em;
-    grid-template-areas:
-      'stats  doughnut-chart'
-      'bar-chart  polar-chart';
+    grid-template-areas: 'stats  doughnut-chart' 'bar-chart  polar-chart';
     padding: 0 2rem;
     background-color: $bg-big-sidebar;
     width: 100%;
     height: 78vh;
+    .card-title-item {
+        margin-top: 10px;
+        font-size: 1.2em;
+        color: $primary-txt-clr;
+    }
 }
 
-.memberDashPic{
+.memberDashPic {
     border-radius: 50%;
     width: 55%;
     border: double 2px rgb(255, 255, 255);
@@ -30,7 +33,7 @@
     // padding: 15px;
 }
 
-.doughnut-chart{
+.doughnut-chart {
     grid-area: doughnut-chart;
     grid-row: 1;
     grid-column: 2;
@@ -39,16 +42,17 @@
     // height: 300px;
     // width: 500px;
 }
-.bar-chart{
+
+.bar-chart {
     grid-area: bar-chart;
     gap: 1em;
 }
 
-.inner-bar-chart{
+.inner-bar-chart {
     padding: 0 10px;
 }
 
-.polar-chart{
+.polar-chart {
     grid-area: polar-chart;
     gap: 1em;
 }
@@ -61,22 +65,16 @@
     margin: 0.5rem;
 }
 
-.dashboard-stats{
+.dashboard-stats {
     justify-content: start;
 }
 
-.cards-stats-container{
+.cards-stats-container {
     height: 100%;
     width: 100%;
     justify-content: space-evenly;
     gap: 20px;
     padding: 10px;
-}
-
-.card-title-item{
-    margin-top: 10px;
-    font-size: 1.2em;
-    color: $primary-txt-clr;
 }
 
 .chart-head {
@@ -91,7 +89,6 @@
     height: 78%;
 }
 
-
 .stat {
     height: 100%;
     width: 30%;
@@ -105,54 +102,57 @@
     background: linear-gradient(rgb(181, 181, 181), rgb(237, 237, 237));
 }
 
-.member-card{
+.member-card {
     background-image: url('https://img.freepik.com/free-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-80037.jpg?w=2000&t=st=1670593341~exp=1670593941~hmac=1a48fde3c6dc6322662150af003d4b63f72fce24854c3e1d1698cd7118f20bf7');
     justify-content: space-between;
     background-repeat: no-repeat;
-    background-size:cover;
+    background-size: cover;
     background-position: center;
 }
 
 .flip-horizontal-bottom {
     -webkit-animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
-            animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: flip-horizontal-bottom 0.4s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
 }
 
 .stat h2 {
     font-size: 72px;
 }
+
 @-webkit-keyframes flip-horizontal-bottom {
     0% {
-      -webkit-transform: rotateX(180deg);
-              transform: rotateX(180deg);
+        -webkit-transform: rotateX(180deg);
+        transform: rotateX(180deg);
     }
     100% {
-      -webkit-transform: rotateX(180deg);
-              transform: rotateX(180deg);
+        -webkit-transform: rotateX(180deg);
+        transform: rotateX(180deg);
     }
-  }
-  @keyframes flip-horizontal-bottom {
-    0% {
-      -webkit-transform: rotateX(180deg);
-              transform: rotateX(180deg);
-    }
-    100% {
-      -webkit-transform: rotateX(0);
-              transform: rotateX(0);
-    }
-  }
-  .icons-container{
-      justify-content: space-evenly;
-      align-items: center;
-      background: rgb(250, 250, 250);
-      height: 40px;
-      line-height: 40px;
-      border-radius: 25px;
-      margin: 15px;
-      margin-inline: 30px;
-  }
+}
 
-  .icon{
-      height: 30px;
-      width: 30px;
-  }
+@keyframes flip-horizontal-bottom {
+    0% {
+        -webkit-transform: rotateX(180deg);
+        transform: rotateX(180deg);
+    }
+    100% {
+        -webkit-transform: rotateX(0);
+        transform: rotateX(0);
+    }
+}
+
+.icons-container {
+    justify-content: space-evenly;
+    align-items: center;
+    background: rgb(250, 250, 250);
+    height: 40px;
+    line-height: 40px;
+    border-radius: 25px;
+    margin: 15px;
+    margin-inline: 30px;
+}
+
+.icon {
+    height: 30px;
+    width: 30px;
+}

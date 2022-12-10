@@ -1,5 +1,6 @@
 <template>
-    <section v-if="kanbanColumn.length" class="kanban flex align-center space-between">
+    <!-- <section v-if="kanbanColumn.length" class="kanban flex align-center space-between"> -->
+    <section v-if="kanbanColumn.length" class="kanban">
 
         <section class="kanban-content flex ">
             <Container orientation="horizontal" @drop="onColumnDrop($event)" drag-handle-selector=".column-drag-handle"
