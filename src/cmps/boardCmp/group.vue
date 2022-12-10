@@ -103,6 +103,7 @@ export default {
   created() {
     eventBus.on("duplicateGroup", this.duplicateGroup)
     eventBus.on("deleteGroup", this.deleteGroup)
+    eventBus.on('addGroup',this.addGroup)
     this.groupId = this.groupInfo.id
     this.cmpOrder = this.$store.getters.getCmpOrder
     this.labels = this.$store.getters.getLabels
@@ -156,14 +157,22 @@ export default {
       this.$store.dispatch({ type: "collapseGroup", payload: { groupId } });
       eventBus.emit("closeGroupDropdown")
     },
+    async addGroup() {
+      await this.$store.dispatch({ type: 'addGroup' })
+      eventBus.emit("closeGroupDropdown")
+    },
     setAllTasksInContext() {
       const payload = {
         tasks: this.groupInfo.tasks,
         isSelected: this.$refs.checkbox.checked,
       };
+      const payload2 = {
+        groupId: this.groupId,
+        isSelected: this.$refs.checkbox.checked,
+      }
+      
       eventBus.emit("setAllTaskInContext", payload);
-
-      eventBus.emit("toggleAllTasksCheckbox", this.groupId);
+      eventBus.emit("toggleAllTasksCheckbox", payload2);
     },
     onColumnDrop(dropResult) {
       var draggedLabels = JSON.parse(JSON.stringify(this.labels))

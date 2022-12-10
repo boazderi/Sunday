@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { now } from "lodash";
 import { ref } from "vue";
 
 export default {
@@ -38,7 +37,7 @@ export default {
       else if ((Date.now() - ev[0]) < 0) this.timePassed = 0
       else this.timePassed = ((new Date().getDate() - new Date(ev[0]).getDate()) / (new Date(ev[1]).getDate() - new Date(ev[0]).getDate())) * 100
 
-      console.log();
+      console.log(this.group);
     },
   },
   computed: {

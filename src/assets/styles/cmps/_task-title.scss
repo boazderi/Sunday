@@ -1,6 +1,6 @@
 // task title
 .task-title {
-    padding-inline-start: 36px;
+    padding-inline-start: 30px;
     left: 78px;
 
     .open-con {
@@ -13,13 +13,16 @@
 
         // task title editable
         .content-edit {
-            padding: 5px;
+            padding: 12px 5px;
             height: 20px;
-
-            //    todo-not working check this out
-            &:focus-visible {
-                border-color: $primary-clr;
-                border: 1px solid $primary-clr !important;
+            width: fit-content;
+            transition: width .4s ease;
+      
+            &:focus-within {
+                width: 100%;
+                margin-inline-end: 9px;
+                outline:1px solid $primary-clr ;
+                border: 0;
             }
         }
     }

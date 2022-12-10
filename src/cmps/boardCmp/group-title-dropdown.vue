@@ -70,6 +70,9 @@ export default {
           this.$emit('collapse')
           // eventBus.emit('collapseGroup', { groupId: this.group.id })
           break;
+          case 'add':
+            eventBus.emit('addGroup')
+            break;
       }
     }
   },
