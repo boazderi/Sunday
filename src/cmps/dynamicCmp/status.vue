@@ -1,5 +1,19 @@
 <template>
-  <section class="cell2">
+  <section class="cell2 status-container"
+  :class="{'prevrnt-hover': statusModalOpen}"
+          @mouseover="isHover = true"
+        @mouseleave="isHover = false"
+  >
+  
+    <div class="peeling-box scale-up-tr" 
+    v-if="isHover"
+        :class="{
+        'table-modal-clicked': statusModalOpen,
+        'status-done': info.status === 'Done',
+        'status-working': info.status === 'Working',
+        'status-stuck': info.status === 'Stuck',
+        'status-empty': info.status === 'Empty',
+      }"></div>
   <!-- todo-arnon code something wrong with showing the status -->
     <p
       class="status fully flex align-center center"
@@ -14,11 +28,11 @@
       {{ formattedStatus }}
     </p>
 
-    <el-collapse-transition>
       <div class="status-picker-modal" v-if="statusModalOpen">
+    <el-collapse-transition>
         <status-modal @setStatus="setStatus"></status-modal>
-      </div>
     </el-collapse-transition>
+      </div>
   </section>
 </template>
   
@@ -32,11 +46,13 @@ export default {
   data() {
     return {
       statusModalOpen: false,
+      isHover: false,
     };
   },
   mounted() {},
   methods: {
     toggleStatusOptions() {
+      this.isHover = !this.isHover
       this.statusModalOpen = !this.statusModalOpen;
     },
     setStatus(statusOpt) {

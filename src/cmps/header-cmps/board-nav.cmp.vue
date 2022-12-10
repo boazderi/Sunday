@@ -3,7 +3,7 @@
     <div class="nav-item-container"  :class="{'active' : active === 'main table'}">
       <el-tooltip content="Main table" transition="none" auto-close=0>
         <div class="board-nav-item main-table-nav flex outboard-hover" @click="onNavToMainTable">
-          <span v-icon="'mainTable'"></span> Main table
+          <span v-icon="'mainTable'"></span> Main Table
         </div>
       </el-tooltip>
       <div class="views-seprator"></div>

@@ -211,3 +211,13 @@
         background-color: $primary-hover-clr;
     }
 }
+
+.workspace-arrow-left-div{
+    border-style: solid;
+    border-width: 0.5rem 6px 0.5rem 0;
+    transition: opacity .1s ease-in-out;
+    border-color: transparent #f6f7fb transparent transparent;
+    position: absolute;
+    top: 74px;
+    left: 61px;
+}

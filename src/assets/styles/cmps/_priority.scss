@@ -13,6 +13,10 @@
     }
 }
 
+.priority-container{
+    position: relative;
+}
+
 .priority{
     width: 100%;
     color: white;
@@ -23,7 +27,7 @@
     z-index: 60 !important;
     position: relative ;
     right: 70px;
-    top: 18px;
+    top: 23px;
 }
 
 

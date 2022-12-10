@@ -1,15 +1,13 @@
 <template>
   <section class="side-nav flex column align-center">
-
     <div class="monday-icon flex center " @click="onNavToHomePage">
       <img class="flex center" src="../../src/assets/img/monday_logo_icon.png" width="30" height="30" alt="">
     </div>
 
-
+    <div class="workspace-arrow-left-div"> </div>
     <div class="work-management flex align-center center">
       <span v-icon="'workManagement'"></span>
     </div>
-
 
     <section class="icons-pattern1 flex column align-center">
       <div class="icon-wrapper" v-for="icon in pattern1Icons" :key="icon">

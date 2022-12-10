@@ -1,5 +1,17 @@
 <template>
-  <section class="cell2">
+  <section class="cell2 priority-container" 
+          @mouseover="isHover = true"
+        @mouseleave="isHover = false">
+      <div class="peeling-box scale-up-tr" 
+      v-if="isHover" 
+      :class="{
+        'priority-critical': info.priority === 'CRITICAL',
+        'priority-high': info.priority === 'HIGH',
+        'priority-medium': info.priority === 'MEDIUM',
+        'priority-low': info.priority === 'LOW',
+        'priority-empty': info.priority === 'EMPTY',
+      }"
+      ></div>
     <p
       class="priority flex align-center center fully"
       @click="togglePriorityOptions"
@@ -31,6 +43,7 @@ export default {
   data() {
     return {
       priorityModalOpen: false,
+      isHover : false,
     };
   },
   methods: {

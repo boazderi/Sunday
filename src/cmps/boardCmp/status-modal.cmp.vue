@@ -1,5 +1,6 @@
 <template>
   <section class="flex flex-col align-center">
+    <div class="arrow-up-div"></div>
     <el-card class="box-card">
       <div v-for="statusOpt in statusOptions" :key="statusOpt" class="status-modal-item" :class="{
         'status-done': statusOpt === 'Done',

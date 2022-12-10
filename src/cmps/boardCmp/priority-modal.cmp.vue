@@ -1,5 +1,6 @@
 <template>
   <section class="flex flex-col align-center">
+    <div class="arrow-up-div"></div>
     <el-card class="box-card">
       <div
         v-for="priorityOpt in priorityOptions"
