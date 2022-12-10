@@ -5,17 +5,24 @@
     // max-width: 85vh;
     height: 100%;
     position: relative;
-    // overflow-x: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding-bottom: 20px;
 }
 
 .kanban-content {
-    flex: 1;
+    // flex: 1;
     gap: 12px;
     padding: 16px 0 0 20px;
+    padding-bottom: 20px;
     // todo thats a wrong why-improve that
-    max-width: 70vw;
-    overflow-x: auto;
+    // max-width: 70vw;
     height: 100%;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    // width: 100%;
 }
 
 //KANBAN-COLUMN
@@ -23,11 +30,13 @@
     width: 260px;
     background-color: red;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
+    // max-height: fit-content;
+    // display: flex;
+    // flex-direction: column;
     height: fit-content;
-    // overflow: hidden;
     margin-inline-end: 15px;
+    // height: fit-content;
+    // overflow-y: hidden;
     .col-header {
         display: flex;
         justify-content: center;
@@ -39,20 +48,25 @@
     }
     .col-content {
         background-color: $dark-background-color;
-        min-height: 110px;
-        max-height: 100%;
+        // min-height: 110px;
+        // max-height: 100%;
         padding-inline-start: 4px;
         margin: 0px 0px 0px 4px;
         //todo need to handle the covering of dropdowns in the daynamic cmps
         // overflow-y: scroll;
         // todo remove that when there is a designed scroller just for the good scales meanwhile
         padding-inline-end: 10px;
+        height: 100%;
+        position: relative;
     }
     .cards-container {
+        position: relative;
+        height: 100%;
+        overflow-y: scroll;
         .smooth-dnd-container {
             min-height: 44px;
         }
-        flex-grow: 1;
+        // flex-grow: 1;
     }
     .task-card {
         background-color: white;
@@ -94,7 +108,7 @@
             justify-content: start;
             .logo {
                 margin-inline-end: 3px;
-                >*{
+                >* {
                     display: flex;
                     justify-content: start;
                     align-items: center;
@@ -109,7 +123,6 @@
             background-color: #f5f6f8;
             flex-grow: 1;
             max-width: 135px;
-
             .timeline-container {
                 width: 100%;
             }
@@ -131,14 +144,13 @@
 }
 
 // MEDIA-Query
-@media(min-width:1280px) {
-    .kanban-content {
-        width: 100vw;
-        flex-basis: 100%;
-        flex-wrap: nowrap;
-    }
-}
-
+// @media(min-width:1280px) {
+//     .kanban-content {
+//         width: 100vw;
+//         flex-basis: 100%;
+//         flex-wrap: nowrap;
+//     }
+// }
 .column-drag-handle {
     position: absolute;
     bottom: 6px;

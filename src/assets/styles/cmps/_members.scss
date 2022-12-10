@@ -5,6 +5,7 @@
 .members-list {
     height: 100%;
     width: 100%;
+    padding-left: 10px;
 }
 
 .plusIcon {
@@ -56,6 +57,10 @@
     margin-inline-start: -10px;
     background-size: cover;
     background-position: center;
+}
+
+.members-arrow{
+    right: 50%;
 }
 
 .img-container {

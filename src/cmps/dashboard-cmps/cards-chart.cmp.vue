@@ -5,7 +5,7 @@
     title="Click to switch"
     class="dashboard-stats flip-horizontal-bottom chart-container flex flex-col"
   >
-  <h3 class="chart-head"> Data Cards </h3>
+  <h3 class="chart-head"> Stats Summary </h3>
   <div class="flex cards-stats-container">
     <article class="stat flex">
       <h4 class="card-title-item">Total board tasks</h4>
@@ -27,7 +27,7 @@
     title="Click to switch"
     class="dashboard-stats flip-horizontal-bottom chart-container flex flex-col"
   >
-    <h3 class="chart-head"> Members Cards </h3>
+    <h3 class="chart-head"> Team Members </h3>
   <div class="flex cards-stats-container">
     <article class="stat member-card flex">
       <h4 class="card-title-item">Tal Liber</h4>

@@ -12,12 +12,10 @@
         :key="idx"
         :member="member"
       />
-      <div class="img-container" v-if="!info.members.length">
+      <div class="member-preview" v-if="!info.members.length">
         <img
           src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670197677/tvg88ynh3rjkldkfvvjr.png"
-          width="28"
-          height="28"
-          alt=""
+
         />
       </div>
     </section>

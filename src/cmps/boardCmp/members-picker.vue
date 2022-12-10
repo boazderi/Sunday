@@ -1,5 +1,6 @@
 <template>
   <section class="members-picker-container">
+    <div class="arrow-up-div members-arrow"></div>
     <section class="task-members flex">
       <div
         v-for="(member, idx) in task.members"
