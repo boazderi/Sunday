@@ -2,12 +2,20 @@
   <section class="board-filter-bar flex">
     <div class="flex new-task">
       <button class="new-task-btn" @click="onAddTask">New Item</button>
-      <button class="new-task-arrow" style="
-           {
-            color: white;
-          }
-        " v-icon="'arrowDown'"></button>
+      <button class="new-task-arrow" style="{color: white; }" v-icon="'arrowDown'" @click="onToggleDropDown"></button>
+
+      <div v-if="isDropDown1Open" class="dropDown1 flex column">
+        <div class="item flex align-center" @click="onAddGroup">
+          <span class="svg" v-icon="'newGroup'"></span>
+          <span class="text">New group of tasks</span>
+        </div>
+        <div class="item disabled flex align-center">
+          <span class="svg" v-icon="'importTasks'"></span>
+          <span class="text">Import tasks</span>
+        </div>
+      </div>
     </div>
+
     <input v-if="isSearch" @blur="isSearch = false" @input="setFilterBy('text')" v-model="filterBy.text" type="search"
       autofocus class="board-filter-item" />
     <button v-else @click="isSearch = true" class="flex align-center board-filter-item outboard-hover">
@@ -58,6 +66,7 @@ export default {
     return {
       isSearch: false,
       isPersonFilter: false,
+      isDropDown1Open: false,
       isMainFilter: false,
       filterBy: {
         text: "",
@@ -78,6 +87,13 @@ export default {
     };
   },
   methods: {
+    onToggleDropDown() {
+      this.isDropDown1Open = !this.isDropDown1Open
+    },
+    async onAddGroup() {
+      await this.$store.dispatch({ type: 'addGroup' })
+      this.isDropDown1Open = false
+    },
     onAddTask() {
       const currBoard = this.$store.getters.getCurrBoard;
       const groupId = currBoard.groups[0].id;
