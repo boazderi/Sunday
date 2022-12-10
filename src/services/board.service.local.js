@@ -50,7 +50,7 @@ async function save(board) {
     try {
         if (board._id) {
             await httpService.put(`board/${board._id}`, board)
-            // socket for each update
+                // socket for each update
             socketService.emit(SOCKET_EMIT_LOAD_CURRBOARD, board._id)
             return
         }
@@ -82,26 +82,43 @@ async function addBoardMsg(boardId, txt) {
     return msg
 }
 
-async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
-    try {
-        var currBoard = await getBoardById(boardId)
-        if (taskId) {
-            const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
-            const taskIdx = currBoard.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
-            currBoard.groups[groupIdx].tasks[taskIdx][prop] = toUpdate
-        } else if (groupId) {
-            const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
-            currBoard.groups[groupIdx][prop] = toUpdate
-        } else {
-            currBoard[prop] = toUpdate
-        }
-        save(currBoard)
-        return currBoard
+// async function updateBoard(boardId, groupId, taskId, prop, toUpdate) {
+//     try {
+//         var currBoard = await getBoardById(boardId)
+//         if (taskId) {
+//             const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
+//             const taskIdx = currBoard.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+//             currBoard.groups[groupIdx].tasks[taskIdx][prop] = toUpdate
+//         } else if (groupId) {
+//             const groupIdx = currBoard.groups.findIndex(group => group.id === groupId)
+//             currBoard.groups[groupIdx][prop] = toUpdate
+//         } else {
+//             currBoard[prop] = toUpdate
+//         }
+//         save(currBoard)
+//         return currBoard
 
-    } catch (err) {
-        throw new Error('loadBoards')
+//     } catch (err) {
+//         throw new Error('loadBoards')
+//     }
+// }
+function updateBoard(currBoard, groupId, taskId, prop, toUpdate) {
+    var updatedBoard = JSON.parse(JSON.stringify(currBoard))
+
+    if (taskId) {
+        const groupIdx = updatedBoard.groups.findIndex(group => group.id === groupId)
+        const taskIdx = updatedBoard.groups[groupIdx].tasks.findIndex(task => task.id === taskId)
+        updatedBoard.groups[groupIdx].tasks[taskIdx][prop] = toUpdate
+    } else if (groupId) {
+        const groupIdx = updatedBoard.groups.findIndex(group => group.id === groupId)
+        updatedBoard.groups[groupIdx][prop] = toUpdate
+    } else {
+        updatedBoard[prop] = toUpdate
     }
+
+    return updatedBoard
 }
+
 async function addBoard() {
     try {
         const newBoard = _getEmptyBoard()
@@ -113,6 +130,7 @@ async function addBoard() {
         throw new Error('loadBoards')
     }
 }
+
 function _getEmptyBoard() {
     return {
         title: 'New board',
@@ -127,28 +145,28 @@ function _getEmptyBoard() {
             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg"
         },
         members: [{
-            "id": "u101",
-            "fullname": "Tal Liber",
-            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
-            "color": "#8338ec"
-        },
-        {
-            "id": "u102",
-            "fullname": "Arnon Arditi",
-            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
-            "color": "#8338ec"
-        },
-        {
-            "id": "u103",
-            "fullname": "Boaz Deri",
-            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
-            "color": "#3a86ff"
-        },
-        {
-            "id": "u104",
-            "fullname": "Tal Amit",
-            "color": "#ff006e"
-        }
+                "id": "u101",
+                "fullname": "Tal Liber",
+                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+                "color": "#8338ec"
+            },
+            {
+                "id": "u102",
+                "fullname": "Arnon Arditi",
+                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
+                "color": "#8338ec"
+            },
+            {
+                "id": "u103",
+                "fullname": "Boaz Deri",
+                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
+                "color": "#3a86ff"
+            },
+            {
+                "id": "u104",
+                "fullname": "Tal Amit",
+                "color": "#ff006e"
+            }
         ],
         activities: [],
         groups: [_getEmptyGroup()]

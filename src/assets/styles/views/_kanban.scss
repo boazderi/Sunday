@@ -35,8 +35,7 @@
     // flex-direction: column;
     height: fit-content;
     margin-inline-end: 15px;
-    // height: fit-content;
-    // overflow-y: hidden;
+    overflow-y: hidden;
     .col-header {
         display: flex;
         justify-content: center;
@@ -62,7 +61,7 @@
     .cards-container {
         position: relative;
         height: 100%;
-        overflow-y: scroll;
+        // overflow-y: scroll;
         .smooth-dnd-container {
             min-height: 44px;
         }
@@ -136,6 +135,7 @@
     display: flex;
     align-items: center;
     font-size: rem(14px);
+    cursor: pointer;
     span {
         height: 100%;
         display: flex;
