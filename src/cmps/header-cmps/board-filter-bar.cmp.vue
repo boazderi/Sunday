@@ -9,7 +9,7 @@
         " v-icon="'arrowDown'"></button>
     </div>
     <input v-if="isSearch" @blur="isSearch = false" @input="setFilterBy('text')" v-model="filterBy.text" type="search"
-      autofocus class="board-filter-item" />
+      autofocus class="board-filter-item"  placeholder="🔍 Search" />
     <button v-else @click="isSearch = true" class="flex align-center board-filter-item outboard-hover">
       <span v-icon="'search'"></span> Search
     </button>
