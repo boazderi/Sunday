@@ -83,9 +83,9 @@
 .cell2 {
     border-bottom: 1px solid $primary-border-clr;
     border-right: 1px solid $primary-border-clr;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
     cursor: pointer;
 }
 
