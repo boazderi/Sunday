@@ -143,6 +143,26 @@
         padding: 4px;
         color: $primary-txt-clr;
     }
+    .search-nav-filter-icon {
+        position: absolute;
+        z-index: 2;
+        margin-left: 120px;
+        margin-top: 5px;
+    }
+    .search-nav-filter {
+        padding-left: 27px;
+        width: 90px;
+        border: 0;
+        transition: width .2s;
+        cursor: pointer;
+        &:focus-within {
+            outline: 1px solid $primary-clr;
+        }
+    }
+    .search-open {
+        cursor: text;
+        width: 220px;
+    }
     .new-task-btn {
         color: white;
         padding: 4px 8px;

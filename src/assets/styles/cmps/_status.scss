@@ -18,6 +18,9 @@
     color: white;
     text-align: center;
     position: relative;
+    &:hover{
+      opacity: 0.8;
+    }
 }
 
 .confety{
