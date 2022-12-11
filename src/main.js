@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import vueClickOutsideElement from 'vue-click-outside-element'
 
 import { router } from './router.js'
 import { store } from './store/store.js'
@@ -19,5 +20,6 @@ app.directive('icon', icon)
 app.use(router)
 app.use(store)
 app.use(ElementPlus)
+app.use(vueClickOutsideElement)
 
 app.mount('#app')

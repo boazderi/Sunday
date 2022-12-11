@@ -19,7 +19,7 @@
     <!-- todo-arnon code something wrong with showing the status -->
     <p
       class="status fully flex align-center center"
-      @click="toggleStatusOptions"
+      @click.stop="toggleStatusOptions"
       :class="{
         'status-done': info.status === 'Done',
         'status-working': info.status === 'Working',
@@ -30,7 +30,7 @@
       {{ formattedStatus }}
     </p>
 
-    <div class="status-picker-modal" v-if="statusModalOpen">
+    <div class="status-picker-modal" v-click-outside-element="toggleStatusOptions" v-if="statusModalOpen">
       <el-collapse-transition>
         <status-modal @setStatus="setStatus"></status-modal>
       </el-collapse-transition>

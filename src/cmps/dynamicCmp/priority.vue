@@ -14,7 +14,7 @@
       ></div>
     <p
       class="priority flex align-center center fully"
-      @click="togglePriorityOptions"
+      @click.stop="togglePriorityOptions"
       :class="{
         'priority-critical': info.priority === 'CRITICAL',
         'priority-high': info.priority === 'HIGH',
@@ -26,7 +26,7 @@
       {{ formattedPriority }}
     </p>
     <el-collapse-transition>
-      <div class="priority-picker-modal" v-if="priorityModalOpen">
+      <div class="priority-picker-modal" v-click-outside-element="togglePriorityOptions" v-if="priorityModalOpen">
         <priority-modal @setPriority="setPriority"></priority-modal>
       </div>
     </el-collapse-transition>
