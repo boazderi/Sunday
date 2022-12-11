@@ -44,19 +44,59 @@
         padding-top: 12px;
         color: white;
         position: relative;
+
+        &:hover{
+            .column-drag-handle{
+                opacity: 1;
+            }
+        }
+
+        .column-drag-handle {
+            position: absolute;
+            bottom: 6px;
+            left: 5px;
+            cursor: grab;
+            opacity: 0;
+            transition: opacity .3s ease;
+        }
     }
+
     .col-content {
         background-color: $dark-background-color;
-        // min-height: 110px;
-        // max-height: 100%;
         padding-inline-start: 4px;
+        padding-bottom: 8px;
         margin: 0px 0px 0px 4px;
+
         //todo need to handle the covering of dropdowns in the daynamic cmps
-        // overflow-y: scroll;
         // todo remove that when there is a designed scroller just for the good scales meanwhile
         padding-inline-end: 10px;
         height: 100%;
         position: relative;
+
+        .add-task{
+            height: 37px;
+            margin-top: 16px;
+            input{
+                border: 0;
+                width: 102px;
+                height: 100%;
+                margin-inline-end: 4px;
+                &:focus-within{
+                    outline: 0;
+                }
+            }
+
+            button{
+                color:white;
+                background-color: lightblue;
+                border-radius: 4px;
+                padding: 4px 8px;
+                height: 100%;
+               .plus{
+                    margin-inline-end: 2px;
+                }
+            }
+        }
     }
     .cards-container {
         position: relative;
@@ -129,12 +169,14 @@
     }
 }
 
+
 .add-task-btn {
     height: 45px;
     padding: 4px 8px 4px 10px;
     display: flex;
     align-items: center;
     font-size: rem(14px);
+    color: #676879;
     cursor: pointer;
     span {
         height: 100%;
@@ -151,14 +193,3 @@
 //         flex-wrap: nowrap;
 //     }
 // }
-.column-drag-handle {
-    position: absolute;
-    bottom: 6px;
-    left: 5px;
-    cursor: grab;
-    // opacity: 0;
-    &:hover {
-        opacity: 1;
-        transition: opacity 0.3s;
-    }
-}

@@ -20,33 +20,39 @@
     <input @click="isSearch = true" @blur="isSearch = false" @input="setFilterBy('text')" v-model="filterBy.text"
       type="search" :class="{ 'search-open': isSearch }" class="board-filter-item search-nav-filter outboard-hover"
       placeholder="Search" />
+
     <el-tooltip transition="none" auto-close="0" content="Filter by person">
-      <button @click.stop="isPersonFilter = !isPersonFilter" :class="{ 'active-filter': isPersonFilter }"
-        class="flex align-center board-filter-item outboard-hover">
-        <span v-icon="'person'"> </span> &nbsp;Person
+      <button @click.stop="isPersonFilter = !isPersonFilter" v-click-outside-element="togglePersonFilter"
+        :class="{ 'active-filter': isPersonFilter }" class="flex align-center person board-filter-item outboard-hover">
+        <span class="svg" v-icon="'person'"> </span> &nbsp;Person
       </button>
     </el-tooltip>
+
     <el-tooltip transition="none" auto-close="0" content="Filter by anything">
-      <button @click.stop="isMainFilter = !isMainFilter" :class="{ 'active-filter': isMainFilter }"
-        class="flex align-center board-filter-item outboard-hover">
-        <span v-icon="'filter'"></span> &nbsp;Filter
-        <span v-icon="'arrowDownBlack'"></span>
+      <button @click.stop="isMainFilter = !isMainFilter" v-click-outside-element="toggleMainFilter"
+        :class="{ 'active-filter': isMainFilter }" class="flex filter align-center board-filter-item outboard-hover">
+        <span class="svg" v-icon="'filter'"></span> &nbsp;Filter
+        <span class="svg arrow-down" v-icon="'arrowDownBlack'"></span>
       </button>
     </el-tooltip>
+
     <el-tooltip transition="none" auto-close="0" content="Sort by any column">
       <button class="flex align-center board-filter-item outboard-hover">
-        <span v-icon="'sort'"></span> &nbsp;Sort
+        <span class="svg" v-icon="'sort'"></span> &nbsp;Sort
       </button>
     </el-tooltip>
+
     <el-tooltip transition="none" auto-close="0" content="Hidden columns">
       <button class="flex align-center board-filter-item outboard-hover">
-        <span v-icon="'hide'"></span> &nbsp; Hide
+        <span class="svg" v-icon="'hide'"></span> &nbsp; Hide
       </button>
     </el-tooltip>
+
     <button class="flex align-center board-filter-item outboard-hover">
-      <span v-icon="'more'" />
+      <span class="svg no-cursor" v-icon="'more'" />
     </button>
   </section>
+
   <el-collapse-transition v-if="isPersonFilter">
     <person-filter @setFilterBy="setFilterBy" :board="currBoard" />
   </el-collapse-transition>

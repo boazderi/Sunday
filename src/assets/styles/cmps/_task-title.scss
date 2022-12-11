@@ -15,8 +15,10 @@
         .content-edit {
             padding: 12px 5px;
             height: 20px;
-            width: fit-content;
-            transition: width .4s ease;
+            width: 30px;
+            min-width: fit-content;
+            transition: width .2s ease;
+            cursor: auto;
       
             &:focus-within {
                 width: 100%;

@@ -9,11 +9,10 @@
     </div>
 
     <div class="select-wrapper ">
-      <select name="" id="" @change="onSetFilterBy">
-        <!-- todo design the selectbox -->
-        <option value="status">Status</option>
-        <option value="priority">Priority</option>
-      </select>
+      <el-select  clearable :placeholder="currFilter" ref="selectEl" @change="onSetFilterBy">
+        <el-option v-for="item in options" :key="item.value"
+         :label="item.label" :value="item.value" />
+      </el-select>
     </div>
 
     <section class="card-columns-wrapper">
@@ -54,7 +53,10 @@ export default {
   data() {
     return {
       cardColumns: ['members', 'status', 'priority', 'date', 'textNote', 'timeline'],
-      selectedColumns: ['members', 'status']
+      selectedColumns: ['members', 'status'],
+      options: [{ value: 'status', label: 'Status' },
+      { value: 'priority', label: 'Priority' }],
+      currFilter:'Status'
 
     }
   },
@@ -68,8 +70,10 @@ export default {
   },
 
   methods: {
-    onSetFilterBy(ev) {
-      this.$emit('setFilterBy', ev.target.value)
+    onSetFilterBy(val) {
+      this.$emit('setFilterBy', val)
+      this.currFilter=val.charAt(0).toUpperCase()+val.slice(1)
+      // console.log(this.$refs.selectEl.placeholder) 
     },
     setSelectedColumns(col) {
       if (this.$refs[col][0].checked) this.selectedColumns.push(col)

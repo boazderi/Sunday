@@ -25,18 +25,85 @@
         font-size: em(14px);
     }
 
+    
+
+
     .select-wrapper {
         width: 100%;
 
-        select {
-            padding: 2px 8px 2px 12px;
+        .el-select{
             width: 100%;
             border-radius: 6px;
             color: #323338;
-            height: 38px;
+            // height: 38px;
             border: 1px solid #c3c6d4;
+            border: 0;
+            padding: 0 !important;
+            cursor: pointer;
 
+            &:focus-within{
+                outline: 1px solid $primary-clr;
+                border: 0;
+            }
+            .el-select-dropdown__item{
+                font-family: Roboto;
+            }
+
+            .el-input--suffix{
+                padding: 0;
+            }
+         
+            .el-input__wrapper{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 5px 11px;
+                border-radius: 6px;
+                border: 0;
+                color: #323338;
+
+                .el-input__inner{
+                    text-align: start;
+                    border: 0;
+                    background-color: unset;
+                    color: #323338;
+                }
+                &:focus-within{
+                    outline: 1px solid $primary-clr;
+                    border: 0;
+                }
+    
+            }
         }
+
+        .el-scrollbar{
+            .el-select-dropdown__item{
+                font-family: cursive;
+            }
+
+            >*{
+                font-family: cursive;
+            }
+        }
+
+//         select {
+//             // padding: 2px 8px 2px 12px;
+//             width: 100%;
+//             border-radius: 6px;
+//             color: #323338;
+//             height: 38px;
+//             border: 1px solid #c3c6d4;
+//             cursor: pointer;
+// 
+//             option{
+//                 border: 0;
+//                 height: 30px !important;
+//             }
+//             &:focus-within{
+//                 outline: 1px solid $primary-clr;
+//                 border: 0;
+//             }
+//         }
     }
 
     .card-columns-wrapper {
@@ -72,6 +139,9 @@
          
         }
     }
+}
 
-
+// helper for the select options
+.el-select-dropdown__item{
+    font-family: Roboto;
 }

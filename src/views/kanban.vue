@@ -18,7 +18,7 @@
                             <div>{{ column.title }} / {{ column.tasks.length }}</div>
                         </div>
                         <!-- Column content -->
-                        <div class="col-content flex column">
+                        <section class="col-content flex column">
                             <section class="cards-container">
                                 <Container @drop="(ev) => onTaskDrop(column.title, ev)" group-name="task-card"
                                     :shouldAcceptDrop="(e, payload) => (e.groupName === 'task-card')"
@@ -60,11 +60,23 @@
                                 </Container>
 
                             </section>
-                            <div class="add-task-btn">
+
+                            <!-- ADD_TASK SEC -->
+                            <div v-if="!column.isAddTask" class="add-task-btn" @click="onOpenTask(column.title)">
                                 <span v-icon="'addXSmall'" />
-                                Add Item
+                                Add task
                             </div>
-                        </div>
+
+                            <div v-else class="add-task flex align-center">
+                                <input type="text" :ref="column.title" class="grow">
+                                <button :style="{ 'background-color': column.color }" class="flex align-center"
+                                    @click="onAddTask(column.title)">
+
+                                    <span class="plus">+</span>
+                                    <span>Add</span></button>
+                            </div>
+                        </section>
+
                     </section>
                 </Draggable>
             </Container>
@@ -98,10 +110,8 @@ export default {
         return {
             currBoard: this.getBoard,
             kanbanColumn: [],
-            // todo add file cmp
             cardColumns: [],
             options: {
-                // todo something in the empty is render twice
                 status: [
                     { title: 'Done', color: '#00c875' },
                     { title: 'Working', color: '#fdab3d' },
@@ -116,7 +126,9 @@ export default {
                     { title: 'EMPTY', color: '#c3c4c3' },
                 ]
             },
-            filterBy: 'status'
+            filterBy: 'status',
+            // isAddTask: false,
+            addTaskTitle: '',
         }
     },
     methods: {
@@ -133,10 +145,29 @@ export default {
                         }
                     })
                 })
-
                 // the kanban column map
-                this.kanbanColumn[idx] = { title: col.title, tasks, color: col.color }
+                this.kanbanColumn[idx] = { title: col.title, tasks, color: col.color, isAddTask: false }
             })
+        },
+        onOpenTask(columnTitle) {
+            this.kanbanColumn.forEach(col => col.isAddTask = false)
+            this.kanbanColumn.find(col => col.title === columnTitle).isAddTask = true
+        },
+        async onAddTask(columnTitle) {
+            const currBoard = this.$store.getters.getCurrBoard;
+            const groupId = currBoard.groups[0].id;
+            const taskTitle = this.$refs[columnTitle][0].value
+            this.$refs[columnTitle][0].value = ''
+
+            await this.$store.dispatch({
+                type: "addNewTask",
+                payload: {
+                    taskTitle,
+                    status: columnTitle,
+                    groupId
+                },
+            });
+            this.setKanbanColumn()
         },
         setSelectedColumns(selectedCols) {
             this.cardColumns = selectedCols

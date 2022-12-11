@@ -50,7 +50,7 @@ async function save(board) {
     try {
         if (board._id) {
             await httpService.put(`board/${board._id}`, board)
-                // socket for each update
+            // socket for each update
             socketService.emit(SOCKET_EMIT_LOAD_CURRBOARD, board._id)
             return
         }
@@ -145,41 +145,43 @@ function _getEmptyBoard() {
             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg"
         },
         members: [{
-                "id": "u101",
-                "fullname": "Tal Liber",
-                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
-                "color": "#8338ec"
-            },
-            {
-                "id": "u102",
-                "fullname": "Arnon Arditi",
-                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
-                "color": "#8338ec"
-            },
-            {
-                "id": "u103",
-                "fullname": "Boaz Deri",
-                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
-                "color": "#3a86ff"
-            },
-            {
-                "id": "u104",
-                "fullname": "Tal Amit",
-                "color": "#ff006e"
-            }
+            "id": "u101",
+            "fullname": "Tal Liber",
+            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+            "color": "#8338ec"
+        },
+        {
+            "id": "u102",
+            "fullname": "Arnon Arditi",
+            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
+            "color": "#8338ec"
+        },
+        {
+            "id": "u103",
+            "fullname": "Boaz Deri",
+            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
+            "color": "#3a86ff"
+        },
+        {
+            "id": "u104",
+            "fullname": "Tal Amit",
+            "color": "#ff006e"
+        }
         ],
         activities: [],
         groups: [_getEmptyGroup()]
     }
 }
 
-async function addNewTask({ boardId, groupId, taskTitle }) {
+async function addNewTask({ boardId, groupId, taskTitle, status }) {
     try {
         var currBoard = await getBoardById(boardId)
         const groupIdx = currBoard.groups.findIndex(g => g.id === groupId)
         const newTask = _getEmptyTask(taskTitle)
-        currBoard.groups[groupIdx].tasks.push(newTask)
-
+        if (status) {
+            newTask.status = status
+        }
+        currBoard.groups[groupIdx].tasks.push(newTask)  
         // note keep it synchronous and in failure 
         // the loadBoards dispatch will action
         save(currBoard)

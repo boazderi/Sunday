@@ -18,7 +18,7 @@
         </div>
 
         <div class="invite-btn flex align-center outboard-hover">
-            <span v-icon="'invite'"></span>
+            <span class="svg" v-icon="'invite'"></span>
             <button>Invite / 1</button>
         </div>
 
