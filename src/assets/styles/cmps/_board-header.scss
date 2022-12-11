@@ -7,8 +7,9 @@
 .users-list {
     cursor: pointer;
     position: relative;
-    margin-inline-end: 22px;
+    margin-inline-end: 12px;
     padding: 6px;
+    padding: 4px 8px;
     border-radius: 4px 6px;
 
     span {
@@ -19,6 +20,11 @@
 
     .login-img {
         margin-inline-start: 8px;
+
+        &.member-preview {
+            width: 26px;
+            height: 26px;
+        }
     }
 
     .users-dropdown {
@@ -65,7 +71,7 @@
     padding: 4px;
     border-radius: 4px;
 
-    &:focus-within{
+    &:focus-within {
         outline: 1px solid $primary-clr;
         border: 0;
     }
@@ -82,8 +88,14 @@
 .invite-btn {
     height: 32px;
     border-radius: 4px;
-    button{
+    padding: 0 4px;
 
+    .svg {
+        margin-inline-end: 8px;
+    }
+
+    button {
+        cursor: inherit;
         color: #323338;
     }
 }
@@ -136,22 +148,24 @@
             width: 220px;
             border-radius: 6px;
             padding: 8px;
-            box-shadow: 0 4px 17px 6px rgba(0,0,0,.1);
+            box-shadow: 0 4px 17px 6px rgba(0, 0, 0, .1);
             z-index: 216;
 
-            .item{
-                padding: 8px ;
+            .item {
+                padding: 8px;
                 border-radius: 4px;
                 font-size: 14px;
                 cursor: pointer;
-                &:hover{
-                    background-color:$primary-hover-clr ;
+
+                &:hover {
+                    background-color: $primary-hover-clr ;
                 }
+
                 .svg {
                     margin-inline-end: 6px;
                 }
-                
-                &.disabled{
+
+                &.disabled {
                     cursor: default;
                 }
             }
@@ -166,25 +180,32 @@
         color: $primary-txt-clr;
     }
 
-    .search-nav-filter-icon{
+    .search-nav-filter-icon {
         position: absolute;
         z-index: 2;
         margin-left: 120px;
         margin-top: 5px;
     }
 
-    .search-nav-filter{
+    .search-nav-filter {
         padding-left: 27px;
         width: 90px;
         border: 0;
-        transition: width .5s;
+        transition: width .2s;
         cursor: pointer;
 
+        &:focus-within {
+            outline: 1px solid $primary-clr;
+            border: 0;
+        }
+
     }
-    .search-open{
+
+    .search-open {
         cursor: text;
         width: 220px;
     }
+
     .new-task-btn {
         color: white;
         padding: 4px 8px;
