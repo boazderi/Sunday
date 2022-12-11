@@ -78,7 +78,6 @@ export const boardStore = {
         setCurrBoard(state, { boardId }) {
             const newBoard = state.boards.find(board => board._id === boardId)
             state.currBoard = newBoard
-            console.log('currBoard:', state.currBoard._id)
         },
         setCurrBoardBySocket(state, { board }) {
             state.currBoard = board

@@ -33,7 +33,7 @@
 //GROUP-GRID important
 .group-grid {
     display: grid;
-    grid-template-columns: 40px 6px 32px 364px repeat(auto-fill, minmax(140px, 140px));
+    grid-template-columns: 40px 6px 32px 364px repeat(auto-fill, minmax(140px, 187px));
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
     grid-auto-columns: minmax(140px, 140px);
@@ -177,4 +177,8 @@
     background-color: black;
     height: 150px;
     transform: rotate(20deg);
+}
+
+input[type="checkbox"] {
+    accent-color: $primary-clr;
 }

@@ -1,5 +1,5 @@
 <template>
-  <section class="timeline-container cell1">
+  <section class="timeline-container cell1 wide-cell">
     <!-- <progress value="32" max="100" data-label="" ></progress> -->
     <div class="timeline-btn" @mouseover="isHover = true" @mouseleave="isHover = false"
       :class=" {'after-set-date':isDateSet}" @click="isDatePickerOpen = !isDatePickerOpen" :style="{'background': timelineBcg
@@ -18,7 +18,8 @@ import { ref } from "vue";
 export default {
   name: "timeline",
   props: {
-    group: Object
+    group: Object,
+    info: Object
   },
   data() {
     return {
@@ -30,19 +31,23 @@ export default {
     };
   },
   created() {
+    if (this.info.timeline) {
+      this.value = this.info.timeline
+      this.isDateSet = true
+    }
   },
   methods: {
-    updateTimePassed(ev) {
-      if ((Date.now() - ev[1]) >= 0) this.timePassed = 100
-      else if ((Date.now() - ev[0]) < 0) this.timePassed = 0
-      else this.timePassed = ((new Date().getDate() - new Date(ev[0]).getDate()) / (new Date(ev[1]).getDate() - new Date(ev[0]).getDate())) * 100
-
-      console.log(this.group);
+    updateTimePassed() {
+      this.$emit('update', { prop: 'timeline', toUpdate: this.value })
     },
   },
   computed: {
     timelineBcg() {
+      if ((Date.now() - this.value[1]) >= 0) this.timePassed = 100
+      else if ((Date.now() - this.value[0]) < 0) this.timePassed = 0
+      else this.timePassed = ((new Date().getDate() - new Date(this.value[0]).getDate()) / (new Date(this.value[1]).getDate() - new Date(this.value[0]).getDate())) * 100
       if (!this.isDateSet) return '#a0a0a0'
+
       return `linear-gradient(90deg, ${this.group.color} ${this.timePassed}%, #000000 ${this.timePassed}%)`
     },
     timelineContent() {

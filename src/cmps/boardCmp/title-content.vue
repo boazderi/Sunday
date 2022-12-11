@@ -1,18 +1,18 @@
 <template>
     <div :class="getFocusClass" @click="setFocus">
-        <div className=" color-icon color-btn" :style="{ background: groupInfo.color }"
-            @click.stop.prevent="(this.isColorPickOpen = !this.isColorPickOpen)"></div>
+        <button className=" color-icon color-btn" :style="{ background: groupInfo.color }"
+            @mousedown="(isColorPickOpen = !isColorPickOpen)"></button>
         <div class="title-input" contenteditable @blur="onChangeGroupTitle" :style="{ color: groupInfo.color }">{{
                 groupInfo.title
         }}</div>
         <div class="tasks-count">{{ groupInfo.tasks.length }} Tasks</div>
     </div>
 
-    <el-collapse-transition>
-        <div class="color-picker" v-if="isOpen">
-            <color-picker @update="onChangeGroupColor($event)" />
-        </div>
-    </el-collapse-transition>
+    <!-- <el-collapse-transition> -->
+    <div class="color-picker" v-if="isOpen">
+        <color-picker @update="onChangeGroupColor($event)" />
+    </div>
+    <!-- </el-collapse-transition> -->
 
 </template>
   
