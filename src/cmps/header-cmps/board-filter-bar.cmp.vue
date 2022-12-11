@@ -19,15 +19,15 @@
     <span v-icon="'search'" class="search-nav-filter-icon"></span>
     <input @click="isSearch = true" @blur="isSearch = false" @input="setFilterBy('text')" v-model="filterBy.text"
       type="search" :class="{ 'search-open': isSearch }" class="board-filter-item search-nav-filter outboard-hover"
-      placeholder="Search" />
+      placeholder="Search"/>
     <el-tooltip transition="none" auto-close="0" content="Filter by person">
-      <button @click.stop="isPersonFilter = !isPersonFilter" v-click-outside-element="togglePersonFilter"
+      <button @click.stop="isPersonFilter = !isPersonFilter" 
         :class="{ 'active-filter': isPersonFilter }" class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'person'"> </span> &nbsp;Person
       </button>
     </el-tooltip>
     <el-tooltip transition="none" auto-close="0" content="Filter by anything">
-      <button @click.stop="isMainFilter = !isMainFilter" v-click-outside-element="toggleMainFilter"
+      <button @click.stop="isMainFilter = !isMainFilter" 
         :class="{ 'active-filter': isMainFilter }" class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'filter'"></span> &nbsp;Filter
         <span v-icon="'arrowDownBlack'"></span>
@@ -48,10 +48,10 @@
     </button>
   </section>
   <el-collapse-transition v-if="isPersonFilter">
-    <person-filter @setFilterBy="setFilterBy" :board="currBoard" />
+    <person-filter v-click-outside-element="togglePersonFilter" @setFilterBy="setFilterBy" :board="currBoard" />
   </el-collapse-transition>
   <el-collapse-transition v-if="isMainFilter">
-    <main-filter @setFilterBy="setFilterBy" :board="currBoard"> </main-filter>
+    <main-filter v-click-outside-element="toggleMainFilter" @setFilterBy="setFilterBy" :board="currBoard"> </main-filter>
   </el-collapse-transition>
 </template>
 
