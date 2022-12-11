@@ -17,6 +17,7 @@
             height: 20px;
             width: fit-content;
             transition: width .4s ease;
+            cursor: auto;
       
             &:focus-within {
                 width: 100%;

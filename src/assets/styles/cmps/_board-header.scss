@@ -63,9 +63,11 @@
     width: max-content;
     font-size: 1.5rem;
     padding: 4px;
+    border-radius: 4px;
 
-    &:hover {
-        outline: 1px solid $primary-border-clr;
+    &:focus-within{
+        outline: 1px solid $primary-clr;
+        border: 0;
     }
 }
 
