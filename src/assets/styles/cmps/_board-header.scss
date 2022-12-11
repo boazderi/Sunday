@@ -171,9 +171,11 @@
         padding-left: 27px;
         width: 90px;
         border: 0;
-        transition: width .5s;
+        transition: width .2s;
         cursor: pointer;
-
+        &:focus-within {
+            outline: 1px solid $primary-clr;
+        }
     }
     .search-open{
         cursor: text;
