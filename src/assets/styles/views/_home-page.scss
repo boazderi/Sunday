@@ -14,6 +14,7 @@
     .first-layout {
         height: 600px;
         width: 100%;
+        padding: 20px;
         background: linear-gradient(rgb(0, 1, 51) 0%, rgb(15, 16, 72) 100%);
     }
 
@@ -102,12 +103,12 @@
         top: 100px;
         position: absolute;
     }
-    // .star4{
-    //     width: 2.55173px;
-    //     height: 2.55173px;
-    //     left: 550px;
-    //     position: absolute;
-    // }
+    .star4{
+        width: 2.55173px;
+        height: 2.55173px;
+        left: 550px;
+        position: absolute;
+    }
     .star5{
         width: 7.55173px;
         height: 7.55173px;
@@ -126,7 +127,7 @@
         width: 2.55173px;
         height: 2.55173px;
         left: 500px;
-        top: 550px;
+        top: 460px;
         position: absolute;
     }
     .star8{
@@ -154,7 +155,7 @@
         width: 9.55173px;
         height: 9.55173px;
         left: 366px;
-        top: 450px;
+        top: 380px;
         position: absolute;
     }
     .star12 {
@@ -185,22 +186,41 @@
         top: 190px;
         position: absolute;
     }
-    // .star16{
-    //     width: 7.55173px;
-    //     height: 6.55173px;
-    //     left: 760px;
-    //     top: 477px;
-    //     position: absolute;
-    // }
-    // .star17{
-    //     width: 5.55173px;
-    //     height: 5.55173px;
-    //     left: 760px;
-    //     top: 640px;
-    //     position: absolute;
-    // }
-
-
+    .star16{
+        width: 7.55173px;
+        height: 6.55173px;
+        left: 860px;
+        top: 400px;
+        position: absolute;
+    }
+    .star17{
+        width: 5.55173px;
+        height: 5.55173px;
+        left: 760px;
+        top: 460px;
+        position: absolute;
+    }
+    .second-layout{
+        justify-content: space-between;
+    }
+    .bottom-homepage-img{
+        border-radius: 20px;
+        padding: 10px;
+        margin: 10px;
+        box-shadow: 0px 0px 6px 2px #d0d0d0;
+    }
+    .center-home-img{
+        position: absolute;
+        background-color: #ffffff;
+        z-index: 20;
+        width: 600px;
+        left: 50%;
+        bottom: 0;
+        transform: translate(-50%);
+    }
+    .small-home-img{
+        width: 400px;
+    }
   
     @keyframes twinkle {
       0% {
