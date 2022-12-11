@@ -52,7 +52,7 @@ export const boardStore = {
             state.currBoard = board
         },
         updateBoard(state, { board }) {
-            const idx = state.boards.findIndex(c => c.id === board._id)
+            const idx = state.boards.findIndex(c => c._id === board._id)
             state.boards.splice(idx, 1, board)
                 // todo understand why its duplicate the boards in the workspace and in general
                 // state.currBoard = state.boards[idx]
@@ -78,7 +78,9 @@ export const boardStore = {
         setCurrBoard(state, { boardId }) {
             const newBoard = state.boards.find(board => board._id === boardId)
             state.currBoard = newBoard
+            console.log('currBoard:', newBoard.title)
             console.log('currBoard:', state.currBoard.title)
+            console.log('currBoard:', state.currBoard._id)
         },
         setCurrBoardBySocket(state, { board }) {
             state.currBoard = board

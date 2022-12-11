@@ -5,31 +5,27 @@
     padding-top: 7px;
     position: relative;
     width: 66px;
-
+    .monday-icon-wrapper {
+        border-bottom: 1px solid #757575;
+        margin-bottom: 10px;
+    }
     .monday-icon {
         height: 46px;
         width: 50px;
-        margin-bottom: 10px;
         border-radius: 6px;
-        border-bottom: 1px solid #757575;
         cursor: pointer;
-
         &:hover {
             background-color: rgba(0, 0, 0, .6);
         }
-
         img {
             width: 40px;
             height: 40px;
         }
-
         &.active {
             border-radius: 6px;
             background-color: #545970;
         }
-
     }
-
     .work-management {
         width: 42px;
         height: 42px;
@@ -40,18 +36,14 @@
         //     background-color: rgba(0, 0, 0, .6);
         // }
     }
-
     .icons-pattern1 {
         margin-bottom: auto;
-
     }
-
     .icons-pattern2 {
         width: 50px;
         border-bottom: 1px solid #757575;
         padding-bottom: 1px;
     }
-
     .icon-wrapper {
         display: flex;
         justify-content: center;
@@ -59,26 +51,20 @@
         height: em(36px);
         border-radius: 6px;
         margin-bottom: 8px;
-
     }
-
-    .bottom-icons{
+    .bottom-icons {
         margin-bottom: 12px;
-
-        .member-wrapper{
+        .member-wrapper {
             padding: 6px;
             padding-top: 10px;
-          
-
-            .member-preview{
+            .member-preview {
                 margin-inline-start: 0px;
                 width: 40px;
                 height: 40px;
             }
         }
     }
-
-    .bottom-icon-wrapper{
+    .bottom-icon-wrapper {
         padding-top: 1px;
         padding-bottom: 2px;
         width: em(42px);
@@ -86,7 +72,5 @@
         border-radius: 6px;
         margin-top: 8px;
         margin-bottom: 3px;
-   
     }
-
 }
