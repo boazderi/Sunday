@@ -17,10 +17,8 @@
     </div>
 
     <span v-icon="'search'" class="search-nav-filter-icon"></span> 
-    <input v-if="isSearch" @blur="isSearch = false" @input="setFilterBy('text')" v-model="filterBy.text" type="search"
-      autofocus class="board-filter-item search-nav-filter search-open"  placeholder="Search" />
-    <input v-else @click="isSearch = true" placeholder="Search" type="search"
-     class="search-nav-filter search-close board-filter-item outboard-hover">
+    <input @click="isSearch = true" @blur="isSearch = false" @input="setFilterBy('text')" v-model="filterBy.text" type="search"
+      autofocus :class="{'search-open': isSearch}" class="board-filter-item search-nav-filter outboard-hover"  placeholder="Search" />
     <el-tooltip transition="none" auto-close="0" content="Filter by person">
       <button @click.stop="isPersonFilter = !isPersonFilter" v-click-outside-element="togglePersonFilter" :class="{ 'active-filter': isPersonFilter }"
         class="flex align-center board-filter-item outboard-hover">
