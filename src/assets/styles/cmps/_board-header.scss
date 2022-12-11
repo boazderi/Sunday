@@ -10,43 +10,35 @@
     margin-inline-end: 22px;
     padding: 6px;
     border-radius: 4px 6px;
-
     span {
         padding-top: 5px;
         font-size: em(14px);
         color: #323338;
     }
-
     .login-img {
         margin-inline-start: 8px;
     }
-
     .users-dropdown {
         position: absolute;
         z-index: 70;
         top: 46px;
         background-color: white;
         box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.3);
-
         padding: 8px;
         padding-top: 9px;
         border-radius: 6px;
     }
-
     .user-item {
         margin-bottom: 8px;
         min-width: 150px;
         border-radius: 4px;
-
-        :first-child {
+         :first-child {
             margin: 6px;
         }
-
         &:hover {
             background-color: $primary-hover-clr;
         }
     }
-
 }
 
 .board-upper-header {
@@ -63,7 +55,6 @@
     width: max-content;
     font-size: 1.5rem;
     padding: 4px;
-
     &:hover {
         outline: 1px solid $primary-border-clr;
     }
@@ -88,7 +79,6 @@
 
 .nav-item-container {
     display: flex;
-
     &.active {
         border-bottom: 2px solid $primary-clr;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -113,7 +103,6 @@
     padding: 16px 0;
     height: 4em;
     gap: 10px;
-
     // note arnon change 10.12
     .new-task {
         position: relative;
@@ -121,7 +110,6 @@
         height: 2em;
         min-width: 102px;
         background-color: $primary-clr;
-
         .dropDown1 {
             position: absolute;
             background-color: white;
@@ -130,44 +118,38 @@
             width: 220px;
             border-radius: 6px;
             padding: 8px;
-            box-shadow: 0 4px 17px 6px rgba(0,0,0,.1);
+            box-shadow: 0 4px 17px 6px rgba(0, 0, 0, .1);
             z-index: 216;
-
-            .item{
-                padding: 8px ;
+            .item {
+                padding: 8px;
                 border-radius: 4px;
                 font-size: 14px;
                 cursor: pointer;
-                &:hover{
-                    background-color:$primary-hover-clr ;
+                &:hover {
+                    background-color: $primary-hover-clr;
                 }
                 .svg {
                     margin-inline-end: 6px;
                 }
-                
-                &.disabled{
+                &.disabled {
                     cursor: default;
                 }
             }
-
         }
     }
-
     .board-filter-item {
         border-radius: 6px;
         margin-left: 4px;
         padding: 4px;
         color: $primary-txt-clr;
     }
-
-    .search-nav-filter-icon{
+    .search-nav-filter-icon {
         position: absolute;
         z-index: 2;
         margin-left: 120px;
         margin-top: 5px;
     }
-
-    .search-nav-filter{
+    .search-nav-filter {
         padding-left: 27px;
         width: 90px;
         border: 0;
@@ -177,7 +159,7 @@
             outline: 1px solid $primary-clr;
         }
     }
-    .search-open{
+    .search-open {
         cursor: text;
         width: 220px;
     }
@@ -185,17 +167,14 @@
         color: white;
         padding: 4px 8px;
         border-right: 1px solid #0360b9;
-
         &:hover {
             border-radius: 4px 0 0 4px;
             background-color: #0360b9;
         }
     }
-
     .new-task-arrow {
         color: white;
         margin: 0 4px;
-
         &:hover {
             border-radius: 0 4px 4px 0;
             background-color: #0360b9;
@@ -215,4 +194,8 @@
 
 .board-top-actions {
     gap: 8px;
+}
+
+.el-popper {
+    font-family: Roboto;
 }
