@@ -59,6 +59,7 @@ export default {
     };
   },
   created() {
+    console.log('hi');
     this.setPersons()
   },
   methods: {
