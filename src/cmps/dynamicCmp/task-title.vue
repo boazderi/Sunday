@@ -29,9 +29,6 @@ export default {
     props: {
         info: Object,
     },
-    data() {
-        return {};
-    },
     methods: {
         goToConversation() {
             const boardId = this.$route.params.id

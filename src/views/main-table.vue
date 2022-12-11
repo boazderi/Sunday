@@ -2,7 +2,8 @@
   <section v-if="board" class="main-table ">
     <section class="group-list">
 
-      <Container orientation="vertical" @drop="onGroupDrop($event)" @drag-start="(e) => log('drag start', e)">
+      <Container orientation="vertical" @drop="onGroupDrop($event)" @drag-start="(e) => log('drag start', e)"
+        @dragBeginDelay=0>
         <Draggable v-for="group in board.groups" :key="group.id">
           <group :groupInfo="group" />
         </Draggable>
@@ -17,7 +18,7 @@
     <bottom-crud v-if="selectedTasks.length" :selectedTasks="selectedTasks" @removeTasks="removeTasks"
       @duplicateTasks="duplicateTasks" @closeBottomCrud="closeBottomCrud" />
   </section>
-  
+
   <!-- taskConversation -->
   <router-view></router-view>
 </template>
@@ -57,7 +58,7 @@ export default {
         payload: { selectedTasks: this.selectedTasks }
       })
       this.selectedTasks = []
-      
+
     },
     closeBottomCrud() {
       this.selectedTasks = []
