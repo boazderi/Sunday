@@ -5,7 +5,7 @@
     @mouseleave="isHover = false"
   >
     <!-- todo: check if we need cell1 class -->
-    <section class="members-list cell1" @click="isListOpen = !isListOpen">
+    <section class="members-list cell1" @click.stop="isListOpen = !isListOpen">
       <div v-if="isHover" class="plusIcon" v-icon="'plus'"></div>
       <member-preview
         v-for="(member, idx) in info.members"
@@ -20,7 +20,7 @@
       </div>
     </section>
     <el-collapse-transition>
-      <div class="members-picker" v-if="isListOpen">
+      <div class="members-picker"  v-click-outside-element="closeMemberPicker" v-if="isListOpen">
         <members-picker
           :task="info"
           @update="onChangeGroupMembers"
@@ -49,6 +49,9 @@ export default {
     onChangeGroupMembers({ toUpdate }) {
       this.$emit("update", { prop: "members", toUpdate });
     },
+    closeMemberPicker(){
+      this.isListOpen = false
+    }
   },
   components: {
     memberPreview,

@@ -1,13 +1,17 @@
 <template>
   <section class="home-page flex column">
-
+    <header class="home-page-header">
+      <h1 class="header-logo">
+        Sunday.com
+      </h1>
+       </header>
     <section class="first-layout flex column align-center">
-      <h1 class="header-line">A platform built for a
+      <h1 class="header-line"><span class="first-homepage-line"> A platform built for a </span> 
         <br>
         new way of working
       </h1>
       <h3 class="sub-line">
-        What would you like to manage with Sunday.com Work OS?
+        Manage everything with Sunday.com!
       </h3>
       <button class="start-btn" @click="moveToBoard">
         Get Started
@@ -33,9 +37,6 @@
 
 
     </section>
-
-    <div class="home-img grow"></div>
-
   </section>
 
 </template>

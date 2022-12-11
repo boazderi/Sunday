@@ -22,16 +22,16 @@
       <span v-icon="'search'"></span> Search
     </button>
     <el-tooltip transition="none" auto-close="0" content="Filter by person">
-      <button @click="isPersonFilter = !isPersonFilter" :class="{ 'active-filter': isPersonFilter }"
+      <button @click.stop="isPersonFilter = !isPersonFilter" v-click-outside-element="togglePersonFilter" :class="{ 'active-filter': isPersonFilter }"
         class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'person'"> </span> &nbsp;Person
       </button>
     </el-tooltip>
     <el-tooltip transition="none" auto-close="0" content="Filter by anything">
-      <button @click="isMainFilter = !isMainFilter" :class="{ 'active-filter': isMainFilter }"
+      <button @click.stop="isMainFilter = !isMainFilter" v-click-outside-element="toggleMainFilter" :class="{ 'active-filter': isMainFilter }"
         class="flex align-center board-filter-item outboard-hover">
         <span v-icon="'filter'"></span> &nbsp;Filter
-        <span v-icon="'arrowDownBlack'" />
+        <span v-icon="'arrowDownBlack'"></span> 
       </button>
     </el-tooltip>
     <el-tooltip transition="none" auto-close="0" content="Sort by any column">
@@ -89,6 +89,12 @@ export default {
   methods: {
     onToggleDropDown() {
       this.isDropDown1Open = !this.isDropDown1Open
+    },
+    togglePersonFilter(){
+      this.isPersonFilter = false
+    },
+    toggleMainFilter(){
+      this.isMainFilter = false
     },
     async onAddGroup() {
       await this.$store.dispatch({ type: 'addGroup' })
