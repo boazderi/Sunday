@@ -1,10 +1,9 @@
 <template>
   <section
     class="cell2 status-container"
-    :class="{ 'prevrnt-hover': statusModalOpen }"
     @mouseover="isHover = true"
     @mouseleave="isHover = false"
-  >
+  >   
     <div
       class="peeling-box scale-up-tr"
       v-if="isHover"
@@ -35,11 +34,13 @@
         <status-modal @setStatus="setStatus"></status-modal>
       </el-collapse-transition>
     </div>
+        <confety :class="{'is-done-triger': isDone}" v-if="isDone"></confety>
   </section>
 </template>
   
 <script>
 import statusModal from "../boardCmp/status-modal.cmp.vue";
+import confety from "../boardCmp/confety.cmp.vue"
 export default {
   name: "status",
   props: {
@@ -49,6 +50,7 @@ export default {
     return {
       statusModalOpen: false,
       isHover: false,
+      isDone: false
     };
   },
   mounted() {},
@@ -58,6 +60,14 @@ export default {
       this.isHover = false;
     },
     setStatus(statusOpt) {
+      if (statusOpt === 'Done') {
+        this.isDone = true
+        console.log(this.isDone);
+        setTimeout(()=>{
+          this.isDone = false
+        console.log(this.isDone);
+        }, 1000)
+        }
       this.toggleStatusOptions();
       this.$emit("update", { prop: "status", toUpdate: statusOpt });
     },
@@ -72,12 +82,7 @@ export default {
   },
   components: {
     statusModal,
+    confety
   },
 };
 </script>
-
-<!-- <style>
-.status-picker-modal {
-  --el-transition-duration: 2s;
-}
-</style> -->
