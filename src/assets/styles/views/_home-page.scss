@@ -16,10 +16,11 @@
     .login-section{
         width: 120px;
         justify-content: space-between;
-        border-radius: 4px;
     }
     .login-btn{
         padding: 8px 10px;
+        border-radius: 4px;
+
         &:hover{
             color: #5034FF;
             background-color: #F0F3FF;
