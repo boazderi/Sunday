@@ -1,12 +1,10 @@
 // status
-
 .status-modal-item {
     text-align: center;
     color: white;
     padding: 6px;
     border-radius: 2px;
     cursor: pointer;
-    margin-bottom: 10px;
     &:hover {
         opacity: 90%;
     }
@@ -145,8 +143,8 @@
 }
 
 .is-done-confety {
-  width: 140px;
-  height: 35px;
+    width: 140px;
+    height: 35px;
     cursor: pointer;
     position: absolute;
     i {
@@ -159,12 +157,18 @@
         background: red;
         opacity: 0;
     }
-        @for $i from 1 through 50 {
-            i:nth-of-type(#{$i}) {
-                transform: translate3d(random(190) - 100 + px, random(50) - 100 + px, 0) rotate(random(360) + deg);
-                background: hsla(random(360), 100%, 50%, 1);
-                animation: bang 700ms ease-out forwards;
-                opacity: 0;
-            }
+    @for $i from 1 through 50 {
+        i:nth-of-type(#{$i}) {
+            transform: translate3d(random(190) - 100 + px, random(50) - 100 + px, 0) rotate(random(360) + deg);
+            background: hsla(random(360), 100%, 50%, 1);
+            animation: bang 700ms ease-out forwards;
+            opacity: 0;
         }
+    }
+}
+
+.el-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
