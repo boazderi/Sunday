@@ -8,15 +8,24 @@
   <h3 class="chart-head"> Stats Summary </h3>
   <div class="flex cards-stats-container">
     <article class="stat flex">
-      <h4 class="card-title-item">Total board tasks</h4>
+      <h4 class="card-title-item"> Board tasks</h4>
+      <div class="dashboard-card-img">
+        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670834996/c3zdyyijg55lchdizyms.png" alt="">
+      </div> 
       <h2>{{ this.data.tasks }}</h2>
     </article>
     <article class="stat flex">
       <h4 class="card-title-item">Board members</h4>
+      <div class="dashboard-card-img">
+        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670836326/vs65au4ziq8doqbfg5nw.png" alt="">
+      </div> 
       <h2>{{ this.data.members }}</h2>
     </article>
     <article class="stat flex">
-      <h4 class="card-title-item">Total board groups</h4>
+      <h4 class="card-title-item"> Board groups</h4>
+      <div class="dashboard-card-img">
+        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670836288/norwj2agywgcofdljulp.png" alt="">
+      </div> 
       <h2>{{ this.data.groups }}</h2>
     </article>
       </div>

@@ -4,7 +4,6 @@
         <div class="users-list flex column align-center outboard-hover">
             <div class="flex center " @click="toggleDropDown">
                 <span>Last-seen</span>
-
                 <member-preview class="login-img" :member="loggedinUser"></member-preview>
             </div>
 
@@ -16,7 +15,6 @@
                 </div>
             </section>
         </div>
-
         <div class="invite-btn flex align-center outboard-hover">
             <span class="svg" v-icon="'invite'"></span>
             <button>Invite / 1</button>

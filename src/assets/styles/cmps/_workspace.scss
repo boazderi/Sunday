@@ -27,7 +27,6 @@
         // transition
         transition: width .15s ease,
             padding-inline-end .15s ease,
-            padding-inline-start .15s ease,
             background-color .15s ease;
 
         // hover when workspace is close
@@ -36,7 +35,7 @@
             height: 22px;
             border-radius: 20px;
             justify-content: start;
-            padding-inline-start: 12px;
+            padding-inline-end: 12px;
             background-color: #0073ea;
             right: -34px;
 
