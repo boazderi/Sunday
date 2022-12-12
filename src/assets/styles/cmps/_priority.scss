@@ -1,38 +1,36 @@
 // priority
-
-.priority-modal-item{
+.priority-modal-item {
     text-align: center;
     color: white;
     padding: 6px;
     border-radius: 2px;
     cursor: pointer;
-    margin-bottom: 10px;
-
     &:hover {
         opacity: 90%;
     }
 }
 
-.priority-container{
+.priority-container {
     position: relative;
 }
 
-.priority{
+.priority {
     width: 100%;
     color: white;
+    text-transform: capitalize;
+    font-size: 14px;
     text-align: center;
-    &:hover{
+    &:hover {
         opacity: 0.8;
     }
 }
 
-.priority-picker-modal{
+.priority-picker-modal {
     z-index: 60 !important;
-    position: relative ;
+    position: relative;
     right: 70px;
     top: 23px;
 }
-
 
 .priority-critical {
     background-color: $bg-priority-critical;
@@ -48,39 +46,30 @@
 
 .priority-low {
     background-color: $bg-priority-low;
-
 }
 
 .priority-empty {
     background-color: $bg-priority-empty;
-
 }
-
 
 .priority-progress {
     padding: 5px 8px;
     z-index: 0;
-
     .bar-container {
         .low {
             background-color: $bg-priority-low;
         }
-
         .critical {
             background-color: $bg-priority-critical;
         }
-
         .empty {
             background-color: $bg-status-empty;
         }
-
         .medium {
             background-color: $bg-priority-medium;
         }
-
         .high {
             background-color: $bg-priority-high;
-
         }
     }
 }

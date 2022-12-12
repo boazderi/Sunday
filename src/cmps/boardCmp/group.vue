@@ -219,7 +219,8 @@ export default {
       return result
     },
     labelClass(label) {
-      return (label === 'Timeline') ? 'cell1 wide-cell label' : 'cell1 label'
+      // return (label === 'Timeline') ? 'cell1 wide-cell label' : 'cell1 label'
+      return 'cell1 label'
     },
 
   },

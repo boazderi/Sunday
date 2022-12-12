@@ -53,16 +53,13 @@
     padding: 6px;
     padding: 4px 8px;
     border-radius: 4px 6px;
-
     span {
         padding-top: 5px;
         font-size: em(14px);
         color: #323338;
     }
-
     .login-img {
         margin-inline-start: 8px;
-
         &.member-preview {
             width: 26px;
             height: 26px;
@@ -79,16 +76,13 @@
         padding-top: 9px;
         border-radius: 6px;
     }
-
     .user-item {
         margin-bottom: 8px;
         min-width: 150px;
         border-radius: 4px;
-
-        :first-child {
+         :first-child {
             margin: 6px;
         }
-
         &:hover {
             background-color: $primary-hover-clr;
         }
@@ -128,7 +122,6 @@
     font-size: 1.5rem;
     padding: 4px;
     border-radius: 4px;
-
     &:focus-within {
         outline: 1px solid $primary-clr;
         border: 0;
@@ -143,14 +136,12 @@
 }
 
 
-
 .board-nav-container {
     margin-top: 8px;
 }
 
 .nav-item-container {
     display: flex;
-
     &.active {
         border-bottom: 2px solid $primary-clr;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -165,7 +156,6 @@
     border-radius: 6px;
     align-items: center;
     margin: 4px 0;
-
 }
 
 .board-nav-item.main-table-nav {
@@ -177,7 +167,6 @@
     height: 4em;
     // gap: 10px;
     // note arnon change 10.12
-
     .new-task {
         position: relative;
         border-radius: 4px;
@@ -185,7 +174,6 @@
         height: 2em;
         min-width: 102px;
         background-color: $primary-clr;
-
         .dropDown1 {
             position: absolute;
             background-color: white;
@@ -196,28 +184,23 @@
             padding: 8px;
             box-shadow: 0 4px 17px 6px rgba(0, 0, 0, .1);
             z-index: 216;
-
             .item {
                 padding: 8px;
                 border-radius: 4px;
                 font-size: 14px;
                 cursor: pointer;
-
                 &:hover {
-                    background-color: $primary-hover-clr ;
+                    background-color: $primary-hover-clr;
                 }
-
                 .svg {
                     margin-inline-end: 6px;
                 }
-
                 &.disabled {
                     cursor: default;
                 }
             }
         }
     }
-
     .board-filter-item {
         border-radius: 6px;
         margin-left: 12px;
@@ -235,19 +218,16 @@
         &::placeholder {
             color: $primary-txt-clr;
         }
-
         span.arrow-down {
             margin-inline-start: 4px;
         }
     }
-
     .search-nav-filter-icon {
         position: absolute;
         z-index: 2;
         margin-left: 128px;
         margin-top: 5px;
     }
-
     // input search
     .search-nav-filter {
         padding-left: 27px;
@@ -256,37 +236,29 @@
         border: 0;
         transition: width .2s;
         cursor: pointer;
-
         &:focus-within {
             outline: 1px solid $primary-clr;
         }
-
         &:hover {
-            background-color: $primary-hover-clr ;
-
+            background-color: $primary-hover-clr;
         }
     }
-
     .search-open {
         cursor: text;
         width: 220px;
     }
-
     .new-task-btn {
         color: white;
-        padding: 4px 8px;
+        padding: 4px 7px;
         border-right: 1px solid #0360b9;
-
         &:hover {
             border-radius: 4px 0 0 4px;
             background-color: #0360b9;
         }
     }
-
     .new-task-arrow {
         color: white;
         margin: 0 4px;
-
         &:hover {
             border-radius: 0 4px 4px 0;
             background-color: #0360b9;

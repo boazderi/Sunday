@@ -58,7 +58,7 @@ export default {
   computed: {
     formattedPriority() {
       if (this.info.priority === "EMPTY") return "";
-      return this.info.priority;
+      return this.info.priority.toLowerCase();
     },
   },
   components: {

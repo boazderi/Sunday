@@ -5,7 +5,6 @@
     padding: 6px;
     border-radius: 2px;
     cursor: pointer;
-    margin-bottom: 10px;
     &:hover {
         opacity: 90%;
     }
@@ -14,6 +13,7 @@
 .status {
     width: 100%;
     color: white;
+    font-size: 14px;
     text-align: center;
     position: relative;
     &:hover {
@@ -25,15 +25,12 @@
     position: relative;
     width: 100%;
     height: 100%;
-    opacity: 0;
+    opacity: 1;
 }
 
 .status-container {
     position: relative;
     width: 140px;
-    // &:hover{
-    //     opacity:80%;
-    // }
 }
 
 .peeling-box {
@@ -106,13 +103,13 @@
     right: 0;
     top: 0;
     -webkit-animation: scale-up-tr 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-    animation: scale-up-tr 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-tr 0.4s .3s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
 }
 
 @-webkit-keyframes scale-up-tr {
     0% {
-        -webkit-transform: scale(0.5);
-        transform: scale(0.5);
+        -webkit-transform: scale(0);
+        transform: scale(0);
         -webkit-transform-origin: 100% 0%;
         transform-origin: 100% 0%;
     }
@@ -126,8 +123,8 @@
 
 @keyframes scale-up-tr {
     0% {
-        -webkit-transform: scale(0.5);
-        transform: scale(0.5);
+        -webkit-transform: scale(0);
+        transform: scale(0);
         -webkit-transform-origin: 100% 0%;
         transform-origin: 100% 0%;
     }
@@ -146,17 +143,11 @@
     }
 }
 
-.hoverme {
-    width: 240px;
-    margin: 150px auto 0;
-    text-align: center;
-    padding: 10px 0;
+.is-done-confety {
+    width: 140px;
+    height: 35px;
     cursor: pointer;
-    position: relative;
-    span {
-        color: #333;
-        font-size: .9em;
-    }
+    position: absolute;
     i {
         position: absolute;
         display: block;
@@ -167,14 +158,18 @@
         background: red;
         opacity: 0;
     }
-    &:hover {
-        @for $i from 1 through 50 {
-            i:nth-of-type(#{$i}) {
-                transform: translate3d(random(190) - 100 + px, random(50) - 100 + px, 0) rotate(random(360) + deg);
-                background: hsla(random(360), 100%, 50%, 1);
-                animation: bang 700ms ease-out forwards;
-                opacity: 0;
-            }
+    @for $i from 1 through 50 {
+        i:nth-of-type(#{$i}) {
+            transform: translate3d(random(190) - 100 + px, random(50) - 100 + px, 0) rotate(random(360) + deg);
+            background: hsla(random(360), 100%, 50%, 1);
+            animation: bang 700ms ease-out forwards;
+            opacity: 0;
         }
     }
+}
+
+.el-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

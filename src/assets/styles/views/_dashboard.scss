@@ -26,11 +26,9 @@
     grid-area: stats;
     grid-row: 1;
     grid-column: 1;
-    // gap: 1em;
     justify-content: space-between;
     height: 1fr;
     align-items: center;
-    // padding: 15px;
 }
 
 .doughnut-chart {
@@ -38,9 +36,6 @@
     grid-row: 1;
     grid-column: 2;
     gap: 1em;
-    // justify-content: space-between;
-    // height: 300px;
-    // width: 500px;
 }
 
 .bar-chart {
@@ -92,7 +87,7 @@
 .stat {
     height: 100%;
     width: 30%;
-    max-width: 225px;
+    max-width: 175px;
     flex-direction: column;
     justify-content: space-evenly;
     text-align: center;
@@ -103,6 +98,8 @@
 }
 
 .member-card {
+    width: 30%;
+    max-width: 175px;
     background-image: url('https://img.freepik.com/free-photo/abstract-luxury-plain-blur-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-80037.jpg?w=2000&t=st=1670593341~exp=1670593941~hmac=1a48fde3c6dc6322662150af003d4b63f72fce24854c3e1d1698cd7118f20bf7');
     justify-content: space-between;
     background-repeat: no-repeat;
@@ -116,7 +113,7 @@
 }
 
 .stat h2 {
-    font-size: 72px;
+    font-size: 52px;
 }
 
 @-webkit-keyframes flip-horizontal-bottom {
@@ -155,4 +152,10 @@
 .icon {
     height: 30px;
     width: 30px;
+}
+
+.dashboard-card-img{
+    width: 50px;
+    max-width: 40%;
+    margin: 0 auto ;
 }

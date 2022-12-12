@@ -33,23 +33,23 @@ export default {
   },
   data() {
     return {
-   
-    
+
+
       groupOpts: [{
         desc: this.group.isCollapse ? 'Expand this group' : 'Collapse this group'
         , type: 'collapse'
       },
       { desc: "Duplicate this group", type: 'duplicate' },
-       {
+      {
         desc: 'Add group', type: 'add'
       },
       { desc: "Delete", type: 'delete' },],
       // TODO change the add icon
-      icons: ['collapse', 'duplicateGrp', 'addGrp','deleteGrp'],
+      icons: ['collapse', 'duplicateGrp', 'addGrp', 'deleteGrp'],
 
       groupOpts2: [
-      { desc: 'Rename group', type: 'rename' },
-      { desc: 'Change group color', type: 'changeColor' }
+        { desc: 'Rename group', type: 'rename' },
+        { desc: 'Change group color', type: 'changeColor' }
       ],
       icons2: ['renameGrp', 'colorGrp']
     }
@@ -70,9 +70,12 @@ export default {
           this.$emit('collapse')
           // eventBus.emit('collapseGroup', { groupId: this.group.id })
           break;
-          case 'add':
-            eventBus.emit('addGroup')
-            break;
+        case 'add':
+          eventBus.emit('addGroup')
+          break;
+        case 'changeColor':
+          eventBus.emit('focusTitle')
+          break;
       }
     }
   },

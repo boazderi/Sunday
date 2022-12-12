@@ -15,7 +15,7 @@
             <button v-if="!info.comments.length" class="svg" v-icon="'addConversation'" @click="goToConversation" />
 
             <div v-else class="already-written">
-                <button class="svg" v-icon="'addConversation'" @click="goToConversation" />
+                <button class="svg" v-icon="'addConversationWithMsg'" @click="goToConversation" />
                 <div class="counter flex center align-center">{{ info.comments.length }}</div>
             </div>
         </div>

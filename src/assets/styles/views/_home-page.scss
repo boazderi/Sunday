@@ -1,21 +1,59 @@
 .home-page {
     position: relative;
     height: 100vh;
-    // background-color: green;
     font-family: Roboto;
+
     .home-page-header {
         height: 70px;
+        font-size: 1.5rem;
+        font-family: Roboto-bold;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 65px;
     }
+    .login-section{
+        width: 120px;
+        justify-content: space-between;
+    }
+    .login-btn{
+        padding: 8px 10px;
+        border-radius: 4px;
+
+        &:hover{
+            color: #5034FF;
+            background-color: #F0F3FF;
+        }
+    }
+
+    .logo-suffix {
+        position: absolute;
+        font-size: 0.5em;
+        font-family: 'Poppins-light';
+        font-weight: 700;
+        left: 183px;
+        top: 4px;
+    }
+
+    .header-img {
+        width: 40px;
+        margin: auto 0;
+        // margin-left: 65px;
+        line-height: 20px;
+    }
+
     .header-logo {
-        padding-left: 20px;
         line-height: 70px;
     }
+
     .first-layout {
         height: 600px;
         width: 100%;
         padding: 20px;
         background: linear-gradient(rgb(0, 1, 51) 0%, rgb(15, 16, 72) 100%);
     }
+
     .header-line {
         display: block;
         text-align: center;
@@ -23,42 +61,68 @@
         color: #fff;
         padding-bottom: 12px;
         font-weight: 400;
-        font-size: 80px;
-        line-height: 85px;
-        padding-top: 30px;
+        font-size: 70px;
+        line-height: 74px;
+        padding-top: 10px;
     }
+
     .first-homepage-line {
         background: -webkit-linear-gradient(#c2c2d2, #fff);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
     .sub-line {
         font-size: 24px;
-        line-height: 40px;
+        line-height: 35px;
         margin-top: 20px;
         text-align: center;
         color: #fff;
     }
+    .comet-underline {
+        transform: rotate(0);
+        width: 125px;
+        margin-right: 120px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #fff);
+    }
+
     .start-btn {
         background: linear-gradient(90deg, #5034FF 25.69%, #B4B4FF 100%);
         border-radius: 30px;
         color: #ffffff;
-        padding: 1rem;
+        padding-left: 31px;
+        display: flex;
+        align-items: center;
         font-size: 1rem;
-        font-family: 'Poppins';
-        font-weight: 300;
-        width: 156px;
+        font-family: 'Poppins-light';
+        font-weight: 400;
+        height: 50px;
+        width: 175px;
         margin-top: 44px;
+
+        .see-demo-arrow {
+            margin-top: 6px;
+            padding-left: 8px;
+        }
+
         &:hover {
             background: linear-gradient(90deg, #432cd5 25.69%, #9797d5 100%);
+
+            .see-demo-arrow {
+                padding-left: 16px;
+                transition: padding .5s;
+            }
         }
     }
+
     .home-img {
         background-image: url(https://taskndrop-drko.onrender.com/dist/home-page.4b79e61c.png);
         background-repeat: no-repeat;
         background-size: auto;
         background-position: top;
     }
+
     .star {
         background-image: url(https://dapulse-res.cloudinary.com/image/upload/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/parallax/integrations/star.svg);
         background-repeat: no-repeat;
@@ -78,6 +142,7 @@
         animation-play-state: running;
         animation-name: twinkle;
     }
+
     .star2 {
         width: 4.55173px;
         height: 4.55173px;
@@ -85,6 +150,7 @@
         top: 150px;
         position: absolute;
     }
+
     .star3 {
         width: 8.55173px;
         height: 8.55173px;
@@ -92,12 +158,14 @@
         top: 100px;
         position: absolute;
     }
+
     .star4 {
         width: 2.55173px;
         height: 2.55173px;
         left: 550px;
         position: absolute;
     }
+
     .star5 {
         width: 7.55173px;
         height: 7.55173px;
@@ -105,6 +173,7 @@
         top: 250px;
         position: absolute;
     }
+
     .star6 {
         width: 3.55173px;
         height: 3.55173px;
@@ -112,6 +181,7 @@
         top: 300px;
         position: absolute;
     }
+
     .star7 {
         width: 2.55173px;
         height: 2.55173px;
@@ -119,6 +189,7 @@
         top: 460px;
         position: absolute;
     }
+
     .star8 {
         width: 8.55173px;
         height: 8.55173px;
@@ -126,6 +197,7 @@
         top: 100px;
         position: absolute;
     }
+
     .star9 {
         width: 3.55173px;
         height: 3.55173px;
@@ -133,6 +205,7 @@
         top: 150px;
         position: absolute;
     }
+
     .star10 {
         width: 5.55173px;
         height: 5.55173px;
@@ -140,6 +213,7 @@
         top: 200px;
         position: absolute;
     }
+
     .star11 {
         width: 9.55173px;
         height: 9.55173px;
@@ -147,6 +221,7 @@
         top: 380px;
         position: absolute;
     }
+
     .star12 {
         width: 4.55173px;
         height: 4.55173px;
@@ -154,6 +229,7 @@
         top: 190px;
         position: absolute;
     }
+
     .star13 {
         width: 2.55173px;
         height: 2.55173px;
@@ -161,6 +237,7 @@
         top: 180px;
         position: absolute;
     }
+
     .star14 {
         width: 5.55173px;
         height: 5.55173px;
@@ -168,6 +245,7 @@
         top: 100px;
         position: absolute;
     }
+
     .star15 {
         width: 4.55173px;
         height: 4.55173px;
@@ -175,6 +253,7 @@
         top: 190px;
         position: absolute;
     }
+
     .star16 {
         width: 7.55173px;
         height: 6.55173px;
@@ -182,6 +261,7 @@
         top: 400px;
         position: absolute;
     }
+
     .star17 {
         width: 5.55173px;
         height: 5.55173px;
@@ -189,15 +269,18 @@
         top: 460px;
         position: absolute;
     }
+
     .second-layout {
         justify-content: space-between;
     }
+
     .bottom-homepage-img {
         border-radius: 20px;
         padding: 10px;
         margin: 10px 0;
         box-shadow: 0px 0px 4px 2px #d0d0d0;
     }
+
     .center-home-img {
         position: absolute;
         background-color: #ffffff;
@@ -208,16 +291,19 @@
         bottom: 0;
         transform: translate(-50%);
     }
+
     .small-home-img {
         width: 30%;
         max-width: 35%;
         margin: 10px;
         opacity: .7;
     }
+
     @keyframes twinkle {
         0% {
             transform: scale(0.3);
             opacity: 0.5;
         }
     }
+
 }

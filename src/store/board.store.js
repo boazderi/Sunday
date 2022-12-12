@@ -10,13 +10,13 @@ export const boardStore = {
             members: [],
             groupTitle: '',
             dynamicProps: [{
-                prop: 'priority',
-                values: []
-            },
-            {
-                prop: 'status',
-                values: []
-            },
+                    prop: 'priority',
+                    values: []
+                },
+                {
+                    prop: 'status',
+                    values: []
+                },
             ]
         }
     },
@@ -48,14 +48,14 @@ export const boardStore = {
         },
         addBoard(state, { board }) {
             state.boards.push(board)
-            // todo check if its not making probs with pointers
+                // todo check if its not making probs with pointers
             state.currBoard = board
         },
         updateBoard(state, { board }) {
             const idx = state.boards.findIndex(c => c._id === board._id)
             state.boards.splice(idx, 1, board)
-            // todo understand why its duplicate the boards in the workspace and in general
-            // state.currBoard = state.boards[idx]
+                // todo understand why its duplicate the boards in the workspace and in general
+                // state.currBoard = state.boards[idx]
             state.currBoard = board
         },
         savePrevBoard(state) {
@@ -123,7 +123,7 @@ export const boardStore = {
                         break;
                     case 'Timeline':
                         cmpOrder.push('timeline')
-                        progLineOrder.push('timeline-width')
+                        progLineOrder.push('div')
                         break;
                 }
             })
@@ -142,8 +142,8 @@ export const boardStore = {
             try {
                 const boards = await boardService.query()
                 context.commit({ type: 'setBoards', boards })
-                //NOTE: for first time login---  else is when we get into that action in
-                //  failure from database and that we dont wanna update the currBoard
+                    //NOTE: for first time login---  else is when we get into that action in
+                    //  failure from database and that we dont wanna update the currBoard
                 if (!context.state.currBoard) {
                     context.commit({
                         type: 'setCurrBoard',
@@ -206,12 +206,12 @@ export const boardStore = {
                 payload.boardId = state.currBoard._id
                 const updatedBoard = await boardService.addNewTask(payload)
                 commit({ type: 'updateBoard', board: updatedBoard })
-                //todo usermsg about success
+                    //todo usermsg about success
             }
             // Note-the err.message is string with loadBoards-action 
             catch (err) {
                 await dispatch({ type: err.message })
-                //todo usermsg about failure
+                    //todo usermsg about failure
             }
         },
         async removeTasks({ commit, state }, { payload }) {
