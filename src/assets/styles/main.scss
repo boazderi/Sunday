@@ -30,9 +30,11 @@
 @import "cmps/person-filter-modal";
 @import "cmps/main-filter-modal";
 @import "cmps/collapsed-group";
+
 // Views
 @import "views/board-app";
 @import "views/home-page";
 @import "views/task-conversation";
 @import "views/kanban";
 @import "views/dashboard";
+@import "views/login-signup"

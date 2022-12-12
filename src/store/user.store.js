@@ -18,14 +18,15 @@ export const userStore = {
     },
     mutations: {
         setLoggedinUser(state, { user }) {
-            state.loggedinUser = (user) ? { ...user } : null
+            state.loggedinUser = (user) ? { ...user } : userService.getLoggedinUser()
         },
+        
         setWatchedUser(state, { user }) {
             state.watchedUser = user
         },
         setUsers(state, { users }) {
             state.users = users
-            if (!state.loggedinUser) state.loggedinUser = users[0]
+
         },
         removeUser(state, { userId }) {
             state.users = state.users.filter(user => user._id !== userId)
@@ -66,9 +67,9 @@ export const userStore = {
             }
         },
         async loadUsers({ commit }) {
-            // TODO: loading
             try {
                 const users = await userService.getUsers()
+                
                 commit({ type: 'setUsers', users })
 
             } catch (err) {
@@ -104,15 +105,6 @@ export const userStore = {
                 throw err
             }
 
-        },
-        async increaseScore({ commit }) {
-            try {
-                const score = await userService.changeScore(100)
-                commit({ type: 'setUserScore', score })
-            } catch (err) {
-                console.log('userStore: Error in increaseScore', err)
-                throw err
-            }
         },
         // Keep this action for compatability with a common user.service ReactJS/VueJS
         setWatchedUser({ commit }, payload) {

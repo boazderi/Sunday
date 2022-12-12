@@ -23,6 +23,7 @@ export default {
   created() {
     socketService.emit(SOCKET_EMIT_SET_TOPIC, this.$route.params.id)
     socketService.on(SOCKET_EVENT_LOAD_CURRBOARD, this.loadCurrBoard)
+    this.$store.commit({type:'setLoggedinUser'})
   },
   methods: {
     async loadCurrBoard(boardId) {

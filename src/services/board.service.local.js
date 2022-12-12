@@ -144,29 +144,24 @@ function _getEmptyBoard() {
             "fullname": "Tal Liber",
             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg"
         },
-        members: [{
-            "id": "u101",
-            "fullname": "Tal Liber",
-            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
-            "color": "#8338ec"
-        },
-        {
-            "id": "u102",
-            "fullname": "Arnon Arditi",
-            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
-            "color": "#8338ec"
-        },
-        {
-            "id": "u103",
-            "fullname": "Boaz Deri",
-            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
-            "color": "#3a86ff"
-        },
-        {
-            "id": "u104",
-            "fullname": "Tal Amit",
-            "color": "#ff006e"
-        }
+        // Note-12.12 data structure changed by arnon 
+        members: [
+            {
+                "id" : "63971c8155a4592d442d69b6",
+                "username" : "Tal",
+                "password" : "$2b$10$RaTK7ZunP1dOcFI/SdkmVerwxTbnfgtS/SUg7uNC5BwAocIU7EPPO",
+                "fullname" : "Tal Liber",
+                "imgUrl" : "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+                "color" : "#8338ec"
+            },
+            {
+                "id" : "63971d4955a4592d442d69b7",
+                "username" : "Arnon",
+                "password" : "$2b$10$RpqYeY4kH6wuiUWf5vsBGu7ck01GwaZpXHBWSWgvsQ6N8mZrX7Xdi",
+                "fullname" : "Arnon Arditi",
+                "imgUrl" : "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
+                "color" : "#8338ec"
+            }
         ],
         activities: [],
         groups: [_getEmptyGroup()]

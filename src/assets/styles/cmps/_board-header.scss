@@ -7,6 +7,48 @@
 .users-list {
     cursor: pointer;
     position: relative;
+
+    .users-dropdown {
+        position: absolute;
+        width: 240px;
+        z-index: 70;
+        left: -200px;
+        top: 46px;
+        background-color: white;
+        box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.3);
+        padding: 8px;
+        padding-top: 9px;
+        border-radius: 6px;
+
+        .drop-title{
+            align-self: center;
+            padding: 4px 4px;
+            margin: 8px 0 16px 0;
+            cursor: default;
+            font-weight: 600;
+        }
+
+        .user-item {
+            margin-bottom: 8px;
+            min-width: 150px;
+            border-radius: 4px;
+
+            :first-child {
+                margin: 6px;
+            }
+
+            &:hover {
+                background-color: $primary-hover-clr;
+            }
+        }
+    }
+}
+
+
+
+.users-list-old {
+    cursor: pointer;
+    position: relative;
     margin-inline-end: 12px;
     padding: 6px;
     padding: 4px 8px;
@@ -27,7 +69,7 @@
         }
     }
 
-    .users-dropdown {
+    .users-dropdown-old {
         position: absolute;
         z-index: 70;
         top: 46px;
@@ -52,6 +94,24 @@
         }
     }
 }
+
+.last-seen-btn,
+.invite-btn {
+    height: 32px;
+    border-radius: 4px;
+    padding: 0 4px;
+
+    .svg {
+        margin-inline-end: 8px;
+    }
+
+    button {
+        cursor: inherit;
+        color: #323338;
+    }
+}
+
+
 
 .board-upper-header {
     border-bottom: 1px solid $primary-border-clr;
@@ -82,21 +142,7 @@
     margin-left: 2px;
 }
 
-.last-seen-btn,
-.invite-btn {
-    height: 32px;
-    border-radius: 4px;
-    padding: 0 4px;
 
-    .svg {
-        margin-inline-end: 8px;
-    }
-
-    button {
-        cursor: inherit;
-        color: #323338;
-    }
-}
 
 .board-nav-container {
     margin-top: 8px;
@@ -178,17 +224,19 @@
         padding: 4px 6px;
         color: $primary-txt-clr;
 
-        &.person{
+        &.person {
             margin-left: 8px;
         }
-        &.filter{
+
+        &.filter {
             padding-inline-end: 2px;
         }
+
         &::placeholder {
             color: $primary-txt-clr;
         }
 
-        span.arrow-down{
+        span.arrow-down {
             margin-inline-start: 4px;
         }
     }
@@ -203,7 +251,7 @@
     // input search
     .search-nav-filter {
         padding-left: 27px;
-        padding-inline-end:0 ;
+        padding-inline-end: 0;
         width: 82px;
         border: 0;
         transition: width .2s;

@@ -6,12 +6,18 @@ import mainTable from './views/main-table.vue'
 import kanban from './views/kanban.vue'
 import taskConversation from './views/task-conversation.vue'
 import dashboard from './views/dashboard.vue'
+import loginSignup from './views/login-signup.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: homePage
+    component: homePage,
+  },
+  {
+    path:'/login-signup',
+    name:'login-signup',
+    component:loginSignup
   },
   {
     path: '/board/:id',

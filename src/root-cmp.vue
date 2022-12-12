@@ -10,6 +10,7 @@
 
 import userMsg from './cmps/user-msg.vue'
 import homePage from './views/home-page.vue'
+import loginSignup from './views/login-signup.vue'
 
 export default {
 
@@ -21,7 +22,8 @@ export default {
   },
   components: {
     userMsg,
-    homePage
+    homePage,
+    loginSignup
   },
 }
 </script>

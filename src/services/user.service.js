@@ -56,19 +56,18 @@ async function update(user) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query('user')
-    const user = users.find(user => user.username === userCred.username)
-    // const user = await httpService.post('auth/login', userCred)
+    // const users = await storageService.query('user')
+    // const user = users.find(user => user.username === userCred.username)
+    const user = await httpService.post('auth/login', userCred)
     if (user) {
         // socketService.login(user._id)
         return saveLocalUser(user)
     }
 }
 async function signup(userCred) {
-    userCred.score = 10000
     if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
-    const user = await storageService.post('user', userCred)
-    // const user = await httpService.post('auth/signup', userCred)
+    // const user = await storageService.post('user', userCred)
+    const user = await httpService.post('auth/signup', userCred)
     // socketService.login(user._id)
     return saveLocalUser(user)
 }
@@ -97,32 +96,17 @@ function getLoggedinUser() {
     var user = JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
     if (!user) {
         user = {
-            "_id":"u101",
-            "fullname": "Tal Liber",
-            "username": "Tal",
-            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
-            "mentions": []
+            _id:"guest101",
+            fullname: "Guest who",
+            username: "Guest",
+            imgUrl: "https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png",
+            color:"#8338ec"
         }
-        return saveLocalUser(user)
+       
+         return saveLocalUser(user)
     }
     return user
 }
-
-
-// user-props 5.12
-// {
-//     "fullname": "Tal Liber",
-//
-//     "username": "Tal",
-//     "password": "123",
-//     "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
-//     "mentions": [{
-//         "id": "m101",
-//         "boardId": "b101",
-//         "taskId": "t2yn4E"
-//     }]
-// }
-
 
 // ;(async ()=>{
 //     await userService.signup({fullname: 'Puki Norma', username: 'puki', password:'123',score: 10000, isAdmin: false})

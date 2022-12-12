@@ -1,5 +1,6 @@
 <template>
   <section class="home-page flex column">
+    <button @click="onNavToLoginPage">login-signup</button>
     <section class="first-layout flex column align-center">
       <h1 class="header-line"><span class="first-homepage-line"> A platform built for a </span> 
         <br>
@@ -64,6 +65,10 @@ export default {
       if (CurrBoard) {
         this.$router.push({ path: `/board/${CurrBoard._id}/main-table` })
       }
+    },
+    onNavToLoginPage(){
+      console.log('hey')
+      this.$router.push('/login-signup')
     }
 
   }
