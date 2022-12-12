@@ -44,13 +44,11 @@
         padding-top: 12px;
         color: white;
         position: relative;
-
-        &:hover{
-            .column-drag-handle{
+        &:hover {
+            .column-drag-handle {
                 opacity: 1;
             }
         }
-
         .column-drag-handle {
             position: absolute;
             bottom: 6px;
@@ -60,39 +58,35 @@
             transition: opacity .3s ease;
         }
     }
-
     .col-content {
         background-color: $dark-background-color;
         padding-inline-start: 4px;
         padding-bottom: 8px;
         margin: 0px 0px 0px 4px;
-
         //todo need to handle the covering of dropdowns in the daynamic cmps
         // todo remove that when there is a designed scroller just for the good scales meanwhile
         padding-inline-end: 10px;
         height: 100%;
         position: relative;
-
-        .add-task{
+        .add-task {
             height: 37px;
             margin-top: 16px;
-            input{
+            input {
                 border: 0;
                 width: 102px;
                 height: 100%;
                 margin-inline-end: 4px;
-                &:focus-within{
+                &:focus-within {
                     outline: 0;
                 }
             }
-
-            button{
-                color:white;
+            button {
+                color: white;
                 background-color: lightblue;
                 border-radius: 4px;
                 padding: 4px 8px;
                 height: 100%;
-               .plus{
+                .plus {
                     margin-inline-end: 2px;
                 }
             }
@@ -102,6 +96,9 @@
         position: relative;
         height: 100%;
         // overflow-y: scroll;
+        .status-container {
+            width: 135px;
+        }
         .smooth-dnd-container {
             min-height: 44px;
         }
@@ -168,7 +165,6 @@
         }
     }
 }
-
 
 .add-task-btn {
     height: 45px;

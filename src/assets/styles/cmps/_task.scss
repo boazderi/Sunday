@@ -15,7 +15,7 @@
         background-color: $table-hover-clr;
         >*:not(:first-child) {
             background-color: inherit;
-            >*:only-child{
+            >*:only-child {
                 opacity: 0.8;
             }
         }
@@ -55,14 +55,13 @@
         border-inline-end: 0;
         padding: 6px 10px;
         input {
-            padding:  4px 3px;
+            padding: 4px 3px;
             padding-inline-start: 17px;
             border-radius: 4px;
             width: 100%;
             border: 0;
-         
             &:focus-within {
-                outline:1px solid $primary-clr ;
+                outline: 1px solid $primary-clr;
                 border: 0;
             }
         }
@@ -102,4 +101,9 @@
 .checkbox {
     width: 14px;
     height: 16px;
+}
+
+.el-card.is-always-shadow {
+    box-shadow: 0 8px 16px 0 rgb(0 0 0 / 32%);
+    border-radius: 8px;
 }
