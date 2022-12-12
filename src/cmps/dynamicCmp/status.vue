@@ -1,31 +1,19 @@
 <template>
-  <section
-    class="cell2 status-container"
-    @mouseover="isHover = true"
-    @mouseleave="isHover = false"
-  >   
-    <div
-      class="peeling-box scale-up-tr"
-      v-if="isHover"
-      :class="{
-        'table-modal-clicked': statusModalOpen,
-        'status-done': info.status === 'Done',
-        'status-working': info.status === 'Working',
-        'status-stuck': info.status === 'Stuck',
-        'status-empty': info.status === 'Empty',
-      }"
-    ></div>
+  <section class="cell2 status-container" @mouseover="isHover = true" @mouseleave="isHover = false">
+    <div class="peeling-box scale-up-tr" v-if="isHover" :class="{
+      'table-modal-clicked': statusModalOpen,
+      'status-done': info.status === 'Done',
+      'status-working': info.status === 'Working',
+      'status-stuck': info.status === 'Stuck',
+      'status-empty': info.status === 'Empty',
+    }"></div>
     <!-- todo-arnon code something wrong with showing the status -->
-    <p
-      class="status fully flex align-center center"
-      @click.stop="toggleStatusOptions"
-      :class="{
-        'status-done': info.status === 'Done',
-        'status-working': info.status === 'Working',
-        'status-stuck': info.status === 'Stuck',
-        'status-empty': info.status === 'Empty',
-      }"
-    >
+    <p class="status fully flex align-center center" @click.stop="toggleStatusOptions" :class="{
+      'status-done': info.status === 'Done',
+      'status-working': info.status === 'Working',
+      'status-stuck': info.status === 'Stuck',
+      'status-empty': info.status === 'Empty',
+    }">
       {{ formattedStatus }}
     </p>
 
@@ -34,7 +22,7 @@
         <status-modal @setStatus="setStatus"></status-modal>
       </el-collapse-transition>
     </div>
-        <confety :class="{'is-done-triger': isDone}" v-if="isDone"></confety>
+    <confety :class="{'is-done-triger': isDone}" v-if="isDone"></confety>
   </section>
 </template>
   
@@ -53,7 +41,7 @@ export default {
       isDone: false
     };
   },
-  mounted() {},
+  mounted() { },
   methods: {
     toggleStatusOptions() {
       this.statusModalOpen = !this.statusModalOpen;
@@ -63,11 +51,11 @@ export default {
       if (statusOpt === 'Done') {
         this.isDone = true
         console.log(this.isDone);
-        setTimeout(()=>{
+        setTimeout(() => {
           this.isDone = false
-        console.log(this.isDone);
+          console.log(this.isDone);
         }, 1000)
-        }
+      }
       this.toggleStatusOptions();
       this.$emit("update", { prop: "status", toUpdate: statusOpt });
     },

@@ -168,9 +168,11 @@
     display: flex !important;
 }
 
-.smooth-dnd-container.horizontal>.smooth-dnd-draggable-wrapper {
-    display: flex;
-    height: unset;
+.labels-grid {
+    .smooth-dnd-container.horizontal>.smooth-dnd-draggable-wrapper {
+        display: flex;
+        height: unset !important;
+    }
 }
 
 .label-drag {
