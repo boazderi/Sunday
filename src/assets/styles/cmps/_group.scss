@@ -33,10 +33,10 @@
 //GROUP-GRID important
 .group-grid {
     display: grid;
-    grid-template-columns: 40px 6px 32px 364px repeat(auto-fill, minmax(140px, 140px));
+    grid-template-columns: 40px 6px 32px 364px repeat(7, minmax(140px, 187px));
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
-    grid-auto-columns: minmax(140px, 140px);
+    // grid-auto-columns: minmax(140px, auto);
     >* {
         background-color: white;
     }
@@ -59,7 +59,7 @@
         }
     }
     &.labels-grid {
-        grid-template-columns: 40px 6px 32px 364px 1027px;
+        grid-template-columns: 40px 6px 32px 364px 980px;
     }
 }
 
