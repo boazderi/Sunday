@@ -1,6 +1,5 @@
 <template>
   <section class="home-page flex column">
-    <button @click="onNavToLoginPage">login-signup</button>
 
     <header class="home-page-header">
       <div class="flex">
@@ -8,10 +7,10 @@
         <div class="header-logo"> Sunday <span class="logo-suffix">.com</span></div>
       </div>
       <div class="flex login-section">
-        <button class="login-btn">Login</button>
-        <button>Sign-up</button>
+        <button class="login-btn" @click="onNavToLoginPage">Login / Signup</button>
       </div>
     </header>
+    
     <section class="first-layout flex column align-center">
       <h1 class="header-line"><span class="first-homepage-line"> A platform built for a </span> 
         <br>

@@ -162,6 +162,13 @@ function _getEmptyBoard() {
                 "fullname" : "Arnon Arditi",
                 "imgUrl" : "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
                 "color" : "#8338ec"
+            },
+            {
+                "id":"63974045914f8e57d67995cc",
+                "fullname": "Boaz Deri",
+                "username":"Boaz",
+                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
+                "color": "#3a86ff"
             }
         ],
         activities: [],
