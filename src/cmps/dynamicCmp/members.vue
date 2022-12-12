@@ -1,6 +1,5 @@
 <template>
   <section class="members-list-container">
-    <!-- class="members-list-container" @mouseover="isHover = true" @mouseleave="isHover = false"> -->
     <!-- todo: check if we need cell1 class -->
     <section class="members-list cell1" @click.stop="isListOpen = !isListOpen">
       <div class="plus-icon" v-icon="'plus'"></div>
@@ -29,7 +28,6 @@ export default {
   data() {
     return {
       isListOpen: false,
-      isHover: false,
     };
   },
   methods: {
