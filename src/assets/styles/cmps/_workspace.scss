@@ -27,6 +27,7 @@
         // transition
         transition: width .15s ease,
             padding-inline-end .15s ease,
+            padding-inline-start .15s ease,
             background-color .15s ease;
 
         // hover when workspace is close
@@ -35,7 +36,7 @@
             height: 22px;
             border-radius: 20px;
             justify-content: start;
-            padding-inline-end: 12px;
+            padding-inline-start: 12px;
             background-color: #0073ea;
             right: -34px;
 
@@ -188,6 +189,9 @@
             background-color: $primary-hover-clr;
         }
     }
+    .active-item{
+        background-color: $bg-big-sidebar-active;
+    }
 
     .item {
         width: 224px;
@@ -201,7 +205,7 @@
     background-color: inherit;
     width: 224px;
     height: 34px;
-    margin-bottom: 0px;
+    margin-bottom: 4px;
     padding: 0px 8px;
     border-radius: 4px;
     margin-inline-start: -9px;

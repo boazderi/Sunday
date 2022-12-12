@@ -74,7 +74,6 @@ export default {
   },
   computed: {
     formattedStatus() {
-      // console.log(this.info.status)
       if (this.info.status === "Working") return "Working on it";
       else if (this.info.status === "Empty") return "";
       else return this.info.status;

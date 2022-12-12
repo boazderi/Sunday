@@ -1,8 +1,14 @@
 <template>
   <section class="home-page flex column">
     <header class="home-page-header">
-      <div class="header-img"><img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670843553/l37uhxjpyxwwaxw6ifnp.png" alt=""></div>
-      <div class="header-logo"> Sunday <span class="logo-suffix">.com</span></div>
+      <div class="flex">
+        <div class="header-img"><img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670843553/l37uhxjpyxwwaxw6ifnp.png" alt=""></div>
+        <div class="header-logo"> Sunday <span class="logo-suffix">.com</span></div>
+      </div>
+      <div class="flex login-section">
+        <button class="login-btn">Login</button>
+        <button>Sign-up</button>
+      </div>
     </header>
     <section class="first-layout flex column align-center">
       <h1 class="header-line"><span class="first-homepage-line"> A platform built for a </span> 

@@ -9,7 +9,21 @@
         font-family: Roboto-bold;
         font-weight: 600;
         display: flex;
+        justify-content: space-between;
         align-items: center;
+        margin: 0 65px;
+    }
+    .login-section{
+        width: 120px;
+        justify-content: space-between;
+        border-radius: 4px;
+    }
+    .login-btn{
+        padding: 8px 10px;
+        &:hover{
+            color: #5034FF;
+            background-color: #F0F3FF;
+        }
     }
 
     .logo-suffix {
@@ -24,7 +38,7 @@
     .header-img {
         width: 40px;
         margin: auto 0;
-        margin-left: 65px;
+        // margin-left: 65px;
         line-height: 20px;
     }
 

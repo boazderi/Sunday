@@ -37,8 +37,8 @@
     <!-- board-list -->
     <section v-if="(boards.length)" class="fully">
       <ul class="clean-list board-list fully">
-        <li class="list-item" @click="setBoard(board._id)" v-for="board in boards" :key="board._id">
-          <div class="board-item flex align-center">
+        <li class="list-item" @click="setBoard(board._id)" v-for="board in boards" :key="board._id" :class="{'active-item': this.activeBoardId === board._id}">
+          <div class="board-item flex align-center" >
             <span class="flex align-center" v-icon="'folderIcon'"></span>
             <span>{{ board.title }}</span>
             
@@ -56,6 +56,7 @@ export default {
   data() {
     return {
       isOpen: true,
+      activeBoardId: '',
       actionList: [
         { title: 'Add', icon: 'add' },
         { title: 'Filter', icon: 'filter' },
@@ -71,6 +72,9 @@ export default {
       this.isOpen = !this.isOpen;
     },
     setBoard(boardId) {
+      console.log(boardId);
+      this.activeBoardId = boardId
+      console.log(this.activeBoardId);
       this.$store.commit({ type: 'setCurrBoard', boardId })
       this.$router.push(`/board/${boardId}/main-table`)
     },
