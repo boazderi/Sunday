@@ -1,4 +1,5 @@
 // status
+
 .status-modal-item {
     text-align: center;
     color: white;
@@ -25,15 +26,12 @@
     position: relative;
     width: 100%;
     height: 100%;
-    opacity: 0;
+    opacity: 1;
 }
 
 .status-container {
     position: relative;
     width: 140px;
-    // &:hover{
-    //     opacity:80%;
-    // }
 }
 
 .peeling-box {
@@ -146,17 +144,11 @@
     }
 }
 
-.hoverme {
-    width: 240px;
-    margin: 150px auto 0;
-    text-align: center;
-    padding: 10px 0;
+.is-done-confety {
+  width: 140px;
+  height: 35px;
     cursor: pointer;
-    position: relative;
-    span {
-        color: #333;
-        font-size: .9em;
-    }
+    position: absolute;
     i {
         position: absolute;
         display: block;
@@ -167,7 +159,6 @@
         background: red;
         opacity: 0;
     }
-    &:hover {
         @for $i from 1 through 50 {
             i:nth-of-type(#{$i}) {
                 transform: translate3d(random(190) - 100 + px, random(50) - 100 + px, 0) rotate(random(360) + deg);
@@ -176,5 +167,4 @@
                 opacity: 0;
             }
         }
-    }
 }

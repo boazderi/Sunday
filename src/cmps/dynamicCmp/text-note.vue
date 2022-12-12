@@ -23,6 +23,8 @@ export default {
         onChangeTaskText(ev) {
             this.$emit('update', { prop: 'textNote', toUpdate: ev.target.innerText })
         }
+    },
+    components: {
     }
 }
 </script>
