@@ -2,7 +2,7 @@
   <section class="dashboard-content">
     <cards-chart class="stats" :data="boardStats" :members="membersList"></cards-chart>
     <doughnut-chart class="doughnut-chart" :data="statusData" :options="options"></doughnut-chart>
-    <polar-chart class="polar-chart" :data="membersData" :options="options"></polar-chart>
+    <pie-chart class="polar-chart" :data="membersData" :options="options"></pie-chart>
     <bar-chart class="bar-chart" :data="priorityData" :options="options"></bar-chart>
   </section>
 </template>
