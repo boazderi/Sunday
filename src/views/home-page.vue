@@ -46,7 +46,7 @@
         <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670748647/fjpzc1uzx7tplcfmsrjt.jpg" alt="">
       </div>
       <div class="bottom-homepage-img  center-home-img"> 
-        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670748647/zpchoh3yjznee1nzog7j.jpg" alt="">
+        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670925994/rud8jppnthc9rxw4sjuw.jpg" alt="">
       </div>
       <div class="bottom-homepage-img small-home-img"> 
         <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670748646/gvlvpmnyzadeypqr2hpu.jpg" alt="">

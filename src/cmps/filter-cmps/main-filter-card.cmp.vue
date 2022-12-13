@@ -7,7 +7,7 @@
           :class="{ 'active-card-filter-item': acitvesLabels.some((currLabel) => currLabel === label) }"
           @click="setFilter(label, title)" :key="idx">
           <div class="card-color-circle" :style="{ backgroundColor: filterOptions[title].backgroundColor[idx], }" />
-          <div>{{ label }}</div>
+          <div class="main-card-label">{{ label.toLowerCase() }}</div>
         </div>
       </div>
       <div class="card-items-container" v-else>
