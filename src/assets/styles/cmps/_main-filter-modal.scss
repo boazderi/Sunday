@@ -63,6 +63,10 @@
     cursor: pointer;
 }
 
+.main-card-label{
+    text-transform: capitalize;
+}
+
 .card-items-container {
     display: flex;
     flex-direction: column;
