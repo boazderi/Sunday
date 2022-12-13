@@ -5,7 +5,7 @@
       <div
         v-for="priorityOpt in priorityOptions"
         :key="priorityOpt"
-        class="priority-modal-item"
+        class="priority-modal-item priority"
         :class="{
           'priority-critical': priorityOpt === 'CRITICAL',
           'priority-high': priorityOpt === 'HIGH',
@@ -16,7 +16,7 @@
         }"
         @click="setPriority(priorityOpt)"
       >
-        {{ priorityOpt !== 'EMPTY' ? priorityOpt : "&nbsp;" }}
+        {{ priorityOpt !== 'EMPTY' ? priorityOpt.toLowerCase() : "&nbsp;" }}
       </div>
     </el-card>
   </section>
@@ -39,9 +39,9 @@ export default {
     },
   },
   computed: {
-    // adjustedCurrPriority(){
-    //   return this.currPriority === 'EMPTY' ? '' : this.currPriority
-    // }
+    formattedPriority() {
+      return this.info.priority.toLowerCase();
+    },
   },
 };
 </script>
