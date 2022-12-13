@@ -11,10 +11,13 @@
             opacity: 0;
         }
     }
+
     &:hover {
-        background-color: $table-hover-clr;
         >*:not(:first-child) {
-            background-color: inherit;
+            background-color: $table-hover-clr;
+            z-index: 51;
+            // box-shadow: 0px 3px 6px -3px #c3c6d4;
+            box-shadow: 0px 3px 4px -2px #c3c6d4;
             >*:only-child {
                 opacity: 0.8;
             }
@@ -26,6 +29,15 @@
             }
         }
         .open-con {
+            opacity: 1;
+        }
+    }
+}
+
+.task-row.active-row{
+    >*:not(:first-child){
+        background-color:  $bg-big-sidebar-active;
+        >*:only-child {
             opacity: 1;
         }
     }

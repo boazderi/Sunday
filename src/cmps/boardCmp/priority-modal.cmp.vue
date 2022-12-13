@@ -11,11 +11,12 @@
           'priority-high': priorityOpt === 'HIGH',
           'priority-medium': priorityOpt === 'MEDIUM',
           'priority-low': priorityOpt === 'LOW',
-          'priority-empty': priorityOpt === '',
+          'priority-empty': priorityOpt === 'EMPTY',
+          'marked-priority': priorityOpt === currPriority,
         }"
         @click="setPriority(priorityOpt)"
       >
-        {{ priorityOpt || "&nbsp;" }}
+        {{ priorityOpt !== 'EMPTY' ? priorityOpt : "&nbsp;" }}
       </div>
     </el-card>
   </section>
@@ -23,16 +24,24 @@
 
 <script>
 export default {
+  props:{
+    currPriority: String,
+  },
   data() {
     return {
-      priorityOptions: ["CRITICAL", "HIGH", "MEDIUM", "LOW", ""],
+      priorityOptions: ['CRITICAL', 'HIGH', 'MEDIUM', 'LOW', 'EMPTY'],
     };
   },
   methods: {
     setPriority(priorityOpt) {
-      if (!priorityOpt) priorityOpt = "EMPTY";
-      this.$emit("setPriority", priorityOpt);
+      if (!priorityOpt) priorityOpt = 'EMPTY';
+      this.$emit('setPriority', priorityOpt);
     },
+  },
+  computed: {
+    // adjustedCurrPriority(){
+    //   return this.currPriority === 'EMPTY' ? '' : this.currPriority
+    // }
   },
 };
 </script>

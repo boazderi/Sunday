@@ -1,4 +1,5 @@
 // priority
+@import url(https://fonts.googleapis.com/css?family=Six+Caps);
 .priority-modal-item {
     text-align: center;
     color: white;
@@ -52,6 +53,13 @@
     background-color: $bg-priority-empty;
 }
 
+.marked-priority{
+    border: 0.2em solid #0073e9;
+    --color: #0073e9;
+    --border-width: 0.2em;
+    --animation-speed: 0.8s;
+}
+
 .priority-progress {
     padding: 5px 8px;
     z-index: 0;
@@ -73,3 +81,142 @@
         }
     }
 }
+
+
+.border-animation {
+    --border-width: 0.3px;
+    --animation-speed: 0.6s;
+    --color: #0073e9;
+    color: var(--color);
+    transform: scale(1, 0.9);
+    border: var(--border-width) solid transparent;
+    
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      background: var(--color);
+    }
+    
+    &:focus:before,
+    &:hover:before {
+      animation: beforeBorders var(--animation-speed) forwards ease-in-out;
+    }
+  
+    &:focus:after,
+    &:hover:after {
+      animation: afterBorders var(--animation-speed) forwards ease-in-out;
+    }
+    
+    &:focus,
+    &:hover {
+      animation: borderColors var(--animation-speed) steps(1) forwards;
+      outline: none;
+  
+      .border-animation__inner {
+        animation: background calc(var(--animation-speed) / 5 * 3) forwards ease-in-out;
+        animation-delay: calc(var(--animation-speed) / 5 * 2);
+      }
+    }
+  }
+  
+  @keyframes beforeBorders {
+    0% {
+      top: calc(var(--border-width) * -1);
+      left: 50%;
+      bottom: auto;
+      right: auto;
+      width: 3px;
+      height: 3px;
+    }
+    33% {    
+      top: calc(var(--border-width) * -1);
+      left: calc(var(--border-width) * -1);
+      bottom: auto;
+      right: auto;
+      width: calc(var(--border-width));
+      height: var(--border-width);
+    }
+    66% {
+      top: calc(var(--border-width) * -1);
+      left: calc(var(--border-width) * -1);
+      bottom: auto;
+      right: auto;
+      width: var(--border-width);
+      height: calc((var(--border-width) * 2) + 100%);
+    }
+    100% {
+      top: auto;
+      left: calc(var(--border-width) * -1);
+      bottom: calc(var(--border-width) * -1);
+      right: auto;
+      width: calc(var(--border-width));
+      height: calc((var(--border-width) * 2) + 100%);
+    }
+  }
+  
+  @keyframes afterBorders {
+    0% {
+      top: calc(var(--border-width) * -1);
+      left: auto;
+      bottom: auto;
+      right: 50%;
+      width: 0;
+      height: var(--border-width);
+    }
+    33% {    
+      top: calc(var(--border-width) * -1);
+      left: auto;
+      bottom: auto;
+      right: calc(var(--border-width) * -1);
+      width: calc(var(--border-width));
+      height: var(--border-width);
+    }
+    66% {
+      top: calc(var(--border-width) * -1);
+      left: auto;
+      bottom: auto;
+      right: calc(var(--border-width) * -1);
+      width: var(--border-width);
+      height: calc((var(--border-width) * 2) + 100%);
+    }
+    100% {
+      top: auto;
+      left: auto;
+      bottom: calc(var(--border-width) * -1);
+      right: calc(var(--border-width) * -1);
+      width: calc(var(--border-width) );
+      height: calc((var(--border-width) * 2) + 100%);
+    }
+  }
+  
+  @keyframes borderColors {
+    0% {
+      border-top-color: transparent;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+    }
+    33% {
+      border-top-color: var(--color);
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      border-left-color: transparent;
+  
+    }
+    66% {
+      border-top-color: var(--color);
+      border-right-color: var(--color);
+      border-bottom-color: transparent;
+      border-left-color: var(--color);
+    }
+    100% {
+      border-top-color: var(--color);
+      border-right-color: var(--color);
+      border-bottom-color: var(--color);
+      border-left-color: var(--color);
+    }
+  }
+  
+  
+  

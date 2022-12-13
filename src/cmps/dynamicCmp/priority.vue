@@ -27,7 +27,7 @@
     </p>
     <el-collapse-transition>
       <div class="priority-picker-modal" v-click-outside-element="togglePriorityOptions" v-if="priorityModalOpen">
-        <priority-modal @setPriority="setPriority"></priority-modal>
+        <priority-modal :currPriority="currPriority" @setPriority="setPriority"></priority-modal>
       </div>
     </el-collapse-transition>
   </section>
@@ -44,6 +44,7 @@ export default {
     return {
       priorityModalOpen: false,
       isHover : false,
+      currPriority: this.info.priority,
     };
   },
   methods: {
@@ -51,6 +52,7 @@ export default {
       this.priorityModalOpen = !this.priorityModalOpen;
     },
     setPriority(priorityOpt) {
+      this.currPriority = priorityOpt
       this.togglePriorityOptions();
       this.$emit("update", { prop: "priority", toUpdate: priorityOpt });
     },

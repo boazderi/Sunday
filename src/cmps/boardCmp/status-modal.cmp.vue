@@ -6,9 +6,12 @@
         'status-done': statusOpt === 'Done',
         'status-working': statusOpt === 'Working on it',
         'status-stuck': statusOpt === 'Stuck',
-        'status-empty': statusOpt === '',
+        'status-empty': statusOpt === 'Empty',
+        'marked-status': statusOpt === adjustedStatus,
+        'border-animation': statusOpt === adjustedStatus,
+        // 'marked-status': currStatus === 'Working'
       }" @click="setStatus(statusOpt)">
-        {{ statusOpt || '&nbsp;' }}
+        {{ statusOpt !== 'Empty' ? statusOpt : '&nbsp;' }}
       </div>
     </el-card>
   </section>
@@ -16,14 +19,17 @@
 
 <script>
 export default {
+  props: {
+    currStatus: String,
+  },
   data() {
     return {
-      statusOptions: ["Done", "Working on it", "Stuck", ""],
+      statusOptions: ["Done", "Working on it", "Stuck", "Empty"],
+      adjustedStatus: this.currStatus !== 'Working' ? this.currStatus : 'Working on it'
     };
   },
   methods: {
     setStatus(statusOpt) {
-
       // todo verify its not breaking that area
       if (statusOpt === 'Working on it') {
         statusOpt = 'Working'

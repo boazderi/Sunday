@@ -1,6 +1,6 @@
 <template>
   <section class="home-page flex column">
-    <button @click="onNavToLoginPage">login-signup</button>
+    <!-- <button @click="onNavToLoginPage">login-signup</button> -->
 
     <header class="home-page-header">
       <div class="flex">
