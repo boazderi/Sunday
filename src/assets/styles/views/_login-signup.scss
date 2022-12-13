@@ -6,6 +6,63 @@
         font-family: Roboto;
     }
 
+    
+    .home-page-header {
+        // align-self: stretch;
+        height: 70px;
+        font-size: 1.5rem;
+        font-family: 'Roboto-bold';
+        position: relative;
+        font-weight: 600;
+        color: #333333;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 65px;
+        border-bottom: 1px solid $primary-border-clr;
+
+        .login-section{
+            margin-inline-end: 65px;
+            // width: 120px;
+            justify-content: space-between;
+        }
+        .login-btn{
+            padding: 8px 10px;
+            border-radius: 4px;
+    
+            &:hover{
+                color: #5034FF;
+                background-color: #F0F3FF;
+            }
+        }
+
+
+        .logo-suffix {
+            position: absolute;
+            font-size: 0.5em;
+            font-family: 'Poppins-light';
+            font-weight: 700;
+            left: 183px;
+            top: 4px;
+        }
+    
+        .sub1{
+            margin-inline-start: 65px;
+
+            .header-img {
+                width: 40px;
+                margin: auto 0;
+                // margin-left: 65px;
+                line-height: 20px;
+            }
+        
+            .header-logo {
+                line-height: 70px;
+            }
+        }
+    }
+
     .title {
         margin: 50px;
         font-family: Roboto;
@@ -34,7 +91,7 @@
         .password-wrapper,
         .fullname-wrapper {
             margin-bottom: 16px;
-
+            width: 500px;
             span {
                 color: #ccc;
             }
@@ -56,7 +113,7 @@
         button {
             background-color: $primary-clr;
             width: 410px;
-            margin-top: 8px;
+            margin-top: 12px;
             align-self: flex-end;
             color: white;
             height: 48px;

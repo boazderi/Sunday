@@ -13,8 +13,8 @@ export const userService = {
     getLoggedinUser,
     saveLocalUser,
     getUsers,
-    getById,
-    remove,
+    // getById,
+    // remove,
     update,
     changeScore
 }
@@ -27,25 +27,25 @@ function getUsers() {
     return httpService.get(`user`)
 }
 
-function onUserUpdate(user) {
-    showSuccessMsg(`This user ${user.fullname} just got updated from socket, new score: ${user.score}`)
-    store.dispatch({ type: 'setWatchedUser', user })
-}
+// function onUserUpdate(user) {
+//     showSuccessMsg(`This user ${user.fullname} just got updated from socket, new score: ${user.score}`)
+//     store.dispatch({ type: 'setWatchedUser', user })
+// }
 
-async function getById(userId) {
-    const user = await storageService.get('user', userId)
-    // const user = await httpService.get(`user/${userId}`)
-
-    // socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
-    socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
-    socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
-
-    return user
-}
-function remove(userId) {
-    return storageService.remove('user', userId)
-    // return httpService.delete(`user/${userId}`)
-}
+// async function getById(userId) {
+//     const user = await storageService.get('user', userId)
+//     // const user = await httpService.get(`user/${userId}`)
+// 
+//     // socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
+//     socketService.off(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
+//     socketService.on(SOCKET_EVENT_USER_UPDATED, onUserUpdate)
+// 
+//     return user
+// }
+// function remove(userId) {
+//     return storageService.remove('user', userId)
+//     // return httpService.delete(`user/${userId}`)
+// }
 
 async function update(user) {
     await storageService.put('user', user)
