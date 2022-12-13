@@ -53,9 +53,10 @@
                 "color" : "#8338ec"
             },
             {
-                "id":"63974045914f8e57d67995cc",
+                "id":"63982ecba46074d44e318b8a",
                 "fullname": "Boaz Deri",
                 "username":"Boaz",
+                "password" : "$2b$10$RpqYeY4kH6wuiUWf5vsBGu7ck01GwaZpXHBWSWgvsQ6N8mZrX7Xdi",
                 "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
                 "color": "#3a86ff"
             }
@@ -88,13 +89,13 @@
                     "status": "Working",
                     "members": [
                         {
-                            "id": "u101",
+                            "id": "63973b2d1eaf6788972f5104",
                             "fullname": "Tal Liber",
                             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
                             "color": "#8338ec"
                         },
                         {
-                            "id": "u102",
+                            "id": "63973b451eaf6788972f5105",
                             "fullname": "Arnon Arditi",
                             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
                             "color": "#3a86ff"
@@ -111,13 +112,13 @@
                     "status": "Done",
                     "members": [
                         {
-                            "id": "u101",
+                            "id": "63973b2d1eaf6788972f5104",
                             "fullname": "Tal Liber",
-                            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+                            "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670851717/fhp5jlfirtsbzkl4mqyt.jpg",
                             "color": "#8338ec"
                         },
                         {
-                            "id": "u102",
+                            "id": "63973b451eaf6788972f5105",
                             "fullname": "Arnon Arditi",
                             "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
                             "color": "#3a86ff"
@@ -132,9 +133,9 @@
                             "txt": "also @yaronb please CR this",
                             "createdAt": 1590999817436,
                             "byMember": {
-                                "_id": "u101",
+                                "id": "63973b2d1eaf6788972f5104",
                                 "fullname": "Tal Liber",
-                                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/m99ikqcqjcuw75m4z8sl.jpg",
+                                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670851717/fhp5jlfirtsbzkl4mqyt.jpg",
                                 "color": "#8338ec"
                             }
                         },
@@ -143,7 +144,7 @@
                             "txt": "Baba and didi go to the yam",
                             "createdAt": 1590999212436,
                             "byMember": {
-                                "id": "u102",
+                                "id": "63973b451eaf6788972f5105",
                                 "fullname": "Arnon Arditi",
                                 "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
                                 "color": "#8338ec"

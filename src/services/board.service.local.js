@@ -164,7 +164,7 @@ function _getEmptyBoard() {
                 "color" : "#8338ec"
             },
             {
-                "id":"63974045914f8e57d67995cc",
+                "id":"63982ecba46074d44e318b8a",
                 "fullname": "Boaz Deri",
                 "username":"Boaz",
                 "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",

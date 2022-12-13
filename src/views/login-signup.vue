@@ -31,7 +31,7 @@
 
       <div class="password-wrapper flex align-center space-between">
         <span>Password</span>
-        <input type="text" v-model="credential.password" class="">
+        <input type="password" v-model="credential.password" class="">
       </div>
 
       <button @click="onSetActionByCase" class="flex align-center center">{{ buttonTextByCase }}</button>
