@@ -43,13 +43,13 @@
     </section>
     <section class="second-layout flex">
       <div class="bottom-homepage-img small-home-img"> 
-        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670748647/fjpzc1uzx7tplcfmsrjt.jpg" alt="">
+        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670929113/m9hk8uhs7w7nvlhhyb0p.jpg" alt="">
       </div>
       <div class="bottom-homepage-img  center-home-img"> 
         <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670925994/rud8jppnthc9rxw4sjuw.jpg" alt="">
       </div>
       <div class="bottom-homepage-img small-home-img"> 
-        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670748646/gvlvpmnyzadeypqr2hpu.jpg" alt="">
+        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670928919/pqb2xwpkxsaytq3n2kfo.jpg" alt="">
       </div>
 
     </section>

@@ -2,8 +2,8 @@
   <section class="dashboard-content">
     <cards-chart class="stats" :data="boardStats" :members="membersList"></cards-chart>
     <doughnut-chart class="doughnut-chart" :data="statusData" :options="options"></doughnut-chart>
-    <pie-chart class="polar-chart" :data="membersData" :options="options"></pie-chart>
-    <bar-chart class="bar-chart" :data="priorityData" :options="options"></bar-chart>
+    <pie-chart class="polar-chart" :data="priorityData"  :options="options"></pie-chart>
+    <bar-chart class="bar-chart" :data="membersData" :options="options"></bar-chart>
   </section>
 </template>
 
@@ -110,9 +110,10 @@ export default {
       var dataLabels = this.membersData.labels;
       this.currentBoard.groups.forEach((group) => {
         group.tasks.forEach((task) => {
+          if (task.members.length === 0) data[3]++
           task.members.forEach(member =>{
             const idx = dataLabels.findIndex((label) => label === member.fullname) 
-            idx >= 0 ? data[idx]++ : data[3]++
+            data[idx]++ 
           })
         })
       })

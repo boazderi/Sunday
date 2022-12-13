@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col align-center chart-container">
-    <h3 class="chart-head">Tasks by members</h3>
+    <h3 class="chart-head">Tasks by priority</h3>
     <PieChart
  class="chart" :chartData="data" :options="options" />
   </section>
