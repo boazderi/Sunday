@@ -82,7 +82,7 @@ export default {
       if (isSelected) tasks.forEach(t => this.selectedTasks.push(t.id))
     },
     log(...params) {
-      console.log(...params)
+      // console.log(...params)
     },
     onGroupDrop(dropResult) {
       this.groups = this.applyDrag(this.board.groups, dropResult)
