@@ -6,7 +6,7 @@
     <groupTitle :groupInfo="groupInfo" @update="updateTask" @collapse="collapseGroup" />
 
     <!-- <section v-if="!groupInfo.isCollapse" class="group-content"> -->
-    <section class="group-content">
+    <section class="group-content" v-click-outside-element="updateActiveTask">
 
       <!-- render group labels by labels array -->
       <section class="group-grid labels-grid">
@@ -36,8 +36,8 @@
           animationDuration: '200',
           showOnTop: true
         }" drag-class="on-drag">
-        <Draggable v-for="task in groupTasks" :key="task.id">
-          <section class="group-grid task-row">
+        <Draggable v-for="task in groupTasks" :key="task.id" >
+          <section class="group-grid task-row"  @click="updateActiveTask(task.id)" :class="{'active-row': activeTaskId === task.id}">
 
             <div class="more sticky">
               <span class="svg" v-icon="'more'"></span>
@@ -47,7 +47,7 @@
 
             <task-title :info="task" @update="updateTask($event, task.id)" />
             <component v-for="(cmp, idx) in getCmpOrder" :key="idx" :is="cmp" :info="task" :group="groupInfo"
-              @update="updateTask($event, task.id)" />
+              @update="updateTask($event, task.id)" @click="updateActiveTask(task.id)" />
           </section>
         </Draggable>
       </Container>
@@ -112,6 +112,7 @@ export default {
   data() {
     return {
       groupTasks: this.groupInfo.tasks,
+      activeTaskId: '',
       cmpOrder: [],
       labels: [],
       progLineOrder: [],
@@ -132,6 +133,13 @@ export default {
       })
     },
     // TODO-make it work for enter and blur but not both-get
+    updateActiveTask(taskId){
+      if(typeof taskId === 'string' && this.activeTaskId !== taskId){
+        this.activeTaskId = taskId
+      } else{
+        this.activeTaskId = ''
+      }
+    },
     onAddTask() {
       this.$store.dispatch({
         type: "addNewTask",

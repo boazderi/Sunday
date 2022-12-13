@@ -19,7 +19,7 @@
 
     <div class="status-picker-modal" v-click-outside-element="toggleStatusOptions" v-if="statusModalOpen">
       <el-collapse-transition>
-        <status-modal @setStatus="setStatus"></status-modal>
+        <status-modal :currStatus="currStatus" @setStatus="setStatus"></status-modal>
       </el-collapse-transition>
     </div>
     <confety :class="{'is-done-triger': isDone}" v-if="isDone"></confety>
@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       statusModalOpen: false,
+      currStatus: this.info.status,
       isHover: false,
       isDone: false
     };
@@ -50,12 +51,11 @@ export default {
     setStatus(statusOpt) {
       if (statusOpt === 'Done') {
         this.isDone = true
-        console.log(this.isDone);
         setTimeout(() => {
           this.isDone = false
-          console.log(this.isDone);
         }, 1000)
       }
+      this.currStatus = statusOpt
       this.toggleStatusOptions();
       this.$emit("update", { prop: "status", toUpdate: statusOpt });
     },
