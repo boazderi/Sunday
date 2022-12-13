@@ -6,18 +6,9 @@
                 <span>Last-seen</span>
                 <member-preview class="login-img" :member="loggedinUser"></member-preview>
             </div>
-
-            <!-- <section class="users-dropdown-old flex column" v-if="isDropOpen">
-                <div @click="setLoggedInUser(user._id)" class="user-item flex align-center" v-for="user in users"
-                    :key="user">
-                    <member-preview :member="user" class="user-img"></member-preview>
-                    <span>{{ user.fullname }}</span>
-                </div>
-            </section> -->
         </div>
 
         <div class="users-list flex column align-center" @click="toggleDropDown">
-
             <div class="invite-btn flex align-center outboard-hover">
                 <span class="svg" v-icon="'invite'"></span>
                 <button>{{ getCountOfMembers }}</button>
@@ -31,13 +22,9 @@
                     <member-preview :member="user" class="user-img"></member-preview>
                     <span>{{ user.fullname }}</span>
                 </div>
-
             </div>
 
-
-
         </div>
-
     </section>
 </template>
 

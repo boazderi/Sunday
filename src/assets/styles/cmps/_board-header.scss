@@ -47,7 +47,7 @@
 
 
 .users-list-old {
-    cursor: pointer;
+    cursor: default;
     position: relative;
     margin-inline-end: 12px;
     padding: 6px;
@@ -118,13 +118,17 @@
 }
 
 .board-name-title {
-    width: max-content;
+    width: fit-content;
+    // max-width: 200px;
     font-size: 1.5rem;
     padding: 4px;
+    padding-inline-end: 4px;
     border-radius: 4px;
+    transition: padding-inline-end .2s ease;
     &:focus-within {
         outline: 1px solid $primary-clr;
         border: 0;
+        padding-inline-end: 40px;
     }
 }
 
