@@ -25,8 +25,8 @@
           <div class="border1"></div>
           <!-- todo-render the sum of comments in title attribute when hover -->
           <div><span>Updates</span></div>
-          <div><span>Files</span></div>
-          <div><span>Activity Log</span></div>
+          <div><span class="files-btn">Files</span></div>
+          <div><span class="activity-btn">Activity Log</span></div>
         </div>
 
         <div>
@@ -163,8 +163,8 @@ export default {
       this.task.comments = updatedComments
       socketService.emit(SOCKET_EMIT_SEND_COMMENTS, updatedComments)
       this.$refs.commentInput.value = ''
-      // todo fix that 
-      console.log(this.$refs.commentInput.value)
+      // todo fix that value to ''
+
       this.isFormFocus = false
     },
     addCommentsBySocket(comments) {
@@ -179,12 +179,6 @@ export default {
     },
     onCloseForm() {
       this.isFormFocus = false
-    },
-    onBlurInput(ev) {
-      console.log('blur')
-      // ev.bubbles=true
-      // console.log(ev)
-      // this.isInputFocus = false
     },
     setConversationData(currBoard, taskId) {
 

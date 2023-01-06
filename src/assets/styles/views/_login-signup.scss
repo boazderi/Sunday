@@ -1,14 +1,11 @@
 .login-signup {
-    // background-color: lightblue;
     height: 100vh;
 
     >* {
         font-family: Roboto;
     }
 
-    
     .home-page-header {
-        // align-self: stretch;
         height: 70px;
         font-size: 1.5rem;
         font-family: 'Roboto-bold';
@@ -22,16 +19,16 @@
         margin: 0 65px;
         border-bottom: 1px solid $primary-border-clr;
 
-        .login-section{
+        .login-section {
             margin-inline-end: 65px;
-            // width: 120px;
             justify-content: space-between;
         }
-        .login-btn{
+
+        .login-btn {
             padding: 8px 10px;
             border-radius: 4px;
-    
-            &:hover{
+
+            &:hover {
                 color: #5034FF;
                 background-color: #F0F3FF;
             }
@@ -46,17 +43,16 @@
             left: 183px;
             top: 4px;
         }
-    
-        .sub1{
+
+        .sub1 {
             margin-inline-start: 65px;
 
             .header-img {
                 width: 40px;
                 margin: auto 0;
-                // margin-left: 65px;
                 line-height: 20px;
             }
-        
+
             .header-logo {
                 line-height: 70px;
             }
@@ -80,18 +76,13 @@
 
     .login-wrapper {
         width: fit-content;
-        // .username-wrapper{
-        //     
-        // }
-        // .password-wrapper{
-        //     
-        // }
 
         .username-wrapper,
         .password-wrapper,
         .fullname-wrapper {
             margin-bottom: 16px;
             width: 500px;
+
             span {
                 color: #ccc;
             }
@@ -128,17 +119,61 @@
 
     .signup-text {
         margin-top: 22px;
-        span{
+
+        span {
             font-weight: 100;
             margin-inline-end: 8px;
             color: #333;
         }
 
-        button{
+        button {
             color: #0fa2e2;
         }
     }
+}
 
+// MQ
+@media (max-width:680px) {
+    .login-signup {
+        .home-page-header {
+            .sub1 {
+                margin-inline-start: 20px;
+            }
 
+            .logo-suffix {
+                left: 139px;
+            }
 
+            .login-section {
+                margin-inline-end: 20px;
+            }
+        }
+    }
+}
+
+@media (max-width:550px) {
+    .login-signup {
+        .login-wrapper {
+
+            .username-wrapper,
+            .password-wrapper,
+            .fullname-wrapper {
+                width: 300px;
+
+                input {
+                    width: 210px;
+                    margin: 0;
+                }
+            }
+
+            button {
+                width: 210px;
+            }
+        }
+
+        .signup-text {
+            align-self: flex-end;
+            margin-inline-end: calc((100vw - 300px)/2);
+        }
+    }
 }

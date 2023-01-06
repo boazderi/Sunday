@@ -73,7 +73,6 @@ export default {
     onSetFilterBy(val) {
       this.$emit('setFilterBy', val)
       this.currFilter=val.charAt(0).toUpperCase()+val.slice(1)
-      // console.log(this.$refs.selectEl.placeholder) 
     },
     setSelectedColumns(col) {
       if (this.$refs[col][0].checked) this.selectedColumns.push(col)

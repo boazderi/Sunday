@@ -42,11 +42,11 @@
       </button>
     </el-tooltip>
 
-    <el-tooltip transition="none" auto-close="0" content="Hidden columns">
+    <!-- <el-tooltip transition="none" auto-close="0" content="Hidden columns">
       <button class="flex align-center board-filter-item outboard-hover">
         <span class="svg" v-icon="'hide'"></span> &nbsp; Hide
       </button>
-    </el-tooltip>
+    </el-tooltip> -->
 
     <button class="flex align-center board-filter-item outboard-hover">
       <span class="svg no-cursor" v-icon="'more'" />

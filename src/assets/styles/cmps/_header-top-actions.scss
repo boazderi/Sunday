@@ -1,0 +1,111 @@
+.header-top-actions {
+    gap: 8px;
+
+    .users-list {
+        cursor: pointer;
+        position: relative;
+
+        .users-dropdown {
+            position: absolute;
+            width: 240px;
+            z-index: 70;
+            left: -200px;
+            top: 46px;
+            background-color: white;
+            box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.3);
+            padding: 8px;
+            padding-top: 9px;
+            border-radius: 6px;
+
+            .drop-title {
+                align-self: center;
+                padding: 4px 4px;
+                margin: 8px 0 16px 0;
+                cursor: default;
+                font-weight: 600;
+            }
+
+            .user-item {
+                margin-bottom: 8px;
+                min-width: 150px;
+                border-radius: 4px;
+
+                :first-child {
+                    margin: 6px;
+                }
+
+                &:hover {
+                    background-color: $primary-hover-clr;
+                }
+            }
+        }
+    }
+
+    .loggin-user {
+        cursor: default;
+        position: relative;
+        margin-inline-end: 12px;
+        padding: 6px;
+        padding: 4px 8px;
+        border-radius: 4px 6px;
+
+        span {
+            padding-top: 5px;
+            font-size: em(14px);
+            color: #323338;
+        }
+
+        .login-img {
+            margin-inline-start: 8px;
+
+            &.member-preview {
+                width: 26px;
+                height: 26px;
+            }
+        }
+
+        .user-item {
+            margin-bottom: 8px;
+            min-width: 150px;
+            border-radius: 4px;
+
+            :first-child {
+                margin: 6px;
+            }
+
+            &:hover {
+                background-color: $primary-hover-clr;
+            }
+        }
+    }
+
+    .last-seen-btn,
+    .invite-btn {
+        height: 32px;
+        border-radius: 4px;
+        padding: 0 4px;
+
+        .svg {
+            margin-inline-end: 8px;
+        }
+
+        button {
+            cursor: inherit;
+            color: #323338;
+        }
+    }
+
+}
+
+// MQ
+@media(max-width:500px){
+    .header-top-actions {
+        .loggin-user{
+            margin-inline-end: 0;
+        }
+
+        .last-seen-txt{
+            display: none;
+        }
+    }
+}

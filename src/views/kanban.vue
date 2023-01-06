@@ -201,15 +201,12 @@ export default {
 
                 const newColumn = JSON.parse(JSON.stringify(column))
                 newColumn.tasks = this.applyDrag(newColumn.tasks, dropResult)
-                // console.log(newColumn);
-
                 kanbanColumn.splice(columnIdx, 1, newColumn)
 
                 this.kanbanColumn = kanbanColumn
             }
 
-            if (dropResult.addedIndex !== null && dropResult.removedIndex === null) {
-                // console.log(columnTitle, dropResult);    
+            if (dropResult.addedIndex !== null && dropResult.removedIndex === null) { 
                 await this.$store.dispatch({
                     type: "updateCurrBoard",
                     groupId: dropResult.payload.groupId,

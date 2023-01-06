@@ -7,8 +7,7 @@
         <div class="header-logo"> Sunday <span class="logo-suffix">.com</span></div>
       </div>
       <div class="flex login-section">
-        <!-- todo add an home icon -->
-        
+      
         <button class="login-btn flex align-center" @click="onNavToHomePage">
           <span class="" v-icon="'homeLogin'"></span>Home</button>
       </div>

@@ -9,6 +9,7 @@
       <el-date-picker class="timeline-input" format="YYYY/MM/DD" @change="updateTimePassed" v-model="value"
         value-format="x" placeholder="Set Dates" type="daterange" />
     </div>
+    
   </section>
 </template>
 

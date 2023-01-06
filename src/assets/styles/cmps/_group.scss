@@ -19,6 +19,12 @@
     }
 }
 
+
+.collapse-container{
+    width: 1280px;
+    position: relative;
+}
+
 .main-table {
     position: relative;
     height: 100%;
@@ -33,10 +39,11 @@
 //GROUP-GRID important
 .group-grid {
     display: grid;
-    grid-template-columns: 40px 6px 32px 364px repeat(7, minmax(140px, 187px));
+    grid-template-columns: 40px 6px 32px 364px repeat(7, 140px);
+    // todo verify that its warking fine
+    // grid-template-columns: 40px 6px 32px 364px repeat(7, minmax(140px,187px));
     grid-template-rows: rem(36px);
     grid-auto-flow: column;
-    // grid-auto-columns: minmax(140px, auto);
     >* {
         background-color: white;
     }
@@ -183,4 +190,20 @@
 
 input[type="checkbox"] {
     accent-color: $primary-clr;
+}
+
+@media(max-width:500px){
+    .group-container{
+        margin-bottom: 40px;
+    }
+
+    .group-grid {
+        grid-template-columns: 40px 6px 32px 230px repeat(7, 120px);
+        grid-template-rows: rem(46px);
+        &.labels-grid {
+            grid-template-columns: 40px 6px 32px 230px 840px;
+        }
+
+    }
+
 }

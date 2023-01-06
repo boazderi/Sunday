@@ -1,0 +1,206 @@
+.star {
+    background-image: url(https://dapulse-res.cloudinary.com/image/upload/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/parallax/integrations/star.svg);
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 500px;
+    background-size: cover;
+    width: 8.55173px;
+    height: 8.55173px;
+    animation-duration: 3s;
+    border-radius: 50%;
+    animation-delay: 6s;
+    will-change: transform;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: none;
+    animation-play-state: running;
+    animation-name: twinkle;
+}
+.star1 {
+    width: 4.55173px;
+    height: 4.55173px;
+    left: 300px;
+    top: 150px;
+    position: absolute;
+}
+
+.star2 {
+    width: 4.55173px;
+    height: 4.55173px;
+    left: 200px;
+    top: 150px;
+    position: absolute;
+}
+
+.star3 {
+    width: 8.55173px;
+    height: 8.55173px;
+    left: 600px;
+    top: 100px;
+    position: absolute;
+}
+
+.star4 {
+    width: 2.55173px;
+    height: 2.55173px;
+    left: 550px;
+    position: absolute;
+}
+
+.star5 {
+    width: 7.55173px;
+    height: 7.55173px;
+    left: 350px;
+    top: 250px;
+    position: absolute;
+}
+
+.star6 {
+    width: 3.55173px;
+    height: 3.55173px;
+    left: 300px;
+    top: 300px;
+    position: absolute;
+}
+
+.star7 {
+    width: 2.55173px;
+    height: 2.55173px;
+    left: 500px;
+    top: 460px;
+    position: absolute;
+}
+
+.star8 {
+    width: 8.55173px;
+    height: 8.55173px;
+    left: 100px;
+    top: 100px;
+    position: absolute;
+}
+
+.star9 {
+    width: 3.55173px;
+    height: 3.55173px;
+    left: 150px;
+    top: 150px;
+    position: absolute;
+}
+
+.star10 {
+    width: 5.55173px;
+    height: 5.55173px;
+    left: 125px;
+    top: 200px;
+    position: absolute;
+}
+
+.star11 {
+    width: 9.55173px;
+    height: 9.55173px;
+    left: 366px;
+    top: 380px;
+    position: absolute;
+}
+
+.star12 {
+    width: 4.55173px;
+    height: 4.55173px;
+    left: 460px;
+    top: 190px;
+    position: absolute;
+}
+
+.star13 {
+    width: 2.55173px;
+    height: 2.55173px;
+    left: 450px;
+    top: 180px;
+    position: absolute;
+}
+
+.star14 {
+    width: 5.55173px;
+    height: 5.55173px;
+    left: 100px;
+    top: 100px;
+    position: absolute;
+}
+
+.star15 {
+    width: 4.55173px;
+    height: 4.55173px;
+    left: 260px;
+    top: 190px;
+    position: absolute;
+}
+
+.star16 {
+    width: 7.55173px;
+    height: 6.55173px;
+    left: 860px;
+    top: 400px;
+    position: absolute;
+}
+
+.star17 {
+    width: 5.55173px;
+    height: 5.55173px;
+    left: 760px;
+    top: 460px;
+    position: absolute;
+}
+
+// MQ
+// 
+
+@media (max-width:875px){
+    .star16 {
+        left: 400px;
+    }
+}
+
+@media (max-width:775px){
+    .star17 {
+        left: 300px;
+    }
+}
+
+
+@media (max-width:635px){
+    .star3 {
+        left: 250px;
+    }
+    .star4{
+        left: 65px;
+    }
+}
+
+@media (max-width:510px){
+  .star7{
+    display: none;
+  }  
+  .star12{
+    left: 25px;
+    top: 300px;
+  }  
+  .star13{
+    left: 35px;
+    top: 500px;
+  }  
+}
+
+@media (max-width:430px){
+    .star16{
+        left: 50px;
+        top: 580px;
+    }
+    .star11{
+       display: none;
+    }
+    .star5{
+        left: 300px;
+        top: 540px;
+     }
+}

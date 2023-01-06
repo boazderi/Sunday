@@ -1,6 +1,6 @@
 import { userService } from '../services/user.service'
-import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from '../services/socket.service'
-import { START_ALIGNMENT } from 'element-plus/es/components/virtual-list/src/defaults'
+// import { socketService, SOCKET_EMIT_USER_WATCH, SOCKET_EVENT_USER_UPDATED } from '../services/socket.service'
+// import { START_ALIGNMENT } from 'element-plus/es/components/virtual-list/src/defaults'
 
 export const userStore = {
     state: {
@@ -23,13 +23,6 @@ export const userStore = {
         },
         setUsers(state, { users }) {
             state.users = users
-
-        },
-        removeUser(state, { userId }) {
-            state.users = state.users.filter(user => user._id !== userId)
-        },
-        setUserScore(state, { score }) {
-            state.loggedinUser.score = score
         },
     },
     actions: {
@@ -87,25 +80,7 @@ export const userStore = {
                 throw err
             }
         },
-        async removeUser({ commit }, { userId }) {
-            try {
-                await userService.remove(userId)
-                commit({ type: 'removeUser', userId })
-            } catch (err) {
-                console.log('userStore: Error in removeUser', err)
-                throw err
-            }
-        },
-        async updateUser({ commit }, { user }) {
-            try {
-                user = await userService.update(user)
-                commit({ type: 'setUser', user })
-            } catch (err) {
-                console.log('userStore: Error in updateUser', err)
-                throw err
-            }
 
-        },
         // Keep this action for compatability with a common user.service ReactJS/VueJS
         setWatchedUser({ commit }, payload) {
             commit(payload)

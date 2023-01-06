@@ -3,12 +3,13 @@
     text-align: center;
     line-height: 22px;
     width: 140px;
-}
-
-.wide-cell {
-    width: 187px;
     position: relative;
 }
+
+// .wide-cell {
+//     // width: 187px;
+//     position: relative;
+// }
 
 .timeline-btn {
     position: relative;
@@ -48,4 +49,15 @@
 
 .el-range-input {
     cursor: pointer;
+}
+
+@media(max-width:500px){
+    .cell1.timeline-container {
+        width: 120px;
+        .timeline-btn{
+            // width: 110px;
+            margin: 0 8px;
+        }
+
+    }
 }

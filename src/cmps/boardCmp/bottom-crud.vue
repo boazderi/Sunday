@@ -1,5 +1,5 @@
 <template>
-    <section class="bottom-crud flex align-center space-between">
+    <section class="bottom-crud flex align-center">
         <div class="sub1 flex align-center">
             <div v-if="selectedTasks"  class="selected-counter fully flex align-center center">{{ length }}</div>
             <div class="items-text">Items selected</div>

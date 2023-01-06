@@ -23,7 +23,7 @@
       <button class="start-btn flex align-cene=ter" @click="moveToBoard">
         Start Demo <span class="see-demo-arrow" v-icon="'homePageArrow'"> </span>
       </button>
-      <div class="star"></div>
+      <div class="star1 star"></div>
       <div class="star2 star"></div>
       <div class="star3 star"></div>
       <div class="star4 star"></div>
@@ -58,6 +58,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'home',
   data() {
@@ -77,7 +78,6 @@ export default {
       }
     },
     onNavToLoginPage(){
-      console.log('hey')
       this.$router.push('/login-signup')
     }
 

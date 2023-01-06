@@ -2,12 +2,19 @@
   <section v-if="board" class="main-table ">
     <section class="group-list">
 
-      <Container orientation="vertical" @drop="onGroupDrop($event)" @drag-start="(e) => log('drag start', e)"
-        @dragBeginDelay=0>
-        <Draggable v-for="group in board.groups" :key="group.id">
+     
+      <!-- :drag-begin-delay="200" -->
+      <!-- @autoScrollEnabled="true" -->
+      <!-- @autoScrollEnabled="true" -->
+      <Container orientation="vertical" :auto-scroll-enabled="true"  @dragBeginDelay="1000"   @drop="onGroupDrop($event)"
+        @drag-start="(e) => log('drag start', e)" >
+        <Draggable :auto-scroll-enabled="true"  @dragBeginDelay="1000" v-for="group in board.groups" :key="group.id">
           <group :groupInfo="group" />
         </Draggable>
       </Container>
+      <!-- <section v-for="group in board.groups" :key="group.id">
+          <group :groupInfo="group" />
+        </section> -->
 
       <div class="new-group-btn flex align-center space-even">
         <span class="svg" v-icon="'add'"></span>
@@ -85,6 +92,7 @@ export default {
       // console.log(...params)
     },
     onGroupDrop(dropResult) {
+      console.log(dropResult)
       this.groups = this.applyDrag(this.board.groups, dropResult)
       this.$store.dispatch({
         type: "updateDraggedItems",

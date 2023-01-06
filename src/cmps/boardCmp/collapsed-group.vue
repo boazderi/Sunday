@@ -11,6 +11,7 @@
                     :fill="groupInfo.color"></path>
             </svg>
         </div>
+        
         <title-content :groupInfo="groupInfo" @update="update" />
         <component v-for="(cell, idx) in getProgLineOrder" :key="idx" :is="cell" :group="groupInfo" class="cell" />
     </section>

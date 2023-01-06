@@ -1,9 +1,9 @@
 <template>
-    <section class="flex align-center board-top-actions">
+    <section class="flex align-center header-top-actions">
 
-        <div class="users-list-old flex column align-center outboard-hover">
+        <div class="loggin-user flex column align-center outboard-hover">
             <div class="flex center">
-                <span>Last-seen</span>
+                <span class="last-seen-txt">Last-seen</span>
                 <member-preview class="login-img" :member="loggedinUser"></member-preview>
             </div>
         </div>

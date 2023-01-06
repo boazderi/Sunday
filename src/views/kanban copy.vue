@@ -110,8 +110,6 @@ export default {
             this.setKanbanColumn()
         },
         onTaskDrop(columnTitle, dropResult) {
-            // console.log(columnTitle, dropResult);
-            console.log(this.kanbanColumn);
             if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
                 const kanbanColumn = JSON.parse(JSON.stringify(this.kanbanColumn))
                 const column = kanbanColumn.filter(column => column.title === columnTitle)[0]
@@ -119,8 +117,6 @@ export default {
                 
                 const newColumn = JSON.parse(JSON.stringify(column))
                 newColumn.tasks = this.applyDrag(newColumn.tasks, dropResult)
-                console.log(newColumn);
-
                 kanbanColumn.splice(columnIdx, 1, newColumn)
                 
                 this.kanbanColumn = kanbanColumn

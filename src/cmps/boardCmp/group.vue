@@ -1,11 +1,18 @@
 <template>
-  <section v-if="groupInfo.isCollapse">
+  <section class="collapse-container" v-if="groupInfo.isCollapse">
     <collapsed-group :groupInfo="groupInfo" @collapse="collapseGroup" @update="updateTask" />
   </section>
   <section v-else class="group-container">
-    <groupTitle :groupInfo="groupInfo" @update="updateTask" @collapse="collapseGroup" />
+    <!-- <Container orientation="vertical"  @drop="onGroupDrop($event)"
+        @drag-start="(e) => log('drag start:', e)" :drag-begin-delay="200"
+        >
+        @dragBeginDelay="200"
+      <Draggable>
+        <groupTitle :groupInfo="groupInfo" @update="updateTask" @collapse="collapseGroup" />
+      </Draggable> 
+     </Container> -->
+     <groupTitle :groupInfo="groupInfo" @update="updateTask" @collapse="collapseGroup" />
 
-    <!-- <section v-if="!groupInfo.isCollapse" class="group-content"> -->
     <section class="group-content" v-click-outside-element="updateActiveTask">
 
       <!-- render group labels by labels array -->
@@ -67,13 +74,11 @@
       <!--  progress by progress array -->
       <section class="progress-grid group-grid">
         <div v-for="pos in positions" :class="['sticky', 'empty', pos]" :key="pos"></div>
-        <!-- todo: change to cell1/cell2 -->
         <component v-for="(cell, idx) in getProgLineOrder" :key="idx" :is="cell" :group="groupInfo" class="cell" />
       </section>
     </section>
   </section>
 
-  <!-- todo add a collapsed-group-cmp and change the place of the v-if to group-container-->
 </template>
   
 <script>
@@ -185,12 +190,10 @@ export default {
     onColumnDrop(dropResult) {
       var draggedLabels = JSON.parse(JSON.stringify(this.labels))
       draggedLabels = this.applyDrag(draggedLabels, dropResult)
-      // console.log(draggedLabels);
       this.labels = draggedLabels
       this.$store.dispatch({ type: 'updateDraggedItems', labels: this.labels })
     },
     onTaskDrop(groupId, dropResult) {
-      // console.log(dropResult);
       this.groupTasks = this.applyDrag(this.groupTasks, dropResult)
 
       this.$store.dispatch({
@@ -204,6 +207,9 @@ export default {
         const currBoard = this.$store.getters.getCurrBoard
         return currBoard.groups.filter(group => group.id === groupId)[0].tasks[index]
       }
+    },
+    onGroupDrop(dropResult){
+      console.log(dropResult)
     },
 
     log(...params) {

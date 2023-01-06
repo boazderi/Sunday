@@ -1,11 +1,11 @@
 .bottom-crud {
-    justify-content: end;
+    justify-content: space-between;
     background-color: white;
     padding-inline-end: 10px;
     position: sticky;
     // todo for small heights screens need mq on top prop
     top: calc(86vh - 180px);
-    bottom: 35px;
+    // bottom: 35px;
     border-radius: 6px;
     left: 50%;
     width: 460px;
@@ -61,5 +61,25 @@
             padding-inline-start: 6px;
             border-left: 2px solid $primary-border-clr;
         }
+    }
+}
+// MQ
+// 
+@media (max-width:700px){
+    .bottom-crud {
+        width: fit-content;
+        justify-content: end;
+        left: 16px;
+        transform: translateX(0);
+        top: calc(83vh - 180px);
+        .sub1{
+
+            .items-text {
+                padding-inline-start: 10px;
+                margin-inline-end: 10px;
+                font-size: 16px;
+            }
+        }
+
     }
 }

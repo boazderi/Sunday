@@ -83,7 +83,6 @@ export const boardStore = {
             state.currBoard = board
         },
         changeDragged(state, { groupId, tasksToUpdate, groupsToUpdate }) {
-            // console.log(groupId, tasksToUpdate, groupsToUpdate);
             if (groupId) {
                 const idx = state.currBoard.groups.findIndex(group => group.id === groupId)
                 state.currBoard.groups[idx].tasks = tasksToUpdate
@@ -159,7 +158,6 @@ export const boardStore = {
         async addBoard(context) {
             try {
                 const board = await boardService.addBoard()
-                console.log(board.groups)
                 context.commit({ type: 'addBoard', board })
 
             } catch (err) {
@@ -167,15 +165,6 @@ export const boardStore = {
                 throw err
             }
         },
-        // async updateCurrBoard({ commit, state }, { groupId, taskId, prop, toUpdate }) {
-        //     try {
-        //         const updatedBoard = await boardService.updateBoard(state.currBoard._id, groupId, taskId, prop, toUpdate)
-        //         commit({ type: 'updateBoard', board: updatedBoard })
-        //     } catch (err) {
-        //         console.log('boardStore: Error in updateBoard', err)
-        //         throw err
-        //     }
-        // },
         async updateCurrBoard({ commit, state }, { groupId, taskId, prop, toUpdate }) {
             commit({ type: 'savePrevBoard' })
 
