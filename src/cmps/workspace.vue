@@ -25,8 +25,8 @@
     <section class="action-list flex column">
       <!-- action-list -->
       <div v-for="action in actionList" @click="onSetActionByTitle(action.title)"
-       :class="['flex', 'align-center','item',action.title]" :key="action">
-        <div class="flex align-center" v-icon="`${action.icon}`" ></div>
+        :class="['flex', 'align-center', 'item', action.title]" :key="action">
+        <div class="flex align-center" v-icon="`${action.icon}`"></div>
         <span :class="action.icon"> {{ action.title }}</span>
       </div>
     </section>
@@ -37,11 +37,12 @@
     <!-- board-list -->
     <section v-if="(boards.length)" class="fully">
       <ul class="clean-list board-list fully">
-        <li class="list-item" @click="setBoard(board._id)" v-for="(board, idx) in boards" :key="board._id" :class="{'active-item': this.activeBoardId === board._id || idx === 0 && !this.activeBoardId}">
-          <div class="board-item flex align-center" >
+        <li class="list-item" @click="setBoard(board._id)" v-for="(board, idx) in boards" :key="board._id"
+          :class="{ 'active-item': this.activeBoardId === board._id || idx === 0 && !this.activeBoardId }">
+          <div class="board-item flex align-center">
             <span class="flex align-center" v-icon="'folderIcon'"></span>
             <span>{{ board.title }}</span>
-            
+
           </div>
 
         </li>
@@ -73,13 +74,17 @@ export default {
     },
     setBoard(boardId) {
       this.activeBoardId = boardId
+
       this.$store.commit({ type: 'setCurrBoard', boardId })
       this.$router.push(`/board/${boardId}/main-table`)
     },
-    onSetActionByTitle(title){
-      if(title==='Add'){
+    onSetActionByTitle(title) {
+      if (title === 'Add') {
         this.$store.dispatch({ type: 'addBoard' })
       }
+    },
+    removeBoard(boardId) {
+      this.$store.dispatch({ type: 'removeBoard', boardId })
     }
   },
   computed: {
