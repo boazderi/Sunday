@@ -10,13 +10,13 @@ export const boardStore = {
             members: [],
             groupTitle: '',
             dynamicProps: [{
-                    prop: 'priority',
-                    values: []
-                },
-                {
-                    prop: 'status',
-                    values: []
-                },
+                prop: 'priority',
+                values: []
+            },
+            {
+                prop: 'status',
+                values: []
+            },
             ]
         }
     },
@@ -48,14 +48,11 @@ export const boardStore = {
         },
         addBoard(state, { board }) {
             state.boards.push(board)
-                // todo check if its not making probs with pointers
             state.currBoard = board
         },
         updateBoard(state, { board }) {
             const idx = state.boards.findIndex(c => c._id === board._id)
             state.boards.splice(idx, 1, board)
-                // todo understand why its duplicate the boards in the workspace and in general
-                // state.currBoard = state.boards[idx]
             state.currBoard = board
         },
         savePrevBoard(state) {
@@ -64,11 +61,8 @@ export const boardStore = {
         undoBoard(state) {
             state.currBoard = JSON.parse(JSON.stringify(state.prevBoard))
         },
-        removeBoard(state, { boardId }) {
-            state.boards = state.boards.filter(board => board._id !== boardId)
-        },
-        removeBoard(state, { boardId }) {
-            state.boards = state.boards.filter(board => board._id !== boardId)
+        removeBoard(state, { boardIdServer }) {
+            state.boards = state.boards.filter(board => board._id !== boardIdServer)
         },
         addBoardMsg(state, { boardId, msg }) {
             const board = state.boards.find(board => board._id === boardId)
@@ -141,8 +135,8 @@ export const boardStore = {
             try {
                 const boards = await boardService.query()
                 context.commit({ type: 'setBoards', boards })
-                    //NOTE: for first time login---  else is when we get into that action in
-                    //  failure from database and that we dont wanna update the currBoard
+                //NOTE: for first time login---  else is when we get into that action in
+                //  failure from database and that we dont wanna update the currBoard
                 if (!context.state.currBoard) {
                     context.commit({
                         type: 'setCurrBoard',
@@ -159,6 +153,16 @@ export const boardStore = {
             try {
                 const board = await boardService.addBoard()
                 context.commit({ type: 'addBoard', board })
+
+            } catch (err) {
+                console.log('boardStore: Error in addBoard', err)
+                throw err
+            }
+        },
+        async removeBoard(context, { boardId }) {
+            try {
+                const boardIdServer = await boardService.removeBoard(boardId)
+                context.commit({ type: 'removeBoard', boardIdServer })
 
             } catch (err) {
                 console.log('boardStore: Error in addBoard', err)
@@ -189,18 +193,17 @@ export const boardStore = {
                 throw err
             }
         },
-        // NOTE- example for the all-around pattern with errors
+        // NOTE- example for the all-around pattern with errors- optimistic approach
         async addNewTask({ dispatch, commit, state }, { payload }) {
             try {
                 payload.boardId = state.currBoard._id
                 const updatedBoard = await boardService.addNewTask(payload)
                 commit({ type: 'updateBoard', board: updatedBoard })
-                    //todo usermsg about success
+
             }
             // Note-the err.message is string with loadBoards-action 
             catch (err) {
                 await dispatch({ type: err.message })
-                    //todo usermsg about failure
             }
         },
         async removeTasks({ commit, state }, { payload }) {
@@ -209,8 +212,7 @@ export const boardStore = {
                 const updatedBoard = await boardService.removeTasks(payload)
                 commit({ type: 'updateBoard', board: updatedBoard })
             } catch (err) {
-                console.log("boardStore: cannot remove tasks", err)
-                throw err
+                await dispatch({ type: err.message })
             }
         },
         async setFilterBy({ commit, state }, { payload }) {
@@ -221,7 +223,7 @@ export const boardStore = {
                     commit({ type: 'setFilterBy', filterBy: currFilterBy })
                 }
             } catch (err) {
-
+                await dispatch({ type: err.message })
             }
         },
         async duplicateTasks({ commit, state }, { payload }) {
@@ -231,11 +233,9 @@ export const boardStore = {
                 commit({ type: 'updateBoard', board: updatedBoard })
 
             } catch (err) {
-                console.log("boardStore: cannot remove tasks", err)
-                throw err
+                await dispatch({ type: err.message })
             }
         },
-        // NOTE-new mechanism verify nothing is broken
 
         async addBoardMsg(context, { boardId, txt }) {
             try {
@@ -252,7 +252,7 @@ export const boardStore = {
                 const updatedBoard = await boardService.duplicateGroup(payload)
                 commit({ type: 'updateBoard', board: updatedBoard })
             } catch (err) {
-                console.log('boardStore: Error in duplicate group', err)
+                await dispatch({ type: err.message })
             }
         },
         async deleteGroup({ commit, state }, { payload }) {
@@ -261,18 +261,16 @@ export const boardStore = {
                 const updatedBoard = await boardService.deleteGroup(payload)
                 commit({ type: 'updateBoard', board: updatedBoard })
             } catch (err) {
-                console.log('boardStore: Error in duplicate group', err)
-
+                await dispatch({ type: err.message })
             }
         },
         async collapseGroup({ commit, state }, { payload }) {
-            //todo-for now Optimistic approach need to add prvBoard in case of failure
             commit({ type: 'updateGroupIsCollapse', groupId: payload.groupId })
 
             try {
                 await boardService.save(state.currBoard)
             } catch (err) {
-                console.log('boardStore: Error in collapsing group', err)
+                await dispatch({ type: err.message })
             }
         },
         async addGroup({ commit, state }) {
@@ -281,7 +279,7 @@ export const boardStore = {
                 const updatedBoard = await boardService.addGroup(boardId)
                 commit({ type: 'updateBoard', board: updatedBoard })
             } catch (err) {
-                console.log('boardStore: Error with create a new group', err)
+                await dispatch({ type: err.message })
             }
         },
     },

@@ -25,8 +25,8 @@
     <section class="action-list flex column">
       <!-- action-list -->
       <div v-for="action in actionList" @click="onSetActionByTitle(action.title)"
-       :class="['flex', 'align-center','item',action.title]" :key="action">
-        <div class="flex align-center" v-icon="`${action.icon}`" ></div>
+        :class="['flex', 'align-center', 'item', action.title]" :key="action">
+        <div class="flex align-center" v-icon="`${action.icon}`"></div>
         <span :class="action.icon"> {{ action.title }}</span>
       </div>
     </section>
@@ -87,12 +87,13 @@ export default {
     },
     setBoard(boardId) {
       this.activeBoardId = boardId
+
       this.$store.commit({ type: 'setCurrBoard', boardId })
       this.$router.push(`/board/${boardId}/main-table`)
       eventBus.emit('setCurrActive', 'main-layout')
     },
-    onSetActionByTitle(title){
-      if(title==='Add'){
+    onSetActionByTitle(title) {
+      if (title === 'Add') {
         this.$store.dispatch({ type: 'addBoard' })
       }
     },
@@ -101,6 +102,10 @@ export default {
     },
     openDeleteModal(boardId){
       console.log('start open modal');
+    },
+    
+    removeBoard(boardId) {
+      this.$store.dispatch({ type: 'removeBoard', boardId })
     }
   },
   computed: {

@@ -11,7 +11,7 @@ export const boardService = {
     query,
     getBoardById,
     save,
-    remove,
+    removeBoard,
     getEmptyBoard,
     addBoardMsg,
     updateBoard,
@@ -42,8 +42,13 @@ async function getBoardById(boardId) {
     }
 }
 
-async function remove(boardId) {
-    await storageService.remove(STORAGE_KEY, boardId)
+async function removeBoard(boardId) {
+    try {
+        const boardIdServer = await httpService.delete(`board/${boardId}`)
+        return boardIdServer
+    } catch (err) {
+        throw new Error('loadBoards')
+    }
 }
 
 async function save(board) {
@@ -63,7 +68,7 @@ async function save(board) {
 }
 
 async function addBoardMsg(boardId, txt) {
-   
+
     const board = await getBoardById(boardId)
     if (!board.msgs) board.msgs = []
 
@@ -124,25 +129,25 @@ function _getEmptyBoard() {
         // the default members need to be with the same id as DB!! 
         members: [
             {
-                "id" : "63973b2d1eaf6788972f5104",
-                "username" : "Tal",
-                "password" : "$2b$10$RaTK7ZunP1dOcFI/SdkmVerwxTbnfgtS/SUg7uNC5BwAocIU7EPPO",
-                "fullname" : "Tal Liber",
-                "imgUrl" : "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670851717/fhp5jlfirtsbzkl4mqyt.jpg",
-                "color" : "#8338ec"
+                "id": "63973b2d1eaf6788972f5104",
+                "username": "Tal",
+                "password": "$2b$10$RaTK7ZunP1dOcFI/SdkmVerwxTbnfgtS/SUg7uNC5BwAocIU7EPPO",
+                "fullname": "Tal Liber",
+                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670851717/fhp5jlfirtsbzkl4mqyt.jpg",
+                "color": "#8338ec"
             },
             {
-                "id" : "63973b451eaf6788972f5105",
-                "username" : "Arnon",
-                "password" : "$2b$10$RpqYeY4kH6wuiUWf5vsBGu7ck01GwaZpXHBWSWgvsQ6N8mZrX7Xdi",
-                "fullname" : "Arnon Arditi",
-                "imgUrl" : "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
-                "color" : "#8338ec"
+                "id": "63973b451eaf6788972f5105",
+                "username": "Arnon",
+                "password": "$2b$10$RpqYeY4kH6wuiUWf5vsBGu7ck01GwaZpXHBWSWgvsQ6N8mZrX7Xdi",
+                "fullname": "Arnon Arditi",
+                "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188871/ggfq1eh886iohap9nmmd.jpg",
+                "color": "#8338ec"
             },
             {
-                "id":"63982ecba46074d44e318b8a",
+                "id": "63982ecba46074d44e318b8a",
                 "fullname": "Boaz Deri",
-                "username":"Boaz",
+                "username": "Boaz",
                 "imgUrl": "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670188872/v24ixm31xhncmyyjkqpx.jpg",
                 "color": "#3a86ff"
             }
@@ -162,7 +167,7 @@ async function addNewTask({ boardId, groupId, taskTitle, status }) {
         if (status) {
             newTask.status = status
         }
-        currBoard.groups[groupIdx].tasks.push(newTask)  
+        currBoard.groups[groupIdx].tasks.push(newTask)
         // note keep it synchronous and in failure 
         // the loadBoards dispatch will action
 
