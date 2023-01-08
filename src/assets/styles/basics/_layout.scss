@@ -31,10 +31,114 @@
 // MQ for mobile
 @media(max-width:500px){
     .board-app {
-        grid-template-columns: 0 0 1fr;
-
+        grid-template-columns: 1fr;
+        .main-layout {
+            margin-inline-start: 10px;
+            padding-block-start: 16px;
+        }        
+        .sub-upper-header{
+            width: 100%;
+        }
         .workspace{
+            transform: translateX(-100%);
+            grid-column: 1/ -1;
+            &.active{
+                padding-top: 35px;
+                display: flex;
+                transition: 0.5s;
+                transform: translateX(0%);
+                align-items: center;
+                background-image: url(https://img.freepik.com/free-photo/blue-concrete-textured-background_53876-139902.jpg?w=1800&t=st=1673186401~exp=1673187001~hmac=2a329844d38038465fb0eb87d9f36560b24a83cca17fe6579b5fcd165b4edd04);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-blend-mode:luminosity;
+                .toggleWorkspace{
+                    display:  none;
+                }
+                .workspace-dropdown{
+                    display:  none;
+                }
+                .more-medium{
+                    display: none;
+                }
+                .dropdown-nav-header{
+                    justify-content: center;
+                    border-bottom: 4px double rgb(170, 170, 170);
+                    span{
+                        font-size: 1.75rem;
+                    }
+                }
+                .action-list{
+                    padding:0 0 8px 5px;
+                    margin: 10px 0 0 0;
+                }
+                .Add{
+                    margin-top: 20px;
+                    background-color: $group-clr-blue;
+                    padding: 5px;
+                    height: 48px;
+                    font-size: 1.25rem;
+                    &:hover{
+                        box-shadow: 0px 0px 6px 1px rgb(112, 111, 111);
+                    }
+                }
+                .Filter{
+                    display: none;
+                }
+                .Search{
+                    display: none;
+                }
+                .lists-border{
+                    display: none;
+                }
+                .list-item:not(.active-item){
+                    background-color: #ffffff;
+                }
+                .list-item{
+                    height: 48px;
+                    box-shadow: 0px 0px 8px 1px rgb(132, 132, 132);
+                    margin: 20px 0 20px -9px;
+                    .workspace-more-action{
+                            opacity: 1;
+                    }
+                }
+                .board-item{
+                    line-height: 48px;
+                    font-size: 1.25rem;
+                }
+                .workspace-footer{
+                    display: flex;
+                    background-color: #ffffff;
+                    width: 100vw;
+                    height: 100px;
+                    font-size: 1rem;
+                    justify-content: space-evenly;
+                    align-items: center;
+                    .workspace-bottom-link{
+                        display: flex;
+                        flex-direction: column;
+                        padding: 6px;
+                        border-radius: 5px;
+                        align-items: center;
+                        &:hover{
+                            background-color: rgb(232, 232, 232);
+                        }
+                        .home-icon{
+                            width: 25px;
+                        }
+                        .main-table-icon{
+                            width: 25px;
+                        }
+                    }
+                }
+
+            }
+        }
+        .board-header{
             display: none;
+            &.active{
+                display: unset;
+            }
         }
         .side-nav{
             display: none;

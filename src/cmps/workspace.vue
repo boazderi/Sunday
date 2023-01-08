@@ -37,20 +37,33 @@
     <!-- board-list -->
     <section v-if="(boards.length)" class="fully">
       <ul class="clean-list board-list fully">
-        <li class="list-item" @click="setBoard(board._id)" v-for="(board, idx) in boards" :key="board._id" :class="{'active-item': this.activeBoardId === board._id || idx === 0 && !this.activeBoardId}">
+        <li class="list-item flex space-between" @click="setBoard(board._id)" v-for="(board, idx) in boards" :key="board._id"
+         :class="{'active-item': this.activeBoardId === board._id || idx === 0 && !this.activeBoardId}">
           <div class="board-item flex align-center" >
             <span class="flex align-center" v-icon="'folderIcon'"></span>
             <span>{{ board.title }}</span>
-            
           </div>
-
+          <div class="workspace-more-action flex align-center" @click.stop.prevent="openDeleteModal(board._id)" v-icon="'moreMed'"></div>
         </li>
       </ul>
     </section>
+    <footer class="workspace-footer">
+        <router-link class="workspace-bottom-link" to="/">
+          <div class="home-icon"> <img src="https://cdn-icons-png.flaticon.com/512/2550/2550264.png" width="40" alt=""> </div>
+          <div> Home </div>
+        </router-link>
+        <div class="workspace-bottom-link" @click="mobileGoToMAinTable"> 
+          <div class="main-table-icon"> <img src="https://cdn-icons-png.flaticon.com/512/3286/3286768.png" alt=""> </div>
+           <div>Main table</div>
+        </div>
+    </footer>
   </section>
 </template>
 
 <script>
+
+
+import {eventBus} from '../services/event-bus.service'
 
 export default {
   data() {
@@ -61,7 +74,8 @@ export default {
         { title: 'Add', icon: 'add' },
         { title: 'Filter', icon: 'filter' },
         { title: 'Search', icon: 'search' },
-      ]
+      ],
+      moreAction: ''
     }
   },
   created() {
@@ -75,11 +89,18 @@ export default {
       this.activeBoardId = boardId
       this.$store.commit({ type: 'setCurrBoard', boardId })
       this.$router.push(`/board/${boardId}/main-table`)
+      eventBus.emit('setCurrActive', 'main-layout')
     },
     onSetActionByTitle(title){
       if(title==='Add'){
         this.$store.dispatch({ type: 'addBoard' })
       }
+    },
+    mobileGoToMAinTable(){
+            eventBus.emit('setCurrActive', 'main-layout')
+    },
+    openDeleteModal(boardId){
+      console.log('start open modal');
     }
   },
   computed: {

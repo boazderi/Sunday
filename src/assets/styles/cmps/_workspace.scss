@@ -198,6 +198,9 @@
         padding-inline-start: 6px;
         margin-inline-start: -6px;
     }
+    .workspace-footer{
+        display: none;
+    }
 
 }
 
@@ -210,8 +213,15 @@
     border-radius: 4px;
     margin-inline-start: -9px;
 
+
     &:hover {
         background-color: $primary-hover-clr;
+    }
+    .workspace-more-action{
+        opacity: 0;
+        &:hover{
+            opacity: 1;
+        }
     }
 }
 
