@@ -2,7 +2,7 @@
   <section class="board-header main-layout">
     <div class="board-upper-header flex flex-col">
       <div class="sub-upper-header flex ">
-        <div class="back-to-workspace" @click="backToWorkspace()"> <img src="https://cdn-icons-png.flaticon.com/512/2099/2099166.png" alt=""> </div>
+        <div class="back-to-workspace" @click="backToWorkspace()"> <img src="https://cdn-icons-png.flaticon.com/512/2223/2223615.png" alt=""> </div>
         <board-name />
         <header-top-actions />
       </div>
