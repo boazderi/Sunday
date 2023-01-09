@@ -2,9 +2,9 @@
   <section v-if="board" class="main-table ">
     <section class="group-list">
 
-      <Container orientation="vertical" :auto-scroll-enabled="true"  @dragBeginDelay="1000"   @drop="onGroupDrop($event)"
-        @drag-start="(e) => log('drag start', e)" >
-        <Draggable :auto-scroll-enabled="true"  @dragBeginDelay="1000" v-for="group in board.groups" :key="group.id">
+      <Container orientation="vertical" drag-begin-delay="1000" @drop="onGroupDrop($event)"
+        @drag-start="(e) => log('drag start', e)">
+        <Draggable @dragBeginDelay="1000" v-for="group in board.groups" :key="group.id">
           <group :groupInfo="group" />
         </Draggable>
       </Container>

@@ -39,6 +39,9 @@
         .sub-upper-header{
             width: 100%;
         }
+        .board-name-title{
+            margin-left: -86px;
+        }
         .workspace{
             transform: translateX(-100%);
             grid-column: 1/ -1;
@@ -101,6 +104,15 @@
                     .workspace-more-action{
                             opacity: 1;
                     }
+                    .delete-modal{
+                        height: 48px;
+                        line-height: 48px;
+                        font-size: 1.25rem;
+                        &.open{
+                            transform: translate(-9px, 52px);
+                            background-color: #f6f7fb;
+                        }
+                    }
                 }
                 .board-item{
                     line-height: 48px;
@@ -131,7 +143,6 @@
                         }
                     }
                 }
-
             }
         }
         .board-header{
@@ -142,6 +153,9 @@
         }
         .side-nav{
             display: none;
+        }
+        .home-page{
+
         }
     }
 }
