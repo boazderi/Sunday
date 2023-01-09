@@ -140,7 +140,8 @@
         z-index: 20;
         min-width: 40%;
         max-width: 45%;
-        // aspect-ratio: 14 / 10;
+        aspect-ratio: 16 / 10;
+        max-height: 35%;
         left: 50%;
         bottom: 10px;
         transform: translate(-50%);
@@ -204,6 +205,7 @@
         }
     }
 }
+
 @media (max-width:500px){
     .home-page{
         .header-line{
@@ -213,6 +215,7 @@
         .center-home-img{
             max-height: 35vh;
             min-width: 85vw;
+            aspect-ratio: 4 / 4;
         }
         .carousel-img{
             height: 35vh;
@@ -221,19 +224,48 @@
     }
 }
 
-@media (min-width:2000px) and (min-height:1000px){
+@media (max-width:300px){
+    .home-page{
+        .header-line{
+            font-size: 26px;
+            line-height: 28px;
+        }
+        .logo-suffix {
+            display: none;
+        }
+    }
+}
+
+@media (min-width:1500px) and (min-height:1000px){
     .home-page{
         .header-line{
             font-size: 90px;
             line-height: 94px;
         }
-        .center-home-img{
-            height: 45vh;
-            min-width: 45vw;
+        .center-home-img {
+            object-fit:fill;
+            position: absolute;
+            background-color: #ffffff;
+            z-index: 20;
+            min-width: 40%;
+            max-width: 45%;
+            aspect-ratio: 18 / 13;
+            max-height: 35%;
+            left: 50%;
+            bottom: 10px;
+            transform: translate(-50%);
+            padding: 20px;
         }
         .carousel-img{
-            height: 250%;
-            min-width: 100%;
+            object-fit:cover;
+            height: fit-content;
+        }
+        .el-carousel__container{
+            height: 100%;            
+        }
+        .el-carousel__item{
+            overflow: visible;
+            height: max-content;
         }
     }
 }
