@@ -18,7 +18,6 @@
         <span class="logo" v-icon="'homeSmall'"></span>
         <span class="text">Main workspace</span>
       </div>
-
       <div class="flex align-center" v-icon="'arrowDownBlack'"></div>
     </div>
 
@@ -43,7 +42,15 @@
             <span class="flex align-center" v-icon="'folderIcon'"></span>
             <span>{{ board.title }}</span>
           </div>
-          <div class="workspace-more-action flex align-center" @click.stop.prevent="openDeleteModal(board._id)" v-icon="'moreMed'"></div>
+          <div class="workspace-more-action flex align-center" @click.stop.prevent="openDeleteModal(board._id)">
+            <div v-icon="'moreMed'"></div>
+          </div>
+          <div class="delete-modal flex align-center" :class="{'open': this.moreAction === board._id}"
+           @click.stop="removeBoard(board._id)"
+           v-click-outside-element="closeDeleteModal">
+            <div class="flex align-center" v-icon="'deleteGrp'"></div>
+            <div>Delete</div>
+          </div>
         </li>
       </ul>
     </section>
@@ -101,9 +108,12 @@ export default {
             eventBus.emit('setCurrActive', 'main-layout')
     },
     openDeleteModal(boardId){
-      console.log('start open modal');
+      if(this.moreAction === boardId) this.moreAction = ''
+      else this.moreAction = boardId
     },
-    
+    closeDeleteModal(){
+      this.moreAction = ''
+    },
     removeBoard(boardId) {
       this.$store.dispatch({ type: 'removeBoard', boardId })
     }

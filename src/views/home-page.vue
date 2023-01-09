@@ -40,18 +40,11 @@
       <div class="star15 star"></div>
       <div class="star16 star"></div>
       <div class="star17 star"></div>
-    </section>
-    <section class="second-layout flex">
-      <div class="bottom-homepage-img small-home-img"> 
-        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670929113/m9hk8uhs7w7nvlhhyb0p.jpg" alt="">
-      </div>
-      <div class="bottom-homepage-img  center-home-img"> 
-        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670925994/rud8jppnthc9rxw4sjuw.jpg" alt="">
-      </div>
-      <div class="bottom-homepage-img small-home-img"> 
-        <img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670928919/pqb2xwpkxsaytq3n2kfo.jpg" alt="">
-      </div>
-
+      <el-carousel type="" class="bottom-homepage-img center-home-img"> 
+        <el-carousel-item v-for="(url, idx) in imgUrls" :key="idx">
+          <img :src="url" class="carousel-img">
+        </el-carousel-item>
+      </el-carousel>
     </section>
   </section>
 
@@ -63,6 +56,11 @@ export default {
   name: 'home',
   data() {
     return {
+      imgUrls: [
+        "https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670929113/m9hk8uhs7w7nvlhhyb0p.jpg",
+        'https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670925994/rud8jppnthc9rxw4sjuw.jpg',
+        'https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670928919/pqb2xwpkxsaytq3n2kfo.jpg'
+      ]
     }
   },
   computed: {
