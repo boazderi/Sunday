@@ -42,8 +42,10 @@
           <div class="board-item flex align-center" >
             <span class="flex align-center" v-icon="'folderIcon'"></span>
             <span>{{ board.title }}</span>
+            
           </div>
           <div class="workspace-more-action flex align-center" @click.stop.prevent="openDeleteModal(board._id)" v-icon="'moreMed'"></div>
+        
         </li>
       </ul>
     </section>

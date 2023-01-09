@@ -33,7 +33,6 @@ async function query() {
 
 async function getBoardById(boardId) {
     try {
-        // todo verify its need to be asynchron
         const board = await httpService.get(`board/${boardId}`)
         return board
 

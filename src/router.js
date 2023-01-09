@@ -23,7 +23,6 @@ const routes = [
     path: '/board/:id',
     name: 'board',
     component: boardApp,
-    // todo -more gentle routing
     children: [
       {
         path: '/board/:id/main-table',
