@@ -23,6 +23,11 @@
       <button class="start-btn flex align-cene=ter" @click="moveToBoard">
         Start Demo <span class="see-demo-arrow" v-icon="'homePageArrow'"> </span>
       </button>
+      <el-carousel type="" class="bottom-homepage-img center-home-img"> 
+          <el-carousel-item v-for="(url, idx) in imgUrls" :key="idx">
+            <img :src="url" class="carousel-img">
+          </el-carousel-item>
+      </el-carousel>
       <div class="star1 star"></div>
       <div class="star2 star"></div>
       <div class="star3 star"></div>
@@ -40,11 +45,6 @@
       <div class="star15 star"></div>
       <div class="star16 star"></div>
       <div class="star17 star"></div>
-      <el-carousel type="" class="bottom-homepage-img center-home-img"> 
-        <el-carousel-item v-for="(url, idx) in imgUrls" :key="idx">
-          <img :src="url" class="carousel-img">
-        </el-carousel-item>
-      </el-carousel>
     </section>
   </section>
 
