@@ -23,7 +23,6 @@ export const boardService = {
     addGroup,
     filterCurrBoard,
     addBoard
-    // updateDraggedGroup
 }
 window.cs = boardService
 
@@ -255,6 +254,7 @@ async function addGroup(boardId) {
 
 function filterCurrBoard(currBoard, filterBy) {
     var filteredBoard = JSON.parse(JSON.stringify(currBoard))
+
     const regex = new RegExp(filterBy.text, 'i')
 
     var filteredGroups = []

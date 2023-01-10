@@ -39,6 +39,7 @@ export default {
     }
   },
   created() {
+
     eventBus.on('addTaskIdToCollection', this.addTaskIdToCollection)
     eventBus.on('removeTaskIdFromCollection', this.removeTaskIdFromCollection)
     eventBus.on('setAllTaskInContext', this.setAllTaskInContext)
@@ -112,6 +113,7 @@ export default {
   },
   computed: {
     board() {
+   
       return this.$store.getters.getCurrBoard
     },
   },
