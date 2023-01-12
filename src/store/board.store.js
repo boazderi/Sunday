@@ -24,9 +24,12 @@ export const boardStore = {
         getBoards({ boards }) {
             return boards
         },
-        getCurrBoard({ filterBy, currBoard }) {
-            // return currBoard
-            return boardService.filterCurrBoard(currBoard, filterBy)
+        getCurrBoard({filterBy ,currBoard }) {
+            if(currBoard){
+                return boardService.filterCurrBoard(currBoard, filterBy)
+            } else {
+                return currBoard
+            }
         },
         getCmpOrder({ currBoard }) {
             return currBoard.cmpOrder
@@ -71,7 +74,7 @@ export const boardStore = {
         },
         setCurrBoard(state, { boardId }) {
             const newBoard = state.boards.find(board => board._id === boardId)
-            state.currBoard = newBoard
+            state.currBoard = boardService.filterCurrBoard(newBoard, state.filterBy)
         },
         setCurrBoardBySocket(state, { board }) {
             state.currBoard = board

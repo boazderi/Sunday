@@ -1,12 +1,19 @@
 <template>
 
-  <section class="board-app">
+  <section v-if="currBoard" class="board-app">
     <side-nav />
     <workspace :class="{'active' : active === 'workspace'}"/>
     <board-header :class="{'active' : active === 'main-layout'}" />
     <section class="board-content">
       <router-view></router-view>
     </section>
+  </section>
+  <section v-else @load="loadCurrBoard(this.$route.params.id)" class="loader-container">
+    <div class="loader">
+      <div class="inner one"></div>
+      <div class="inner two"></div>
+      <div class="inner three"></div>
+    </div>
   </section>
 
 </template>
@@ -22,13 +29,16 @@ import { boardService } from "../services/board.service.local.js"
 export default {
   data(){
     return {
-      active: 'workspace'
+      active: 'workspace',
+      isLoaded: false,
+      currBoard: this.$store.getters.getCurrBoard
     }
   },
-  created() {
+  async created() {
     socketService.emit(SOCKET_EMIT_SET_TOPIC, this.$route.params.id)
     socketService.on(SOCKET_EVENT_LOAD_CURRBOARD, this.loadCurrBoard)
     eventBus.on('setCurrActive', this.setCurrActive)
+    this.loadCurrBoard(this.$route.params.id)
   },
   methods: {
     setCurrActive(currActive){
@@ -36,12 +46,15 @@ export default {
     },
 
     async loadCurrBoard(boardId) {
+      this.isLoaded = false
       const board = await boardService.getBoardById(boardId)
-
       this.$store.commit({
         type: 'setCurrBoardBySocket',
         board
       })
+      setTimeout(()=> {
+        this.currBoard = board
+        }, 350)
     },
   },
   components: {
