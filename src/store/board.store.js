@@ -24,6 +24,9 @@ export const boardStore = {
         getBoards({ boards }) {
             return boards
         },
+        getCurrBoard({currBoard}){
+            return currBoard
+        },
          getCurrBoard({ filterBy, currBoard }) {
             return boardService.filterCurrBoard(currBoard, filterBy)
         },
