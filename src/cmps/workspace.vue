@@ -87,7 +87,7 @@ export default {
     }
   },
   created() {
-    this.activeBoardId
+    this.activeBoardId = this.$route.params.id
   },
   methods: {
     toggleWorkspace() {

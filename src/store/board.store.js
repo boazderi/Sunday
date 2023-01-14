@@ -25,11 +25,7 @@ export const boardStore = {
             return boards
         },
         getCurrBoard({filterBy ,currBoard }) {
-            if(currBoard){
-                return boardService.filterCurrBoard(currBoard, filterBy)
-            } else {
-                return currBoard
-            }
+            if(currBoard) return boardService.filterCurrBoard(currBoard, filterBy)
         },
         getCmpOrder({ currBoard }) {
             return currBoard.cmpOrder

@@ -30,7 +30,6 @@ export default {
   data() {
     return {
       active: 'workspace',
-      isLoaded: false,
       currBoard: this.$store.getters.getCurrBoard
     }
   },
@@ -46,7 +45,6 @@ export default {
     },
 
     async loadCurrBoard(boardId) {
-      this.isLoaded = false
       const board = await boardService.getBoardById(boardId)
       this.$store.commit({
         type: 'setCurrBoardBySocket',

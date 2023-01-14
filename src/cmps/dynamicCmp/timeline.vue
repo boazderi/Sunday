@@ -65,7 +65,6 @@ export default {
         var toYear = `,'${(toDate.getFullYear() + '').substring(2, 4)}`
         var toMonth = toDate.getMonth();
         var toDay = toDate.getDate();
-        var dates = [fromDate, toDate];
         if (fromYear === toYear) {
           if (fromMonth === toMonth) {
             return `${months[fromMonth].substring(0, 3)} ${fromDay} - ${toDay}`
