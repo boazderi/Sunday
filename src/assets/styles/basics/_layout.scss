@@ -35,7 +35,13 @@
         .main-layout {
             margin-inline-start: 10px;
             padding-block-start: 16px;
-        }        
+        } 
+        .board-content{
+            margin-left: -30px;
+            .more.sticky.first{
+                margin-left: 18px;
+            }
+        }       
         .sub-upper-header{
             width: 100%;
         }

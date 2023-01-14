@@ -26,14 +26,6 @@
           Dashboard
         </div>
       </el-tooltip>
-      <div class="views-seprator"></div>
-    </div>
-
-    <div class="nav-item-container">
-      <el-tooltip transition="none" auto-close=0 content="Add View">
-        <router-link class="board-nav-item flex outboard-hover" to="/">+
-        </router-link>
-      </el-tooltip>
     </div>
   </section>
 </template>

@@ -36,11 +36,11 @@
       </button>
     </el-tooltip>
 
-    <el-tooltip transition="none" auto-close="0" content="Sort by any column">
+    <!-- <el-tooltip transition="none" auto-close="0" content="Sort by any column">
       <button class="flex align-center board-filter-item outboard-hover">
         <span class="svg" v-icon="'sort'"></span> &nbsp;Sort
       </button>
-    </el-tooltip>
+    </el-tooltip> -->
 
     <!-- <el-tooltip transition="none" auto-close="0" content="Hidden columns">
       <button class="flex align-center board-filter-item outboard-hover">
@@ -48,9 +48,9 @@
       </button>
     </el-tooltip> -->
 
-    <button class="flex align-center board-filter-item outboard-hover">
+    <!-- <button class="flex align-center board-filter-item outboard-hover">
       <span class="svg no-cursor" v-icon="'more'"></span>
-    </button>
+    </button> -->
   </section>
 
   <el-collapse-transition v-if="isPersonFilter">
