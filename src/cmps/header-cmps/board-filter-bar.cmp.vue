@@ -49,7 +49,7 @@
     </el-tooltip> -->
 
     <button class="flex align-center board-filter-item outboard-hover">
-      <span class="svg no-cursor" v-icon="'more'" />
+      <span class="svg no-cursor" v-icon="'more'"></span>
     </button>
   </section>
 

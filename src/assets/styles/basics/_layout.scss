@@ -41,6 +41,7 @@
         }
         .board-name-title{
             margin-left: -86px;
+            font-size: 1.25rem;
         }
         .workspace{
             transform: translateX(-100%);
@@ -156,6 +157,15 @@
         }
         .home-page{
 
+        }
+    }
+}
+
+@media(max-width:380px){
+    .board-app{
+        .board-name-title{
+            margin-left: -66px;
+            font-size: 1.25rem;
         }
     }
 }
