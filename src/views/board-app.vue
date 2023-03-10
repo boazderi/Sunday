@@ -1,5 +1,4 @@
 <template>
-
   <section v-if="currBoard" class="board-app">
     <side-nav />
     <workspace :class="{ 'active': active === 'workspace' }" />
@@ -8,6 +7,7 @@
       <router-view></router-view>
     </section>
   </section>
+
   <section v-else @load="loadCurrBoard(this.$route.params.id)" class="loader-container">
     <div class="loader">
       <div class="inner one"></div>
@@ -15,7 +15,6 @@
       <div class="inner three"></div>
     </div>
   </section>
-
 </template>
 
 <script>
@@ -30,30 +29,44 @@ export default {
   data() {
     return {
       active: 'workspace',
-      currBoard: this.$store.getters.getCurrBoard
     }
   },
   async created() {
     socketService.emit(SOCKET_EMIT_SET_TOPIC, this.$route.params.id)
-    socketService.on(SOCKET_EVENT_LOAD_CURRBOARD, this.loadCurrBoard)
+    socketService.on(SOCKET_EVENT_LOAD_CURRBOARD, this.loadCurrBoardBySocket)
     eventBus.on('setCurrActive', this.setCurrActive)
+
     this.loadCurrBoard(this.$route.params.id)
   },
   methods: {
     setCurrActive(currActive) {
       this.active = currActive
     },
-
     async loadCurrBoard(boardId) {
-      const board = await boardService.getBoardById(boardId)
+      const boards = this.$store.getters.getBoards
+      // handler for refresh refresh
+      if (!boards || !boards.length) {
+        const board = await boardService.getBoardById(boardId)
+        this.$store.commit({
+          type: 'setCurrBoardBySocket',
+          board
+        })
+      }
+    },
+    async loadCurrBoardBySocket(board) {
       this.$store.commit({
         type: 'setCurrBoardBySocket',
         board
       })
-      setTimeout(()=> {
+      setTimeout(() => {
         this.currBoard = board
-        }, 350)
+      }, 350)
     },
+  },
+  computed: {
+    currBoard() {
+      return this.$store.getters.getCurrBoard
+    }
   },
   components: {
     sideNav,

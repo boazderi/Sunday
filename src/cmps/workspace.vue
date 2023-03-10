@@ -96,7 +96,7 @@ export default {
     setBoard(boardId) {
       this.activeBoardId = boardId
 
-      this.$store.commit({ type: 'setCurrBoard', boardId })
+      this.$store.commit({ type: 'setCurrBoardById', boardId })
       this.$router.push(`/board/${boardId}/main-table`)
       eventBus.emit('setCurrActive', 'main-layout')
     },

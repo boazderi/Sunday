@@ -3,16 +3,18 @@
 
     <header class="home-page-header">
       <div class="flex">
-        <div class="header-img"><img src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670843553/l37uhxjpyxwwaxw6ifnp.png" alt=""></div>
+        <div class="header-img"><img
+            src="https://res.cloudinary.com/boaz-sunday-proj/image/upload/v1670843553/l37uhxjpyxwwaxw6ifnp.png" alt="">
+        </div>
         <div class="header-logo"> Sunday <span class="logo-suffix">.com</span></div>
       </div>
       <div class="flex login-section">
         <button class="login-btn" @click="onNavToLoginPage">Login / Signup</button>
       </div>
     </header>
-    
+
     <section class="first-layout flex column align-center">
-      <h1 class="header-line"><span class="first-homepage-line"> A platform built for a </span> 
+      <h1 class="header-line"><span class="first-homepage-line"> A platform built for a </span>
         <br>
         new way of working
       </h1>
@@ -23,10 +25,10 @@
       <button class="start-btn flex align-cene=ter" @click="moveToBoard">
         Start Demo <span class="see-demo-arrow" v-icon="'homePageArrow'"> </span>
       </button>
-      <el-carousel type="" class="bottom-homepage-img center-home-img"> 
-          <el-carousel-item v-for="(url, idx) in imgUrls" :key="idx">
-            <img :src="url" class="carousel-img">
-          </el-carousel-item>
+      <el-carousel type="" class="bottom-homepage-img center-home-img">
+        <el-carousel-item v-for="(url, idx) in imgUrls" :key="idx">
+          <img :src="url" class="carousel-img">
+        </el-carousel-item>
       </el-carousel>
       <div class="star1 star"></div>
       <div class="star2 star"></div>
@@ -75,7 +77,7 @@ export default {
         this.$router.push({ path: `/board/${CurrBoard._id}/main-table` })
       }
     },
-    onNavToLoginPage(){
+    onNavToLoginPage() {
       this.$router.push('/login-signup')
     }
 

@@ -54,7 +54,7 @@ async function save(board) {
         if (board._id) {
             await httpService.put(`board/${board._id}`, board)
             // socket for each update
-            socketService.emit(SOCKET_EMIT_LOAD_CURRBOARD, board._id)
+            // socketService.emit(SOCKET_EMIT_LOAD_CURRBOARD, board._id)
             return
         }
         else {

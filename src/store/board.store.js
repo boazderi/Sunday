@@ -4,7 +4,7 @@ export const boardStore = {
     state: {
         boards: [],
         currBoard: null,
-        prevBoard: {},
+        prevBoard: null,
         filterBy: {
             text: '',
             members: [],
@@ -24,8 +24,8 @@ export const boardStore = {
         getBoards({ boards }) {
             return boards
         },
-        getCurrBoard({filterBy ,currBoard }) {
-            if(currBoard) return boardService.filterCurrBoard(currBoard, filterBy)
+        getCurrBoard({ filterBy, currBoard }) {
+            if (currBoard) return boardService.filterCurrBoard(currBoard, filterBy)
         },
         getCmpOrder({ currBoard }) {
             return currBoard.cmpOrder
@@ -45,6 +45,7 @@ export const boardStore = {
             filterBy = JSON.parse(JSON.stringify(filterBy))
             state.filterBy = filterBy
         },
+
         addBoard(state, { board }) {
             state.boards.push(board)
             state.currBoard = board
@@ -68,10 +69,13 @@ export const boardStore = {
             if (!board.msgs) board.msgs = []
             board.msgs.push(msg)
         },
-        setCurrBoard(state, { boardId }) {
+        setCurrBoardById(state, { boardId }) {
             const newBoard = state.boards.find(board => board._id === boardId)
-            state.currBoard = boardService.filterCurrBoard(newBoard, state.filterBy)
+            state.currBoard = newBoard
+            // when initializing the prevBoard
+            if (!state.prevBoard) state.prevBoard = newBoard
         },
+
         setCurrBoardBySocket(state, { board }) {
             state.currBoard = board
         },
@@ -138,9 +142,13 @@ export const boardStore = {
                 //  failure from database and that we dont wanna update the currBoard
                 if (!context.state.currBoard) {
                     context.commit({
-                        type: 'setCurrBoard',
+                        type: 'setCurrBoardById',
                         boardId: context.state.boards[0]._id
                     })
+                }
+                // back to prev state of the currBoard - optimistic
+                else{
+                    context.commit({ type: 'undoBoard' })
                 }
 
             } catch (err) {
@@ -172,6 +180,7 @@ export const boardStore = {
             commit({ type: 'savePrevBoard' })
 
             var updatedBoard = boardService.updateBoard(state.currBoard, groupId, taskId, prop, toUpdate)
+            // optimistic 
             commit({ type: 'updateBoard', board: updatedBoard })
             try {
                 updatedBoard = await boardService.save(state.currBoard)
