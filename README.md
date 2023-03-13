@@ -1,5 +1,5 @@
 <h1> Sunday - the frontend </h1>
-<h2> E2E project, influenced by Monday.com, built by me and 2 friends.</h2>
+<h2> E2E project, influenced by Monday.com, developed by me and 2 friends.</h2>
 <h3> Wanna have a look at the project? click here: <a href="https://sunday.onrender.com/#/">Sunday</a></h3>
 <h2>Stack: </h2>
 <ul>
