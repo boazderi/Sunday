@@ -8,7 +8,6 @@
 
     <div class="dropdown-nav-header flex space-between align-center">
       <span>Workspace</span>
-      <div class="more-medium flex" v-icon="'moreMed'"></div>
     </div>
 
     <div class="workspace-dropdown flex align-center space-between">

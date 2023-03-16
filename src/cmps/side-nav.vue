@@ -12,22 +12,9 @@
     </div>
 
     <section class="icons-pattern1 flex column align-center">
-      <div class="icon-wrapper" v-for="icon in pattern1Icons" :key="icon">
-        <span class="svg" v-icon="icon"></span>
-      </div>
-    </section>
-
-    <section class="icons-pattern2 flex column align-center">
-      <div class="icon-wrapper" v-for="icon in pattern2Icons" :key="icon">
-        <span class="svg" v-icon="icon"></span>
-      </div>
     </section>
 
     <section class="bottom-icons flex column align-center">
-      <div class="bottom-icon-wrapper flex center align-center">
-        <span class="svg" v-icon="'ninePoints'"></span>
-      </div>
-
       <div class="member-wrapper flex align-center center">
         <member-preview :member="loggedUser"></member-preview>
 
@@ -48,8 +35,6 @@ export default {
     return {
       // todo make the loggedin reactive
       loggedInUser: this.$store.getters.loggedinUser,
-      pattern1Icons: ['notifications', 'inbox', 'myWork', 'sideStar'],
-      pattern2Icons: ['apps', 'sideInvite', 'sideSearch', 'help']
     }
   },
   methods: {
