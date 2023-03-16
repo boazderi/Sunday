@@ -23,7 +23,6 @@ export const boardService = {
     addGroup,
     filterCurrBoard,
     addBoard
-    // updateDraggedGroup
 }
 window.cs = boardService
 
@@ -33,7 +32,6 @@ async function query() {
 
 async function getBoardById(boardId) {
     try {
-        // todo verify its need to be asynchron
         const board = await httpService.get(`board/${boardId}`)
         return board
 
@@ -56,7 +54,7 @@ async function save(board) {
         if (board._id) {
             await httpService.put(`board/${board._id}`, board)
             // socket for each update
-            socketService.emit(SOCKET_EMIT_LOAD_CURRBOARD, board._id)
+            // socketService.emit(SOCKET_EMIT_LOAD_CURRBOARD, board._id)
             return
         }
         else {

@@ -3,7 +3,7 @@
         class="member-preview" @click="print">
     </div>
     <div v-else :style="{ 'background-color': '#8338ec' }" class="member-preview" @click="print">
-        {{ member.fullname.substring(0, 1).toUpperCase() }}
+        {{ member?.fullname?.substring(0, 1).toUpperCase() }}
     </div>
 </template>
   
@@ -13,6 +13,9 @@ export default {
     props: {
         member: Object,
     },
+    // created(){
+    //     console.log(member?)
+    // },
     computed: {
         memberColor() {
             return this.member.color

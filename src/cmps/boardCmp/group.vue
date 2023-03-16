@@ -3,14 +3,7 @@
     <collapsed-group :groupInfo="groupInfo" @collapse="collapseGroup" @update="updateTask" />
   </section>
   <section v-else class="group-container">
-    <!-- <Container orientation="vertical"  @drop="onGroupDrop($event)"
-        @drag-start="(e) => log('drag start:', e)" :drag-begin-delay="200"
-        >
-        @dragBeginDelay="200"
-      <Draggable>
-        <groupTitle :groupInfo="groupInfo" @update="updateTask" @collapse="collapseGroup" />
-      </Draggable> 
-     </Container> -->
+   
      <groupTitle :groupInfo="groupInfo" @update="updateTask" @collapse="collapseGroup" />
 
     <section class="group-content" v-click-outside-element="updateActiveTask">

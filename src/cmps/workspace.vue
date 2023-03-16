@@ -40,6 +40,7 @@
           <div class="board-item flex align-center" >
             <span class="flex align-center" v-icon="'folderIcon'"></span>
             <span>{{ board.title }}</span>
+            
           </div>
           <div class="workspace-more-action flex align-center" @click.stop.prevent="openDeleteModal(board._id)">
             <div v-icon="'moreMed'"></div>
@@ -94,7 +95,7 @@ export default {
     setBoard(boardId) {
       this.activeBoardId = boardId
 
-      this.$store.commit({ type: 'setCurrBoard', boardId })
+      this.$store.commit({ type: 'setCurrBoardById', boardId })
       this.$router.push(`/board/${boardId}/main-table`)
       eventBus.emit('setCurrActive', 'main-layout')
     },

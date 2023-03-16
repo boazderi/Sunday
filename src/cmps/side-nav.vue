@@ -22,7 +22,6 @@
 
     </section>
 
-    <!-- todo add user preview with img -->
 
   </section>
 </template>

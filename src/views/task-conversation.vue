@@ -115,7 +115,6 @@ import { socketService, SOCKET_EMIT_SEND_COMMENTS, SOCKET_EVENT_ADD_COMMENTS, SO
 export default {
   data() {
     return {
-      //TODO?- maybe need to do deep copy
       task: null,
       groupId: null,
       user: null,
@@ -163,8 +162,6 @@ export default {
       this.task.comments = updatedComments
       socketService.emit(SOCKET_EMIT_SEND_COMMENTS, updatedComments)
       this.$refs.commentInput.value = ''
-      // todo fix that value to ''
-
       this.isFormFocus = false
     },
     addCommentsBySocket(comments) {
