@@ -76,7 +76,7 @@ export default {
     },
     timelineHover() {
       var tsRange = this.value[1] - this.value[0]
-      return (tsRange / 24 / 60 / 60 / 1000) + 'd'
+      return Math.round(tsRange / 24 / 60 / 60 / 1000) + 'd'
     }
   },
 };
